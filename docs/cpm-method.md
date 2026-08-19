@@ -1,18 +1,18 @@
-# CPM / Float Method — Baseline v0.2
+# CPM / Float Method — Baseline v0.4
 
 ## Purpose
 
-The source plans define critical control windows and the D1200 completion requirement, but do not provide a complete low-level predecessor network for every construction subactivity. The proposal schedule therefore separates:
+Plans 1–16 define source control windows, process requirements and D1200 completion, but do not provide a complete leaf-level CPM network. The proposal therefore separates:
 
 - **Source constraints** — explicit source day/window or control requirement
-- **Derived network logic** — detailed schedulable decomposition of the source process
-- **Proposal timing assumptions** — exact leaf durations, lags and detailed placement needed to form a proposal-level network
+- **Derived network logic** — schedulable decomposition of the source process
+- **Proposal timing assumptions** — exact detailed dates, durations and lags needed to form the proposal network
 
-The benchmark PDF is used only to calibrate activity-breakdown depth. Its dates, durations and predecessor logic are not inputs to this CPM network.
+The benchmark PDF is used only for activity-breakdown depth. Its dates, durations and predecessor logic are not CPM inputs.
 
 ## Calculated fields
 
-For every activity the generator evaluates the current predecessor network and writes:
+Each activity stores:
 
 - `network_from_start`
 - `network_to_final`
@@ -21,161 +21,122 @@ For every activity the generator evaluates the current predecessor network and w
 - `computed_critical`
 - `driving_successor`
 
-The project endpoints are:
+Endpoints:
 
-- `P01-PRE-NTP` — project commencement / NTP
-- `P01-CO-006` — Project final acceptance / Day 1200 milestone
+- `P01-PRE-NTP` — commencement / NTP
+- `P01-CO-006` — Day 1200 final acceptance
 
-### Strict upstream rule
+## Strict upstream rule
 
-`network_from_start=Y` is intentionally strict. A non-start activity is considered fully anchored to NTP only if:
+`network_from_start=Y` requires a complete predecessor ancestry to NTP. For a non-start row with multiple predecessors, every stored predecessor must itself be reachable from NTP. This prevents an activity from appearing valid merely because one branch is connected while a mandatory QA/HSE/environment/permit branch remains a floating island.
 
-1. it has one or more stored predecessors; and
-2. **every stored predecessor** is itself reachable from NTP.
+Plans 02–16 root processes are anchored to NTP with proposal integration lags that preserve their existing planned start. This changes traceability, not source timing provenance.
 
-This is stronger than accepting one valid upstream branch. It prevents a physical activity from appearing properly anchored when, for example, its site release reaches NTP but its mandatory QA/HSE/environment prerequisite is still a floating logic island.
+## Downstream / float rule
 
-Plans 02–16 are post-NTP project processes in this proposal programme. Their root activities that otherwise have no predecessor are therefore connected to the NTP milestone with a proposal integration lag that preserves the existing planned start. This does not change the bar position or convert an assumed date into SOURCE timing.
+A reverse pass from D1200 checks successor reachability and accumulates the tightest relationship slack. `computed_critical=Y` means zero accumulated float to D1200 under the current proposal bar placement.
 
-### Downstream rule
+Relationship gap logic:
 
-A reverse pass from D1200 checks whether each activity has a downstream successor path to final acceptance and accumulates the tightest relationship gap. `computed_critical=Y` means zero accumulated float to D1200 under the current proposal network.
+- FS — successor start versus predecessor finish + lag and project-day convention
+- SS — successor start versus predecessor start + lag
+- FF — successor finish versus predecessor finish + lag
+- SF — successor finish versus predecessor start + lag
 
-## Relationship gap calculation
+This is a **proposal-baseline float calculation**, not approved contract float.
 
-Within the current planned bar arrangement, link slack is evaluated by relationship:
+## CP-05 / CP-06 / CP-07 convergence
 
-- FS: successor start minus predecessor finish, adjusted for project-day/milestone convention and lag
-- SS: successor start minus predecessor start and lag
-- FF: successor finish minus predecessor finish and lag
-- SF: successor finish minus predecessor start and lag
+Source windows:
 
-This is a **baseline-network float calculation against the current proposal bar placement**. It is not represented as an approved contract CPM until the working calendar, production rates, approved detailed dates and vendor lead times are confirmed.
+- CP-05 D421–D840
+- CP-06 D301–D960
+- CP-07 D841–D1080
+- CP-08 D1081–D1200
 
-## Source CP-05 / CP-06 / CP-07 convergence
+Derived audit milestones:
 
-Plan 1 states:
+- `P01-CP05-GATE` D840
+- `P01-CP06-GATE` D960
 
-- CP-05: D421–D840 — Area A architecture / MEP
-- CP-06: D301–D960 — Areas B/C/D + external systems
-- CP-07: D841–D1080 — landscape / detail completion / system integration
-- CP-08: D1081–D1200 — commissioning / as-built / O&M / handover
+CP-07 starts after CP-05. CP-06 overlaps CP-07 and therefore controls CP-07 completion by FF rather than a false global FS relationship. Late landscape and raw-water-pontoon packages remain inside CP-07 convergence and must complete before CP-07 finishes.
 
-Baseline v0.2 makes this convergence explicit with two derived boundary milestones:
+## v0.4 task-level control gates
 
-- `P01-CP05-GATE` at D840
-- `P01-CP06-GATE` at D960
+The CPM network now includes source-derived leaf-level gates for clearly supported risk/quality interfaces:
 
-`P01-CO-001` remains the source CP-07 control window. CP-07 starts after the CP-05 boundary. Because CP-06 overlaps CP-07 at project-summary level, CP-06 is connected to CP-07 completion by an FF relationship rather than a false global FS relationship that would prevent CP-07 from starting until D960. The D960→D1080 relationship is a source-window control relationship, not a claimed leaf-activity construction lag.
+- excavation / earthwork JSEA + PTW
+- localized environmental earthwork readiness
+- work-at-height / scaffold / fall-rescue readiness for roof work
+- above-ceiling concealed-services QA Hold Point
+- electrical isolation / LOTO / test-before-touch before precommissioning
+- raw-water pontoon lifting-plan / exclusion / emergency readiness
+- raw-water pontoon special-movement / traffic-route readiness
+- raw-water pontoon near-water rescue / evacuation / sensitive-area readiness
 
-Late landscape and raw-water-pontoon packages remain inside the overlapping CP-07 convergence and must be complete before CP-07 finishes.
+Exact gate days use `timing_basis=ASSUMPTION` because the source defines the control process but not these detailed project days.
 
-## Physical-package handover integrity
+Hot-work and confined-space gates are not created without approved project-method evidence that the activity exists in the corresponding work package.
 
-Every Plan-01 physical package handover is connected downstream to CP-07 and then to D1200. The integration layer also closes parallel internal branches that were intentionally exposed by the detailed WBS:
+## Physical-package integrity
 
-- building envelope
-- doors / glazing
-- floors / final architectural finishes
-- fixed furniture
-- immediate external works
-- specialist package activities such as exhibition, kitchen, conference AV or process-equipment interfaces
-- external-work site furniture / signage
-- environmental monitoring records
+Every Plan-01 physical row must be fully connected NTP→D1200. Package handover also waits for applicable parallel branches including envelope, doors/glazing, floors/final finishes, furniture, immediate external work, specialist systems, commissioning, punch/correction and as-built evidence.
 
-A package handover therefore cannot be treated as complete merely because commissioning or punch correction is complete while another material physical branch is still open.
+A Plan-01 physical row failing either upstream or downstream network integrity is a validation failure.
 
-## Two-sided physical-network validation
+## Supporting-plan / LOE integration
 
-The validator reports both directions independently and together:
+v0.4 connects active controls and closeout evidence without automatically making every monitoring bar critical. Examples:
 
-- overall from-NTP coverage
-- overall to-D1200 coverage
-- overall through-network coverage
-- Plan-01 physical from-NTP coverage
-- Plan-01 physical to-D1200 coverage
-- Plan-01 physical complete NTP→D1200 coverage
-- Plan-01 handover complete NTP→D1200 coverage
-- exact IDs of physical activities with a missing upstream or downstream connection
+- active workforce / QA / HSE / traffic / environment / heritage streams feed Area release
+- plant operation streams feed relevant physical workfronts by SS
+- site / plant / traffic / environment / heritage streams converge through restoration closeout
+- QA area monitoring feeds final QA dossier
+- CDE / progress cycles feed final closeout cycles
+- BIM coordination / 4D-5D feeds as-built BIM
+- AI monitoring feeds digital-system handover
+- carbon data collection feeds periodic calculation and final report
+- commercial area cycles feed forecast-to-complete reconciliation
 
-A Plan-01 physical activity that fails either side is a **validation failure**. The target condition for proposal network integrity is therefore:
-
-`NTP → complete predecessor ancestry → physical activity → downstream successors → D1200`
-
-This network-integrity test is separate from float. An activity can be fully network-connected without being critical.
+`P04-WF-DEMOB` remains an intentional level-of-effort terminal rather than being force-connected for cosmetic overall network coverage.
 
 ## Proposal driving chain
 
-To avoid a meaningless “critical path” consisting only of the final milestone, the baseline contains an explicit **proposal driving chain**. It selects a technically plausible path and makes its predecessor links tight while preserving the planned activity bars. The representative path is intended to trace:
+The representative zero-float chain is made traceable from NTP through a technically plausible Area-A learning-centre sequence into source CP convergence and CP-08 closeout. The current validated representative chain has 36 activities:
 
-1. NTP / commencement
-2. Temporary site readiness
-3. Main works release
-4. Area-A learning-centre workfront release
-5. Survey / setting out
-6. Excavation / foundation preparation
-7. Reinforcement / pre-pour hold / foundation
-8. Ground structure / superstructure
-9. MEP first fix
-10. Electrical / ICT containment and installation
-11. Pre-commissioning
-12. Functional test
-13. Integrated commissioning
-14. Punch / defect correction
-15. Area-A handover
-16. CP-05 D840 boundary
-17. CP-06 D960 parallel boundary / CP-07 convergence
-18. CP-07 D841–D1080 completion
-19. Detailed CP-08 closeout packages
-20. Installments 493–497 gates
-21. Final acceptance processing
-22. D1200 final milestone
+`NTP → Temporary readiness → Main release → A23 release → Survey → Excavation → Foundation → Frame → MEP/Electrical/ICT → Precommissioning → Functional test → Integrated commissioning → Punch/correction → A23 Handover → CP-05 → CP-07 → Closeout 493–497 → Final acceptance processing → D1200`
 
-The detailed lags used to make this proposal chain driving are recorded in each successor activity note and are **not represented as TOR-stated leaf-activity lags** unless independently supported by a source constraint.
+Detailed driving lags are proposal CPM logic and are not represented as TOR-stated leaf-activity lags.
 
-## Cross-plan closeout convergence
+## Latest validated network
 
-The final network also requires completion of relevant control streams from the other plans. In particular:
+Baseline v0.4 CI result:
 
-- site / temporary-facility demobilization
-- plant demobilization and service-area restoration
-- temporary traffic-control removal / route repair
-- environmental restoration verification
-- heritage / sensitive-area rehabilitation acceptance
-- BIM / AIM / Digital Twin handover
-- Application / AI system-data export and handover
-- final QA dossier
-- final carbon report
-- commercial forecast / cost reconciliation
-- controlled-document archive cycle
-- final progress / closeout reconciliation
-
-These links are modeled as FS or FF according to whether the closeout activity must start after the evidence or may proceed concurrently but cannot finish before the evidence stream closes.
-
-## Why the final installments were expanded
-
-The source identifies final deliverables for installments 493–497 and the D1081–D1200 closeout envelope, but does not give a distinct exact day for each final installment in the supplied plan. The proposal therefore adds detailed closeout activities for:
-
-- Final cleaning / site handover inspection
-- Final As-Built / As-Built BIM verification
-- Final electrical/mechanical test-report reconciliation
-- O&M / warranty / spares / training closeout
-- Asset register / serial-location / value-by-item reconciliation
-- Final joint inspection and acceptance processing
-
-Their exact internal CP-08 day splits have `timing_basis=ASSUMPTION`.
+- 957 activities
+- 178 milestones
+- 51 computed zero-float activities
+- 957 / 957 reachable from NTP
+- 954 / 957 connected to D1200
+- Plan-01 physical 654 / 654 complete NTP→D1200
+- Plan-01 handovers 23 / 23 complete NTP→D1200
+- 0 structure errors
+- 0 dependency cycles
+- 0 network-integrity errors
+- 0 temporal warnings
+- PASS
 
 ## Contract-baseline conversion
 
-The proposal CPM should be recalculated after receiving:
+Recalculate the CPM when the following are approved/confirmed:
 
-- approved work calendar / holidays / weather constraints
+- project calendar / holidays / weather constraints
 - actual NTP
-- IFC / shop drawing dates
-- BOQ quantities and approved measurement rules
+- IFC / shop-drawing dates
+- BOQ quantities / measurement rules
 - productivity / crew rates
 - vendor-confirmed lead times
-- final workfront and interface constraints
-- approved testing & commissioning matrix
+- approved Method Statements / ITPs / JSEAs / permits
+- final workfront / interface constraints
+- final testing & commissioning matrix
 
-At that point detailed proposal timing assumptions can be replaced and the calculated float/critical path can be used as the contract-baseline CPM.
+At that point proposal timing assumptions can be replaced by contract-baseline data and float/criticality recomputed.
