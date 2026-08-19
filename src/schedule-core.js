@@ -5,7 +5,7 @@ export function addTask({
   id, wbs, plan = 1, zone = 'ALL', area = 'Project-wide', discipline = 'General',
   name, startDay, finishDay = startDay, predecessors = [], milestone = false,
   critical = false, responsible = '', installmentStart = '', installmentEnd = '',
-  deliverable = '', basis = 'DERIVED', source = '', resourceGroup = '', notes = ''
+  deliverable = '', basis = 'DERIVED', timingBasis = 'ASSUMPTION', source = '', resourceGroup = '', notes = ''
 }) {
   if (!id || usedIds.has(id)) throw new Error(`Duplicate/missing activity id: ${id}`);
   usedIds.add(id);
@@ -39,6 +39,7 @@ export function addTask({
     installment_end: installmentEnd,
     deliverable_evidence: deliverable,
     basis_type: basis,
+    timing_basis: timingBasis,
     source_reference: source,
     resource_group: resourceGroup,
     notes
@@ -88,22 +89,24 @@ export function stats(rows = schedule) {
   const byPlan = {};
   const byZone = {};
   const byBasis = {};
+  const byTimingBasis = {};
   let milestones = 0, critical = 0;
   for (const r of rows) {
     byPlan[r.plan_no] = (byPlan[r.plan_no] || 0) + 1;
     byZone[r.zone] = (byZone[r.zone] || 0) + 1;
     byBasis[r.basis_type] = (byBasis[r.basis_type] || 0) + 1;
+    byTimingBasis[r.timing_basis] = (byTimingBasis[r.timing_basis] || 0) + 1;
     if (r.milestone === 'Y') milestones++;
     if (r.critical === 'Y') critical++;
   }
-  return { total: rows.length, milestones, critical, byPlan, byZone, byBasis };
+  return { total: rows.length, milestones, critical, byPlan, byZone, byBasis, byTimingBasis };
 }
 
 export function toCSV(rows = schedule) {
   const fields = [
     'activity_id','wbs','plan_no','zone','building_area','discipline','activity_name','duration_days',
     'predecessor','relationship','lag_days','start_day','finish_day','milestone','critical','responsible_party',
-    'installment_start','installment_end','deliverable_evidence','basis_type','source_reference','resource_group','notes'
+    'installment_start','installment_end','deliverable_evidence','basis_type','timing_basis','source_reference','resource_group','notes'
   ];
   const esc = value => {
     const s = value == null ? '' : String(value);
