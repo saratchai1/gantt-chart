@@ -90,17 +90,44 @@ export function criticalCandidateSummary(rows) {
   }));
 }
 
+export function networkCoverageSummary(rows) {
+  const connected = rows.filter(r => r.network_to_final === 'Y');
+  const physical = rows.filter(r => r.plan_no === '01' && /^P01-(?:A|B|C|D)/.test(r.activity_id));
+  const handovers = physical.filter(r => r.activity_id.endsWith('-HO'));
+  const unconnectedPhysical = physical.filter(r => r.network_to_final !== 'Y').map(r => r.activity_id);
+  const unconnectedHandovers = handovers.filter(r => r.network_to_final !== 'Y').map(r => r.activity_id);
+  const byPlan = {};
+  for (const r of rows) {
+    if (!byPlan[r.plan_no]) byPlan[r.plan_no] = { total:0, connected:0 };
+    byPlan[r.plan_no].total++;
+    if (r.network_to_final === 'Y') byPlan[r.plan_no].connected++;
+  }
+  for (const v of Object.values(byPlan)) v.coverage_pct = v.total ? Number((100 * v.connected / v.total).toFixed(1)) : 0;
+  return {
+    overall:{ total:rows.length, connected:connected.length, coverage_pct:Number((100 * connected.length / Math.max(1, rows.length)).toFixed(1)) },
+    plan01_physical:{ total:physical.length, connected:physical.length-unconnectedPhysical.length, coverage_pct:Number((100 * (physical.length-unconnectedPhysical.length) / Math.max(1, physical.length)).toFixed(1)) },
+    plan01_handovers:{ total:handovers.length, connected:handovers.length-unconnectedHandovers.length, coverage_pct:Number((100 * (handovers.length-unconnectedHandovers.length) / Math.max(1, handovers.length)).toFixed(1)) },
+    unconnected_plan01_physical:unconnectedPhysical,
+    unconnected_plan01_handovers:unconnectedHandovers,
+    by_plan:byPlan
+  };
+}
+
 export function validationReport(rows) {
   const structureErrors = validateStructure(rows);
   const cycles = detectCycles(rows);
   const temporalWarnings = validateTemporalLogic(rows);
+  const networkCoverage = networkCoverageSummary(rows);
+  const networkIntegrityErrors = networkCoverage.unconnected_plan01_handovers.map(id => `${id}: physical handover is not connected to final D1200 milestone`);
   return {
     generated_at:new Date().toISOString(),
     total_activities:rows.length,
     structure_errors:structureErrors,
     dependency_cycles:cycles,
     temporal_logic_warnings:temporalWarnings,
+    network_coverage:networkCoverage,
+    network_integrity_errors:networkIntegrityErrors,
     critical_candidates:criticalCandidateSummary(rows),
-    status: structureErrors.length || cycles.length ? 'FAIL' : temporalWarnings.length ? 'PASS_WITH_TEMPORAL_WARNINGS' : 'PASS'
+    status: structureErrors.length || cycles.length || networkIntegrityErrors.length ? 'FAIL' : temporalWarnings.length ? 'PASS_WITH_TEMPORAL_WARNINGS' : 'PASS'
   };
 }
