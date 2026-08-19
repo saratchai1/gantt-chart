@@ -3,6 +3,7 @@ import { buildPlans09to16 } from './plans-09-16.js';
 import { buildPlans02to08 } from './plans-02-08.js';
 import { buildPlan01Physical } from './plan-01-physical.js';
 import { normalizeSchedule } from './normalize-schedule.js';
+import { applyFinalLogicRepairs } from './logic-repairs-v2.js';
 import { validationReport } from './schedule-validation.js';
 
 // Build supporting/control streams first because Plan 01 physical workfronts
@@ -12,6 +13,7 @@ buildPlans09to16();
 buildPlans02to08();
 buildPlan01Physical();
 normalizeSchedule(schedule);
+applyFinalLogicRepairs(schedule);
 
 export const masterSchedule = sortSchedule(schedule);
 export const scheduleStats = stats(masterSchedule);
