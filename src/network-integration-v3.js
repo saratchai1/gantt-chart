@@ -79,6 +79,23 @@ export function applyNetworkIntegrationV3(rows) {
   const byId = new Map(rows.map(r => [r.activity_id, r]));
 
   // ------------------------------------------------------------------
+  // Integrated workfront readiness.
+  // Plans 3-5, 8-11 collectively require that people, plant, access/traffic,
+  // HSE/environment controls and controlled project information are ready
+  // before a workfront is opened. These links do not create new dates; they
+  // make the existing readiness bars enforceable predecessors of each Area
+  // release so the supporting plans are part of the physical delivery network.
+  // ------------------------------------------------------------------
+  for (const zone of ['A','B','C','D']) {
+    const release = byId.get(`P03-SITE-${zone}-REL`);
+    if (!release) continue;
+    for (const id of ['P04-WF-002','P05-PLT-002','P09-TRF-002','P11-CDE-004']) {
+      if (byId.has(id)) addPred(release, { id, relationship:'FS', lagDays:0 });
+    }
+    addNote(release, 'V3 integrated readiness: competency, plant-personnel authorization, traffic-plan and controlled-document-system readiness are prerequisite inputs to workfront release.');
+  }
+
+  // ------------------------------------------------------------------
   // Package internal convergence.
   // The original detailed generator intentionally exposed parallel envelope,
   // finish, furniture, external-work and specialist branches. A professional
