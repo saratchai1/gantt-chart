@@ -11,6 +11,11 @@ console.log(`Structure errors: ${validation.structure_errors.length}`);
 console.log(`Dependency cycles: ${validation.dependency_cycles.length}`);
 console.log(`Temporal warnings: ${validation.temporal_logic_warnings.length}`);
 console.log(`Validation status: ${validation.status}`);
+if (validation.temporal_logic_warnings.length) {
+  console.log('TEMPORAL_WARNINGS_BEGIN');
+  for (const w of validation.temporal_logic_warnings) console.log(JSON.stringify(w));
+  console.log('TEMPORAL_WARNINGS_END');
+}
 
 if (validation.structure_errors.length || validation.dependency_cycles.length) {
   console.error(JSON.stringify({
