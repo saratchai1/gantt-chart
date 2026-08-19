@@ -6,14 +6,17 @@ Repository นี้พัฒนา **Integrated Master Schedule** จากแ�
 
 - Project duration: **1,200 project days**
 - Contract installment structure: **497 installments**
-- Generated detailed activities: **866 activities**
+- Generated detailed activities: **872 activities**
 - Milestones / gates: **93**
-- Proposal critical-chain candidates: **98**
+- Source-window / proposal critical-chain candidates: **104**
+- Logic-driven computed zero-float activities: **40**
+- Activities connected by dependency network to final D1200 milestone: **158**
 - Structural validation: **0 missing/duplicate/range errors**
 - Dependency cycle validation: **0 cycles**
-- Source/derived/assumption distinction is retained per row
+- Temporal relationship validation: **0 warnings**
+- JavaScript syntax validation: **PASS**
 
-> Detailed leaf durations and lags not explicitly stated in Plans 1–16 are proposal planning allowances and are tagged `ASSUMPTION`. They are not represented as TOR-stated durations.
+> Detailed leaf durations and lags not explicitly stated in Plans 1–16 are proposal planning allowances. Activity provenance (`basis_type`) and exact timing provenance (`timing_basis`) are stored separately so a source-stated requirement cannot be mistaken for a source-stated duration/date.
 
 ## Schedule architecture
 
@@ -39,18 +42,35 @@ The source-level critical control windows are retained:
 - D841–1080 landscape / detail completion / integration
 - D1081–1200 commissioning / as-built / O&M / handover
 
+## CPM / critical-path analysis
+
+The schedule stores two different concepts:
+
+1. `critical` — source-window / proposal critical-chain candidate used while constructing the baseline.
+2. `computed_critical` — zero-float activity calculated from the actual predecessor network and the current D1200 final milestone.
+
+Additional CPM fields exported per activity:
+
+- `computed_total_float_days`
+- `computed_free_float_days`
+- `network_to_final`
+- `driving_successor`
+
+The proposal driving chain is intentionally made traceable from NTP through the Area-A learning-centre structure/MEP/ICT/commissioning sequence, the source CP07 transition, final installment packages 493–497, and the D1200 acceptance milestone. Detailed driving lags remain proposal assumptions unless explicitly source-stated.
+
 ## Interactive Gantt
 
 Open `index.html` through a static web server or GitHub Pages. The viewer supports:
 
 - Plan 01–16 filtering
 - Zone and discipline filtering
-- SOURCE / DERIVED / ASSUMPTION filtering
-- Critical-only view
+- Activity basis: SOURCE / DERIVED / ASSUMPTION
+- Timing basis: SOURCE timing / ASSUMED timing
+- Computed zero-float critical-only view
 - Search by ID / WBS / building / activity / responsible party
 - Collapse / expand by Plan and Building/Area
 - Zoomed 1,200-day timeline
-- Click-through activity detail with predecessor logic and evidence
+- Click-through activity detail with predecessor logic, evidence, float and driving successor
 - CSV / JSON export from the browser
 - Validation status and temporal advisory visibility
 
@@ -58,7 +78,7 @@ Because the viewer uses ES modules, do not open it as a raw `file://` page if th
 
 ## CLI generation / validation
 
-Node.js 20+; no external npm dependencies.
+Node.js 20+; CI currently validates with Node.js 24. No external npm dependencies.
 
 ```bash
 npm run validate
@@ -70,9 +90,10 @@ npm run export
 - `data/master-schedule.csv`
 - `data/master-schedule.json`
 - `data/schedule-stats.json`
+- `data/cpm-report.json`
 - `data/validation-report.json`
 
-GitHub Actions executes validation and exports the same files as a workflow artifact.
+GitHub Actions runs JavaScript syntax checks, schedule validation and export, then uploads the same generated files as an artifact.
 
 ## Repository structure
 
@@ -81,6 +102,7 @@ gantt-chart/
 ├── index.html
 ├── app.js
 ├── style.css
+├── timing.css
 ├── package.json
 ├── README.md
 ├── data/
@@ -94,6 +116,11 @@ gantt-chart/
 │   ├── schedule-core.js
 │   ├── schedule-validation.js
 │   ├── normalize-schedule.js
+│   ├── logic-repairs-v2.js
+│   ├── timing-provenance.js
+│   ├── cpm-analysis.js
+│   ├── critical-driver.js
+│   ├── closeout-detail.js
 │   ├── plans-09-16.js
 │   ├── plans-02-08.js
 │   ├── plan-01-physical.js
@@ -106,9 +133,11 @@ gantt-chart/
 
 ## Source / assumption policy
 
-- `SOURCE` — source document explicitly states the constraint/activity/control point.
-- `DERIVED` — decomposed from a source-defined process into schedulable activities.
-- `ASSUMPTION` — proposal-level detailed duration/lag/sequence allowance needed to form a usable network where the source does not supply the number.
+- `basis_type = SOURCE` — activity/control requirement is explicitly stated by a source plan.
+- `basis_type = DERIVED` — schedulable activity is decomposed from a source-defined process.
+- `basis_type = ASSUMPTION` — proposal-level activity content had to be added to make the network usable.
+- `timing_basis = SOURCE` — exact day/window is explicitly supported by source material.
+- `timing_basis = ASSUMPTION` — exact detailed date/duration/lag is a proposal planning allowance.
 
 The benchmark PDF is **never** used as a source of dates, durations or dependencies.
 
