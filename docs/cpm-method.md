@@ -14,13 +14,32 @@ The benchmark PDF is used only to calibrate activity-breakdown depth. Its dates,
 
 For every activity the generator evaluates the current predecessor network and writes:
 
+- `network_from_start`
+- `network_to_final`
 - `computed_free_float_days`
 - `computed_total_float_days`
-- `network_to_final`
 - `computed_critical`
 - `driving_successor`
 
-The final target is `P01-CO-006` — Project final acceptance / Day 1200 milestone.
+The project endpoints are:
+
+- `P01-PRE-NTP` — project commencement / NTP
+- `P01-CO-006` — Project final acceptance / Day 1200 milestone
+
+### Strict upstream rule
+
+`network_from_start=Y` is intentionally strict. A non-start activity is considered fully anchored to NTP only if:
+
+1. it has one or more stored predecessors; and
+2. **every stored predecessor** is itself reachable from NTP.
+
+This is stronger than accepting one valid upstream branch. It prevents a physical activity from appearing properly anchored when, for example, its site release reaches NTP but its mandatory QA/HSE/environment prerequisite is still a floating logic island.
+
+Plans 02–16 are post-NTP project processes in this proposal programme. Their root activities that otherwise have no predecessor are therefore connected to the NTP milestone with a proposal integration lag that preserves the existing planned start. This does not change the bar position or convert an assumed date into SOURCE timing.
+
+### Downstream rule
+
+A reverse pass from D1200 checks whether each activity has a downstream successor path to final acceptance and accumulates the tightest relationship gap. `computed_critical=Y` means zero accumulated float to D1200 under the current proposal network.
 
 ## Relationship gap calculation
 
@@ -30,8 +49,6 @@ Within the current planned bar arrangement, link slack is evaluated by relations
 - SS: successor start minus predecessor start and lag
 - FF: successor finish minus predecessor finish and lag
 - SF: successor finish minus predecessor start and lag
-
-A reverse pass from D1200 accumulates the tightest downstream slack. `computed_critical=Y` means zero accumulated float to the D1200 final milestone under the current proposal network.
 
 This is a **baseline-network float calculation against the current proposal bar placement**. It is not represented as an approved contract CPM until the working calendar, production rates, approved detailed dates and vendor lead times are confirmed.
 
@@ -68,14 +85,24 @@ Every Plan-01 physical package handover is connected downstream to CP-07 and the
 
 A package handover therefore cannot be treated as complete merely because commissioning or punch correction is complete while another material physical branch is still open.
 
-The validator now reports:
+## Two-sided physical-network validation
 
-- overall network coverage
-- Plan-01 physical activity network coverage
-- Plan-01 handover network coverage
-- unconnected physical handovers
+The validator reports both directions independently and together:
 
-An unconnected Plan-01 physical handover is a **validation failure**.
+- overall from-NTP coverage
+- overall to-D1200 coverage
+- overall through-network coverage
+- Plan-01 physical from-NTP coverage
+- Plan-01 physical to-D1200 coverage
+- Plan-01 physical complete NTP→D1200 coverage
+- Plan-01 handover complete NTP→D1200 coverage
+- exact IDs of physical activities with a missing upstream or downstream connection
+
+A Plan-01 physical activity that fails either side is a **validation failure**. The target condition for proposal network integrity is therefore:
+
+`NTP → complete predecessor ancestry → physical activity → downstream successors → D1200`
+
+This network-integrity test is separate from float. An activity can be fully network-connected without being critical.
 
 ## Proposal driving chain
 
