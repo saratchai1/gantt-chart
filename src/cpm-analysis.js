@@ -1,7 +1,8 @@
 // Logic-driven float analysis over the proposal baseline network.
 // The detailed bar positions are planning dates; this module calculates how much
 // each predecessor can slip within the current logic/date arrangement before it
-// affects the final D1200 acceptance milestone.
+// affects the final D1200 acceptance milestone, and also checks whether an
+// activity is reachable downstream from the NTP/start milestone.
 
 function edgeSlack(pred, succ, link) {
   const lag = Number(link.lagDays || 0);
@@ -41,16 +42,32 @@ function topoSort(rows) {
   return { byId, successors, order, acyclic: order.length === rows.length };
 }
 
-export function applyCpmAnalysis(rows, finalMilestoneId = 'P01-CO-006') {
+export function applyCpmAnalysis(rows, finalMilestoneId = 'P01-CO-006', startMilestoneId = 'P01-PRE-NTP') {
   const { byId, successors, order, acyclic } = topoSort(rows);
   if (!acyclic || !byId.has(finalMilestoneId)) {
     for (const r of rows) {
+      r.network_from_start = 'N';
       r.network_to_final = 'N';
       r.computed_free_float_days = '';
       r.computed_total_float_days = '';
       r.computed_critical = 'N';
     }
     return rows;
+  }
+
+  // Forward reachability from NTP/start. One valid upstream chain is sufficient
+  // for network-start coverage; multi-predecessor completeness is separately
+  // enforced by the explicit stored logic and temporal validation.
+  const fromStart = new Set();
+  if (byId.has(startMilestoneId)) {
+    for (const id of order) {
+      if (id === startMilestoneId) {
+        fromStart.add(id);
+        continue;
+      }
+      const row=byId.get(id);
+      if ((row.predecessors || []).some(p => fromStart.has(p.id))) fromStart.add(id);
+    }
   }
 
   // Minimum immediate edge gap = free float in the current scheduled network.
@@ -83,13 +100,15 @@ export function applyCpmAnalysis(rows, finalMilestoneId = 'P01-CO-006') {
 
   for (const r of rows) {
     const tf=floatToFinal.get(r.activity_id);
+    r.network_from_start = fromStart.has(r.activity_id) ? 'Y' : 'N';
     r.network_to_final = tf == null ? 'N' : 'Y';
     r.computed_total_float_days = tf == null ? '' : tf;
     r.computed_critical = tf === 0 ? 'Y' : 'N';
     r.driving_successor = nextDriving.get(r.activity_id) || '';
   }
 
-  // Explicit final milestone.
+  // Explicit project endpoints.
+  if (byId.has(startMilestoneId)) byId.get(startMilestoneId).network_from_start='Y';
   const final=byId.get(finalMilestoneId);
   final.network_to_final='Y';
   final.computed_total_float_days=0;
