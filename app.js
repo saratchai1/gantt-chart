@@ -21,13 +21,15 @@ const planNames = {
 };
 
 const els = Object.fromEntries([
-  'metrics','search','planFilter','zoneFilter','disciplineFilter','basisFilter','timingFilter','criticalOnly','networkOnly','zoom','resetFilters',
+  'metrics','search','planFilter','zoneFilter','disciplineFilter','basisFilter','timingFilter','criticalOnly','networkOnly','linkMode','zoom','resetFilters',
   'timelineHead','leftGrid','timelineGrid','drawer','drawerContent','drawerClose','exportCsv','exportJson'
 ].map(id => [id, document.getElementById(id)]));
 
 let pxDay = Number(els.zoom.value);
 const collapsedPlans = new Set();
 const collapsedAreas = new Set();
+const scheduleById = new Map(masterSchedule.map(r=>[r.activity_id,r]));
+const SVGNS='http://www.w3.org/2000/svg';
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[ch]));
 const nfmt = n => new Intl.NumberFormat('en-US').format(n);
@@ -158,6 +160,59 @@ function groupRows({type,key,label,rows,collapsed}) {
   return [l,t];
 }
 
+function svgMarker(defs,id,fill){
+  const marker=document.createElementNS(SVGNS,'marker');
+  marker.setAttribute('id',id); marker.setAttribute('viewBox','0 0 8 8'); marker.setAttribute('refX','7'); marker.setAttribute('refY','4'); marker.setAttribute('markerWidth','6'); marker.setAttribute('markerHeight','6'); marker.setAttribute('orient','auto-start-reverse');
+  const path=document.createElementNS(SVGNS,'path'); path.setAttribute('d','M0 0 L8 4 L0 8 z'); path.setAttribute('fill',fill); marker.append(path); defs.append(marker);
+}
+
+function renderDependencyLinks(){
+  els.timelineGrid.querySelector('.dependency-overlay')?.remove();
+  const mode=els.linkMode?.value || 'off';
+  if(mode==='off') return;
+
+  const taskEls=[...els.timelineGrid.querySelectorAll('.trow[data-id]')];
+  if(!taskEls.length) return;
+  const visibleEls=new Map(taskEls.map(el=>[el.dataset.id,el]));
+  const width=1200*pxDay;
+  const height=Math.max(1,els.timelineGrid.scrollHeight);
+  const svg=document.createElementNS(SVGNS,'svg');
+  svg.setAttribute('class','dependency-overlay');
+  svg.setAttribute('width',String(width)); svg.setAttribute('height',String(height));
+  svg.setAttribute('viewBox',`0 0 ${width} ${height}`);
+
+  const defs=document.createElementNS(SVGNS,'defs');
+  svgMarker(defs,'arrow-normal','#718096'); svgMarker(defs,'arrow-driving','#b42318'); svg.append(defs);
+
+  for(const succEl of taskEls){
+    const succ=scheduleById.get(succEl.dataset.id); if(!succ) continue;
+    for(const link of succ.predecessors || []){
+      const pred=scheduleById.get(link.id), predEl=visibleEls.get(link.id);
+      if(!pred || !predEl) continue;
+      const driving=pred.driving_successor===succ.activity_id && pred.network_to_final==='Y' && succ.network_to_final==='Y';
+      if(mode==='driving' && !driving) continue;
+
+      const rel=link.relationship || 'FS';
+      const predUsesStart=rel==='SS' || rel==='SF';
+      const succUsesFinish=rel==='FF' || rel==='SF';
+      const x1=(predUsesStart ? pred.start_day-1 : pred.finish_day)*pxDay;
+      const x2=(succUsesFinish ? succ.finish_day : succ.start_day-1)*pxDay;
+      const y1=predEl.offsetTop + predEl.offsetHeight/2;
+      const y2=succEl.offsetTop + succEl.offsetHeight/2;
+      const bend=driving?9:6;
+      const routeX=x2 >= x1 + bend*2 ? x1+bend : Math.max(x1,x2)+bend*2;
+      const poly=document.createElementNS(SVGNS,'polyline');
+      poly.setAttribute('points',`${x1},${y1} ${routeX},${y1} ${routeX},${y2} ${x2},${y2}`);
+      poly.setAttribute('class',`dependency-link ${driving?'driving':'normal'}`);
+      poly.setAttribute('marker-end',`url(#${driving?'arrow-driving':'arrow-normal'})`);
+      const title=document.createElementNS(SVGNS,'title');
+      title.textContent=`${pred.activity_id} ${rel}${link.lagDays?` +${link.lagDays}d`:''} → ${succ.activity_id}`;
+      poly.append(title); svg.append(poly);
+    }
+  }
+  els.timelineGrid.prepend(svg);
+}
+
 function render() {
   const rows=filteredRows(); renderMetrics(rows.length); makeTimelineHeader();
   els.leftGrid.innerHTML=''; els.timelineGrid.innerHTML='';
@@ -177,10 +232,11 @@ function render() {
       for(const row of areaRows) { els.leftGrid.append(leftTask(row)); els.timelineGrid.append(timeTask(row)); }
     }
   }
+  renderDependencyLinks();
 }
 
 function showDetail(id) {
-  const r=masterSchedule.find(x=>x.activity_id===id); if(!r) return;
+  const r=scheduleById.get(id); if(!r) return;
   const preds=(r.predecessors||[]).map(p=>`${p.id} [${p.relationship}${p.lagDays?` +${p.lagDays}d`:''}]`).join('<br>') || '—';
   const temporal=validation.temporal_logic_warnings.filter(w=>w.successor===id);
   const representative=cpm.representative_path.includes(id)?'Yes — representative zero-float chain':'No / parallel zero-float branch possible';
@@ -230,8 +286,9 @@ function bindRowEvents() {
 }
 
 for(const el of [els.search,els.planFilter,els.zoneFilter,els.disciplineFilter,els.basisFilter,els.timingFilter,els.criticalOnly,els.networkOnly]) el.addEventListener(el===els.search?'input':'change',render);
+els.linkMode.addEventListener('change',renderDependencyLinks);
 els.zoom.addEventListener('change',()=>{pxDay=Number(els.zoom.value); document.documentElement.style.setProperty('--px-day',`${pxDay}px`); render();});
-els.resetFilters.addEventListener('click',()=>{els.search.value='';els.planFilter.value='';els.zoneFilter.value='';els.disciplineFilter.value='';els.basisFilter.value='';els.timingFilter.value='';els.criticalOnly.checked=false;els.networkOnly.checked=false;render();});
+els.resetFilters.addEventListener('click',()=>{els.search.value='';els.planFilter.value='';els.zoneFilter.value='';els.disciplineFilter.value='';els.basisFilter.value='';els.timingFilter.value='';els.criticalOnly.checked=false;els.networkOnly.checked=false;els.linkMode.value='driving';render();});
 els.drawerClose.addEventListener('click',()=>{els.drawer.classList.remove('open');els.drawer.setAttribute('aria-hidden','true');});
 els.exportCsv.addEventListener('click',()=>downloadText('master-schedule.csv',masterCSV(),'text/csv;charset=utf-8'));
 els.exportJson.addEventListener('click',()=>downloadText('master-schedule.json',JSON.stringify(masterSchedule,null,2),'application/json;charset=utf-8'));
