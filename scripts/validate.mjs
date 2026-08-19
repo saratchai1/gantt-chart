@@ -17,6 +17,8 @@ console.log(`Plan 01 physical from-NTP coverage: ${nc.plan01_physical_from_start
 console.log(`Plan 01 physical to-D1200 coverage: ${nc.plan01_physical_to_final.connected}/${nc.plan01_physical_to_final.total} (${nc.plan01_physical_to_final.coverage_pct}%)`);
 console.log(`Plan 01 physical through NTP→D1200: ${nc.plan01_physical_through.connected}/${nc.plan01_physical_through.total} (${nc.plan01_physical_through.coverage_pct}%)`);
 console.log(`Plan 01 handovers through NTP→D1200: ${nc.plan01_handovers_through.connected}/${nc.plan01_handovers_through.total} (${nc.plan01_handovers_through.coverage_pct}%)`);
+console.log(`Non-Plan-01 activities without D1200 successor path: ${nc.unconnected_support_to_final.length}`);
+if(nc.unconnected_support_to_final.length) console.log(`Remaining support exceptions: ${nc.unconnected_support_to_final.join(', ')}`);
 console.log(`Representative critical path (${cpm.representative_path.length} activities): ${cpm.representative_path.join(' -> ')}`);
 console.log(`Structure errors: ${validation.structure_errors.length}`);
 console.log(`Dependency cycles: ${validation.dependency_cycles.length}`);
