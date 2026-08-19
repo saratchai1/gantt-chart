@@ -118,7 +118,7 @@ export function validationReport(rows) {
   const cycles = detectCycles(rows);
   const temporalWarnings = validateTemporalLogic(rows);
   const networkCoverage = networkCoverageSummary(rows);
-  const networkIntegrityErrors = networkCoverage.unconnected_plan01_handovers.map(id => `${id}: physical handover is not connected to final D1200 milestone`);
+  const networkIntegrityErrors = networkCoverage.unconnected_plan01_physical.map(id => `${id}: Plan-01 physical activity is not connected to final D1200 milestone`);
   return {
     generated_at:new Date().toISOString(),
     total_activities:rows.length,
