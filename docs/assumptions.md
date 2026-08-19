@@ -1,6 +1,6 @@
-# Scheduling Assumptions / Constraints — Baseline v0.2
+# Scheduling Assumptions / Constraints — Baseline v0.4
 
-เอกสารนี้แยก **สิ่งที่ source ระบุจริง** ออกจาก **planning assumption** ที่จำเป็นต่อการสร้าง detailed CPM/Gantt โดยตั้งใจให้ผู้ตรวจสามารถตามกลับได้ว่าอะไรเป็น TOR/แผนที่ 1–16 และอะไรเป็น logic ที่ใช้สำหรับ proposal baseline
+เอกสารนี้แยก **สิ่งที่ source ระบุจริง** ออกจาก **planning assumption** ที่จำเป็นต่อ detailed CPM/Gantt เพื่อให้ตรวจย้อนกลับได้ว่าอะไรเป็นข้อกำหนดจากแผนที่ 1–16 และอะไรเป็น proposal scheduling logic
 
 ## A. Source constraints ที่ห้ามเปลี่ยนโดยไม่มีข้อมูลใหม่
 
@@ -22,132 +22,175 @@
    - CP-06 D301–960
    - CP-07 D841–1080
    - CP-08 D1081–1200
-5. Final handover sequence ต้องครอบคลุม cleaning/restoration, as-built, system tests, O&M, asset register และ controlled document handover
-6. Area D เป็น sensitive workfront ต้องมี heritage/environment/HSE readiness gate ก่อนเปิดงาน
-7. Quality acceptance และ evidence completeness เป็นเงื่อนไขก่อน progress/payment status
-8. Source windows สามารถซ้อนกันได้ จึงห้ามบังคับทุกช่วงเป็น global FS sequence หากขัดกับช่วงเวลาที่ source กำหนด
+5. Final handover sequence covers cleaning/restoration, as-built, system tests, O&M, asset register and controlled document handover.
+6. Area D is a sensitive workfront requiring approved heritage / environment / HSE controls before work.
+7. Quality acceptance and evidence completeness are conditions of completion/progress/payment; physical quantity alone is insufficient.
+8. Source windows overlap; the schedule must not force all project control windows into one global FS chain where that contradicts the source timing.
+9. Plan 8 requires JSEA / PTW readiness for applicable high-risk work; Plan 7 requires Hold Points where work is concealed/critical/hard to correct; Plan 10 requires environmental controls before impact-generating work; Plan 9 requires verified controls for special/heavy movements.
 
-## B. Planning assumptions ที่ใช้ใน baseline v0.2
+## B. Planning assumptions used in v0.4
 
 ### B1. Calendar
 
-- Schedule ใช้ **relative project day D1–D1200** เพราะเอกสารยังไม่ได้ให้ calendar start date ที่แน่นอนสำหรับ baseline นี้
-- Duration ใน detailed activity register เป็น elapsed planning days สำหรับ proposal-level schedule; ก่อนนำเข้า contract baseline จริงต้อง map ไปยัง approved working calendar / holidays / weather calendar
+- Uses relative project days `D1–D1200` because an approved absolute baseline start/calendar is not yet embedded in this proposal schedule.
+- Detailed durations are proposal elapsed-day allowances until mapped to approved working calendars / holidays / weather constraints.
 
-### B2. Detailed durations
+### B2. Detailed durations and leaf placement
 
-- Detailed durations ระดับ excavation / rebar / formwork / MEP first fix / finishes / testing ฯลฯ ไม่ได้ระบุตัวเลขครบในแผนที่ 1–16
-- ตัวเลข detailed duration จึงเป็น **ASSUMPTION** ที่พัฒนาเพื่อ:
-  1. ให้แต่ละ work package มี logic สมจริง
-  2. รักษา source control windows และ 1,200-day completion
-  3. ให้เกิด overlap ระหว่าง structure / architecture / MEP / procurement / quality / controls ตามธรรมชาติของโครงการ
-- ห้ามอ้าง detailed duration เหล่านี้ว่าเป็นค่าที่ TOR ระบุ
+Detailed excavation, structure, MEP, finish, testing and task-control durations/days are not fully stated by Plans 1–16. They are `timing_basis=ASSUMPTION` unless an exact source day/window is available.
+
+They are developed to:
+
+1. preserve the source 1,200-day and CP-window framework;
+2. produce realistic rolling workfront overlap;
+3. provide auditable predecessor logic;
+4. expose procurement / quality / HSE / environmental / commissioning constraints.
+
+They must not be described as TOR-stated durations.
 
 ### B3. Benchmark usage
 
-- Benchmark ใช้เฉพาะระดับความละเอียดของการแตก WBS/Activity
-- ไม่ copy start/finish, duration หรือ predecessor จาก benchmark
+- Benchmark is used only to calibrate WBS / activity-breakdown depth.
+- Benchmark start/finish, duration and predecessor logic are not schedule inputs.
 
 ### B4. Relationship logic
 
-Baseline ใช้ relationship หลัก:
+- `FS` — true completion/release gate.
+- `SS` — concurrent/rolling workfront or active support stream.
+- `FF` — concurrent control/closeout that may run in parallel but cannot finish before the underlying stream.
+- `SF` — engine-supported but avoided unless a specific justified interface exists.
+- Lag may represent staggered fronts, curing/review allowances, source-window convergence or proposal lead-time placement.
 
-- `FS` — predecessor เสร็จก่อน successor เริ่ม เช่น material approval → PO; pre-pour inspection → concrete pour
-- `SS` — ให้กิจกรรมซ้อนกันเมื่อ workfront แยกได้ เช่น MEP first fix เริ่มหลัง partition/structure เปิดพื้นที่บางส่วน
-- `FF` — ใช้กับ concurrent control/integration เมื่อ successor สามารถเริ่มก่อน predecessor จบ แต่ห้ามปิดก่อน stream นั้นเสร็จ
-- `SF` — รองรับใน engine แต่หลีกเลี่ยงใน proposal network เว้นแต่มีเหตุผลเฉพาะ
-- Lag ใช้เมื่อจำเป็นเพื่อแทน curing, review cycle, staggered workfront, production lead time หรือ source-window convergence
+### B5. CP-05 / CP-06 / CP-07 convergence
 
-### B5. Source CP-05 / CP-06 / CP-07 convergence
+- `P01-CP05-GATE` D840 and `P01-CP06-GATE` D960 are derived network records using source boundary timing.
+- CP-07 starts after CP-05.
+- CP-06 overlaps CP-07 and therefore controls CP-07 finish rather than creating a false global FS delay.
+- Package membership in these gates is proposal integration logic pending approved detailed baseline confirmation.
 
-- `P01-CP05-GATE` ที่ D840 และ `P01-CP06-GATE` ที่ D960 เป็น **DERIVED gate ที่ใช้ SOURCE timing** เพราะวัน boundary มาจาก source แต่ตัว milestone record ถูกสร้างเพื่อให้ network ตรวจสอบได้
-- CP-07 D841–D1080 เริ่มหลัง CP-05 boundary
-- CP-06 D301–D960 ซ้อนกับ CP-07 จึงเชื่อมเข้ากับ CP-07 ด้วย finish-control logic ไม่ใช่ global FS ที่จะเลื่อน CP-07 ไปเริ่มหลัง D960
-- การกำหนด package ใดบ้างที่รวมเข้า CP-05/CP-06 gate เป็น proposal integration logic และต้องถูกแทน/ยืนยันเมื่อ detailed approved baseline ได้รับการอนุมัติ
+### B6. Activity-level Plan-8 controls
 
-### B6. Critical path
+v0.4 creates source-derived task gates only where current physical scope clearly supports the risk category:
 
-- `critical=Y` หมายถึง **source-window / proposal critical-chain candidate**
-- `computed_critical=Y` หมายถึง zero accumulated float ไป D1200 ตาม current predecessor network และ current proposal bar placement
-- `computed_total_float_days` / `computed_free_float_days` เป็น baseline-network calculation ไม่ใช่ approved contract float จนกว่าจะมี calendar / duration / constraint ที่อนุมัติครบ
-- ไม่มีการทำสีแดงด้วยมือเพื่อให้ดูเหมือน critical โดยไม่มี predecessor logic
+- excavation / earthwork JSEA + PTW
+- work-at-height / scaffold / fall-rescue readiness for roof work
+- electrical isolation / LOTO / test-before-touch for precommissioning
+- lifting readiness for raw-water pontoon work
+- near-water rescue / evacuation readiness for pontoon installation
 
-### B7. Physical-network integrity
+Exact gate day follows the proposal workfront and is an assumption.
 
-- ทุก Plan-01 physical activity ใน Area A/B/C/D ต้องมี downstream path ถึง `P01-CO-006` D1200
-- Parallel building branches เช่น envelope, door/glazing, floor, paint/final finish, furniture, external work และ specialist systems ต้อง feed package handover
-- External packages ต้องปิด site furniture/signage และ monitoring evidence ก่อน handover
-- Plan-01 physical activity ใดที่ไม่มี path ถึง D1200 เป็น validation failure
+**No hot-work or confined-space task gate is fabricated** until approved project methodology confirms that work occurs in the corresponding package.
 
-### B8. Supporting-plan / LOE interpretation
+### B7. Plan-7 Hold Points
 
-- ไม่บังคับให้ทุก recurring governance/control activity ของ Plans 02–16 เป็น critical predecessor เพราะหลายรายการมีลักษณะ **level-of-effort / monitoring / recurring control**
-- แต่ supporting-plan readiness gate ที่ source ระบุว่าเป็นเงื่อนไขก่อนเปิดงาน ต้องเชื่อมเข้ากับ physical workfront จริง
-- Baseline v0.2 เชื่อม competency, plant-personnel authorization, traffic management, controlled-document/CDE readiness, HSE, environment และ Area-D heritage permit เข้ากับ workfront release ตามความเกี่ยวข้อง
-- Control stream ที่ใช้เป็น closeout evidence จะเชื่อมเข้ากับ final readiness/restoration/acceptance ด้วย FS หรือ FF ตามลักษณะงาน
+- Foundation pre-pour Hold Point remains an explicit gate.
+- v0.4 adds an above-ceiling concealed-services Hold Point before ceiling closure.
+- First-fix trades feed the concealed-work gate using progressive SS logic rather than false whole-building completion.
+- Calibration/lab/sample-control setup feeds Area QA readiness before inspection/testing cycles.
 
-### B9. Installment mapping
+### B8. Plan-10 environmental gates
 
-- เอกสารให้ installment range ของ work packages แต่ไม่ได้ให้ exact day-to-installment mapping สำหรับ 1–497 ทั้งหมด
-- เก็บ `installment_start / installment_end` ตาม source ที่มี และใช้ relative-day schedule แยกต่างหาก
-- ไม่สมมติว่า 497 งวดมีระยะเวลาเท่ากัน
-- งวด 493–497 มี source deliverable ชัด แต่ไม่มี exact separate due day ในข้อมูลที่ใช้อยู่ จึงใช้ internal CP-08 day split เป็น ASSUMPTION เท่านั้น
+- Local environmental readiness is added before building excavation/external earthwork.
+- The gate represents verified boundary, drainage/sediment, spill/waste and monitoring readiness.
+- No environmental measurement threshold, discharge criterion or permit value is invented; actual acceptance comes from approved project/permit/baseline data.
 
-### B10. Procurement lead time
+### B9. Plan-9 special movement
 
-- Lead time ของ long-lead materials/equipment ที่ source ไม่ให้ตัวเลขจะใส่เป็น planning allowance และทำเครื่องหมาย `ASSUMPTION`
-- ก่อน contract baseline ต้องแทนด้วย vendor-confirmed lead time
-- Procurement release ที่เป็น predecessor ของงานติดตั้งหมายถึง material approval / production / delivery / MIR/test/quarantine clearance ครบตาม family ที่เกี่ยวข้อง
+Raw-water pontoon lifting uses a dedicated traffic/special-movement readiness gate. Detailed gate day is a proposal assumption; source supports the process requirements, not that exact day.
 
-### B11. Quantity / productivity / manpower
+### B10. Physical-network integrity
 
-- Source ระบุวิธีคิด workforce จาก remaining quantity / productivity / workable days / workfront factor แต่ไม่มี BOQ quantity + productivity rate ครบทุก activity ในชุดเอกสารที่ใช้ทำ Gantt นี้
-- v0.2 จึงยังไม่สร้าง resource-loaded manpower histogram แบบตัวเลขคนรายวัน
-- Activity structure เก็บ `resource_group` / `responsible_party` เพื่อรองรับ resource loading ใน iteration หลังได้รับข้อมูลปริมาณและ productivity
+- Every Plan-01 Area A/B/C/D physical activity must have complete predecessor ancestry to NTP and a downstream path to D1200.
+- Parallel envelope / finish / furniture / external / specialist branches feed package handover.
+- External packages close site furniture/signage and monitoring evidence before handover.
+- Missing either side of a Plan-01 physical network is a validation failure.
 
-### B12. Area D
+### B11. Supporting-plan / level-of-effort interpretation
 
-- ไม่สร้าง buffer distance / wildlife restriction / water setback ใหม่จากความรู้ทั่วไป
-- ใช้คำว่า “approved boundary / sensitive-area / no-go zone” ตาม source จนกว่าจะมีพิกัดหรือระยะที่ได้รับอนุมัติ
-- งาน Area-D landscape และ raw-water pontoon ที่อยู่หลัง D960 ถูกเก็บใน overlapping CP-07 convergence แทนการบังคับย้อนหลังให้จบ D960 โดยไม่มี source leaf-level day support
+- Recurring control/monitoring activities are not automatically critical.
+- Area control streams may enter workfront readiness using SS to show they are active when work begins.
+- Where a support stream produces required closeout evidence, it is connected to an appropriate reconciliation/restoration/handover node.
+- `P04-WF-DEMOB` is intentionally allowed to terminate as a level-of-effort activity at D1200 because it represents progressive manpower demobilization after area acceptance/handover. It is not force-connected simply to make overall connectivity read 100%.
 
-### B13. Application / AI
+### B12. Installment mapping
 
-- AI activity ใน schedule เป็น system-development / validation / assistive workflow เท่านั้น
-- AI ไม่มี predecessor logic ที่ให้อำนาจอนุมัติ quality/payment อัตโนมัติ; human review เป็น mandatory gate
-- Application / AI data/configuration handover ถูกนำเข้าร่วม final controlled-information closeout
+- Do not assume equal duration across 497 installments.
+- Explicit D30 / D60 / D90 / D180 control points are retained.
+- v0.4 links those explicit early points into main readiness but does not fabricate exact dates for installments 4–23.
+- Final 493–497 source deliverables are kept inside CP-08; exact separate internal days remain assumptions where the source does not state them.
 
-### B14. Dependency visualization
+### B13. Procurement lead time
 
-- Interactive viewer สามารถแสดง dependency links ของ rows ที่มองเห็นอยู่
-- `Driving only` แสดง link ที่ CPM engine ระบุเป็น representative driving successor
-- `All visible` แสดง predecessor links เฉพาะคู่กิจกรรมที่ยังมองเห็นหลัง filter/collapse เพื่อป้องกันกราฟรกเกินไป
-- การวาดเส้นเป็น visualization ของ stored predecessor data ไม่ได้สร้าง logic ใหม่
+- Source-defined procurement workflow is modeled, but detailed vendor lead time is an assumption until confirmed.
+- Installation release represents approval, production, delivery, MIR/test/quarantine clearance appropriate to the material family.
+
+### B14. Quantity / productivity / manpower
+
+- Source describes workforce planning methodology but the schedule does not yet have complete BOQ quantity × productivity × crew data for all activities.
+- Current baseline is not fully resource-loaded and does not claim a final manpower histogram.
+- `resource_group` / `responsible_party` fields remain available for later resource loading.
+
+### B15. Area D / heritage
+
+- No buffer distance, wildlife restriction distance, water setback, no-go boundary or alternate route is invented.
+- Uses approved boundary / sensitive-area / no-go / route information only.
+- Late Area-D landscape and raw-water-pontoon work converge through CP-07 rather than being forced to D960 without leaf-level source support.
+
+### B16. Application / AI
+
+- AI assists inspection/report workflows but does not approve quality/payment automatically.
+- Human review remains mandatory.
+- Digital system/configuration/data handover is included in final controlled-information closeout.
+
+### B17. CPM interpretation
+
+- `critical=Y` = source-window / proposal critical-chain candidate.
+- `computed_critical=Y` = zero accumulated float under current proposal predecessor/bar placement.
+- Float is not an approved contract float until calendar, durations, constraints, vendor dates and approved methods are confirmed.
 
 ## C. Quality rules for generated schedule
 
-1. ทุก leaf activity ต้องมี unique ID
-2. Summary row ไม่ใช้เป็น predecessor ของ leaf activityถ้ามี leaf gate ที่เหมาะสมกว่า
-3. `finish_day >= start_day`
-4. ไม่มี activity เกิน D1200
-5. Predecessor ต้องอ้าง activity ที่มีอยู่จริง
-6. Milestone duration = 0
-7. Physical work ที่ถูกปิดทับต้องมี inspection/hold-point predecessor
-8. Installation ที่ใช้วัสดุ long-lead ต้องมี procurement-release predecessor
-9. Area D workfront ต้องมี heritage/environment/HSE release predecessor
-10. Final acceptance ต้องตามหลัง final commissioning / as-built / O&M / asset / archive / restoration / carbon-final streams
-11. Plan-01 physical activities ต้องเชื่อมถึง D1200 final network
-12. Source-stated day/window ต้องถูกแยกจาก assumed detailed timing ด้วย `timing_basis`
-13. Activity content provenance ต้องถูกแยกจาก timing provenance ด้วย `basis_type` และ `timing_basis`
+1. Unique activity ID for every row.
+2. Valid D1–D1200 ranges.
+3. Milestone duration = 0.
+4. Every predecessor must exist.
+5. No dependency cycles.
+6. Stored relationships must be temporally feasible.
+7. Concealed work must have an appropriate inspection/Hold Point where supported by source/process.
+8. Installation requiring controlled procurement must have the applicable material-release predecessor.
+9. Area-D sensitive work uses heritage/environment/HSE readiness logic.
+10. Final acceptance is downstream of final commissioning, quality, as-built/BIM, O&M, asset, archive, restoration, carbon and commercial/progress closeout streams.
+11. Every Plan-01 physical row must be complete NTP→D1200 network-connected.
+12. `basis_type` and `timing_basis` remain separate.
+13. Task-control gates derived from source requirements must not imply invented source dates.
+14. Do not create project-specific restrictions that are absent from approved source evidence.
 
-## D. Items to replace when more project data becomes available
+## D. Latest validation snapshot
 
-- Approved project calendar / actual NTP date
-- Complete BOQ quantity and cost mapping
-- Vendor confirmed lead times
-- Final design / IFC issue schedule
-- Actual productivity rates / crew compositions
-- Exact installment due dates 1–497
-- Approved environmental/heritage sensitive-area coordinates and restrictions
-- Final testing & commissioning matrix
-- Approved detailed workfront / area handover sequence
+Baseline v0.4 CI result:
+
+- 957 activities / 178 milestones
+- 957 / 957 reachable from NTP
+- 954 / 957 connected to D1200
+- Plan-01 physical 654 / 654 complete NTP→D1200
+- Plan-01 handovers 23 / 23 complete NTP→D1200
+- 51 computed zero-float activities
+- 0 structure errors
+- 0 cycles
+- 0 network-integrity errors
+- 0 temporal warnings
+- PASS
+
+## E. Items to replace when project data becomes available
+
+- approved project calendar / actual NTP date
+- complete BOQ quantity / cost mapping
+- vendor-confirmed lead times
+- final IFC / shop-drawing issue schedule
+- actual productivity rates / crew compositions
+- exact installment due dates not explicitly stated
+- approved environmental / heritage coordinates and restrictions
+- approved Method Statements / ITPs / JSEAs / permits
+- final testing & commissioning matrix
+- approved detailed workfront / area handover sequence
