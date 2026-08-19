@@ -1,0 +1,10 @@
+installment,source_due_day,payment_percent,source_deliverable,basis,note
+1,30,0.07,"รายชื่อบุคลากรตามเงื่อนไข; สำนักงานสนามได้รับอนุมัติ/มีหลักฐานเข้าใช้; ร่างผังการใช้พื้นที่",SOURCE,"Plan 2 explicit control point"
+2,60,0.13,"สำรวจพื้นที่ กำหนดพิกัด X,Y และหมุดระดับ Z พร้อมแผนผังและรายงานสำรวจชุดแรก",SOURCE,"Plan 2 explicit control point"
+3,90,0.20,"แบบรายละเอียดผังบริเวณตามผลสำรวจ",SOURCE,"Plan 2 explicit control point"
+24,180,0.05,"รื้อถอน โยกย้าย หรือล้อมย้ายสิ่งปลูกสร้างและต้นไม้ตามขอบเขตแล้วเสร็จ",SOURCE,"Plan 2 explicit control point"
+493,,0.25,"รื้อถอนและทำความสะอาดพร้อมส่งมอบพื้นที่ทั้งหมดแล้วเสร็จ",SOURCE,"Final group due within project Day 1200; no separate exact day stated in source excerpt"
+494,,0.25,"จัดส่งแบบก่อสร้างจริง (As-Built Drawings) แล้วเสร็จ",SOURCE,"Final group due within project Day 1200; no separate exact day stated in source excerpt"
+495,,0.20,"รายงานผลทดสอบอุปกรณ์งานระบบไฟฟ้าและเครื่องกลแล้วเสร็จ",SOURCE,"Final group due within project Day 1200; no separate exact day stated in source excerpt"
+496,,0.20,"จัดส่งคู่มือการใช้งานและบำรุงรักษา (O&M) แล้วเสร็จ",SOURCE,"Final group due within project Day 1200; no separate exact day stated in source excerpt"
+497,,0.19,"แยกรายการที่ดิน สิ่งปลูกสร้าง และครุภัณฑ์พร้อมมูลค่าต่อรายการแล้วเสร็จ",SOURCE,"Final group due within project Day 1200; no separate exact day stated in source excerpt"
