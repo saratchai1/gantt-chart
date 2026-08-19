@@ -1,0 +1,1 @@
+CI-only validation probe for latest main. Verifies syntax, schedule generation, two-sided NTP-to-D1200 Plan-01 physical network integrity, CPM analysis and exports. Do not merge this probe file.
