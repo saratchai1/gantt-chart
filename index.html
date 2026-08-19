@@ -50,7 +50,7 @@
         <option value="ASSUMPTION">ASSUMED timing</option>
       </select>
     </label>
-    <label class="check"><input id="criticalOnly" type="checkbox" /> Critical only</label>
+    <label class="check"><input id="criticalOnly" type="checkbox" /> Zero-float critical only</label>
     <label>Zoom
       <select id="zoom">
         <option value="1.25">Compact</option>
@@ -63,7 +63,7 @@
 
   <section class="legend">
     <span><i class="swatch normal"></i> Activity</span>
-    <span><i class="swatch critical"></i> Critical candidate</span>
+    <span><i class="swatch critical"></i> Computed zero-float activity</span>
     <span><i class="diamond"></i> Milestone</span>
     <span><b class="basis source">SOURCE</b> source-stated activity/control</span>
     <span><b class="basis derived">DERIVED</b> decomposed from source process</span>
@@ -90,7 +90,7 @@
   </aside>
 
   <footer>
-    Benchmark PDF is used only for WBS/activity granularity. Activity content and exact timing are audited separately. Rows with Timing Basis = ASSUMPTION are proposal planning allowances, not TOR-stated durations, and must be replaced by the approved calendar, BOQ/productivity and vendor-confirmed lead times at contract-baseline stage.
+    Benchmark PDF is used only for WBS/activity granularity. Activity content and exact timing are audited separately. Rows with Timing Basis = ASSUMPTION are proposal planning allowances, not TOR-stated durations, and must be replaced by the approved calendar, BOQ/productivity and vendor-confirmed lead times at contract-baseline stage. Computed float is calculated against the current proposal network and the D1200 final milestone.
   </footer>
 
   <script type="module" src="./app.js"></script>
