@@ -5,7 +5,8 @@ export function addTask({
   id, wbs, plan = 1, zone = 'ALL', area = 'Project-wide', discipline = 'General',
   name, startDay, finishDay = startDay, predecessors = [], milestone = false,
   critical = false, responsible = '', installmentStart = '', installmentEnd = '',
-  deliverable = '', basis = 'DERIVED', timingBasis = 'ASSUMPTION', source = '', resourceGroup = '', notes = ''
+  deliverable = '', basis = 'DERIVED', timingBasis = 'ASSUMPTION', source = '', resourceGroup = '', notes = '',
+  scopeApplicability = 'UNCLASSIFIED', scopeNote = ''
 }) {
   if (!id || usedIds.has(id)) throw new Error(`Duplicate/missing activity id: ${id}`);
   usedIds.add(id);
@@ -40,6 +41,8 @@ export function addTask({
     deliverable_evidence: deliverable,
     basis_type: basis,
     timing_basis: timingBasis,
+    scope_applicability: scopeApplicability,
+    scope_note: scopeNote,
     source_reference: source,
     resource_group: resourceGroup,
     notes,
@@ -96,19 +99,21 @@ export function stats(rows = schedule) {
   const byZone = {};
   const byBasis = {};
   const byTimingBasis = {};
+  const byScopeApplicability = {};
   let milestones = 0, critical = 0, computedCritical = 0, connectedToFinal = 0, connectedFromStart = 0;
   for (const r of rows) {
     byPlan[r.plan_no] = (byPlan[r.plan_no] || 0) + 1;
     byZone[r.zone] = (byZone[r.zone] || 0) + 1;
     byBasis[r.basis_type] = (byBasis[r.basis_type] || 0) + 1;
     byTimingBasis[r.timing_basis] = (byTimingBasis[r.timing_basis] || 0) + 1;
+    byScopeApplicability[r.scope_applicability || 'UNCLASSIFIED'] = (byScopeApplicability[r.scope_applicability || 'UNCLASSIFIED'] || 0) + 1;
     if (r.milestone === 'Y') milestones++;
     if (r.critical === 'Y') critical++;
     if (r.computed_critical === 'Y') computedCritical++;
     if (r.network_to_final === 'Y') connectedToFinal++;
     if (r.network_from_start === 'Y') connectedFromStart++;
   }
-  return { total: rows.length, milestones, critical, computedCritical, connectedToFinal, connectedFromStart, byPlan, byZone, byBasis, byTimingBasis };
+  return { total: rows.length, milestones, critical, computedCritical, connectedToFinal, connectedFromStart, byPlan, byZone, byBasis, byTimingBasis, byScopeApplicability };
 }
 
 export function toCSV(rows = schedule) {
@@ -116,7 +121,7 @@ export function toCSV(rows = schedule) {
     'activity_id','wbs','plan_no','zone','building_area','discipline','activity_name','duration_days',
     'predecessor','relationship','lag_days','start_day','finish_day','milestone','critical','computed_critical',
     'computed_total_float_days','computed_free_float_days','network_from_start','network_to_final','driving_successor','responsible_party',
-    'installment_start','installment_end','deliverable_evidence','basis_type','timing_basis','source_reference','resource_group','notes'
+    'installment_start','installment_end','deliverable_evidence','basis_type','timing_basis','scope_applicability','scope_note','source_reference','resource_group','notes'
   ];
   const esc = value => {
     const s = value == null ? '' : String(value);
