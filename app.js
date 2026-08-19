@@ -28,6 +28,7 @@ const els = Object.fromEntries([
 let pxDay = Number(els.zoom.value);
 const collapsedPlans = new Set();
 const collapsedAreas = new Set();
+const collapsedDisciplines = new Set();
 const scheduleById = new Map(masterSchedule.map(r=>[r.activity_id,r]));
 const SVGNS='http://www.w3.org/2000/svg';
 
@@ -152,10 +153,12 @@ function timeTask(row) {
 
 function groupRows({type,key,label,rows,collapsed}) {
   const [s,e]=span(rows);
-  const l=document.createElement('div'); l.className=type==='plan'?'plan-row':'area-row'; l.dataset.toggleKey=key; l.dataset.toggleType=type;
+  const className=type==='plan'?'plan-row':type==='area'?'area-row':'discipline-row';
+  const l=document.createElement('div'); l.className=className; l.dataset.toggleKey=key; l.dataset.toggleType=type;
   const connected=rows.filter(r=>r.network_to_final==='Y').length;
-  l.innerHTML=`<div class="cell"><span class="toggle">${collapsed?'▸':'▾'}</span>${type==='plan'?esc(key.replace('plan-','')):''}</div><div class="cell">${esc(label)}</div><div class="cell" title="${connected}/${rows.length} connected to D1200">${rows.length}</div><div class="cell">D${s}–${e}</div>`;
-  const t=document.createElement('div'); t.className=`tgroup ${type==='area'?'area':''}`; t.dataset.toggleKey=key; t.dataset.toggleType=type;
+  const prefix=type==='discipline'?'↳ ':'';
+  l.innerHTML=`<div class="cell"><span class="toggle">${collapsed?'▸':'▾'}</span>${type==='plan'?esc(key.replace('plan-','')):''}</div><div class="cell">${prefix}${esc(label)}</div><div class="cell" title="${connected}/${rows.length} connected to D1200">${rows.length}</div><div class="cell">D${s}–${e}</div>`;
+  const t=document.createElement('div'); t.className=`tgroup ${type}`; t.dataset.toggleKey=key; t.dataset.toggleType=type;
   const bar=document.createElement('div'); bar.className='summary-bar'; bar.style.left=`${(s-1)*pxDay}px`; bar.style.width=`${Math.max(3,(e-s+1)*pxDay)}px`; t.append(bar);
   return [l,t];
 }
@@ -229,7 +232,15 @@ function render() {
       const akey=`${pkey}|${area}`, acoll=collapsedAreas.has(akey);
       const [al,at]=groupRows({type:'area',key:akey,label:area,rows:areaRows,collapsed:acoll}); els.leftGrid.append(al); els.timelineGrid.append(at);
       if(acoll) continue;
-      for(const row of areaRows) { els.leftGrid.append(leftTask(row)); els.timelineGrid.append(timeTask(row)); }
+
+      const byDiscipline=new Map();
+      for(const r of areaRows){ const d=r.discipline || 'General'; if(!byDiscipline.has(d)) byDiscipline.set(d,[]); byDiscipline.get(d).push(r); }
+      for(const [discipline,disciplineRows] of byDiscipline){
+        const dkey=`${akey}|discipline:${discipline}`, dcoll=collapsedDisciplines.has(dkey);
+        const [dl,dt]=groupRows({type:'discipline',key:dkey,label:discipline,rows:disciplineRows,collapsed:dcoll}); els.leftGrid.append(dl); els.timelineGrid.append(dt);
+        if(dcoll) continue;
+        for(const row of disciplineRows) { els.leftGrid.append(leftTask(row)); els.timelineGrid.append(timeTask(row)); }
+      }
     }
   }
   renderDependencyLinks();
@@ -274,7 +285,7 @@ function bindRowEvents() {
     const toggle=e.target.closest('[data-toggle-key]');
     if(toggle){
       const {toggleKey,toggleType}=toggle.dataset;
-      const set=toggleType==='plan'?collapsedPlans:collapsedAreas;
+      const set=toggleType==='plan'?collapsedPlans:toggleType==='area'?collapsedAreas:collapsedDisciplines;
       set.has(toggleKey)?set.delete(toggleKey):set.add(toggleKey); render(); return;
     }
     const row=e.target.closest('[data-id]'); if(row) showDetail(row.dataset.id);
