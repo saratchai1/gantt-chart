@@ -29,9 +29,9 @@ function addNote(row, text) {
 
 /**
  * Integrate the already-built detailed packages into one project-completion
- * network.  This layer deliberately does NOT regenerate the WBS or physical
- * bars.  It adds source-window control gates and downstream completion links
- * so that every physical package can be traced to the D1200 acceptance node.
+ * network. This layer deliberately does NOT regenerate the WBS or physical
+ * bars. It adds source-window control gates and downstream completion links so
+ * that the existing detailed work can be traced to the D1200 acceptance node.
  */
 export function applyNetworkIntegrationV3(rows) {
   const has = id => rows.some(r => r.activity_id === id);
@@ -39,8 +39,8 @@ export function applyNetworkIntegrationV3(rows) {
   // ------------------------------------------------------------------
   // Source CP-05 / CP-06 boundary gates.
   // Plan 1 explicitly states the D421-D840 and D301-D960 control windows.
-  // The boundary milestones below are derived audit points at the stated
-  // window finishes; the detailed package composition remains proposal logic.
+  // The milestones below are derived audit points at those stated window
+  // finishes; their detailed package composition remains proposal logic.
   // ------------------------------------------------------------------
   if (!has('P01-CP05-GATE')) {
     addTask({
@@ -77,8 +77,48 @@ export function applyNetworkIntegrationV3(rows) {
   }
 
   const byId = new Map(rows.map(r => [r.activity_id, r]));
-  const cp07 = byId.get('P01-CO-001');
 
+  // ------------------------------------------------------------------
+  // Package internal convergence.
+  // The original detailed generator intentionally exposed parallel finish,
+  // furniture, external-work and specialist branches. A professional handover
+  // milestone must wait for those branches as well as commissioning / punch / 
+  // as-built. Adding the links here preserves every existing bar while closing
+  // the logic gaps that would otherwise leave completed work outside the final
+  // CPM network.
+  // ------------------------------------------------------------------
+  const buildingPrefixes = [
+    'P01-A23','P01-A24','P01-A25','P01-A26','P01-A29',
+    'P01-B31','P01-B32','P01-C41','P01-C42A','P01-C42B','P01-C42C','P01-C43'
+  ];
+  for (const prefix of buildingPrefixes) {
+    const ho = byId.get(`${prefix}-HO`);
+    if (!ho) continue;
+    for (const suffix of ['DRW','FLR','PNT','FURN','EXT']) {
+      const id = `${prefix}-${suffix}`;
+      if (byId.has(id)) addPred(ho, { id, relationship:'FS', lagDays:0 });
+    }
+    for (const row of rows) {
+      if (row.activity_id.startsWith(`${prefix}-EX`)) addPred(ho, { id:row.activity_id, relationship:'FS', lagDays:0 });
+    }
+    addNote(ho, 'V3 package completion gate: architectural finish, furniture/external and specialist branches must be complete before package handover.');
+  }
+
+  const externalPrefixes = ['P01-A21','P01-A22','P01-A27','P01-A28','P01-B33','P01-B34','P01-D51','P01-D52','P01-D53','P01-D54'];
+  for (const prefix of externalPrefixes) {
+    const ho = byId.get(`${prefix}-HO`);
+    if (!ho) continue;
+    for (const suffix of ['FURN','MON']) {
+      const id = `${prefix}-${suffix}`;
+      if (byId.has(id)) addPred(ho, { id, relationship:'FS', lagDays:0 });
+    }
+    addNote(ho, 'V3 external-work completion gate: site furniture/signage and monitoring records close before area handover.');
+  }
+
+  // ------------------------------------------------------------------
+  // CP-07 project-wide physical convergence.
+  // ------------------------------------------------------------------
+  const cp07 = byId.get('P01-CO-001');
   if (cp07) {
     // Replace the earlier direct A23/D53 summary links by explicit source
     // boundary gates. CP-07 starts after CP-05 and must finish 120 days after
@@ -88,9 +128,9 @@ export function applyNetworkIntegrationV3(rows) {
     addPred(cp07, { id:'P01-CP05-GATE', relationship:'FS', lagDays:1 });
     addPred(cp07, { id:'P01-CP06-GATE', relationship:'FF', lagDays:120 });
 
-    // Project-wide physical completion convergence. FF links allow the CP-07
-    // landscape / detail / integration window to run concurrently but prohibit
-    // it from completing before any individual physical package handover.
+    // FF links allow the CP-07 landscape / detail / integration window to run
+    // concurrently but prohibit it from completing before any individual
+    // physical package handover.
     const physicalHandovers = [
       'P01-A21-HO','P01-A22-HO','P01-A23-HO','P01-A24-HO','P01-A25-HO','P01-A26-HO','P01-A27-HO','P01-A28-HO','P01-A29-HO',
       'P01-B31-HO','P01-B32-HO','P01-B33-HO','P01-B34-HO',
@@ -98,7 +138,6 @@ export function applyNetworkIntegrationV3(rows) {
       'P01-D51-HO','P01-D52-HO','P01-D53-HO','P01-D54-HO','P01-D55-HO'
     ];
     for (const id of physicalHandovers) if (byId.has(id)) addPred(cp07, { id, relationship:'FF', lagDays:0 });
-
     addNote(cp07, 'V3 integration: all detailed Plan-01 physical package handovers converge on CP-07 completion; CP-05/CP-06 source-window gates control the source critical narrative.');
   }
 
