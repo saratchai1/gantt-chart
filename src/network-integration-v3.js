@@ -74,10 +74,6 @@ export function applyNetworkIntegrationV3(rows) {
 
   // ------------------------------------------------------------------
   // NTP anchoring for supporting-plan roots.
-  // All scheduled Plan 02-16 work is part of the post-NTP project programme.
-  // Root activities that previously had no predecessor are anchored to the NTP
-  // milestone with a lag that preserves their existing planned start day. This
-  // changes network traceability, not the planned bars or source timing status.
   // ------------------------------------------------------------------
   const ntp=byId.get('P01-PRE-NTP');
   if (ntp) {
@@ -90,15 +86,65 @@ export function applyNetworkIntegrationV3(rows) {
   }
 
   // ------------------------------------------------------------------
-  // Integrated workfront readiness.
+  // Early commercial control-point sequence.
+  // This preserves the explicit D30/D60/D90/D180 source gates and makes the
+  // final enabling milestone part of the main-work release network. Omitted
+  // installments 4-23 remain governed by the source register rather than being
+  // fabricated as equal-duration milestones.
   // ------------------------------------------------------------------
+  const m01=byId.get('P02-M01'),m02=byId.get('P02-M02'),m03=byId.get('P02-M03'),m24=byId.get('P02-M24'),mainRel=byId.get('P01-PRE-REL');
+  if(m01&&m02) addPred(m02,{id:m01.activity_id,relationship:'FS',lagDays:0});
+  if(m02&&m03) addPred(m03,{id:m02.activity_id,relationship:'FS',lagDays:0});
+  if(m03&&m24) addPred(m24,{id:m03.activity_id,relationship:'FS',lagDays:0});
+  if(m24&&mainRel) addPred(mainRel,{id:m24.activity_id,relationship:'FS',lagDays:0});
+
+  // ------------------------------------------------------------------
+  // Integrated workfront readiness.
+  // The Area release now requires not only one-time setup gates but also that
+  // the relevant area-level control streams have started. SS is intentional:
+  // workforce / QA / HSE / traffic / environment / heritage monitoring remain
+  // active while construction proceeds and are not falsely required to finish
+  // before the workfront opens.
+  // ------------------------------------------------------------------
+  const workforceByZone={A:'P04-WF-A',B:'P04-WF-BC',C:'P04-WF-BC',D:'P04-WF-D'};
   for (const zone of ['A','B','C','D']) {
     const release = byId.get(`P03-SITE-${zone}-REL`);
     if (!release) continue;
     for (const id of ['P04-WF-002','P05-PLT-002','P09-TRF-002','P11-CDE-004']) {
       if (byId.has(id)) addPred(release,{id,relationship:'FS',lagDays:0});
     }
-    addNote(release,'V3 integrated readiness: competency, plant-personnel authorization, traffic-plan and controlled-document-system readiness are prerequisite inputs to workfront release.');
+    for (const id of [
+      workforceByZone[zone],`P07-QA-${zone}-MON`,`P08-HSE-${zone}-MON`,`P09-TRF-${zone}`,`P10-ENV-${zone}-MON`,`P16-HER-${zone}-MON`
+    ]) {
+      const stream=byId.get(id);
+      if(stream && stream.start_day<=release.start_day) addPred(release,{id,relationship:'SS',lagDays:0});
+    }
+    if(zone==='A'){
+      for(const id of ['P03-SITE-002','P03-SITE-004','P04-WF-003']) if(byId.has(id)) addPred(release,{id,relationship:'FS',lagDays:0});
+    }
+    addNote(release,'V3 integrated readiness: competency, plant-personnel authorization, active workforce/QA/HSE/traffic/environment controls, CDE readiness and applicable heritage monitoring feed the workfront release.');
+  }
+
+  // ------------------------------------------------------------------
+  // Plant operation interfaces to physical work.
+  // These SS links mean the required plant-support stream is operational when
+  // the physical workfront starts; they do not require the full plant campaign
+  // to finish before construction can proceed.
+  // ------------------------------------------------------------------
+  const plantLinks=[
+    ['P05-PLT-EARTH',r=>r.plan_no==='01' && /-(EXC|EW)$/.test(r.activity_id)],
+    ['P05-PLT-STR',r=>r.plan_no==='01' && /-(FND|GB|FRM|ROOF)$/.test(r.activity_id)],
+    ['P05-PLT-MEP',r=>r.plan_no==='01' && /-(MEP1|ELE1|PLB1|HV1|ICT1|ELE2|HV2|ICT2|PRECOM|FUNC|COMM)$/.test(r.activity_id)],
+    ['P05-PLT-LAND',r=>r.plan_no==='01' && /-(PAVE|SOIL|SOFT|IRR|REST)$/.test(r.activity_id)],
+    ['P05-PLT-D',r=>r.plan_no==='01' && /^P01-D/.test(r.activity_id) && /-(EW|DRN|UTIL|BASE|PAVE|SOIL|SOFT|IRR|ACC|LIFT|PONT|PIPE|PUMP|ELE)$/.test(r.activity_id)]
+  ];
+  for(const [plantId,predicate] of plantLinks){
+    const plant=byId.get(plantId); if(!plant)continue;
+    for(const target of rows){
+      if(!predicate(target) || target.start_day<plant.start_day) continue;
+      addPred(target,{id:plantId,relationship:'SS',lagDays:0});
+      addNote(target,`Plant-support interface: ${plantId} is active when this workfront starts.`);
+    }
   }
 
   // ------------------------------------------------------------------
@@ -146,6 +192,56 @@ export function applyNetworkIntegrationV3(rows) {
   }
 
   // ------------------------------------------------------------------
+  // Supporting-plan closeout convergence. These connections distinguish
+  // legitimate level-of-effort controls from logic islands by giving their
+  // completed records a downstream reconciliation or restoration destination.
+  // ------------------------------------------------------------------
+  const siteDemob=byId.get('P03-SITE-DEMOB');
+  for(const id of ['P03-SITE-A-OPS','P03-SITE-B-OPS','P03-SITE-C-OPS','P03-SITE-D-OPS']) if(byId.has(id)) addPred(siteDemob,{id,relationship:'FF',lagDays:0});
+
+  const wfClose=byId.get('P04-WF-CO');
+  for(const id of ['P04-WF-A','P04-WF-BC','P04-WF-D','P04-WF-REVIEW']) if(byId.has(id)) addPred(wfClose,{id,relationship:'FF',lagDays:0});
+  const d493=byId.get('P01-CO-D493');
+  if(wfClose&&d493) addPred(d493,{id:wfClose.activity_id,relationship:'SS',lagDays:0});
+
+  const plantDemob=byId.get('P05-PLT-DEMOB');
+  for(const id of ['P05-PLT-EARTH','P05-PLT-STR','P05-PLT-MEP','P05-PLT-LAND','P05-PLT-D']) if(byId.has(id)) addPred(plantDemob,{id,relationship:'FF',lagDays:0});
+
+  const qaClose=byId.get('P07-QA-COMM');
+  for(const zone of ['A','B','C','D']) if(byId.has(`P07-QA-${zone}-MON`)) addPred(qaClose,{id:`P07-QA-${zone}-MON`,relationship:'FF',lagDays:0});
+
+  const trafficRest=byId.get('P09-TRF-REST');
+  for(const zone of ['A','B','C','D']) if(byId.has(`P09-TRF-${zone}`)) addPred(trafficRest,{id:`P09-TRF-${zone}`,relationship:'FS',lagDays:0});
+
+  const envRest=byId.get('P10-ENV-REST');
+  for(const id of ['P10-ENV-A-MON','P10-ENV-B-MON','P10-ENV-C-MON','P10-ENV-D-MON','P10-ENV-WASTE']) if(byId.has(id)) addPred(envRest,{id,relationship:'FF',lagDays:0});
+
+  const cdeClose=byId.get('P11-CDE-CO');
+  for(const id of ['P11-CDE-PRE','P11-CDE-ZA','P11-CDE-ZBC','P11-CDE-ZD']) if(byId.has(id)) addPred(cdeClose,{id,relationship:'FF',lagDays:0});
+
+  const progressClose=byId.get('P12-PRG-CO');
+  for(const id of ['P12-PRG-PRE','P12-PRG-ZA','P12-PRG-ZBC','P12-PRG-ZD']) if(byId.has(id)) addPred(progressClose,{id,relationship:'FF',lagDays:0});
+
+  const bimAsb=byId.get('P13-BIM-ASB');
+  for(const zone of ['A','B','C','D']){
+    for(const suffix of ['COORD','4D']){
+      const id=`P13-BIM-${zone}-${suffix}`; if(byId.has(id)) addPred(bimAsb,{id,relationship:'FF',lagDays:0});
+    }
+  }
+
+  const aiHand=byId.get('P14-AI-009');
+  if(aiHand&&byId.has('P14-AI-008')) addPred(aiHand,{id:'P14-AI-008',relationship:'FF',lagDays:0});
+
+  const carbonReport=byId.get('P15-CAR-REP');
+  for(const id of ['P15-CAR-A','P15-CAR-BC','P15-CAR-D']) if(byId.has(id)) addPred(carbonReport,{id,relationship:'FF',lagDays:0});
+
+  const heritageRest=byId.get('P16-HER-REST');
+  for(const zone of ['A','B','C','D']) if(byId.has(`P16-HER-${zone}-MON`)) addPred(heritageRest,{id:`P16-HER-${zone}-MON`,relationship:'FF',lagDays:0});
+
+  const commercialFtc=byId.get('P02-COM-FTC');
+  for(const zone of ['A','B','C','D']) if(byId.has(`P02-COM-${zone}`)) addPred(commercialFtc,{id:`P02-COM-${zone}`,relationship:'FF',lagDays:0});
+
+  // ------------------------------------------------------------------
   // Closeout evidence convergence across Plans 3-16.
   // ------------------------------------------------------------------
   const restoration=byId.get('P01-CO-004');
@@ -159,7 +255,8 @@ export function applyNetworkIntegrationV3(rows) {
   const readiness=byId.get('P01-CO-005');
   if(byId.has('P14-AI-009')) addPred(readiness,{id:'P14-AI-009',relationship:'FS',lagDays:0});
   if(byId.has('P02-COM-FTC')) addPred(readiness,{id:'P02-COM-FTC',relationship:'FS',lagDays:0});
-  addNote(readiness,'Final readiness includes digital-system handover and final forecast/cost reconciliation in addition to QA, BIM, carbon and closeout evidence.');
+  if(byId.has('P08-HSE-DRILLS')) addPred(readiness,{id:'P08-HSE-DRILLS',relationship:'FS',lagDays:0});
+  addNote(readiness,'Final readiness includes digital-system handover, commercial reconciliation, completed emergency-drill programme, QA, BIM, carbon and closeout evidence.');
 
   const finalAcceptance=byId.get('P01-CO-006');
   for(const id of ['P11-CDE-CO','P12-PRG-CO']) if(byId.has(id)) addPred(finalAcceptance,{id,relationship:'FS',lagDays:0});
