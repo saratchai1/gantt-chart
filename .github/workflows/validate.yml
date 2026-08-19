@@ -16,14 +16,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Install PDF dependencies, Thai font and PDF QA tools
+      - name: Install PDF dependencies, bilingual Thai/Latin font and PDF QA tools
         shell: bash
         run: |
           npm install --no-audit --no-fund
           sudo apt-get update -qq
-          sudo apt-get install -y -qq fonts-noto-core poppler-utils
-          fc-match 'Noto Sans Thai'
-          fc-match 'Noto Sans Thai:style=Bold'
+          sudo apt-get install -y -qq fonts-thai-tlwg fonts-noto-core poppler-utils
+          fc-match 'Garuda'
+          fc-match 'Garuda:style=Bold'
       - name: JavaScript syntax check
         shell: bash
         run: |
@@ -55,10 +55,13 @@ jobs:
             fi
           done
           test "$bad" -eq 0
-          if ! pdffonts "$PDF" | grep -Eiq 'NotoSansThai|Noto Sans Thai'; then
-            echo 'ERROR: expected Noto Sans Thai embedded font not found in PDF font table.'
+          if ! pdffonts "$PDF" | grep -Eiq 'Garuda'; then
+            echo 'ERROR: expected bilingual Garuda font not found in PDF font table.'
             exit 1
           fi
+          pdftotext "$PDF" - | grep -q 'PROPOSAL INTEGRATED MASTER SCHEDULE'
+          pdftotext "$PDF" - | grep -q '1,200 days'
+          pdftotext "$PDF" - | grep -q 'แผนงานก่อสร้างห้วยขาแข้ง'
           pdftoppm -png -f 1 -singlefile -r 110 "$PDF" data/pdf-preview-page-01 >/dev/null 2>&1
           pdftoppm -png -f 2 -singlefile -r 110 "$PDF" data/pdf-preview-page-02 >/dev/null 2>&1
       - name: Upload generated schedule
