@@ -1,31 +1,14 @@
-# Integrated Schedule Logic Notes — Baseline v0.2
+# Integrated Schedule Logic Notes — Baseline v0.4
 
 ## 1. เป้าหมายของ network
 
 Schedule นี้ไม่ได้วางแผนที่ 1–16 เป็นเส้นขนานที่แยกกัน แต่สร้าง **physical delivery network** แล้วให้แผนควบคุมอื่นทำหน้าที่เป็น gate / enabling activity / concurrent control / closeout requirement ของงานจริง
 
-ตัวอย่าง logic หลัก:
+`NTP → Readiness → Physical Workfront → Task-level Controls → Construction / Installation → Inspection / Test → Handover → CP Convergence → Closeout → D1200`
 
-`Workfront Survey / Boundary`  
-→ `Environment + Heritage + HSE Readiness`  
-→ `Integrated Site Workfront Release`  
-→ `Survey / Setting Out`  
-→ `Earthwork / Foundation / Structure`  
-→ `Architecture + MEP rolling workfronts`  
-→ `Inspection / Hold Points / Tests`  
-→ `Pre-commissioning`  
-→ `Functional Test`  
-→ `Integrated Commissioning`  
-→ `Snag / NCR Closure`  
-→ `As-built / Asset Data`  
-→ `Package Handover`  
-→ `CP-05 / CP-06 / CP-07 Project Convergence`  
-→ `CP-08 Closeout`  
-→ `D1200 Final Acceptance`
+Baseline v0.4 เพิ่มความละเอียดจาก Area-wide control ไปถึง **activity-level gates** ในงานที่ source ระบุความเสี่ยงหรือ Hold Point ชัดเจน โดยไม่สร้างกิจกรรมเสี่ยงที่ source / scope ยังไม่ยืนยัน
 
 ## 2. Source CP windows retained
-
-แผนที่ 1 ให้ control windows ระดับโครงการซึ่งถูกเก็บเป็น hard framework:
 
 - CP-01: D1–90 — survey / benchmark / initial plan approval
 - CP-02: D31–180 — field office / temporary utilities / fence / access / workfront readiness
@@ -38,162 +21,177 @@ Schedule นี้ไม่ได้วางแผนที่ 1–16 เป็
 
 Detailed leaf activities inside these windows are proposal planning allowances unless the source gives an explicit day.
 
-Baseline v0.2 เพิ่ม boundary gates ที่ตรวจสอบย้อนกลับได้:
+Boundary audit milestones:
 
 - `P01-CP05-GATE` — D840
 - `P01-CP06-GATE` — D960
 
-CP-07 เริ่มหลัง boundary ของ CP-05 แต่ CP-06 เชื่อมกับ **finish** ของ CP-07 เนื่องจาก source windows ซ้อนกัน ไม่บังคับ FS แบบทั้งโครงการซึ่งจะขัดกับช่วง D841–D1080 ที่ source ระบุไว้
+CP-07 starts after CP-05. CP-06 controls CP-07 **finish** because the source windows overlap; it is not converted into a false global FS chain.
 
 ## 3. Workfront readiness logic
 
-ทุก Area มี integrated release gate ซึ่งอ้างอิงอย่างน้อย:
+Area release combines:
 
-- temporary/site access readiness
-- HSE / JSEA / PTW readiness
-- environmental readiness
-- QA/QC method/ITP readiness
-- Area D เพิ่ม heritage/sensitive-area permit gate
+- temporary/site-access and logistics readiness
+- workforce competency and active coverage
+- plant-personnel authorization and applicable active plant support
+- HSE / JSEA / PTW readiness and active monitoring
+- environmental readiness and active monitoring
+- traffic-management / delivery controls
+- QA/QC Method Statement / ITP readiness and active inspection stream
+- CDE / controlled-document readiness
+- Area D heritage / sensitive-area permit and monitoring
 
-ไม่ใช้การเปิด workfront จากวันใน Gantt เพียงอย่างเดียว
+Readiness activities that run concurrently with construction use SS where appropriate; they are not falsely required to finish before work starts.
 
-## 4. Building rolling-workfront logic
+## 4. Activity-level HSE / environmental / quality gates — v0.4
 
-อาคารขนาดใหญ่ไม่บังคับให้ทั้ง trade เสร็จทั้งอาคารก่อน trade ถัดไปเริ่ม เพราะไม่สมจริงสำหรับ proposal schedule ที่มีหลายห้อง/หลายแนวงาน
+### Excavation / earthwork
 
-ดังนั้นใช้ SS + lag ในจุดที่สามารถทยอยส่งพื้นที่ได้ เช่น:
+Building `EXC` and external `EW` activities receive:
+
+1. Plan-8 excavation / earthwork JSEA + PTW readiness gate
+2. Plan-10 localized environmental-control readiness gate
+3. applicable active earthwork plant-support interface
+
+The Plan-8 gate represents source-required excavation permit, ground/water/access/barricade/spoil/plant readiness. The Plan-10 gate represents boundary, drainage/sediment, spill/waste and monitoring readiness. Exact detailed gate day follows the proposal workfront and is `timing_basis=ASSUMPTION`.
+
+### Roof / work at height
+
+Building roof work receives a Plan-8 work-at-height gate covering scaffold / working platform / anchor / fall protection / exclusion / rescue readiness. The frame is a rolling SS input, not a false whole-building FS prerequisite.
+
+### Above-ceiling concealed work
+
+Ceiling closure receives an explicit Plan-7 Hold Point. First-fix MEP / electrical / plumbing-fire / HVAC / ICT activities feed the Hold Point as rolling-workfront inputs. Ceiling closure is FS from the released Hold Point.
+
+### Precommissioning / LOTO
+
+Building precommissioning receives a Plan-8 electrical-isolation / LOTO / test-before-touch readiness gate. Electrical second-fix is treated as a progressive workfront input where applicable.
+
+### Raw-water pontoon
+
+The D55 package has dedicated controls for:
+
+- lifting-plan / certified lifting team / exclusion / rescue readiness
+- heavy/special movement route / turning / bearing / unloading / booking / signaler readiness
+- near-water weather / water-condition / life-saving / watcher / communication / evacuation readiness
+- existing Area-D environmental / heritage sensitive-workfront permit controls
+
+No buffer distance, wildlife exclusion distance, water setback or new route is invented.
+
+### Controls intentionally not fabricated
+
+Hot-work and confined-space are recognized by Plan 8 as risk categories, but v0.4 does **not** create project activities or task gates for them unless an approved project Method Statement confirms that scope.
+
+## 5. Building rolling-workfront logic
+
+SS + lag is used where trades can progress by zones/rooms/fronts, for example:
 
 - Survey → excavation
 - Excavation → blinding
 - Ground structure → superstructure
 - Superstructure → roof / envelope / partition / MEP first fix
 - Partition → wall finish
-- MEP first fix → ceiling closure
-- Finishes → second fix / furniture
+- first-fix services → concealed-work inspection / ceiling closure
+- finishes → second fix / furniture
 
-แต่ยังรักษา FS gate ในกิจกรรมที่ต้องผ่านก่อนจริง เช่น:
+FS remains for true gates, including:
 
-- Material submittal approval → PO
-- Pre-pour Hold Point → concrete pour
-- Pre-commissioning → functional test → integrated commissioning
-- Punch/NCR closure → handover
+- material approval → PO
+- pre-pour Hold Point → concrete
+- concealed-work Hold Point → closure
+- precommissioning → functional test → integrated commissioning
+- punch / NCR correction → handover
 
-Baseline v0.2 ปิด logic branch เพิ่มเติมที่ handover โดยกำหนดให้ envelope, door/glazing, floor, final finish, fixed furniture, immediate external work และ specialist package ที่เกี่ยวข้องต้องเสร็จก่อน handover ด้วย เพื่อไม่ให้ branch ทางกายภาพจบแบบไม่มี downstream logic
+## 6. Plant interface logic
 
-## 5. External / landscape work logic
+Active support streams are linked by SS to relevant physical work:
 
-External package ใช้ rolling workfront สำหรับ earthwork, drainage, utilities, base, paving, landscape และ irrigation แต่ก่อน area handover ต้องปิดอย่างน้อย:
+- EARTH → excavation / earthwork
+- STR → foundation / ground beams / frame / roof
+- MEP → service installation / testing / commissioning workfronts
+- LAND → paving / soil / planting / irrigation / restoration
+- Area-D restricted plant → applicable sensitive / near-water work
 
-- final inspection / defect correction
-- site furniture / signage / learning-point equipment ที่อยู่ใน package
-- environmental / wildlife / erosion monitoring record ของ package
+This means plant support is operational when needed; it does not require the entire plant campaign to finish before the physical activity starts.
 
-ดังนั้น external-work branch ไม่จบแบบลอยออกจาก final CPM network
+## 7. Procurement logic
 
-## 6. Procurement logic
+`Requirement → Submittal → Approval → Vendor/Commercial Alignment → PO → Production/Fabrication → FAT/Source Inspection → Delivery → MIR/Test/Quarantine Clearance → Released for Installation`
 
-Material family workflow:
+Families: STR, ARC, MEP, ICT, LAND and Area-D special materials. Detailed lead times are proposal assumptions pending vendor confirmation.
 
-`Requirement` → `Submittal` → `Approval` → `Vendor/Commercial Alignment` → `PO` → `Production/Fabrication` → `FAT/Source Inspection` → `Delivery` → `MIR/Test/Quarantine Clearance` → `Released for Installation`
+## 8. Quality logic
 
-กลุ่มที่มี schedule chain แยก:
+Quality completion requires evidence, not physical quantity alone:
 
-- STR — civil/structural materials
-- ARC — architectural/envelope/finish materials
-- MEP — major MEP equipment/panels/pumps/valves/controls
-- ICT — AV/CCTV/network/smart systems
-- LAND — landscape/irrigation/external furniture
-- D — Area-D low-impact/trail/near-water special materials
-
-Detailed lead times are explicitly tagged ASSUMPTION and shall be replaced by vendor-confirmed dates.
-
-## 7. Quality logic
-
-งานที่ปิดทับหรือมี acceptance gate ต้องเชื่อมกับ QA/QC:
-
-- Method Statement / ITP ready before work package
-- pre-pour inspection before concrete
-- above-ceiling inspection before closure
-- material inspection before release for installation
-- system tests before commissioning
+- PQP / Method Statement / ITP before work
+- calibration / lab / sample-chain setup feeding Area QA readiness
+- pre-pour Hold Point before foundation concrete
+- above-ceiling Hold Point before concealed-work closure
+- material inspection before installation release
+- tests before commissioning
 - NCR / punch correction and reinspection before handover
 
-`Physical Complete` และ `Payment Ready` จึงไม่เท่ากันโดยอัตโนมัติ
+`Physical Complete ≠ Payment Ready` unless accepted quality evidence is complete.
 
-## 8. Commercial logic
+## 9. Commercial logic
 
-Payment overlay uses 497-installment register as contractual reference. Schedule does **not** assume all 497 installments have equal time duration.
+497 installments are contractual references, not equal-duration time buckets.
 
-Explicit source control points retained:
+Explicit source points retained: D30, D60, D90, D180 and final deliverables 493–497 within D1200. Baseline v0.4 connects the explicit early sequence into main-work readiness but does not fabricate dates for installments 4–23.
 
-- Installment 1 — D30
-- Installment 2 — D60
-- Installment 3 — D90
-- Installment 24 — D180
-- Installments 493–497 — final closeout deliverables, all completed within D1200; exact separate due day is not fabricated where source does not state it
+## 10. Area D / heritage logic
 
-Payment-ready condition requires:
+`approved boundary/baseline → no-go/access controls → heritage/environment/HSE workfront permit → controlled access → localized work → monitoring → after-condition record → rehabilitation → restoration acceptance`
 
-`measured physical quantity` + `accepted quality` + `controlled document evidence` + `no blocking NCR / duplicate claim`
+Project-specific buffer/setback/restriction values are not created without approved evidence.
 
-## 9. Area D logic
+## 11. CP-07 project-wide convergence
 
-Area D is treated as a sensitive low-impact program:
+`P01-CO-001` is the CP-07 D841–D1080 integration window. Plan-01 package handovers converge on CP-07 completion using FF where concurrent integration is appropriate. CP-05 / CP-06 remain the source-window critical narrative controls.
 
-`approved boundary/baseline` → `no-go/access controls` → `specific heritage/environment/HSE workfront permit` → `controlled access` → `localized work` → `continuous monitoring` → `after-condition record` → `rehabilitation` → `restoration acceptance`
+## 12. Supporting-plan / LOE closeout convergence
 
-No buffer distance, wildlife restriction distance or water setback has been invented. These require approved project-specific evidence.
+v0.4 connects supporting streams to suitable downstream reconciliation nodes rather than leaving them as logic islands:
 
-พื้นที่ D1–D3 เชื่อมเข้าสู่ CP-06/CP-07 ตาม source windows ส่วนงานแพสูบน้ำดิบและภูมิทัศน์ปลายทางถูกควบคุมให้เสร็จก่อน CP-07 completion D1080 แทนการบังคับย้อนหลังให้ทุกงานจบ D960 ซึ่ง source ไม่ได้แจกแจงในระดับ leaf activity
+- Site area operations → site demobilization
+- Workforce area/review streams → workforce closeout
+- Plant operation streams → plant demobilization
+- QA area monitoring → final QA dossier
+- Traffic area controls → route restoration
+- Environment monitoring / waste records → restoration / final restoration acceptance
+- CDE cycles → CDE closeout
+- Progress cycles → final progress reconciliation
+- BIM coordination / 4D-5D → progressive as-built BIM
+- AI monitoring → system/data handover
+- Carbon area/prelim data → periodic calculation → final carbon report
+- Heritage monitoring → final heritage restoration
+- Commercial area cycles → forecast-to-complete reconciliation
 
-## 10. Project-wide CP-07 convergence
+`P04-WF-DEMOB` is intentionally retained as a terminal level-of-effort activity because it represents progressive manpower demobilization after area acceptance/handover and does not need to be force-made a final-acceptance predecessor.
 
-`P01-CO-001` เป็น control window ของ CP-07 D841–D1080 และเป็นจุดรวม handover ของ physical packages ทั้ง Area A, B, C, D
+## 13. Network validation
 
-การใช้ FF จาก package handover ไป CP-07 หมายถึง CP-07 สามารถดำเนินงาน landscape / detail / integration แบบซ้อนกับ package ปลายทางได้ แต่ CP-07 จะจบไม่ได้หาก package ใดยังไม่ handover
+Latest validated v0.4 metrics:
 
-CP-05 และ CP-06 source boundary ถูกใช้เป็นเส้นควบคุม critical narrative ขณะที่ individual package ที่จบก่อนมี float ตาม network จริงของ proposal
+- 957 total rows
+- 957 / 957 reachable from NTP
+- 954 / 957 with downstream D1200 path
+- Plan-01 physical: 654 / 654 complete NTP→D1200
+- Plan-01 handovers: 23 / 23 complete NTP→D1200
+- 0 structure errors
+- 0 dependency cycles
+- 0 network-integrity errors
+- 0 temporal warnings
+- PASS
 
-## 11. Closeout logic
+Plan-01 physical work fails validation if either full NTP ancestry or a D1200 successor path is missing. Supporting-plan terminals are reported separately for engineering review rather than automatically force-connected.
 
-Final acceptance at D1200 is downstream of:
+## 14. Critical-path status
 
-- integrated commissioning
-- final quality dossier / punch and NCR closure
-- verified as-built / As-built BIM
-- O&M / warranty / training
-- asset register / serial / location / value reconciliation
-- CDE archive / controlled data export
-- Application / AI system-data export / configuration handover
-- site / plant / traffic demobilization and restoration
-- environmental / heritage restoration acceptance
-- final carbon-footprint reconciliation/report
-- final commercial forecast / cost reconciliation
-- final progress / closeout reconciliation
-- final payment-package readiness
+`critical=Y` = source-window / proposal critical candidate. `computed_critical=Y` = zero accumulated float under the current proposal network.
 
-การเชื่อม restoration ใช้ FF เมื่อกิจกรรม closeout สามารถดำเนินซ้อนกันได้ แต่ห้ามปิด acceptance ก่อน underlying restoration stream จบ
+Latest validated calculation has 51 zero-float activities and a 36-activity representative chain from NTP through the Area-A learning centre and CP-08 deliverable sequence to D1200.
 
-## 12. Network integrity validation
-
-Validator ตรวจเพิ่มใน v0.2:
-
-- overall network coverage to D1200
-- Plan-01 physical activity coverage
-- Plan-01 handover coverage
-- unconnected Plan-01 physical activities
-- unconnected Plan-01 handovers
-
-**Plan-01 physical handover ใดที่ไม่เชื่อมถึง D1200 ถือเป็น validation failure** ไม่ใช่แค่ advisory
-
-## 13. Critical-path status
-
-Rows marked `critical=Y` เป็น **critical-chain candidates based on source CP windows and proposal sequencing** ส่วน `computed_critical=Y` เป็น zero-float ที่คำนวณจาก current predecessor network ไปยัง D1200
-
-ผลยังไม่ควรถูกเรียกว่า approved contract CPM จนกว่า:
-
-1. approved working calendar is known,
-2. all detailed activity durations are replaced/confirmed,
-3. all vendor lead times are confirmed,
-4. exact interfaces and constraints are approved,
-5. contract-baseline forward/backward pass is confirmed against approved dates.
+This remains a proposal CPM until approved calendar, durations, vendor dates, production rates, Method Statements, ITPs, JSEAs, permits and final interface constraints are confirmed.
