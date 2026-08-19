@@ -49,9 +49,6 @@ export function validateTemporalLogic(rows) {
       const lag = Number(p.lagDays || 0);
       let ok = true, expected = '';
       if (p.relationship === 'FS') {
-        // A zero-duration milestone is treated as an instant at the beginning/end
-        // of its project day, so a successor may share that day. Two normal
-        // elapsed-day activities require the next project day.
         const dayStep = pr.milestone === 'Y' || r.milestone === 'Y' ? 0 : 1;
         const minStart = pr.finish_day + lag + dayStep;
         ok = r.start_day >= minStart;
@@ -90,25 +87,65 @@ export function criticalCandidateSummary(rows) {
   }));
 }
 
+function coverage(total, connected) {
+  return { total, connected, coverage_pct:Number((100 * connected / Math.max(1,total)).toFixed(1)) };
+}
+
 export function networkCoverageSummary(rows) {
-  const connected = rows.filter(r => r.network_to_final === 'Y');
+  const toFinal = rows.filter(r => r.network_to_final === 'Y');
+  const fromStart = rows.filter(r => r.network_from_start === 'Y');
+  const through = rows.filter(r => r.network_from_start === 'Y' && r.network_to_final === 'Y');
   const physical = rows.filter(r => r.plan_no === '01' && /^P01-(?:A|B|C|D)/.test(r.activity_id));
   const handovers = physical.filter(r => r.activity_id.endsWith('-HO'));
-  const unconnectedPhysical = physical.filter(r => r.network_to_final !== 'Y').map(r => r.activity_id);
-  const unconnectedHandovers = handovers.filter(r => r.network_to_final !== 'Y').map(r => r.activity_id);
+
+  const physicalFromStart = physical.filter(r => r.network_from_start === 'Y');
+  const physicalToFinal = physical.filter(r => r.network_to_final === 'Y');
+  const physicalThrough = physical.filter(r => r.network_from_start === 'Y' && r.network_to_final === 'Y');
+  const handoverFromStart = handovers.filter(r => r.network_from_start === 'Y');
+  const handoverToFinal = handovers.filter(r => r.network_to_final === 'Y');
+  const handoverThrough = handovers.filter(r => r.network_from_start === 'Y' && r.network_to_final === 'Y');
+
+  const unconnectedFromStartPhysical = physical.filter(r => r.network_from_start !== 'Y').map(r => r.activity_id);
+  const unconnectedToFinalPhysical = physical.filter(r => r.network_to_final !== 'Y').map(r => r.activity_id);
+  const unconnectedThroughPhysical = physical.filter(r => r.network_from_start !== 'Y' || r.network_to_final !== 'Y').map(r => r.activity_id);
+  const unconnectedFromStartHandovers = handovers.filter(r => r.network_from_start !== 'Y').map(r => r.activity_id);
+  const unconnectedToFinalHandovers = handovers.filter(r => r.network_to_final !== 'Y').map(r => r.activity_id);
+
   const byPlan = {};
   for (const r of rows) {
-    if (!byPlan[r.plan_no]) byPlan[r.plan_no] = { total:0, connected:0 };
-    byPlan[r.plan_no].total++;
-    if (r.network_to_final === 'Y') byPlan[r.plan_no].connected++;
+    if (!byPlan[r.plan_no]) byPlan[r.plan_no] = { total:0, from_start:0, to_final:0, through:0 };
+    const v=byPlan[r.plan_no]; v.total++;
+    if (r.network_from_start === 'Y') v.from_start++;
+    if (r.network_to_final === 'Y') v.to_final++;
+    if (r.network_from_start === 'Y' && r.network_to_final === 'Y') v.through++;
   }
-  for (const v of Object.values(byPlan)) v.coverage_pct = v.total ? Number((100 * v.connected / v.total).toFixed(1)) : 0;
+  for (const v of Object.values(byPlan)) {
+    v.from_start_pct=Number((100*v.from_start/Math.max(1,v.total)).toFixed(1));
+    v.to_final_pct=Number((100*v.to_final/Math.max(1,v.total)).toFixed(1));
+    v.through_pct=Number((100*v.through/Math.max(1,v.total)).toFixed(1));
+  }
+
   return {
-    overall:{ total:rows.length, connected:connected.length, coverage_pct:Number((100 * connected.length / Math.max(1, rows.length)).toFixed(1)) },
-    plan01_physical:{ total:physical.length, connected:physical.length-unconnectedPhysical.length, coverage_pct:Number((100 * (physical.length-unconnectedPhysical.length) / Math.max(1, physical.length)).toFixed(1)) },
-    plan01_handovers:{ total:handovers.length, connected:handovers.length-unconnectedHandovers.length, coverage_pct:Number((100 * (handovers.length-unconnectedHandovers.length) / Math.max(1, handovers.length)).toFixed(1)) },
-    unconnected_plan01_physical:unconnectedPhysical,
-    unconnected_plan01_handovers:unconnectedHandovers,
+    overall_from_start:coverage(rows.length,fromStart.length),
+    overall_to_final:coverage(rows.length,toFinal.length),
+    overall_through:coverage(rows.length,through.length),
+    plan01_physical_from_start:coverage(physical.length,physicalFromStart.length),
+    plan01_physical_to_final:coverage(physical.length,physicalToFinal.length),
+    plan01_physical_through:coverage(physical.length,physicalThrough.length),
+    plan01_handovers_from_start:coverage(handovers.length,handoverFromStart.length),
+    plan01_handovers_to_final:coverage(handovers.length,handoverToFinal.length),
+    plan01_handovers_through:coverage(handovers.length,handoverThrough.length),
+    // Compatibility aliases retained for viewer/export consumers created in v0.1.
+    overall:coverage(rows.length,toFinal.length),
+    plan01_physical:coverage(physical.length,physicalToFinal.length),
+    plan01_handovers:coverage(handovers.length,handoverToFinal.length),
+    unconnected_from_start_plan01_physical:unconnectedFromStartPhysical,
+    unconnected_to_final_plan01_physical:unconnectedToFinalPhysical,
+    unconnected_through_plan01_physical:unconnectedThroughPhysical,
+    unconnected_from_start_plan01_handovers:unconnectedFromStartHandovers,
+    unconnected_to_final_plan01_handovers:unconnectedToFinalHandovers,
+    unconnected_plan01_physical:unconnectedToFinalPhysical,
+    unconnected_plan01_handovers:unconnectedToFinalHandovers,
     by_plan:byPlan
   };
 }
@@ -118,7 +155,10 @@ export function validationReport(rows) {
   const cycles = detectCycles(rows);
   const temporalWarnings = validateTemporalLogic(rows);
   const networkCoverage = networkCoverageSummary(rows);
-  const networkIntegrityErrors = networkCoverage.unconnected_plan01_physical.map(id => `${id}: Plan-01 physical activity is not connected to final D1200 milestone`);
+  const networkIntegrityErrors = [
+    ...networkCoverage.unconnected_from_start_plan01_physical.map(id => `${id}: Plan-01 physical activity is not reachable from NTP/start milestone`),
+    ...networkCoverage.unconnected_to_final_plan01_physical.map(id => `${id}: Plan-01 physical activity is not connected to final D1200 milestone`)
+  ];
   return {
     generated_at:new Date().toISOString(),
     total_activities:rows.length,
