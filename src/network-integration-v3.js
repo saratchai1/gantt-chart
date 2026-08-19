@@ -80,12 +80,12 @@ export function applyNetworkIntegrationV3(rows) {
 
   // ------------------------------------------------------------------
   // Package internal convergence.
-  // The original detailed generator intentionally exposed parallel finish,
-  // furniture, external-work and specialist branches. A professional handover
-  // milestone must wait for those branches as well as commissioning / punch / 
-  // as-built. Adding the links here preserves every existing bar while closing
-  // the logic gaps that would otherwise leave completed work outside the final
-  // CPM network.
+  // The original detailed generator intentionally exposed parallel envelope,
+  // finish, furniture, external-work and specialist branches. A professional
+  // handover milestone must wait for those branches as well as commissioning /
+  // punch / as-built. Adding the links here preserves every existing bar while
+  // closing logic gaps that would otherwise leave completed work outside the
+  // final CPM network.
   // ------------------------------------------------------------------
   const buildingPrefixes = [
     'P01-A23','P01-A24','P01-A25','P01-A26','P01-A29',
@@ -94,14 +94,14 @@ export function applyNetworkIntegrationV3(rows) {
   for (const prefix of buildingPrefixes) {
     const ho = byId.get(`${prefix}-HO`);
     if (!ho) continue;
-    for (const suffix of ['DRW','FLR','PNT','FURN','EXT']) {
+    for (const suffix of ['ENV','DRW','FLR','PNT','FURN','EXT']) {
       const id = `${prefix}-${suffix}`;
       if (byId.has(id)) addPred(ho, { id, relationship:'FS', lagDays:0 });
     }
     for (const row of rows) {
       if (row.activity_id.startsWith(`${prefix}-EX`)) addPred(ho, { id:row.activity_id, relationship:'FS', lagDays:0 });
     }
-    addNote(ho, 'V3 package completion gate: architectural finish, furniture/external and specialist branches must be complete before package handover.');
+    addNote(ho, 'V3 package completion gate: envelope, architectural finish, furniture/external and specialist branches must be complete before package handover.');
   }
 
   const externalPrefixes = ['P01-A21','P01-A22','P01-A27','P01-A28','P01-B33','P01-B34','P01-D51','P01-D52','P01-D53','P01-D54'];
