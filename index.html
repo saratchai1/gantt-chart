@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Integrated Master Gantt — ห้วยขาแข้ง</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div>
+      <div class="eyebrow">PROPOSAL INTEGRATED MASTER SCHEDULE</div>
+      <h1>แผนงานก่อสร้างห้วยขาแข้ง — Plans 01–16</h1>
+      <p>1200 Project Days · 497 Installments · Physical + Commercial + Site + Workforce + Plant + Procurement + QA/QC + HSE + Traffic + Environment + CDE + Progress + BIM + App/AI + Carbon + Heritage</p>
+    </div>
+    <div class="header-actions">
+      <button id="exportCsv">Export CSV</button>
+      <button id="exportJson">Export JSON</button>
+    </div>
+  </header>
+
+  <section class="metrics" id="metrics"></section>
+
+  <section class="toolbar">
+    <label>ค้นหา
+      <input id="search" type="search" placeholder="ID / WBS / อาคาร / กิจกรรม…" />
+    </label>
+    <label>Plan
+      <select id="planFilter"><option value="">All 01–16</option></select>
+    </label>
+    <label>Zone
+      <select id="zoneFilter"><option value="">All zones</option></select>
+    </label>
+    <label>Discipline
+      <select id="disciplineFilter"><option value="">All disciplines</option></select>
+    </label>
+    <label>Basis
+      <select id="basisFilter">
+        <option value="">All</option>
+        <option value="SOURCE">SOURCE</option>
+        <option value="DERIVED">DERIVED</option>
+        <option value="ASSUMPTION">ASSUMPTION</option>
+      </select>
+    </label>
+    <label class="check"><input id="criticalOnly" type="checkbox" /> Critical only</label>
+    <label>Zoom
+      <select id="zoom">
+        <option value="1.25">Compact</option>
+        <option value="2" selected>Normal</option>
+        <option value="3">Detail</option>
+      </select>
+    </label>
+    <button id="resetFilters" class="secondary">Reset</button>
+  </section>
+
+  <section class="legend">
+    <span><i class="swatch normal"></i> Activity</span>
+    <span><i class="swatch critical"></i> Critical candidate</span>
+    <span><i class="diamond"></i> Milestone</span>
+    <span><b class="basis source">SOURCE</b> source-stated</span>
+    <span><b class="basis derived">DERIVED</b> decomposed from source process</span>
+    <span><b class="basis assumption">ASSUMPTION</b> proposal planning allowance</span>
+  </section>
+
+  <main class="gantt-shell" id="ganttShell">
+    <div class="gantt-head left-head">
+      <div class="col wbs">WBS</div>
+      <div class="col activity">Activity</div>
+      <div class="col dur">Dur.</div>
+      <div class="col days">D Start–Finish</div>
+    </div>
+    <div class="gantt-head timeline-head" id="timelineHead"></div>
+    <div class="left-grid" id="leftGrid"></div>
+    <div class="timeline-grid" id="timelineGrid"></div>
+  </main>
+
+  <aside class="drawer" id="drawer" aria-hidden="true">
+    <button class="drawer-close" id="drawerClose" aria-label="Close">×</button>
+    <div id="drawerContent"></div>
+  </aside>
+
+  <footer>
+    Benchmark PDF is used only for WBS/activity granularity. Detailed proposal durations tagged ASSUMPTION are not TOR-stated durations and must be replaced by approved calendar, BOQ/productivity and vendor-confirmed lead times at contract-baseline stage.
+  </footer>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
