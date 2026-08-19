@@ -2,18 +2,18 @@
 
 Repository นี้พัฒนา **Integrated Master Schedule** จากแผนที่ 1–16 ของข้อเสนอ โดยใช้ไฟล์ `26.08.17 แผนงานก่อสร้างห้วยขาแข้ง หลัก.pdf` เป็น benchmark เฉพาะ **ระดับความละเอียดของ WBS / Activity Breakdown** เท่านั้น ไม่คัดลอกวัน ระยะเวลา หรือ predecessor logic ของตัวอย่างมาใช้เป็นฐาน
 
-## Baseline v0.5 — validated proposal network
+## Baseline v0.6 — validated proposal network
 
 Latest CI-validated snapshot:
 
 - Project duration: **1,200 project days**
 - Contract installment structure: **497 installments**
-- Detailed activities / gates: **986 rows**
-- Milestones / gates: **178**
+- Detailed activities / gates: **1,066 rows**
+- Milestones / gates: **258**
 - Source-window / proposal critical-chain candidates: **106**
-- Computed zero-float activities: **55**
-- Reachable from NTP: **986 / 986 = 100%**
-- Connected downstream to D1200: **983 / 986 = 99.7%**
+- Computed zero-float activities: **60**
+- Reachable from NTP: **1,066 / 1,066 = 100%**
+- Complete NTP→D1200 network: **1,064 / 1,066 = 99.8%**
 - Plan-01 physical NTP→D1200: **683 / 683 = 100%**
 - Plan-01 physical handovers NTP→D1200: **23 / 23 = 100%**
 - Structural validation errors: **0**
@@ -22,9 +22,9 @@ Latest CI-validated snapshot:
 - Temporal relationship warnings: **0**
 - Validation status: **PASS**
 
-The only non-Plan-01 terminal intentionally left without a D1200 successor path is `P04-WF-DEMOB` — progressive manpower demobilization after area acceptance/handover. It remains a level-of-effort terminal rather than being force-connected merely to make the overall metric read 100%.
+The only non-Plan-01 terminal intentionally left without a downstream D1200 successor path is `P04-WF-DEMOB` — progressive manpower demobilization after area acceptance / handover. It remains a level-of-effort terminal rather than being force-connected solely to make the overall metric read 100%.
 
-> Detailed leaf durations, detailed control-gate dates and lags not explicitly stated in Plans 1–16 are proposal planning allowances. `basis_type` and `timing_basis` are kept separate so a source-stated requirement cannot be mistaken for a source-stated duration/date.
+> Detailed leaf durations, task-control gate dates, document-release dates and lags not explicitly stated in Plans 1–16 are proposal planning allowances. `basis_type` and `timing_basis` remain separate so a source-stated requirement cannot be mistaken for a source-stated duration/date.
 
 ## Schedule architecture
 
@@ -52,81 +52,88 @@ Source critical-control windows retained:
 
 Because these source windows overlap, the schedule does **not** force them into a false global FS chain. `P01-CP05-GATE` at D840 and `P01-CP06-GATE` at D960 are derived audit milestones using source boundary timing; CP-06 controls CP-07 finish while CP-07 is allowed to start at D841.
 
-## v0.4 activity-level control refinement retained in v0.5
-
-### HSE / JSEA / PTW
+## v0.4 task-level controls retained
 
 Source-supported task gates include:
 
 - excavation / earthwork JSEA + PTW readiness
+- localized environmental earthwork readiness
 - work-at-height / scaffold / fall-rescue readiness before roof work
+- foundation pre-pour Hold Point
+- above-ceiling concealed-services Hold Point before closure
 - electrical isolation / LOTO / test-before-touch before precommissioning
-- raw-water pontoon lifting-plan / exclusion / emergency readiness
+- raw-water pontoon lifting / exclusion / emergency readiness
+- raw-water pontoon special-movement / route readiness
 - raw-water pontoon near-water weather / rescue / evacuation readiness
 
-No hot-work or confined-space task is fabricated without approved Method Statement evidence that the activity actually exists.
-
-### QA/QC
-
-- foundation pre-pour Hold Point
-- above-ceiling concealed-services Hold Point before ceiling closure
-- calibration / laboratory / sample-chain setup feeding Area QA readiness
-- quality / NCR / reinspection evidence feeding closeout
-
-### Environment / Traffic / Heritage
-
-- localized environmental earthwork readiness before impact-generating work
-- special movement / route / unloading-area readiness for raw-water pontoon lifting
-- approved-boundary / sensitive-area controls reused for Area D
-- no invented buffer distance, wildlife exclusion distance, water setback or new route
+No hot-work or confined-space task is fabricated without approved project-method evidence that the activity actually exists. Area-D controls use approved project-specific boundaries and restrictions; no buffer distance, water setback, wildlife exclusion distance or new route is invented.
 
 See `docs/v04-source-control-mapping.md`.
 
 ## v0.5 package-specific testing refinement
 
-Baseline v0.5 expands the generic building functional-testing window into **parallel package-specific system test packs** before integrated commissioning.
-
-The logic is:
+The generic building functional-testing window is expanded into parallel package-specific system test packs before integrated commissioning:
 
 `Installation / Second Fix → Precommissioning → Parallel System Test Packs → Functional Test Coordination completion → Integrated Commissioning`
-
-Individual test packs are FS from precommissioning and FF into the package-level `FUNC` window. This allows parallel testing but prevents the functional-test phase from closing before the defined principal test packs are complete.
 
 Examples include:
 
 - Learning Centre — electrical, plumbing/fire, HVAC, ICT/AV/security
-- Restaurant/Cafe — electrical, water/drainage/grease, kitchen ventilation, kitchen equipment interfaces
-- Meeting Building — electrical and conference AV/communications
-- Water Production Building — process-water and controls/instrumentation
+- Restaurant/Cafe — electrical, water/drainage/grease, kitchen ventilation, kitchen equipment
+- Meeting Building — electrical and AV/communications
+- Water Production Building — process water and controls/instrumentation
 - Toilet Building — sanitary/drainage and applicable electrical
 - Waste Building — waste/drainage/environmental interface and applicable electrical
-- Reception Building — principal building-services test packs
+- Reception Building — principal building-services tests
 - Tent House clusters — electrical and applicable water/sanitary/drainage
-- Pump Building — pump/flow and electrical/control test packs
+- Pump Building — pump/flow and electrical/control tests
 
-Where the source gives only a broad building-services description, the detailed row is explicitly worded **where applicable** and remains an assumption pending IFC / BOQ / equipment schedule / final commissioning matrix.
+Where the source gives only a broad building-services description, the activity is explicitly worded **where applicable** and must be confirmed or removed against IFC / BOQ / equipment schedules / the approved commissioning matrix.
 
 See `docs/v05-system-test-mapping.md`.
 
+## v0.6 package / discipline controlled-document release
+
+v0.6 makes the source requirement for approved documents visible at the actual physical workfront instead of relying only on a project-wide CDE bar.
+
+For main building packages, the schedule now includes where applicable:
+
+- **STR-DOC** — approved structural drawings / Method Statement / ITP release before reinforcement / formwork
+- **ARC-DOC** — approved architectural / envelope coordination release before envelope / facade / partition work
+- **MEP-DOC** — coordinated building-services / sleeves / first-fix document release before MEP / electrical / plumbing-fire / HVAC / ICT first fix
+- **TST-DOC** — approved precommissioning / test procedure / acceptance-form release before precommissioning
+
+External packages include:
+
+- **CIV-DOC** — external earthwork / drainage / base Method Statement / ITP release
+- **UTIL-DOC** — external utility / electrical route / interface release
+- **LAND-DOC** — hardscape / landscape / irrigation / rehabilitation document release
+
+The raw-water pontoon has dedicated fabrication/lifting/installation and precommissioning/test document gates.
+
+These gates integrate Plan 1 design control, Plan 7 quality-document readiness, Plan 11 controlled revision/status and Plan 13 coordination. Exact gate days are aligned to the proposal workfront and remain `timing_basis=ASSUMPTION`.
+
+See `docs/v06-document-release-mapping.md`.
+
 ## Integrated workfront readiness
 
-Area release uses both one-time readiness gates and active control streams:
+Area release combines both one-time gates and active control streams:
 
-- site office / temporary utility / logistics readiness
+- site office / temporary utilities / logistics
 - workforce competency and active manpower coverage
 - plant-personnel competency and active plant support
 - QA/QC Method Statement / ITP readiness and inspection stream
 - HSE / JSEA / PTW readiness and HSE monitoring
-- traffic plan / booking controls and route control
+- traffic plan / booking / active route control
 - environmental readiness and monitoring
 - controlled-document / CDE readiness
 - Area-D heritage / sensitive-area permit and monitoring
 
-This prevents Plans 03–11 from existing as decorative bars disconnected from physical construction.
+This prevents Plans 03–11 from existing as decorative parallel bars disconnected from physical construction.
 
 ## Plant-to-workfront integration
 
-Active plant support uses SS relationships where appropriate:
+Active plant-support streams use SS where appropriate:
 
 - EARTH → excavation / earthwork
 - STR → foundation / ground structure / frame / roof
@@ -134,7 +141,7 @@ Active plant support uses SS relationships where appropriate:
 - LAND → paving / soil / planting / irrigation / restoration
 - Area-D restricted plant → applicable sensitive-area / near-water work
 
-The link means plant support is active when the workfront starts; it does not require the entire plant campaign to finish before construction proceeds.
+The relationship means plant support is active when the workfront starts; it does not require the entire plant campaign to finish first.
 
 ## Physical package completion integrity
 
@@ -142,15 +149,16 @@ Building handover waits for applicable parallel branches, including:
 
 - envelope / weather-tightness
 - doors / glazing
-- floor / final architectural finishes
+- floor / final finishes
 - fixed furniture
 - immediate external work
 - specialist exhibition / kitchen / AV / process interfaces
-- package-specific test packs and integrated commissioning
+- package-specific system test packs
+- integrated commissioning
 - punch / correction / reinspection
 - as-built / asset data
 
-External packages likewise close final inspection, site furniture/signage and package monitoring records before handover.
+External packages close final inspection, site furniture/signage and package monitoring records before handover.
 
 ## Procurement logic
 
@@ -172,14 +180,14 @@ Explicit source control points retained:
 - Installment 24 — D180
 - Installments 493–497 — final source-stated deliverable categories inside D1200; separate exact days are proposal CP-08 assumptions where the source does not state distinct due days
 
-The early explicit control points feed main-work readiness without fabricating exact dates for installments 4–23.
+The explicit early control points feed main-work readiness without fabricating exact dates for installments 4–23.
 
 ## Cross-plan closeout convergence
 
 Final acceptance is downstream of relevant completion streams across Plans 02–16, including:
 
 - final QA dossier / punch / NCR closure
-- commissioning and package test reconciliation
+- package tests and integrated commissioning reconciliation
 - As-Built / As-Built BIM / AIM / Digital Twin
 - O&M / warranty / spares / training
 - asset register / serial / location / value reconciliation
@@ -193,14 +201,14 @@ Final acceptance is downstream of relevant completion streams across Plans 02–
 - emergency-drill programme records
 - final payment-package readiness
 
-Level-of-effort streams are connected to appropriate downstream reconciliation nodes where they produce closeout evidence. They are not made critical automatically.
+Level-of-effort streams are connected to appropriate downstream reconciliation nodes when they produce closeout evidence. They are not made critical automatically.
 
 ## CPM / critical-path analysis
 
 Two concepts remain separate:
 
 1. `critical` — source-window / proposal critical-chain candidate.
-2. `computed_critical` — zero-float activity calculated from the current predecessor network to D1200.
+2. `computed_critical` — zero-float activity calculated from the actual predecessor network to D1200.
 
 Calculated/exported fields include:
 
@@ -211,9 +219,9 @@ Calculated/exported fields include:
 - `computed_critical`
 - `driving_successor`
 
-The representative zero-float path remains a 36-activity chain through NTP, Area-A Learning Centre, CP convergence, installments 493–497 and D1200. The new v0.5 test packs strengthen parallel commissioning detail without artificially forcing a different representative driving chain.
+Baseline v0.6 has **60 computed zero-float activities**. The deterministic representative path remains a 36-activity chain through NTP, Area-A Learning Centre, CP convergence, installments 493–497 and D1200. New document-release gates strengthen parallel readiness branches without artificially forcing a different representative sequence.
 
-This is proposal-baseline CPM, not approved contract float until calendar, detailed dates, productivity, vendor lead times and approved methods are confirmed.
+This is proposal-baseline CPM, not approved contract float until the approved calendar, IFC dates, productivity, vendor lead times and approved methods are confirmed.
 
 ## Network validation
 
@@ -283,7 +291,8 @@ gantt-chart/
 │   ├── cpm-method.md
 │   ├── logic-notes.md
 │   ├── v04-source-control-mapping.md
-│   └── v05-system-test-mapping.md
+│   ├── v05-system-test-mapping.md
+│   └── v06-document-release-mapping.md
 ├── src/
 │   ├── schedule-core.js
 │   ├── schedule-validation.js
@@ -293,6 +302,7 @@ gantt-chart/
 │   ├── network-integration-v3.js
 │   ├── task-control-gates-v4.js
 │   ├── system-test-detail-v5.js
+│   ├── package-document-gates-v6.js
 │   ├── post-integration-repairs-v4.js
 │   ├── cpm-analysis.js
 │   ├── critical-driver.js
@@ -321,13 +331,13 @@ The benchmark PDF is **never** used as a source of dates, durations or dependenc
 
 - actual NTP / approved working calendar / weather calendars
 - full BOQ quantity and cost mapping
-- approved IFC / shop-drawing issue dates
+- approved IFC / shop-drawing / document-submittal issue dates
 - vendor-confirmed procurement lead times
 - production rates / crew compositions
 - exact installment due dates where not explicitly stated
 - approved environmental / heritage coordinates and restrictions
 - approved Method Statements / ITPs / JSEAs / permits
-- final equipment schedule and commissioning matrix
+- final equipment schedule and testing & commissioning matrix
 - final workfront / area-handover constraints
 
 See the files under `docs/` for the audit trail.
