@@ -92,14 +92,18 @@ button.secondary{background:#f5f7fa}
 .milestone-mark{position:absolute;top:9px;width:12px;height:12px;background:#315c83;transform:rotate(45deg);border:1px solid #fff;box-shadow:0 0 0 1px #315c83}
 .milestone-mark.critical{background:var(--red);box-shadow:0 0 0 1px #9f2b2b}
 .milestone-mark.disconnected{background:#9aa4b0;box-shadow:0 0 0 1px #788694}
-.plan-row,.area-row{height:var(--row-h);display:grid;align-items:center;border-bottom:1px solid #d9e0e8;cursor:pointer}
-.plan-row{grid-template-columns:105px 1fr 58px 88px;background:#e9f0f7;color:#173a63;font-weight:800}
-.plan-row .cell,.area-row .cell{padding:0 7px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
-.area-row{grid-template-columns:105px 1fr 58px 88px;background:#f6f8fb;color:#344054;font-weight:700}
+.plan-row,.area-row,.discipline-row{height:var(--row-h);display:grid;align-items:center;border-bottom:1px solid #d9e0e8;cursor:pointer;grid-template-columns:105px 1fr 58px 88px}
+.plan-row{background:#e9f0f7;color:#173a63;font-weight:800}
+.area-row{background:#f6f8fb;color:#344054;font-weight:700}
+.discipline-row{background:#fbfcfd;color:#526170;font-weight:650;font-size:10px;border-bottom-color:#e6eaf0}
+.plan-row .cell,.area-row .cell,.discipline-row .cell{padding:0 7px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.discipline-row .cell:nth-child(2){padding-left:18px}
 .tgroup{height:var(--row-h);position:relative;border-bottom:1px solid #d9e0e8;background:rgba(23,58,99,.035)}
 .tgroup.area{background:rgba(93,113,136,.035)}
+.tgroup.discipline{background:rgba(130,150,170,.018);border-bottom-color:#e6eaf0}
 .summary-bar{position:absolute;top:12px;height:6px;background:#173a63;border-radius:2px;opacity:.82}
 .tgroup.area .summary-bar{background:#8296aa;height:5px}
+.tgroup.discipline .summary-bar{background:#a6b3c0;height:4px;top:13px;opacity:.75}
 .toggle{display:inline-block;width:16px;text-align:center;color:#667085}
 .row-chip{font-size:8px;margin-left:5px}
 .drawer{position:fixed;right:0;top:0;height:100vh;width:min(520px,92vw);background:#fff;z-index:60;box-shadow:-8px 0 25px rgba(16,24,40,.18);transform:translateX(105%);transition:transform .18s ease;padding:28px 24px;overflow:auto}
