@@ -6,7 +6,7 @@
   "scripts": {
     "validate": "node scripts/validate.mjs",
     "export": "node scripts/export.mjs",
-    "pdf": "node scripts/generate-pdf.mjs"
+    "pdf": "node scripts/generate-pdf-bilingual.mjs"
   },
   "dependencies": {
     "pdfkit": "latest"
