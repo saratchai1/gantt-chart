@@ -49,7 +49,11 @@ export function validateTemporalLogic(rows) {
       const lag = Number(p.lagDays || 0);
       let ok = true, expected = '';
       if (p.relationship === 'FS') {
-        const minStart = pr.finish_day + lag + 1;
+        // A zero-duration milestone is treated as an instant at the beginning/end
+        // of its project day, so a successor may share that day. Two normal
+        // elapsed-day activities require the next project day.
+        const dayStep = pr.milestone === 'Y' || r.milestone === 'Y' ? 0 : 1;
+        const minStart = pr.finish_day + lag + dayStep;
         ok = r.start_day >= minStart;
         expected = `start>=D${minStart}`;
       } else if (p.relationship === 'SS') {
