@@ -2,8 +2,8 @@
 // This does not claim the detailed lags are TOR-stated. It selects a logically
 // plausible driving sequence within the current proposal bar placement and sets
 // those links tight (zero edge slack) so the CPM analysis can expose a complete
-// traceable path from NTP through the critical Area-A systems and CP07/CP08 to
-// the D1200 acceptance milestone.
+// traceable path from NTP through the critical Area-A systems, source CP-05 / CP-06
+// convergence, CP-07 integration and CP-08 closeout to the D1200 milestone.
 
 function refresh(row){
   row.duration_days=row.milestone==='Y'?0:row.finish_day-row.start_day+1;
@@ -31,7 +31,7 @@ function setTightLink(byId,predId,succId,relationship='FS'){
   const link={id:predId,relationship,lagDays:lag};
   const i=(succ.predecessors||[]).findIndex(p=>p.id===predId);
   if(i>=0) succ.predecessors[i]=link; else succ.predecessors.push(link);
-  succ.notes=`${succ.notes ? succ.notes+' | ' : ''}Driving link ${predId} ${relationship}${lag?`+${lag}d`:''} is proposal CPM logic, not a source-stated detailed lag.`;
+  succ.notes=`${succ.notes ? succ.notes+' | ' : ''}Driving link ${predId} ${relationship}${lag?`+${lag}d`:''} is proposal/source-window CPM logic; it is not a source-stated leaf-activity lag unless noted separately.`;
   refresh(succ);
 }
 
@@ -48,14 +48,15 @@ export function applyProposalDrivingChain(rows){
     setWindow(corr,snag.finish_day+1,ho.start_day);
   }
 
-  // Source start + enabling chain.
+  // Source start + enabling chain, detailed Area-A driver, source CP-window
+  // convergence, and the detailed CP-08 closeout chain.
   const chain=[
     ['P01-PRE-NTP','P01-PRE-TEMP','FS'],
     ['P01-PRE-TEMP','P01-PRE-REL','FS'],
     ['P01-PRE-REL','P01-A23-REL','FS'],
     ['P01-A23-REL','P01-A23-SUR','FS'],
 
-    // Detailed Area-A learning-centre driver.
+    // Detailed Area-A learning-centre driver inside CP-04 / CP-05.
     ['P01-A23-SUR','P01-A23-EXC','SS'],
     ['P01-A23-EXC','P01-A23-BLI','SS'],
     ['P01-A23-BLI','P01-A23-RBF','FS'],
@@ -74,8 +75,17 @@ export function applyProposalDrivingChain(rows){
     ['P01-A23-SNAG','P01-A23-CORR','FS'],
     ['P01-A23-CORR','P01-A23-HO','FS'],
 
-    // Source CP07 transition and detailed CP08 closeout chain.
-    ['P01-A23-HO','P01-CO-001','FS'],
+    // Explicit source control boundaries. CP-05 finishes D840. CP-06 finishes
+    // D960 and overlaps CP-07, therefore an FF relationship preserves the
+    // source D841-D1080 CP-07 window instead of falsely forcing CP-07 to start
+    // only after every CP-06 workfront is globally complete.
+    ['P01-A23-HO','P01-CP05-GATE','FS'],
+    ['P01-D53-HO','P01-CP06-GATE','FS'],
+    ['P01-CP05-GATE','P01-CO-001','FS'],
+    ['P01-CP06-GATE','P01-CO-001','FF'],
+    ['P01-D54-HO','P01-CO-001','FF'],
+
+    // Detailed CP-08 closeout chain.
     ['P01-CO-001','P01-CO-D493','FS'],
     ['P01-CO-D493','P02-M493','FS'],
     ['P02-M493','P01-CO-D494','FS'],
