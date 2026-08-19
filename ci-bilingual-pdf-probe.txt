@@ -1,1 +1,0 @@
-Temporary CI probe for bilingual Thai/Latin PDF rendering. Do not merge.
