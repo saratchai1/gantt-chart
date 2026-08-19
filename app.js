@@ -1,4 +1,4 @@
-import { masterSchedule, scheduleStats, validation, masterCSV } from './src/build-schedule.js';
+import { masterSchedule, scheduleStats, validation, masterCSV, cpm } from './src/build-schedule.js';
 import { downloadText } from './src/schedule-core.js';
 
 const planNames = {
@@ -50,7 +50,7 @@ function renderMetrics(filteredCount = masterSchedule.length) {
   const metrics=[
     ['Activities',nfmt(masterSchedule.length),`${nfmt(filteredCount)} shown`,''],
     ['Milestones',nfmt(scheduleStats.milestones),'zero-duration gates',''],
-    ['Critical candidates',nfmt(scheduleStats.critical),'proposal baseline candidates',''],
+    ['Zero-float',nfmt(scheduleStats.computedCritical),`${nfmt(scheduleStats.connectedToFinal)} activities connect to D1200`,''],
     ['SOURCE activities',nfmt(sourceActivity),'activity/control requirement is source-stated',''],
     ['SOURCE timing',nfmt(sourceTiming),`${nfmt(assumedTiming)} rows use proposal timing`,'timing'],
     ['Validation',hard ? 'FAIL' : validation.temporal_logic_warnings.length ? 'ADVISORY' : 'PASS',`${validation.temporal_logic_warnings.length} temporal advisories`,hard?'warn':'ok']
@@ -66,9 +66,9 @@ function filteredRows() {
     if (els.disciplineFilter.value && r.discipline!==els.disciplineFilter.value) return false;
     if (els.basisFilter.value && r.basis_type!==els.basisFilter.value) return false;
     if (els.timingFilter.value && r.timing_basis!==els.timingFilter.value) return false;
-    if (els.criticalOnly.checked && r.critical!=='Y') return false;
+    if (els.criticalOnly.checked && r.computed_critical!=='Y') return false;
     if (q) {
-      const hay=[r.activity_id,r.wbs,r.activity_name,r.building_area,r.discipline,r.responsible_party,r.deliverable_evidence,r.source_reference,r.basis_type,r.timing_basis].join(' ').toLowerCase();
+      const hay=[r.activity_id,r.wbs,r.activity_name,r.building_area,r.discipline,r.responsible_party,r.deliverable_evidence,r.source_reference,r.basis_type,r.timing_basis,r.computed_total_float_days].join(' ').toLowerCase();
       if (!hay.includes(q)) return false;
     }
     return true;
@@ -107,11 +107,12 @@ function timingChip(row){
 
 function leftTask(row) {
   const div=document.createElement('div');
-  div.className=`lrow ${row.critical==='Y'?'critical-task':''}`;
+  div.className=`lrow ${row.computed_critical==='Y'?'critical-task':''}`;
   div.dataset.id=row.activity_id;
+  const floatLabel=row.computed_total_float_days===''?'':` · TF ${row.computed_total_float_days}d`;
   div.innerHTML=`
     <div class="cell">${esc(row.wbs)}</div>
-    <div class="cell name"><div><div class="title">${esc(row.activity_name)} ${basisChip(row)} ${timingChip(row)}</div><div class="sub">${esc(row.activity_id)} · ${esc(row.building_area)} · ${esc(row.discipline)}</div></div></div>
+    <div class="cell name"><div><div class="title">${esc(row.activity_name)} ${basisChip(row)} ${timingChip(row)}</div><div class="sub">${esc(row.activity_id)} · ${esc(row.building_area)} · ${esc(row.discipline)}${esc(floatLabel)}</div></div></div>
     <div class="cell">${row.milestone==='Y'?'MS':esc(row.duration_days+'d')}</div>
     <div class="cell">D${row.start_day}–${row.finish_day}</div>`;
   return div;
@@ -121,12 +122,13 @@ function timeTask(row) {
   const div=document.createElement('div'); div.className='trow'; div.dataset.id=row.activity_id;
   const x=(row.start_day-1)*pxDay;
   const timingClass=row.timing_basis==='SOURCE'?'timing-source':'';
+  const criticalClass=row.computed_critical==='Y'?'critical':'';
   if(row.milestone==='Y'){
-    const m=document.createElement('div'); m.className=`milestone-mark ${row.critical==='Y'?'critical':''} ${timingClass}`; m.style.left=`${Math.max(0,x-6)}px`; m.title=`${row.activity_id} · D${row.start_day} · Timing:${row.timing_basis} · ${row.activity_name}`; div.append(m);
+    const m=document.createElement('div'); m.className=`milestone-mark ${criticalClass} ${timingClass}`; m.style.left=`${Math.max(0,x-6)}px`; m.title=`${row.activity_id} · D${row.start_day} · TF:${row.computed_total_float_days || 0} · Timing:${row.timing_basis} · ${row.activity_name}`; div.append(m);
   } else {
-    const bar=document.createElement('div'); bar.className=`bar ${row.basis_type.toLowerCase()} ${row.critical==='Y'?'critical':''} ${timingClass}`;
+    const bar=document.createElement('div'); bar.className=`bar ${row.basis_type.toLowerCase()} ${criticalClass} ${timingClass}`;
     bar.style.left=`${x}px`; bar.style.width=`${Math.max(3,row.duration_days*pxDay)}px`;
-    bar.title=`${row.activity_id} · D${row.start_day}–D${row.finish_day} · Timing:${row.timing_basis} · ${row.activity_name}`; div.append(bar);
+    bar.title=`${row.activity_id} · D${row.start_day}–D${row.finish_day} · TF:${row.computed_total_float_days === '' ? 'n/a' : row.computed_total_float_days} · Timing:${row.timing_basis} · ${row.activity_name}`; div.append(bar);
   }
   return div;
 }
@@ -165,6 +167,7 @@ function showDetail(id) {
   const r=masterSchedule.find(x=>x.activity_id===id); if(!r) return;
   const preds=(r.predecessors||[]).map(p=>`${p.id} [${p.relationship}${p.lagDays?` +${p.lagDays}d`:''}]`).join('<br>') || '—';
   const temporal=validation.temporal_logic_warnings.filter(w=>w.successor===id);
+  const representative=cpm.representative_path.includes(id)?'Yes — representative zero-float chain':'No / parallel zero-float branch possible';
   els.drawerContent.innerHTML=`
     <div class="eyebrow" style="color:#52708d">PLAN ${esc(r.plan_no)} · ${esc(r.zone)}</div>
     <h2>${esc(r.activity_name)}</h2>
@@ -174,7 +177,11 @@ function showDetail(id) {
       <dt>Discipline</dt><dd>${esc(r.discipline)}</dd>
       <dt>Project days</dt><dd>D${r.start_day}–D${r.finish_day} · ${r.duration_days}${r.milestone==='Y'?' (milestone)':' days'}</dd>
       <dt>Timing basis</dt><dd>${esc(r.timing_basis)}${r.timing_basis==='ASSUMPTION'?' — proposal planning allowance, not an explicit source day/window':''}</dd>
-      <dt>Critical</dt><dd>${r.critical==='Y'?'YES — proposal critical candidate':'No'}</dd>
+      <dt>Computed critical</dt><dd>${r.computed_critical==='Y'?'YES — zero float to D1200':'No'} · representative path: ${representative}</dd>
+      <dt>Total float</dt><dd>${r.computed_total_float_days===''?'Not connected to final acceptance':esc(r.computed_total_float_days+' days')}</dd>
+      <dt>Free float</dt><dd>${r.computed_free_float_days===''?'—':esc(r.computed_free_float_days+' days')}</dd>
+      <dt>Driving successor</dt><dd class="pred">${esc(r.driving_successor || '—')}</dd>
+      <dt>Candidate flag</dt><dd>${r.critical==='Y'?'YES — source-window / proposal candidate':'No'}</dd>
       <dt>Predecessors</dt><dd class="pred">${preds}</dd>
       <dt>Responsible</dt><dd>${esc(r.responsible_party || '—')}</dd>
       <dt>Installments</dt><dd>${r.installment_start?`${esc(r.installment_start)}–${esc(r.installment_end || r.installment_start)}`:'—'}</dd>
