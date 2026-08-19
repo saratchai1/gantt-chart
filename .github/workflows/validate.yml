@@ -16,12 +16,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Install PDF dependencies and Thai font
+      - name: Install PDF dependencies, Thai font and PDF QA tools
         shell: bash
         run: |
           npm install --no-audit --no-fund
           sudo apt-get update -qq
-          sudo apt-get install -y -qq fonts-noto-core
+          sudo apt-get install -y -qq fonts-noto-core poppler-utils
+          fc-match 'Noto Sans Thai'
+          fc-match 'Noto Sans Thai:style=Bold'
       - name: JavaScript syntax check
         shell: bash
         run: |
@@ -31,8 +33,34 @@ jobs:
         run: npm run validate
       - name: Export schedule artifacts
         run: npm run export
-      - name: Generate A3 master Gantt PDF
+      - name: Generate readable A3 master Gantt PDF
         run: npm run pdf
+      - name: Audit PDF fonts, text and blank pages
+        shell: bash
+        run: |
+          set -euo pipefail
+          PDF='data/huai-kha-khaeng-integrated-master-gantt-v0.7.pdf'
+          pdfinfo "$PDF" | tee data/pdf-info.txt
+          pdffonts "$PDF" | tee data/pdf-fonts.txt
+          pages=$(pdfinfo "$PDF" | awk '/^Pages:/ {print $2}')
+          test -n "$pages"
+          test "$pages" -gt 1
+          bad=0
+          for p in $(seq 1 "$pages"); do
+            chars=$(pdftotext -f "$p" -l "$p" "$PDF" - | tr -d '[:space:]' | wc -m)
+            printf 'PDF page %s text characters: %s\n' "$p" "$chars"
+            if [ "$chars" -lt 40 ]; then
+              echo "ERROR: blank or effectively blank PDF page detected: page $p ($chars text chars)"
+              bad=1
+            fi
+          done
+          test "$bad" -eq 0
+          if ! pdffonts "$PDF" | grep -Eiq 'NotoSansThai|Noto Sans Thai'; then
+            echo 'ERROR: expected Noto Sans Thai embedded font not found in PDF font table.'
+            exit 1
+          fi
+          pdftoppm -png -f 1 -singlefile -r 110 "$PDF" data/pdf-preview-page-01 >/dev/null 2>&1
+          pdftoppm -png -f 2 -singlefile -r 110 "$PDF" data/pdf-preview-page-02 >/dev/null 2>&1
       - name: Upload generated schedule
         uses: actions/upload-artifact@v4
         with:
@@ -50,6 +78,10 @@ jobs:
             data/package-document-release-register.csv
             data/system-test-pack-register.csv
             data/huai-kha-khaeng-integrated-master-gantt-v0.7.pdf
+            data/pdf-info.txt
+            data/pdf-fonts.txt
+            data/pdf-preview-page-01.png
+            data/pdf-preview-page-02.png
       - name: Publish generated PDF snapshot
         if: github.event_name == 'pull_request'
         shell: bash
@@ -57,8 +89,8 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git checkout -B pdf-export
-          git add -f data/huai-kha-khaeng-integrated-master-gantt-v0.7.pdf
-          git commit -m 'Publish generated A3 Gantt PDF [skip ci]'
+          git add -f data/huai-kha-khaeng-integrated-master-gantt-v0.7.pdf data/pdf-preview-page-01.png data/pdf-preview-page-02.png
+          git commit -m 'Publish readable A3 Gantt PDF preview [skip ci]'
           git push origin HEAD:pdf-export --force
       - name: Publish generated PDF to main
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
@@ -68,6 +100,6 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -f data/huai-kha-khaeng-integrated-master-gantt-v0.7.pdf
           if ! git diff --cached --quiet; then
-            git commit -m 'Update generated A3 Gantt PDF [skip ci]'
+            git commit -m 'Update readable A3 Gantt PDF [skip ci]'
             git push
           fi
