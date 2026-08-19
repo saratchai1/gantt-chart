@@ -11,6 +11,7 @@ import { applyPackageDocumentGatesV6 } from './package-document-gates-v6.js';
 import { applyTaskControlGatesV4 } from './task-control-gates-v4.js';
 import { applySystemTestDetailV5 } from './system-test-detail-v5.js';
 import { applyPostIntegrationRepairsV4 } from './post-integration-repairs-v4.js';
+import { applyScopeApplicabilityV7 } from './scope-applicability-v7.js';
 import { applyProposalDrivingChain } from './critical-driver.js';
 import { applyCpmAnalysis, computedCriticalPath } from './cpm-analysis.js';
 import { validationReport } from './schedule-validation.js';
@@ -27,6 +28,7 @@ applyPackageDocumentGatesV6(schedule);
 applyTaskControlGatesV4(schedule);
 applySystemTestDetailV5(schedule);
 applyPostIntegrationRepairsV4(schedule);
+applyScopeApplicabilityV7(schedule);
 applyProposalDrivingChain(schedule);
 applyCpmAnalysis(schedule, 'P01-CO-006');
 
