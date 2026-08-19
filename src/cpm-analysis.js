@@ -2,7 +2,7 @@
 // The detailed bar positions are planning dates; this module calculates how much
 // each predecessor can slip within the current logic/date arrangement before it
 // affects the final D1200 acceptance milestone, and also checks whether an
-// activity is reachable downstream from the NTP/start milestone.
+// activity has a complete upstream predecessor ancestry from NTP.
 
 function edgeSlack(pred, succ, link) {
   const lag = Number(link.lagDays || 0);
@@ -55,18 +55,19 @@ export function applyCpmAnalysis(rows, finalMilestoneId = 'P01-CO-006', startMil
     return rows;
   }
 
-  // Forward reachability from NTP/start. One valid upstream chain is sufficient
-  // for network-start coverage; multi-predecessor completeness is separately
-  // enforced by the explicit stored logic and temporal validation.
+  // Strict forward network completeness from NTP. A non-start activity is
+  // marked reachable only when it has at least one predecessor AND every one
+  // of its scheduled predecessors is itself reachable from NTP. This prevents
+  // a physical activity with one valid chain but another floating prerequisite
+  // from being reported as fully anchored to project commencement.
   const fromStart = new Set();
   if (byId.has(startMilestoneId)) {
+    fromStart.add(startMilestoneId);
     for (const id of order) {
-      if (id === startMilestoneId) {
-        fromStart.add(id);
-        continue;
-      }
+      if (id === startMilestoneId) continue;
       const row=byId.get(id);
-      if ((row.predecessors || []).some(p => fromStart.has(p.id))) fromStart.add(id);
+      const preds=row.predecessors || [];
+      if (preds.length && preds.every(p => fromStart.has(p.id))) fromStart.add(id);
     }
   }
 
@@ -107,7 +108,6 @@ export function applyCpmAnalysis(rows, finalMilestoneId = 'P01-CO-006', startMil
     r.driving_successor = nextDriving.get(r.activity_id) || '';
   }
 
-  // Explicit project endpoints.
   if (byId.has(startMilestoneId)) byId.get(startMilestoneId).network_from_start='Y';
   const final=byId.get(finalMilestoneId);
   final.network_to_final='Y';
@@ -119,11 +119,7 @@ export function applyCpmAnalysis(rows, finalMilestoneId = 'P01-CO-006', startMil
 
 export function computedCriticalPath(rows, finalMilestoneId='P01-CO-006') {
   const critical=rows.filter(r=>r.computed_critical==='Y');
-  // Return a deterministic tight chain by following a zero-float node's
-  // driving successor. There may be multiple parallel zero-float branches;
-  // those remain visible via computed_critical=Y on each row.
   const byId=new Map(rows.map(r=>[r.activity_id,r]));
-  const predecessorsOfFinal=new Set();
   let start=critical
     .filter(r=>r.activity_id!==finalMilestoneId)
     .sort((a,b)=>a.start_day-b.start_day || a.activity_id.localeCompare(b.activity_id))[0];
@@ -133,6 +129,5 @@ export function computedCriticalPath(rows, finalMilestoneId='P01-CO-006') {
     if(start.activity_id===finalMilestoneId) break;
     start=byId.get(start.driving_successor);
   }
-  if(path.at(-1)!==finalMilestoneId && byId.has(finalMilestoneId)) predecessorsOfFinal.add(finalMilestoneId);
   return { zero_float_activities:critical.map(r=>r.activity_id), representative_path:path };
 }
