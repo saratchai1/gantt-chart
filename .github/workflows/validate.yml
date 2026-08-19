@@ -34,5 +34,7 @@ jobs:
             data/validation-report.json
             data/provisional-scope-register.csv
             data/provisional-scope-register.json
+            data/provisional-scope-summary.csv
+            data/provisional-scope-summary.json
             data/package-document-release-register.csv
             data/system-test-pack-register.csv
