@@ -105,11 +105,15 @@ export function networkCoverageSummary(rows) {
   const handoverToFinal = handovers.filter(r => r.network_to_final === 'Y');
   const handoverThrough = handovers.filter(r => r.network_from_start === 'Y' && r.network_to_final === 'Y');
 
+  const unconnectedFromStartAll = rows.filter(r => r.network_from_start !== 'Y').map(r => r.activity_id);
+  const unconnectedToFinalAll = rows.filter(r => r.network_to_final !== 'Y').map(r => r.activity_id);
+  const unconnectedThroughAll = rows.filter(r => r.network_from_start !== 'Y' || r.network_to_final !== 'Y').map(r => r.activity_id);
   const unconnectedFromStartPhysical = physical.filter(r => r.network_from_start !== 'Y').map(r => r.activity_id);
   const unconnectedToFinalPhysical = physical.filter(r => r.network_to_final !== 'Y').map(r => r.activity_id);
   const unconnectedThroughPhysical = physical.filter(r => r.network_from_start !== 'Y' || r.network_to_final !== 'Y').map(r => r.activity_id);
   const unconnectedFromStartHandovers = handovers.filter(r => r.network_from_start !== 'Y').map(r => r.activity_id);
   const unconnectedToFinalHandovers = handovers.filter(r => r.network_to_final !== 'Y').map(r => r.activity_id);
+  const unconnectedSupportToFinal = rows.filter(r => r.plan_no !== '01' && r.network_to_final !== 'Y').map(r => r.activity_id);
 
   const byPlan = {};
   for (const r of rows) {
@@ -139,6 +143,10 @@ export function networkCoverageSummary(rows) {
     overall:coverage(rows.length,toFinal.length),
     plan01_physical:coverage(physical.length,physicalToFinal.length),
     plan01_handovers:coverage(handovers.length,handoverToFinal.length),
+    unconnected_from_start_all:unconnectedFromStartAll,
+    unconnected_to_final_all:unconnectedToFinalAll,
+    unconnected_through_all:unconnectedThroughAll,
+    unconnected_support_to_final:unconnectedSupportToFinal,
     unconnected_from_start_plan01_physical:unconnectedFromStartPhysical,
     unconnected_to_final_plan01_physical:unconnectedToFinalPhysical,
     unconnected_through_plan01_physical:unconnectedThroughPhysical,
