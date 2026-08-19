@@ -10,9 +10,9 @@
 <body>
   <header class="app-header">
     <div>
-      <div class="eyebrow">PROPOSAL INTEGRATED MASTER SCHEDULE</div>
+      <div class="eyebrow">PROPOSAL INTEGRATED MASTER SCHEDULE · BASELINE v0.2</div>
       <h1>แผนงานก่อสร้างห้วยขาแข้ง — Plans 01–16</h1>
-      <p>1200 Project Days · 497 Installments · Physical + Commercial + Site + Workforce + Plant + Procurement + QA/QC + HSE + Traffic + Environment + CDE + Progress + BIM + App/AI + Carbon + Heritage</p>
+      <p>1,200 Project Days · 497 Installments · Physical + Commercial + Site + Workforce + Plant + Procurement + QA/QC + HSE + Traffic + Environment + CDE + Progress + BIM + App/AI + Carbon + Heritage</p>
     </div>
     <div class="header-actions">
       <button id="exportCsv">Export CSV</button>
@@ -51,6 +51,7 @@
       </select>
     </label>
     <label class="check"><input id="criticalOnly" type="checkbox" /> Zero-float critical only</label>
+    <label class="check"><input id="networkOnly" type="checkbox" /> Connected to D1200 only</label>
     <label>Zoom
       <select id="zoom">
         <option value="1.25">Compact</option>
@@ -64,6 +65,7 @@
   <section class="legend">
     <span><i class="swatch normal"></i> Activity</span>
     <span><i class="swatch critical"></i> Computed zero-float activity</span>
+    <span><i class="swatch disconnected"></i> Not connected to D1200</span>
     <span><i class="diamond"></i> Milestone</span>
     <span><b class="basis source">SOURCE</b> source-stated activity/control</span>
     <span><b class="basis derived">DERIVED</b> decomposed from source process</span>
@@ -90,7 +92,7 @@
   </aside>
 
   <footer>
-    Benchmark PDF is used only for WBS/activity granularity. Activity content and exact timing are audited separately. Rows with Timing Basis = ASSUMPTION are proposal planning allowances, not TOR-stated durations, and must be replaced by the approved calendar, BOQ/productivity and vendor-confirmed lead times at contract-baseline stage. Computed float is calculated against the current proposal network and the D1200 final milestone.
+    Benchmark PDF is used only for WBS/activity granularity. Activity content and exact timing are audited separately. Rows with Timing Basis = ASSUMPTION are proposal planning allowances, not TOR-stated durations, and must be replaced by the approved calendar, BOQ/productivity and vendor-confirmed lead times at contract-baseline stage. Computed float is calculated against the current proposal network and the D1200 final milestone. Network coverage is separately validated so Plan-01 physical handovers cannot silently terminate outside the final acceptance network.
   </footer>
 
   <script type="module" src="./app.js"></script>
