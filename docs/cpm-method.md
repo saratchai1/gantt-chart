@@ -1,12 +1,13 @@
-# CPM / Float Method — Baseline v0.6
+# CPM / Float Method — Baseline v0.7
 
 ## Purpose
 
-Plans 1–16 define source control windows, process requirements and D1200 completion, but do not provide a complete leaf-level predecessor network for every construction subactivity. The proposal schedule therefore separates:
+Plans 1–16 define source control windows, process requirements and D1200 completion, but do not provide a complete leaf-level predecessor network for every construction subactivity. The proposal schedule therefore separates four different questions:
 
-- **Source constraints** — explicit source day/window or control requirement
-- **Derived network logic** — schedulable decomposition of a source-defined process
-- **Proposal timing assumptions** — exact detailed date, duration or lag needed to form the proposal network
+- **Source constraint** — what control, process or window is stated by the source?
+- **Network logic** — how is that requirement decomposed into schedulable predecessors/successors?
+- **Timing provenance** — is the exact detailed day/window source-stated or a proposal allowance?
+- **Scope applicability** — is the detailed trade/system firmly supported by the supplied package description, or retained provisionally pending IFC/BOQ confirmation?
 
 The benchmark PDF is used only for activity-breakdown depth. Its dates, durations and predecessor logic are not CPM inputs.
 
@@ -20,6 +21,8 @@ Each activity stores:
 - `computed_total_float_days`
 - `computed_critical`
 - `driving_successor`
+- `scope_applicability`
+- `scope_note`
 
 Endpoints:
 
@@ -28,9 +31,9 @@ Endpoints:
 
 ## Strict upstream rule
 
-`network_from_start=Y` requires complete predecessor ancestry to NTP. For a non-start activity with several stored predecessors, every predecessor must itself be reachable from NTP. This prevents an activity from appearing properly anchored merely because one branch is connected while a mandatory QA/HSE/environment/document/permit branch remains a floating island.
+`network_from_start=Y` requires complete predecessor ancestry to NTP. For a non-start activity with several stored predecessors, every predecessor must itself be reachable from NTP. This prevents a physical activity from appearing anchored merely because one branch is connected while a mandatory QA/HSE/environment/document/permit branch is a floating island.
 
-Plans 02–16 root processes are anchored to NTP with proposal integration lags that preserve their existing planned start. This changes traceability, not source timing provenance.
+Plans 02–16 root processes are anchored to NTP with proposal integration lags that preserve their existing planned start. This improves traceability but does not convert assumed timing into source timing.
 
 ## Downstream / float rule
 
@@ -45,9 +48,9 @@ Relationship gap logic:
 
 This is proposal-baseline float, not approved contract float.
 
-## CP-05 / CP-06 / CP-07 convergence
+## CP-window convergence
 
-Source windows:
+Source windows retained:
 
 - CP-05 D421–D840
 - CP-06 D301–D960
@@ -61,79 +64,79 @@ Derived audit milestones:
 
 CP-07 starts after CP-05. CP-06 overlaps CP-07 and therefore controls CP-07 completion by FF rather than a false global FS relationship. Late landscape and raw-water-pontoon packages remain inside CP-07 convergence and must complete before CP-07 finishes.
 
-## Activity-level control gates retained from v0.4
+## Activity-level control gates
 
-The CPM network includes source-derived leaf-level gates for clearly supported risk / quality interfaces:
+The network includes source-derived gates for clearly supported interfaces:
 
 - excavation / earthwork JSEA + PTW
 - localized environmental earthwork readiness
 - work-at-height / scaffold / fall-rescue readiness before roof work
+- foundation pre-pour Hold Point
 - above-ceiling concealed-services QA Hold Point
 - electrical isolation / LOTO / test-before-touch before precommissioning
 - raw-water pontoon lifting-plan / exclusion / emergency readiness
-- raw-water pontoon special-movement / traffic-route readiness
-- raw-water pontoon near-water rescue / evacuation / sensitive-area readiness
+- raw-water pontoon special-movement / route readiness
+- raw-water pontoon near-water / sensitive-area readiness
 
-Exact detailed gate days use `timing_basis=ASSUMPTION`. Hot-work and confined-space gates are not fabricated without approved project-method evidence that those activities exist.
+Exact detailed gate days use `timing_basis=ASSUMPTION`. Hot-work and confined-space task gates are not fabricated without approved project-method evidence that those activities exist.
 
-## Package-specific testing retained from v0.5
+## Package-specific testing
 
-The network pattern is:
+The package test network uses:
 
 `Installation / Second Fix → PRECOM → [parallel system test packs] → FUNC completion → COMM`
 
-Detailed test packs are FS from package `PRECOM`, run inside the package `FUNC` window and are FF predecessors of `FUNC`. This permits parallel testing but prevents the functional-test phase from closing while a defined principal test pack remains incomplete.
+Detailed test packs are FS from `PRECOM`, run within the existing `FUNC` window and are FF predecessors of `FUNC`. This allows parallel testing but prevents the functional-test phase from closing while a defined principal test pack remains incomplete.
 
-Profiles are based on Plan-1 principal scope and include, where supported or explicitly marked where applicable, Learning Centre electrical/plumbing-fire/HVAC/ICT, restaurant kitchen and ventilation interfaces, meeting-building electrical/AV, water-production process/control systems, sanitary systems, tent-house services and pumping systems.
+Where the package description is broad, the detailed test row is marked `WHERE_APPLICABLE` and must be confirmed or removed against IFC / BOQ / equipment schedules / the approved commissioning matrix.
 
-The detailed test rows remain proposal assumptions pending IFC / BOQ / equipment schedules / approved testing-and-commissioning matrix.
+## Package / discipline document-release network
 
-## v0.6 package / discipline document-release network
+Controlled-document milestones are inserted before physical workfronts:
 
-v0.6 adds controlled-document release milestones at the actual package workfront. This implements the source requirement that the approved revision of drawings, Method Statements, ITPs, checklists and test procedures be available before physical work proceeds.
+- `STR-DOC` before reinforcement / formwork
+- `ARC-DOC` before envelope / facade / partition
+- `MEP-DOC` before first-fix services / sleeves / penetrations
+- `TST-DOC` before precommissioning
+- `CIV-DOC`, `UTIL-DOC`, `LAND-DOC` for external workfronts
+- dedicated pontoon fabrication/lifting/installation and test-document gates
 
-Main building packages receive, where applicable:
+Inputs include CDE go-live, Area QA readiness, Plan-13 coordination and CP-03 design-control status where applicable. A long-running stream enters by SS + lag when active at the workfront date; completed readiness enters by FS. Exact release days remain proposal timing assumptions.
 
-- `STR-DOC` before reinforcement / formwork;
-- `ARC-DOC` before envelope / facade / partition work;
-- `MEP-DOC` before building-services / sleeves / first fix;
-- `TST-DOC` before precommissioning.
+## Scope-applicability layer — v0.7
 
-External packages receive:
+Scope applicability is deliberately **not** used to alter CPM mathematics. It is an audit/provenance layer over the same network:
 
-- `CIV-DOC` before earthwork / drainage / base;
-- `UTIL-DOC` before utilities / external electrical;
-- `LAND-DOC` before hardscape / soil / planting / irrigation.
+- `SOURCE_REQUIRED` — source-established Plan-01 framework/control
+- `DERIVED_FROM_SCOPE` — detailed decomposition reasonably supported by package scope
+- `WHERE_APPLICABLE` — retained proposal coordination content requiring IFC/BOQ/equipment confirmation
+- `CONTROL_STREAM` — Plans 02–16 supporting control/evidence activity
 
-Raw-water pontoon work receives dedicated fabrication/lifting/installation and precommissioning/test-document gates.
+The current v0.7 audit identifies 64 `WHERE_APPLICABLE` rows. They stay in the network so coordination interfaces are visible, but are not represented as definitively confirmed contractual systems. Before contract baseline approval, each must be confirmed, replaced or deleted.
 
-Inputs to these gates include CDE go-live, Area QA readiness, Plan-13 coordination where active and the CP-03 design-control stream where applicable. A long-running design/BIM coordination stream uses SS + lag when it is active at the workfront date; completed readiness streams use FS.
-
-The physical activity is FS from its package document-release milestone. Exact release dates follow the current proposal workfront and use `timing_basis=ASSUMPTION`; they are not represented as source-stated package due dates.
+This is important because a provisional activity may still have zero float in the proposal network. **Zero float does not convert provisional scope into confirmed scope.**
 
 ## Physical-package integrity
 
-Every Plan-01 physical row must be fully connected NTP→D1200. Package handover waits for applicable parallel branches including envelope, doors/glazing, finishes, furniture, external work, specialist systems, package-specific tests, integrated commissioning, punch/correction and as-built evidence.
+Every Plan-01 physical row must be fully connected NTP→D1200. Package handover waits for applicable parallel branches including envelope, finishes, furniture, external work, specialist interfaces, package-specific tests, integrated commissioning, punch/correction and as-built evidence.
 
 A Plan-01 physical row failing either upstream or downstream network integrity is a validation failure.
 
 ## Supporting-plan / LOE integration
 
-Supporting controls are connected where they are readiness inputs or produce required closeout evidence without automatically making every monitoring bar critical. Examples include active workforce / QA / HSE / traffic / environment / heritage streams feeding Area release; plant streams feeding physical workfronts by SS; CDE / progress / BIM / AI / carbon / commercial streams feeding relevant closeout nodes.
-
-`P04-WF-DEMOB` remains an intentional level-of-effort terminal rather than being force-connected merely to obtain cosmetic 100% overall downstream coverage.
+Supporting controls are connected where they are readiness inputs or produce closeout evidence without automatically making every monitoring bar critical. `P04-WF-DEMOB` remains an intentional level-of-effort terminal rather than being force-connected merely to obtain cosmetic 100% overall downstream coverage.
 
 ## Proposal driving chain
 
-The deterministic representative zero-float chain remains traceable from NTP through Area-A Learning Centre into source CP convergence and CP-08 closeout:
+The deterministic representative zero-float chain remains traceable from NTP through the Area-A Learning Centre into source CP convergence and CP-08 closeout:
 
-`NTP → Temporary readiness → Main release → A23 release → Survey → Excavation → Foundation → Frame → MEP/Electrical/ICT → Precommissioning → Functional test coordination → Integrated commissioning → Punch/correction → A23 Handover → CP-05 → CP-07 → Closeout 493–497 → Final acceptance processing → D1200`
+`NTP → Temporary readiness → Main release → A23 release → Survey → Excavation → Foundation → Frame → MEP/Electrical/ICT → Precommissioning → Functional-test coordination → Integrated commissioning → Punch/correction → A23 handover → CP-05 → CP-07 → Closeout 493–497 → Final acceptance processing → D1200`
 
-v0.6 document gates strengthen parallel readiness branches and increase the zero-float set, but do not artificially force a different deterministic representative chain. Detailed driving lags remain proposal CPM logic.
+Parallel document/test/control branches may also be zero-float without replacing that representative trace. Detailed driving lags remain proposal CPM logic.
 
 ## Latest validated network
 
-Baseline v0.6 CI result:
+Baseline v0.7 CI result:
 
 - **1,066 activities**
 - **258 milestones**
@@ -142,6 +145,7 @@ Baseline v0.6 CI result:
 - **1,064 / 1,066 complete NTP→D1200 network coverage = 99.8%**
 - **Plan-01 physical 683 / 683 complete NTP→D1200**
 - **Plan-01 handovers 23 / 23 complete NTP→D1200**
+- scope audit: **7 SOURCE_REQUIRED / 617 DERIVED_FROM_SCOPE / 64 WHERE_APPLICABLE / 378 CONTROL_STREAM**
 - **0 structure errors**
 - **0 dependency cycles**
 - **0 network-integrity errors**
@@ -163,6 +167,7 @@ Recalculate CPM after approval / confirmation of:
 - approved Method Statements / ITPs / JSEAs / permits
 - final equipment schedule
 - approved testing & commissioning matrix
+- resolution of all `WHERE_APPLICABLE` rows
 - final workfront / interface constraints
 
-At that point proposal timing assumptions can be replaced by contract-baseline data and float / criticality recomputed.
+At that point proposal timing assumptions and provisional scope can be replaced by contract-baseline data and float / criticality recomputed.
