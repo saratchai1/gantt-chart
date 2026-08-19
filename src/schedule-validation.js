@@ -1,3 +1,5 @@
+const VALID_SCOPE_APPLICABILITY=new Set(['SOURCE_REQUIRED','DERIVED_FROM_SCOPE','WHERE_APPLICABLE','CONTROL_STREAM']);
+
 export function validateStructure(rows) {
   const errors = [];
   const ids = new Set();
@@ -9,6 +11,7 @@ export function validateStructure(rows) {
     if (r.start_day < 1 || r.finish_day > 1200 || r.finish_day < r.start_day) errors.push(`${r.activity_id}: invalid day range ${r.start_day}-${r.finish_day}`);
     if (r.milestone === 'Y' && (r.start_day !== r.finish_day || r.duration_days !== 0)) errors.push(`${r.activity_id}: invalid milestone duration`);
     if (r.milestone !== 'Y' && r.duration_days !== r.finish_day - r.start_day + 1) errors.push(`${r.activity_id}: duration mismatch`);
+    if (!VALID_SCOPE_APPLICABILITY.has(r.scope_applicability)) errors.push(`${r.activity_id}: invalid/unclassified scope applicability ${r.scope_applicability || '(blank)'}`);
   }
   for (const r of rows) {
     for (const p of r.predecessors || []) if (!ids.has(p.id)) errors.push(`${r.activity_id}: missing predecessor ${p.id}`);
@@ -87,6 +90,16 @@ export function criticalCandidateSummary(rows) {
   }));
 }
 
+export function scopeApplicabilitySummary(rows){
+  const byStatus={};
+  for(const r of rows) byStatus[r.scope_applicability]=(byStatus[r.scope_applicability]||0)+1;
+  const provisional=rows.filter(r=>r.scope_applicability==='WHERE_APPLICABLE').map(r=>({
+    activity_id:r.activity_id,plan_no:r.plan_no,building_area:r.building_area,discipline:r.discipline,
+    activity_name:r.activity_name,scope_note:r.scope_note
+  }));
+  return {by_status:byStatus,where_applicable:provisional};
+}
+
 function coverage(total, connected) {
   return { total, connected, coverage_pct:Number((100 * connected / Math.max(1,total)).toFixed(1)) };
 }
@@ -139,7 +152,6 @@ export function networkCoverageSummary(rows) {
     plan01_handovers_from_start:coverage(handovers.length,handoverFromStart.length),
     plan01_handovers_to_final:coverage(handovers.length,handoverToFinal.length),
     plan01_handovers_through:coverage(handovers.length,handoverThrough.length),
-    // Compatibility aliases retained for viewer/export consumers created in v0.1.
     overall:coverage(rows.length,toFinal.length),
     plan01_physical:coverage(physical.length,physicalToFinal.length),
     plan01_handovers:coverage(handovers.length,handoverToFinal.length),
@@ -163,6 +175,7 @@ export function validationReport(rows) {
   const cycles = detectCycles(rows);
   const temporalWarnings = validateTemporalLogic(rows);
   const networkCoverage = networkCoverageSummary(rows);
+  const scopeApplicability = scopeApplicabilitySummary(rows);
   const networkIntegrityErrors = [
     ...networkCoverage.unconnected_from_start_plan01_physical.map(id => `${id}: Plan-01 physical activity is not reachable from NTP/start milestone`),
     ...networkCoverage.unconnected_to_final_plan01_physical.map(id => `${id}: Plan-01 physical activity is not connected to final D1200 milestone`)
@@ -174,6 +187,7 @@ export function validationReport(rows) {
     dependency_cycles:cycles,
     temporal_logic_warnings:temporalWarnings,
     network_coverage:networkCoverage,
+    scope_applicability:scopeApplicability,
     network_integrity_errors:networkIntegrityErrors,
     critical_candidates:criticalCandidateSummary(rows),
     status: structureErrors.length || cycles.length || networkIntegrityErrors.length ? 'FAIL' : temporalWarnings.length ? 'PASS_WITH_TEMPORAL_WARNINGS' : 'PASS'
