@@ -7,6 +7,7 @@ import { normalizeSchedule } from './normalize-schedule.js';
 import { applyFinalLogicRepairs } from './logic-repairs-v2.js';
 import { applyTimingProvenance } from './timing-provenance.js';
 import { applyNetworkIntegrationV3 } from './network-integration-v3.js';
+import { applyTaskControlGatesV4 } from './task-control-gates-v4.js';
 import { applyProposalDrivingChain } from './critical-driver.js';
 import { applyCpmAnalysis, computedCriticalPath } from './cpm-analysis.js';
 import { validationReport } from './schedule-validation.js';
@@ -19,6 +20,7 @@ normalizeSchedule(schedule);
 applyFinalLogicRepairs(schedule);
 applyTimingProvenance(schedule);
 applyNetworkIntegrationV3(schedule);
+applyTaskControlGatesV4(schedule);
 applyProposalDrivingChain(schedule);
 applyCpmAnalysis(schedule, 'P01-CO-006');
 
