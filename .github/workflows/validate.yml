@@ -1,0 +1,28 @@
+name: Validate integrated schedule
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Validate schedule
+        run: npm run validate
+      - name: Export schedule artifacts
+        run: npm run export
+      - name: Upload generated schedule
+        uses: actions/upload-artifact@v4
+        with:
+          name: integrated-master-schedule
+          path: |
+            data/master-schedule.csv
+            data/master-schedule.json
+            data/schedule-stats.json
+            data/validation-report.json
