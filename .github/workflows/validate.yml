@@ -30,4 +30,5 @@ jobs:
             data/master-schedule.csv
             data/master-schedule.json
             data/schedule-stats.json
+            data/cpm-report.json
             data/validation-report.json
