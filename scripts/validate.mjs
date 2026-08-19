@@ -5,6 +5,7 @@ fs.mkdirSync('data', { recursive: true });
 fs.writeFileSync('data/validation-report.json', JSON.stringify({ stats:scheduleStats, cpm, ...validation }, null, 2));
 
 const nc=validation.network_coverage;
+const sc=validation.scope_applicability;
 console.log(`Activities: ${masterSchedule.length}`);
 console.log(`Milestones: ${scheduleStats.milestones}`);
 console.log(`Critical candidates: ${scheduleStats.critical}`);
@@ -17,6 +18,8 @@ console.log(`Plan 01 physical from-NTP coverage: ${nc.plan01_physical_from_start
 console.log(`Plan 01 physical to-D1200 coverage: ${nc.plan01_physical_to_final.connected}/${nc.plan01_physical_to_final.total} (${nc.plan01_physical_to_final.coverage_pct}%)`);
 console.log(`Plan 01 physical through NTP→D1200: ${nc.plan01_physical_through.connected}/${nc.plan01_physical_through.total} (${nc.plan01_physical_through.coverage_pct}%)`);
 console.log(`Plan 01 handovers through NTP→D1200: ${nc.plan01_handovers_through.connected}/${nc.plan01_handovers_through.total} (${nc.plan01_handovers_through.coverage_pct}%)`);
+console.log(`Scope applicability counts: ${Object.entries(sc.by_status).map(([k,v])=>`${k}=${v}`).join(', ')}`);
+console.log(`WHERE_APPLICABLE rows requiring IFC/BOQ confirmation: ${sc.where_applicable.length}`);
 console.log(`Non-Plan-01 activities without D1200 successor path: ${nc.unconnected_support_to_final.length}`);
 if(nc.unconnected_support_to_final.length) console.log(`Remaining support exceptions: ${nc.unconnected_support_to_final.join(', ')}`);
 console.log(`Representative critical path (${cpm.representative_path.length} activities): ${cpm.representative_path.join(' -> ')}`);
