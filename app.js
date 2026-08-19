@@ -21,7 +21,7 @@ const planNames = {
 };
 
 const els = Object.fromEntries([
-  'metrics','search','planFilter','zoneFilter','disciplineFilter','basisFilter','criticalOnly','zoom','resetFilters',
+  'metrics','search','planFilter','zoneFilter','disciplineFilter','basisFilter','timingFilter','criticalOnly','zoom','resetFilters',
   'timelineHead','leftGrid','timelineGrid','drawer','drawerContent','drawerClose','exportCsv','exportJson'
 ].map(id => [id, document.getElementById(id)]));
 
@@ -43,16 +43,17 @@ function initFilters() {
 }
 
 function renderMetrics(filteredCount = masterSchedule.length) {
-  const sourceCount = masterSchedule.filter(r=>r.basis_type==='SOURCE').length;
-  const assumptionCount = masterSchedule.filter(r=>r.basis_type==='ASSUMPTION').length;
+  const sourceActivity = masterSchedule.filter(r=>r.basis_type==='SOURCE').length;
+  const sourceTiming = masterSchedule.filter(r=>r.timing_basis==='SOURCE').length;
+  const assumedTiming = masterSchedule.filter(r=>r.timing_basis==='ASSUMPTION').length;
   const hard = validation.structure_errors.length + validation.dependency_cycles.length;
   const metrics=[
     ['Activities',nfmt(masterSchedule.length),`${nfmt(filteredCount)} shown`,''],
     ['Milestones',nfmt(scheduleStats.milestones),'zero-duration gates',''],
     ['Critical candidates',nfmt(scheduleStats.critical),'proposal baseline candidates',''],
-    ['SOURCE rows',nfmt(sourceCount),'direct source constraints / activities',''],
-    ['ASSUMPTION rows',nfmt(assumptionCount),'replace at contract baseline','warn'],
-    ['Validation',hard ? 'FAIL' : 'PASS',`${validation.temporal_logic_warnings.length} temporal advisories`,hard?'warn':'ok']
+    ['SOURCE activities',nfmt(sourceActivity),'activity/control requirement is source-stated',''],
+    ['SOURCE timing',nfmt(sourceTiming),`${nfmt(assumedTiming)} rows use proposal timing`,'timing'],
+    ['Validation',hard ? 'FAIL' : validation.temporal_logic_warnings.length ? 'ADVISORY' : 'PASS',`${validation.temporal_logic_warnings.length} temporal advisories`,hard?'warn':'ok']
   ];
   els.metrics.innerHTML=metrics.map(([k,v,s,c])=>`<div class="metric ${c}"><div class="k">${esc(k)}</div><div class="v">${esc(v)}</div><div class="s">${esc(s)}</div></div>`).join('');
 }
@@ -64,9 +65,10 @@ function filteredRows() {
     if (els.zoneFilter.value && r.zone!==els.zoneFilter.value) return false;
     if (els.disciplineFilter.value && r.discipline!==els.disciplineFilter.value) return false;
     if (els.basisFilter.value && r.basis_type!==els.basisFilter.value) return false;
+    if (els.timingFilter.value && r.timing_basis!==els.timingFilter.value) return false;
     if (els.criticalOnly.checked && r.critical!=='Y') return false;
     if (q) {
-      const hay=[r.activity_id,r.wbs,r.activity_name,r.building_area,r.discipline,r.responsible_party,r.deliverable_evidence,r.source_reference].join(' ').toLowerCase();
+      const hay=[r.activity_id,r.wbs,r.activity_name,r.building_area,r.discipline,r.responsible_party,r.deliverable_evidence,r.source_reference,r.basis_type,r.timing_basis].join(' ').toLowerCase();
       if (!hay.includes(q)) return false;
     }
     return true;
@@ -95,8 +97,12 @@ function makeTimelineHeader() {
 }
 
 function basisChip(row){
-  const c=row.basis_type.toLowerCase();
+  const c=(row.basis_type || 'DERIVED').toLowerCase();
   return `<b class="basis ${c} row-chip">${esc(row.basis_type)}</b>`;
+}
+function timingChip(row){
+  const src=row.timing_basis==='SOURCE';
+  return `<b class="timing-chip ${src?'source':'assumption'}">${src?'T:SRC':'T:ASM'}</b>`;
 }
 
 function leftTask(row) {
@@ -105,7 +111,7 @@ function leftTask(row) {
   div.dataset.id=row.activity_id;
   div.innerHTML=`
     <div class="cell">${esc(row.wbs)}</div>
-    <div class="cell name"><div><div class="title">${esc(row.activity_name)} ${basisChip(row)}</div><div class="sub">${esc(row.activity_id)} · ${esc(row.building_area)} · ${esc(row.discipline)}</div></div></div>
+    <div class="cell name"><div><div class="title">${esc(row.activity_name)} ${basisChip(row)} ${timingChip(row)}</div><div class="sub">${esc(row.activity_id)} · ${esc(row.building_area)} · ${esc(row.discipline)}</div></div></div>
     <div class="cell">${row.milestone==='Y'?'MS':esc(row.duration_days+'d')}</div>
     <div class="cell">D${row.start_day}–${row.finish_day}</div>`;
   return div;
@@ -114,12 +120,13 @@ function leftTask(row) {
 function timeTask(row) {
   const div=document.createElement('div'); div.className='trow'; div.dataset.id=row.activity_id;
   const x=(row.start_day-1)*pxDay;
+  const timingClass=row.timing_basis==='SOURCE'?'timing-source':'';
   if(row.milestone==='Y'){
-    const m=document.createElement('div'); m.className=`milestone-mark ${row.critical==='Y'?'critical':''}`; m.style.left=`${Math.max(0,x-6)}px`; m.title=`${row.activity_id} · D${row.start_day} · ${row.activity_name}`; div.append(m);
+    const m=document.createElement('div'); m.className=`milestone-mark ${row.critical==='Y'?'critical':''} ${timingClass}`; m.style.left=`${Math.max(0,x-6)}px`; m.title=`${row.activity_id} · D${row.start_day} · Timing:${row.timing_basis} · ${row.activity_name}`; div.append(m);
   } else {
-    const bar=document.createElement('div'); bar.className=`bar ${row.basis_type.toLowerCase()} ${row.critical==='Y'?'critical':''}`;
+    const bar=document.createElement('div'); bar.className=`bar ${row.basis_type.toLowerCase()} ${row.critical==='Y'?'critical':''} ${timingClass}`;
     bar.style.left=`${x}px`; bar.style.width=`${Math.max(3,row.duration_days*pxDay)}px`;
-    bar.title=`${row.activity_id} · D${row.start_day}–D${row.finish_day} · ${row.activity_name}`; div.append(bar);
+    bar.title=`${row.activity_id} · D${row.start_day}–D${row.finish_day} · Timing:${row.timing_basis} · ${row.activity_name}`; div.append(bar);
   }
   return div;
 }
@@ -161,17 +168,18 @@ function showDetail(id) {
   els.drawerContent.innerHTML=`
     <div class="eyebrow" style="color:#52708d">PLAN ${esc(r.plan_no)} · ${esc(r.zone)}</div>
     <h2>${esc(r.activity_name)}</h2>
-    <div class="idline">${esc(r.activity_id)} · WBS ${esc(r.wbs)} ${basisChip(r)}</div>
+    <div class="idline">${esc(r.activity_id)} · WBS ${esc(r.wbs)} ${basisChip(r)} ${timingChip(r)}</div>
     <dl class="detail-grid">
       <dt>Building / Area</dt><dd>${esc(r.building_area)}</dd>
       <dt>Discipline</dt><dd>${esc(r.discipline)}</dd>
       <dt>Project days</dt><dd>D${r.start_day}–D${r.finish_day} · ${r.duration_days}${r.milestone==='Y'?' (milestone)':' days'}</dd>
+      <dt>Timing basis</dt><dd>${esc(r.timing_basis)}${r.timing_basis==='ASSUMPTION'?' — proposal planning allowance, not an explicit source day/window':''}</dd>
       <dt>Critical</dt><dd>${r.critical==='Y'?'YES — proposal critical candidate':'No'}</dd>
       <dt>Predecessors</dt><dd class="pred">${preds}</dd>
       <dt>Responsible</dt><dd>${esc(r.responsible_party || '—')}</dd>
       <dt>Installments</dt><dd>${r.installment_start?`${esc(r.installment_start)}–${esc(r.installment_end || r.installment_start)}`:'—'}</dd>
       <dt>Deliverable / evidence</dt><dd>${esc(r.deliverable_evidence || '—')}</dd>
-      <dt>Basis</dt><dd>${esc(r.basis_type)}</dd>
+      <dt>Activity basis</dt><dd>${esc(r.basis_type)}</dd>
       <dt>Source reference</dt><dd>${esc(r.source_reference || '—')}</dd>
       <dt>Notes</dt><dd>${esc(r.notes || '—')}</dd>
     </dl>
@@ -195,9 +203,9 @@ function bindRowEvents() {
   els.timelineGrid.addEventListener('mouseover',e=>hover(e,true)); els.timelineGrid.addEventListener('mouseout',e=>hover(e,false));
 }
 
-for(const el of [els.search,els.planFilter,els.zoneFilter,els.disciplineFilter,els.basisFilter,els.criticalOnly]) el.addEventListener(el===els.search?'input':'change',render);
+for(const el of [els.search,els.planFilter,els.zoneFilter,els.disciplineFilter,els.basisFilter,els.timingFilter,els.criticalOnly]) el.addEventListener(el===els.search?'input':'change',render);
 els.zoom.addEventListener('change',()=>{pxDay=Number(els.zoom.value); document.documentElement.style.setProperty('--px-day',`${pxDay}px`); render();});
-els.resetFilters.addEventListener('click',()=>{els.search.value='';els.planFilter.value='';els.zoneFilter.value='';els.disciplineFilter.value='';els.basisFilter.value='';els.criticalOnly.checked=false;render();});
+els.resetFilters.addEventListener('click',()=>{els.search.value='';els.planFilter.value='';els.zoneFilter.value='';els.disciplineFilter.value='';els.basisFilter.value='';els.timingFilter.value='';els.criticalOnly.checked=false;render();});
 els.drawerClose.addEventListener('click',()=>{els.drawer.classList.remove('open');els.drawer.setAttribute('aria-hidden','true');});
 els.exportCsv.addEventListener('click',()=>downloadText('master-schedule.csv',masterCSV(),'text/csv;charset=utf-8'));
 els.exportJson.addEventListener('click',()=>downloadText('master-schedule.json',JSON.stringify(masterSchedule,null,2),'application/json;charset=utf-8'));
