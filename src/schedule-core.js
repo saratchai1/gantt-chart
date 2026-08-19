@@ -42,7 +42,12 @@ export function addTask({
     timing_basis: timingBasis,
     source_reference: source,
     resource_group: resourceGroup,
-    notes
+    notes,
+    network_to_final: '',
+    computed_free_float_days: '',
+    computed_total_float_days: '',
+    computed_critical: 'N',
+    driving_successor: ''
   };
   schedule.push(row);
   return id;
@@ -90,7 +95,7 @@ export function stats(rows = schedule) {
   const byZone = {};
   const byBasis = {};
   const byTimingBasis = {};
-  let milestones = 0, critical = 0;
+  let milestones = 0, critical = 0, computedCritical = 0, connectedToFinal = 0;
   for (const r of rows) {
     byPlan[r.plan_no] = (byPlan[r.plan_no] || 0) + 1;
     byZone[r.zone] = (byZone[r.zone] || 0) + 1;
@@ -98,14 +103,17 @@ export function stats(rows = schedule) {
     byTimingBasis[r.timing_basis] = (byTimingBasis[r.timing_basis] || 0) + 1;
     if (r.milestone === 'Y') milestones++;
     if (r.critical === 'Y') critical++;
+    if (r.computed_critical === 'Y') computedCritical++;
+    if (r.network_to_final === 'Y') connectedToFinal++;
   }
-  return { total: rows.length, milestones, critical, byPlan, byZone, byBasis, byTimingBasis };
+  return { total: rows.length, milestones, critical, computedCritical, connectedToFinal, byPlan, byZone, byBasis, byTimingBasis };
 }
 
 export function toCSV(rows = schedule) {
   const fields = [
     'activity_id','wbs','plan_no','zone','building_area','discipline','activity_name','duration_days',
-    'predecessor','relationship','lag_days','start_day','finish_day','milestone','critical','responsible_party',
+    'predecessor','relationship','lag_days','start_day','finish_day','milestone','critical','computed_critical',
+    'computed_total_float_days','computed_free_float_days','network_to_final','driving_successor','responsible_party',
     'installment_start','installment_end','deliverable_evidence','basis_type','timing_basis','source_reference','resource_group','notes'
   ];
   const esc = value => {
