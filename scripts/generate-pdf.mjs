@@ -271,8 +271,9 @@ function drawLegend(x, y) {
 function drawPageFooter(pageNo) {
   const w = doc.page.width;
   const h = doc.page.height;
-  const y = h - PAGE_MARGIN + 3;
-  drawLegend(PAGE_MARGIN, y - 2);
+  // Keep all footer text safely above PDFKit's bottom-margin auto-pagination threshold.
+  const y = h - PAGE_MARGIN - 13;
+  drawLegend(PAGE_MARGIN, y - 1);
   textLine(`Baseline v0.7 · A3 Landscape · Page ${pageNo}`, w - PAGE_MARGIN - 190, y, 190, {
     size: 6.1, color: COLORS.gray600, align: 'right'
   });
@@ -409,7 +410,7 @@ function drawDetailPageHeader(pageNo, context = '') {
   }
   drawAxis(timelineX, headY, timelineW, headH);
   drawPageFooter(pageNo);
-  return { bodyTop: headY + headH, bodyBottom: h - PAGE_MARGIN - 26, ...detailGeometry() };
+  return { bodyTop: headY + headH, bodyBottom: h - PAGE_MARGIN - 32, ...detailGeometry() };
 }
 
 function drawGroupRow(row, y, geom) {
