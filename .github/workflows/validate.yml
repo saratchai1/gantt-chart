@@ -12,7 +12,12 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
+      - name: JavaScript syntax check
+        shell: bash
+        run: |
+          node --check app.js
+          find src scripts -type f \( -name '*.js' -o -name '*.mjs' \) -print0 | xargs -0 -n1 node --check
       - name: Validate schedule
         run: npm run validate
       - name: Export schedule artifacts
