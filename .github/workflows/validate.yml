@@ -50,13 +50,23 @@ jobs:
             data/package-document-release-register.csv
             data/system-test-pack-register.csv
             data/huai-kha-khaeng-integrated-master-gantt-v0.7.pdf
+      - name: Publish generated PDF snapshot
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git checkout -B pdf-export
+          git add -f data/huai-kha-khaeng-integrated-master-gantt-v0.7.pdf
+          git commit -m 'Publish generated A3 Gantt PDF [skip ci]'
+          git push origin HEAD:pdf-export --force
       - name: Publish generated PDF to main
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         shell: bash
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/huai-kha-khaeng-integrated-master-gantt-v0.7.pdf
+          git add -f data/huai-kha-khaeng-integrated-master-gantt-v0.7.pdf
           if ! git diff --cached --quiet; then
             git commit -m 'Update generated A3 Gantt PDF [skip ci]'
             git push
