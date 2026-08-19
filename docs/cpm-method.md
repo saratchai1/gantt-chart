@@ -1,8 +1,8 @@
-# CPM / Float Method — Baseline v0.5
+# CPM / Float Method — Baseline v0.6
 
 ## Purpose
 
-Plans 1–16 define source control windows, process requirements and the D1200 completion requirement, but do not provide a complete leaf-level CPM predecessor network for every construction subactivity. The proposal schedule therefore keeps three concepts separate:
+Plans 1–16 define source control windows, process requirements and D1200 completion, but do not provide a complete leaf-level predecessor network for every construction subactivity. The proposal schedule therefore separates:
 
 - **Source constraints** — explicit source day/window or control requirement
 - **Derived network logic** — schedulable decomposition of a source-defined process
@@ -21,16 +21,16 @@ Each activity stores:
 - `computed_critical`
 - `driving_successor`
 
-Project endpoints:
+Endpoints:
 
 - `P01-PRE-NTP` — commencement / NTP
 - `P01-CO-006` — Day 1200 final acceptance
 
 ## Strict upstream rule
 
-`network_from_start=Y` requires complete predecessor ancestry to NTP. For a non-start activity with several stored predecessors, every predecessor must itself be reachable from NTP. This prevents an activity from looking properly anchored merely because one branch is connected while a mandatory QA/HSE/environment/permit branch remains a floating logic island.
+`network_from_start=Y` requires complete predecessor ancestry to NTP. For a non-start activity with several stored predecessors, every predecessor must itself be reachable from NTP. This prevents an activity from appearing properly anchored merely because one branch is connected while a mandatory QA/HSE/environment/document/permit branch remains a floating island.
 
-Plans 02–16 root processes are anchored to NTP with proposal integration lags that preserve their current planned start. This changes network traceability, not source timing provenance.
+Plans 02–16 root processes are anchored to NTP with proposal integration lags that preserve their existing planned start. This changes traceability, not source timing provenance.
 
 ## Downstream / float rule
 
@@ -43,7 +43,7 @@ Relationship gap logic:
 - **FF** — successor finish versus predecessor finish + lag
 - **SF** — successor finish versus predecessor start + lag
 
-This is a **proposal-baseline float calculation**, not approved contract float.
+This is proposal-baseline float, not approved contract float.
 
 ## CP-05 / CP-06 / CP-07 convergence
 
@@ -59,7 +59,7 @@ Derived audit milestones:
 - `P01-CP05-GATE` — D840
 - `P01-CP06-GATE` — D960
 
-CP-07 starts after CP-05. CP-06 overlaps CP-07 and therefore controls CP-07 completion by FF rather than a false global FS relationship. Late landscape and raw-water-pontoon packages remain inside the CP-07 convergence and must complete before CP-07 finishes.
+CP-07 starts after CP-05. CP-06 overlaps CP-07 and therefore controls CP-07 completion by FF rather than a false global FS relationship. Late landscape and raw-water-pontoon packages remain inside CP-07 convergence and must complete before CP-07 finishes.
 
 ## Activity-level control gates retained from v0.4
 
@@ -74,82 +74,72 @@ The CPM network includes source-derived leaf-level gates for clearly supported r
 - raw-water pontoon special-movement / traffic-route readiness
 - raw-water pontoon near-water rescue / evacuation / sensitive-area readiness
 
-Exact detailed gate days use `timing_basis=ASSUMPTION` because the source defines the control process but not those leaf-level project days.
+Exact detailed gate days use `timing_basis=ASSUMPTION`. Hot-work and confined-space gates are not fabricated without approved project-method evidence that those activities exist.
 
-Hot-work and confined-space gates are not created without approved project-method evidence that the activity actually exists in the corresponding work package.
-
-## v0.5 package-specific testing network
-
-v0.5 expands the generic package functional-testing phase into parallel system test packs based on the principal package scope stated in Plan 1.
+## Package-specific testing retained from v0.5
 
 The network pattern is:
 
-`Installation / Second Fix → PRECOM → [parallel test packs] → FUNC completion → COMM`
+`Installation / Second Fix → PRECOM → [parallel system test packs] → FUNC completion → COMM`
 
-Detailed test packs are:
+Detailed test packs are FS from package `PRECOM`, run inside the package `FUNC` window and are FF predecessors of `FUNC`. This permits parallel testing but prevents the functional-test phase from closing while a defined principal test pack remains incomplete.
 
-- FS from package `PRECOM`;
-- scheduled inside the existing package `FUNC` window;
-- FF predecessors of `FUNC`, so the package functional-test window cannot finish while a defined principal test pack remains incomplete;
-- proposal-level rows with `basis_type=ASSUMPTION` and `timing_basis=ASSUMPTION`;
-- not used to alter the source CP-08 boundary.
+Profiles are based on Plan-1 principal scope and include, where supported or explicitly marked where applicable, Learning Centre electrical/plumbing-fire/HVAC/ICT, restaurant kitchen and ventilation interfaces, meeting-building electrical/AV, water-production process/control systems, sanitary systems, tent-house services and pumping systems.
 
-The profiles include, where supported by the package description:
+The detailed test rows remain proposal assumptions pending IFC / BOQ / equipment schedules / approved testing-and-commissioning matrix.
 
-- A23 Learning Centre — electrical, plumbing/fire, HVAC, ICT/AV/security
-- A24 Restaurant/Cafe — electrical, water/drainage/grease, kitchen ventilation, kitchen equipment interfaces
-- A25 Meeting/Multipurpose — electrical, AV/communications
-- A26 Water Production — process water, electrical/controls/instrumentation
-- A29 Eternal Room — electrical, plumbing where applicable
-- B31 Toilet — sanitary/drainage, electrical where applicable
-- B32 Waste Building — waste/drainage/environmental interface, electrical where applicable
-- C41 Reception — principal building-services test packs
-- C42 Tent House clusters — electrical, water/sanitary/drainage where applicable
-- C43 Pump Building — pump/flow, electrical/controls
+## v0.6 package / discipline document-release network
 
-Where Plan 1 gives only a broad building-services statement, the test activity is explicitly worded **where applicable** and must be confirmed or removed using IFC / BOQ / equipment schedules / the approved testing-and-commissioning matrix before contract-baseline approval.
+v0.6 adds controlled-document release milestones at the actual package workfront. This implements the source requirement that the approved revision of drawings, Method Statements, ITPs, checklists and test procedures be available before physical work proceeds.
+
+Main building packages receive, where applicable:
+
+- `STR-DOC` before reinforcement / formwork;
+- `ARC-DOC` before envelope / facade / partition work;
+- `MEP-DOC` before building-services / sleeves / first fix;
+- `TST-DOC` before precommissioning.
+
+External packages receive:
+
+- `CIV-DOC` before earthwork / drainage / base;
+- `UTIL-DOC` before utilities / external electrical;
+- `LAND-DOC` before hardscape / soil / planting / irrigation.
+
+Raw-water pontoon work receives dedicated fabrication/lifting/installation and precommissioning/test-document gates.
+
+Inputs to these gates include CDE go-live, Area QA readiness, Plan-13 coordination where active and the CP-03 design-control stream where applicable. A long-running design/BIM coordination stream uses SS + lag when it is active at the workfront date; completed readiness streams use FS.
+
+The physical activity is FS from its package document-release milestone. Exact release dates follow the current proposal workfront and use `timing_basis=ASSUMPTION`; they are not represented as source-stated package due dates.
 
 ## Physical-package integrity
 
-Every Plan-01 physical row must be fully connected NTP→D1200. Package handover waits for applicable parallel branches including envelope, doors/glazing, floors/final finishes, furniture, external work, specialist systems, package-specific system-test branches, integrated commissioning, punch/correction and as-built evidence.
+Every Plan-01 physical row must be fully connected NTP→D1200. Package handover waits for applicable parallel branches including envelope, doors/glazing, finishes, furniture, external work, specialist systems, package-specific tests, integrated commissioning, punch/correction and as-built evidence.
 
 A Plan-01 physical row failing either upstream or downstream network integrity is a validation failure.
 
 ## Supporting-plan / LOE integration
 
-Supporting controls are connected where they are readiness inputs or produce required closeout evidence, without automatically making every monitoring bar critical. Examples:
-
-- active workforce / QA / HSE / traffic / environment / heritage streams feed Area release;
-- plant operation streams feed relevant physical workfronts by SS;
-- site / plant / traffic / environment / heritage streams converge through restoration closeout;
-- QA area monitoring feeds final QA dossier;
-- CDE / progress cycles feed final closeout cycles;
-- BIM coordination / 4D-5D feeds as-built BIM;
-- AI monitoring feeds digital-system handover;
-- carbon data collection feeds periodic calculation and final report;
-- commercial area cycles feed forecast-to-complete reconciliation.
+Supporting controls are connected where they are readiness inputs or produce required closeout evidence without automatically making every monitoring bar critical. Examples include active workforce / QA / HSE / traffic / environment / heritage streams feeding Area release; plant streams feeding physical workfronts by SS; CDE / progress / BIM / AI / carbon / commercial streams feeding relevant closeout nodes.
 
 `P04-WF-DEMOB` remains an intentional level-of-effort terminal rather than being force-connected merely to obtain cosmetic 100% overall downstream coverage.
 
 ## Proposal driving chain
 
-The deterministic representative zero-float chain remains traceable from NTP through the Area-A Learning Centre into source CP convergence and CP-08 closeout:
+The deterministic representative zero-float chain remains traceable from NTP through Area-A Learning Centre into source CP convergence and CP-08 closeout:
 
 `NTP → Temporary readiness → Main release → A23 release → Survey → Excavation → Foundation → Frame → MEP/Electrical/ICT → Precommissioning → Functional test coordination → Integrated commissioning → Punch/correction → A23 Handover → CP-05 → CP-07 → Closeout 493–497 → Final acceptance processing → D1200`
 
-The v0.5 system test packs strengthen parallel commissioning detail but do not artificially force a different representative driving sequence. Other zero-float branches remain visible through `computed_critical=Y`.
-
-Detailed driving lags are proposal CPM logic and are not represented as TOR-stated leaf-activity lags.
+v0.6 document gates strengthen parallel readiness branches and increase the zero-float set, but do not artificially force a different deterministic representative chain. Detailed driving lags remain proposal CPM logic.
 
 ## Latest validated network
 
-Baseline v0.5 CI result:
+Baseline v0.6 CI result:
 
-- **986 activities**
-- **178 milestones**
-- **55 computed zero-float activities**
-- **986 / 986 reachable from NTP**
-- **983 / 986 connected to D1200**
+- **1,066 activities**
+- **258 milestones**
+- **60 computed zero-float activities**
+- **1,066 / 1,066 reachable from NTP**
+- **1,064 / 1,066 complete NTP→D1200 network coverage = 99.8%**
 - **Plan-01 physical 683 / 683 complete NTP→D1200**
 - **Plan-01 handovers 23 / 23 complete NTP→D1200**
 - **0 structure errors**
@@ -158,7 +148,7 @@ Baseline v0.5 CI result:
 - **0 temporal warnings**
 - **PASS**
 
-The representative deterministic driving chain contains 36 activities. The only intentionally reported non-Plan-01 terminal is the workforce-demobilization level-of-effort row.
+The representative deterministic driving chain remains 36 activities. The only intentional non-Plan-01 terminal is the workforce-demobilization level-of-effort row.
 
 ## Contract-baseline conversion
 
@@ -166,7 +156,7 @@ Recalculate CPM after approval / confirmation of:
 
 - project calendar / holidays / weather constraints
 - actual NTP
-- IFC / shop-drawing issue dates
+- IFC / shop-drawing / submittal dates
 - BOQ quantities / measurement rules
 - productivity / crew rates
 - vendor-confirmed lead times
