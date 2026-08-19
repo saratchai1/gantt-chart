@@ -9,6 +9,7 @@ console.log(`Milestones: ${scheduleStats.milestones}`);
 console.log(`Critical candidates: ${scheduleStats.critical}`);
 console.log(`Computed zero-float activities: ${scheduleStats.computedCritical}`);
 console.log(`Activities connected to final milestone: ${scheduleStats.connectedToFinal}`);
+console.log(`Representative critical path (${cpm.representative_path.length} activities): ${cpm.representative_path.join(' -> ')}`);
 console.log(`Structure errors: ${validation.structure_errors.length}`);
 console.log(`Dependency cycles: ${validation.dependency_cycles.length}`);
 console.log(`Temporal warnings: ${validation.temporal_logic_warnings.length}`);
