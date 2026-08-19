@@ -10,7 +10,7 @@
 <body>
   <header class="app-header">
     <div>
-      <div class="eyebrow">PROPOSAL INTEGRATED MASTER SCHEDULE · BASELINE v0.6</div>
+      <div class="eyebrow">PROPOSAL INTEGRATED MASTER SCHEDULE · BASELINE v0.7</div>
       <h1>แผนงานก่อสร้างห้วยขาแข้ง — Plans 01–16</h1>
       <p>1,200 Project Days · 497 Installments · Physical + Commercial + Site + Workforce + Plant + Procurement + QA/QC + HSE + Traffic + Environment + CDE + Progress + BIM + App/AI + Carbon + Heritage</p>
     </div>
@@ -50,6 +50,15 @@
         <option value="ASSUMPTION">ASSUMED timing</option>
       </select>
     </label>
+    <label>Scope applicability
+      <select id="scopeFilter">
+        <option value="">All scope statuses</option>
+        <option value="SOURCE_REQUIRED">SOURCE_REQUIRED</option>
+        <option value="DERIVED_FROM_SCOPE">DERIVED_FROM_SCOPE</option>
+        <option value="WHERE_APPLICABLE">WHERE_APPLICABLE</option>
+        <option value="CONTROL_STREAM">CONTROL_STREAM</option>
+      </select>
+    </label>
     <label class="check"><input id="criticalOnly" type="checkbox" /> Zero-float critical only</label>
     <label class="check"><input id="networkOnly" type="checkbox" /> Complete NTP→D1200 network only</label>
     <label>Dependency links
@@ -81,6 +90,10 @@
     <span><b class="basis assumption">ASSUMPTION</b> proposal-level activity detail</span>
     <span><b class="timing-chip source">T:SRC</b> exact source day/window</span>
     <span><b class="timing-chip assumption">T:ASM</b> proposal timing allowance</span>
+    <span><b class="scope-chip source-required">SCOPE:SRC</b> source-required Plan-01 framework</span>
+    <span><b class="scope-chip derived-scope">SCOPE:DRV</b> detailed derivative of package scope</span>
+    <span><b class="scope-chip provisional">SCOPE:PROV</b> verify IFC / BOQ / equipment schedule</span>
+    <span><b class="scope-chip control">SCOPE:CTL</b> supporting control/evidence stream</span>
   </section>
 
   <main class="gantt-shell" id="ganttShell">
@@ -101,7 +114,7 @@
   </aside>
 
   <footer>
-    Benchmark PDF is used only for WBS/activity granularity. Activity content and exact timing are audited separately. Baseline v0.6 retains the source-derived task-level HSE/environment/QA gates and package-specific system test packs, and adds package/discipline controlled-document release gates before structural, architectural, building-services, external civil/utility/landscape and precommissioning workfronts. These document gates reflect the source requirement that approved drawings, Method Statements, ITPs and controlled revisions be ready before work; their exact detailed day remains a proposal timing assumption. Plan-01 physical work is validated in both directions from NTP to D1200.
+    Benchmark PDF is used only for WBS/activity granularity. Activity content and exact timing are audited separately. Baseline v0.7 adds a separate scope-applicability layer so detailed proposal content can be retained without silently asserting unconfirmed systems as contractual scope. WHERE_APPLICABLE rows remain in the Gantt for coordination but must be confirmed, deleted or replaced against IFC drawings, BOQ, equipment schedules, shop drawings and the approved commissioning matrix. This field is separate from activity basis and timing basis. Plan-01 physical work remains validated in both directions from NTP to D1200.
   </footer>
 
   <script type="module" src="./app.js"></script>
