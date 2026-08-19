@@ -45,6 +45,10 @@ button.secondary{background:#f5f7fa}
 .swatch{display:inline-block;width:22px;height:8px;border-radius:3px;margin-right:5px;vertical-align:middle;background:var(--blue)}
 .swatch.critical{background:var(--red)}
 .swatch.disconnected{background:#aab4c0;border:1px dashed #6f7d8b}
+.link-sample{display:inline-block;width:25px;height:0;border-top:1px solid #718096;margin:0 5px 3px 0;position:relative;vertical-align:middle}
+.link-sample::after{content:"";position:absolute;right:-1px;top:-3px;border-left:5px solid #718096;border-top:3px solid transparent;border-bottom:3px solid transparent}
+.link-sample.driving{border-top:2px solid #b42318}
+.link-sample.driving::after{border-left-color:#b42318;top:-4px}
 .diamond{display:inline-block;width:9px;height:9px;transform:rotate(45deg);background:#8d2b2b;margin:0 8px 0 3px}
 .basis{font-size:9px;letter-spacing:.04em;border-radius:4px;padding:3px 5px;border:1px solid}
 .basis.source{color:#1b5e42;background:#eaf7f0;border-color:#b5dec9}
@@ -62,6 +66,10 @@ button.secondary{background:#f5f7fa}
 .month-cell b{font-size:11px}.month-cell span{color:#bed4e7}
 .left-grid{grid-column:1;grid-row:2;position:sticky;left:0;z-index:11;background:#fff;width:var(--left-w);box-shadow:2px 0 5px rgba(16,24,40,.08)}
 .timeline-grid{grid-column:2;grid-row:2;position:relative;min-width:calc(1200 * var(--px-day));background-color:#fff;background-image:repeating-linear-gradient(to right, transparent 0, transparent calc(30 * var(--px-day) - 1px), #e2e7ee calc(30 * var(--px-day) - 1px), #e2e7ee calc(30 * var(--px-day)))}
+.dependency-overlay{position:absolute;left:0;top:0;z-index:8;pointer-events:none;overflow:visible}
+.dependency-link{fill:none;stroke-linejoin:round;stroke-linecap:round}
+.dependency-link.normal{stroke:#718096;stroke-width:1;opacity:.48}
+.dependency-link.driving{stroke:#b42318;stroke-width:1.7;opacity:.9}
 .lrow,.trow{height:var(--row-h);border-bottom:1px solid #edf0f4}
 .lrow{display:grid;grid-template-columns:105px 1fr 58px 88px;align-items:center;font-size:11px;cursor:pointer}
 .lrow:hover,.lrow.hovered{background:#f2f7fb}
