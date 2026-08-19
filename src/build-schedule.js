@@ -6,12 +6,10 @@ import { buildCloseoutDetail } from './closeout-detail.js';
 import { normalizeSchedule } from './normalize-schedule.js';
 import { applyFinalLogicRepairs } from './logic-repairs-v2.js';
 import { applyTimingProvenance } from './timing-provenance.js';
+import { applyProposalDrivingChain } from './critical-driver.js';
 import { applyCpmAnalysis, computedCriticalPath } from './cpm-analysis.js';
 import { validationReport } from './schedule-validation.js';
 
-// Build supporting/control streams first because Plan 01 physical workfronts
-// reference their gate IDs. addTask itself permits forward references, but this
-// order keeps procurementRelease IDs populated before Plan 01 is expanded.
 buildPlans09to16();
 buildPlans02to08();
 buildPlan01Physical();
@@ -19,6 +17,7 @@ buildCloseoutDetail();
 normalizeSchedule(schedule);
 applyFinalLogicRepairs(schedule);
 applyTimingProvenance(schedule);
+applyProposalDrivingChain(schedule);
 applyCpmAnalysis(schedule, 'P01-CO-006');
 
 export const masterSchedule = sortSchedule(schedule);
