@@ -5,6 +5,9 @@ on:
     branches: [main]
   pull_request:
 
+permissions:
+  contents: write
+
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -13,6 +16,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
+      - name: Install PDF dependencies and Thai font
+        shell: bash
+        run: |
+          npm install --no-audit --no-fund
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-noto-core
       - name: JavaScript syntax check
         shell: bash
         run: |
@@ -22,6 +31,8 @@ jobs:
         run: npm run validate
       - name: Export schedule artifacts
         run: npm run export
+      - name: Generate A3 master Gantt PDF
+        run: npm run pdf
       - name: Upload generated schedule
         uses: actions/upload-artifact@v4
         with:
@@ -38,3 +49,15 @@ jobs:
             data/provisional-scope-summary.json
             data/package-document-release-register.csv
             data/system-test-pack-register.csv
+            data/huai-kha-khaeng-integrated-master-gantt-v0.7.pdf
+      - name: Publish generated PDF to main
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/huai-kha-khaeng-integrated-master-gantt-v0.7.pdf
+          if ! git diff --cached --quiet; then
+            git commit -m 'Update generated A3 Gantt PDF [skip ci]'
+            git push
+          fi
