@@ -34,12 +34,19 @@
     <label>Discipline
       <select id="disciplineFilter"><option value="">All disciplines</option></select>
     </label>
-    <label>Basis
+    <label>Activity basis
       <select id="basisFilter">
         <option value="">All</option>
         <option value="SOURCE">SOURCE</option>
         <option value="DERIVED">DERIVED</option>
         <option value="ASSUMPTION">ASSUMPTION</option>
+      </select>
+    </label>
+    <label>Timing basis
+      <select id="timingFilter">
+        <option value="">All</option>
+        <option value="SOURCE">SOURCE timing</option>
+        <option value="ASSUMPTION">ASSUMED timing</option>
       </select>
     </label>
     <label class="check"><input id="criticalOnly" type="checkbox" /> Critical only</label>
@@ -57,9 +64,11 @@
     <span><i class="swatch normal"></i> Activity</span>
     <span><i class="swatch critical"></i> Critical candidate</span>
     <span><i class="diamond"></i> Milestone</span>
-    <span><b class="basis source">SOURCE</b> source-stated</span>
+    <span><b class="basis source">SOURCE</b> source-stated activity/control</span>
     <span><b class="basis derived">DERIVED</b> decomposed from source process</span>
-    <span><b class="basis assumption">ASSUMPTION</b> proposal planning allowance</span>
+    <span><b class="basis assumption">ASSUMPTION</b> proposal-level activity detail</span>
+    <span><b class="timing-chip source">T:SRC</b> exact source day/window</span>
+    <span><b class="timing-chip assumption">T:ASM</b> proposal timing allowance</span>
   </section>
 
   <main class="gantt-shell" id="ganttShell">
@@ -80,7 +89,7 @@
   </aside>
 
   <footer>
-    Benchmark PDF is used only for WBS/activity granularity. Detailed proposal durations tagged ASSUMPTION are not TOR-stated durations and must be replaced by approved calendar, BOQ/productivity and vendor-confirmed lead times at contract-baseline stage.
+    Benchmark PDF is used only for WBS/activity granularity. Activity content and exact timing are audited separately. Rows with Timing Basis = ASSUMPTION are proposal planning allowances, not TOR-stated durations, and must be replaced by the approved calendar, BOQ/productivity and vendor-confirmed lead times at contract-baseline stage.
   </footer>
 
   <script type="module" src="./app.js"></script>
