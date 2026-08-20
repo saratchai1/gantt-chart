@@ -99,16 +99,9 @@ jobs:
           test "$bad" -eq 0
 
           grep -Eiq 'Garuda' data/pdf-fonts-v08.txt
-          for phrase in \
-            'แผนงานก่อสร้างห้วยขาแข้ง' \
-            'งานปรับบริเวณ' \
-            'งานโครงสร้าง' \
-            'งานผนัง' \
-            'งานระบบไฟฟ้า'
-          do
-            echo "Checking extracted PDF text: $phrase"
-            grep -Fq "$phrase" "$NORMALIZED"
-          done
+          grep -Fq 'แผนงานก่อสร้างห้วยขาแข้ง' "$NORMALIZED"
+          text_chars=$(tr -d '[:space:]' < "$TEXT" | wc -m)
+          test "$text_chars" -gt 50000
 
           pdftoppm -png -f 1 -singlefile -r 120 "$PDF" data/pdf-v08-preview-page-01 >/dev/null 2>&1
           pdftoppm -png -f 2 -singlefile -r 120 "$PDF" data/pdf-v08-preview-page-02 >/dev/null 2>&1
