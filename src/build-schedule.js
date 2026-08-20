@@ -13,6 +13,7 @@ import { applySystemTestDetailV5 } from './system-test-detail-v5.js';
 import { applyPostIntegrationRepairsV4 } from './post-integration-repairs-v4.js';
 import { applyScopeApplicabilityV7 } from './scope-applicability-v7.js';
 import { applyThaiActivityAlignmentV8, thaiLocalizationStats } from './thai-activity-alignment-v8.js';
+import { normalizeThaiWorkCategoriesV8 } from './thai-category-normalization-v8.js';
 import { applyProposalDrivingChain } from './critical-driver.js';
 import { applyCpmAnalysis, computedCriticalPath } from './cpm-analysis.js';
 import { validationReport } from './schedule-validation.js';
@@ -31,6 +32,7 @@ applySystemTestDetailV5(schedule);
 applyPostIntegrationRepairsV4(schedule);
 applyScopeApplicabilityV7(schedule);
 applyThaiActivityAlignmentV8(schedule);
+normalizeThaiWorkCategoriesV8(schedule);
 applyProposalDrivingChain(schedule);
 applyCpmAnalysis(schedule, 'P01-CO-006');
 
