@@ -17,15 +17,31 @@ const normalize = value => String(value ?? '')
   .replace(/\s+/g, ' ')
   .trim();
 
+// Poppler can emit Thai tone marks and upper/lower vowels as separate tokens,
+// sometimes with whitespace inserted between the base consonant and mark. For
+// semantic presence tests, compare a second canonical key that removes Thai
+// combining marks and non-alphanumeric separators. The PDF itself remains
+// Unicode text with the full original Thai spelling and embedded fonts.
+const thaiSearchKey = value => normalize(value)
+  .normalize('NFD')
+  .replace(/[\u0300-\u036F\u0E31\u0E34-\u0E3A\u0E47-\u0E4E]/g, '')
+  .replace(/[^\u0E00-\u0E7FA-Za-z0-9]/g, '')
+  .toLowerCase();
+
 const textRaw = fs.readFileSync(PDF_TEXT, 'utf8');
 const text = normalize(textRaw);
 const textLower = text.toLowerCase();
+const textSearchKey = thaiSearchKey(textRaw);
 const generation = JSON.parse(fs.readFileSync(GENERATION_REPORT, 'utf8'));
 const errors = [];
 const advisories = [];
 
 function addError(message, detail = null) { errors.push({ message, detail }); }
 function addAdvisory(message, detail = null) { advisories.push({ message, detail }); }
+function containsThaiPhrase(phrase) {
+  const key = thaiSearchKey(phrase);
+  return key.length > 0 && textSearchKey.includes(key);
+}
 
 const forbiddenVisibleTerms = [
   'baseline v0.7', 'verify scope', 'continued:', ' activities ', ' zero-float',
@@ -52,7 +68,7 @@ const requiredPhrases = [
   'งานระบบพิเศษ'
 ];
 for (const phrase of requiredPhrases) {
-  if (!text.includes(normalize(phrase))) addError(`Required Thai hierarchy/content phrase not found in PDF: ${phrase}`);
+  if (!containsThaiPhrase(phrase)) addError(`Required Thai hierarchy/content phrase not found in PDF: ${phrase}`);
 }
 
 const expectedPlanGroups = new Set(masterSchedule.map(row => row.plan_no)).size;
@@ -78,7 +94,7 @@ if (generation.category_group_rows !== expectedCategoryGroups) {
   });
 }
 for (const category of plan01Categories) {
-  if (!text.includes(normalize(category))) addError(`Plan-01 work category is absent from extracted PDF text: ${category}`);
+  if (!containsThaiPhrase(category)) addError(`Plan-01 work category is absent from extracted PDF text: ${category}`);
 }
 
 const titleTruncations = generation.activity_title_truncations || [];
