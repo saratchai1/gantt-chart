@@ -16,17 +16,22 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
+
       - name: JavaScript syntax check
         shell: bash
         run: |
           node --check app.js
           find src scripts -type f \( -name '*.js' -o -name '*.mjs' \) -print0 | xargs -0 -n1 node --check
+
       - name: Validate schedule and Thai activity alignment
         run: npm run validate
+
       - name: Export schedule and review registers
         run: npm run export
+
       - name: Export Plan 01 Thai activity alignment registers
         run: npm run thai-review
+
       - name: Upload schedule data
         uses: actions/upload-artifact@v4
         with:
@@ -51,11 +56,8 @@ jobs:
             data/package-document-release-register.csv
             data/system-test-pack-register.csv
 
-      # PDF output is intentionally disabled unless the repository variable
-      # ENABLE_PDF_EXPORT is explicitly set to true. This keeps data/language
-      # review separate from document production.
-      - name: Install optional PDF dependencies and bilingual Thai/Latin font
-        if: ${{ vars.ENABLE_PDF_EXPORT == 'true' }}
+      - name: Install PDF dependencies and bilingual Thai/Latin font
+        if: ${{ github.event_name == 'pull_request' }}
         shell: bash
         run: |
           npm install --no-audit --no-fund
@@ -63,20 +65,28 @@ jobs:
           sudo apt-get install -y -qq fonts-thai-tlwg fonts-noto-core poppler-utils
           fc-match 'Garuda'
           fc-match 'Garuda:style=Bold'
-      - name: Generate optional A3 master Gantt PDF
-        if: ${{ vars.ENABLE_PDF_EXPORT == 'true' }}
+
+      - name: Generate Thai A3 master Gantt PDF
+        if: ${{ github.event_name == 'pull_request' }}
         run: npm run pdf
-      - name: Audit optional PDF fonts, text and blank pages
-        if: ${{ vars.ENABLE_PDF_EXPORT == 'true' }}
+
+      - name: Audit PDF fonts, Thai text and blank pages
+        if: ${{ github.event_name == 'pull_request' }}
         shell: bash
         run: |
           set -euo pipefail
-          PDF='data/huai-kha-khaeng-integrated-master-gantt-v0.7.pdf'
-          pdfinfo "$PDF" | tee data/pdf-info.txt
-          pdffonts "$PDF" | tee data/pdf-fonts.txt
+          PDF='data/huai-kha-khaeng-integrated-master-gantt-v0.8-thai.pdf'
+          TEXT='data/pdf-text-v08.txt'
+          NORMALIZED='data/pdf-text-v08-normalized.txt'
+          pdfinfo "$PDF" | tee data/pdf-info-v08.txt
+          pdffonts "$PDF" | tee data/pdf-fonts-v08.txt
+          pdftotext "$PDF" "$TEXT"
+          tr '\n\r\f\t' '    ' < "$TEXT" | tr -s ' ' > "$NORMALIZED"
+
           pages=$(pdfinfo "$PDF" | awk '/^Pages:/ {print $2}')
           test -n "$pages"
           test "$pages" -gt 1
+
           bad=0
           for p in $(seq 1 "$pages"); do
             chars=$(pdftotext -f "$p" -l "$p" "$PDF" - | tr -d '[:space:]' | wc -m)
@@ -87,39 +97,39 @@ jobs:
             fi
           done
           test "$bad" -eq 0
-          pdffonts "$PDF" | grep -Eiq 'Garuda'
-          pdftotext "$PDF" - | grep -q 'แผนงานก่อสร้างห้วยขาแข้ง'
-          pdftoppm -png -f 1 -singlefile -r 110 "$PDF" data/pdf-preview-page-01 >/dev/null 2>&1
-          pdftoppm -png -f 2 -singlefile -r 110 "$PDF" data/pdf-preview-page-02 >/dev/null 2>&1
-      - name: Upload optional PDF artifact
-        if: ${{ vars.ENABLE_PDF_EXPORT == 'true' }}
+
+          grep -Eiq 'Garuda' data/pdf-fonts-v08.txt
+          grep -Fq 'แผนงานก่อสร้างห้วยขาแข้ง' "$NORMALIZED"
+          text_chars=$(tr -d '[:space:]' < "$TEXT" | wc -m)
+          test "$text_chars" -gt 50000
+
+          pdftoppm -png -f 1 -singlefile -r 120 "$PDF" data/pdf-v08-preview-page-01 >/dev/null 2>&1
+          pdftoppm -png -f 2 -singlefile -r 120 "$PDF" data/pdf-v08-preview-page-02 >/dev/null 2>&1
+
+      - name: Upload Thai PDF artifact
+        if: ${{ github.event_name == 'pull_request' }}
         uses: actions/upload-artifact@v4
         with:
-          name: integrated-master-schedule-pdf
+          name: integrated-master-schedule-pdf-v08-thai
           path: |
-            data/huai-kha-khaeng-integrated-master-gantt-v0.7.pdf
-            data/pdf-info.txt
-            data/pdf-fonts.txt
-            data/pdf-preview-page-01.png
-            data/pdf-preview-page-02.png
-      - name: Publish optional generated PDF snapshot
-        if: ${{ vars.ENABLE_PDF_EXPORT == 'true' && github.event_name == 'pull_request' }}
+            data/huai-kha-khaeng-integrated-master-gantt-v0.8-thai.pdf
+            data/pdf-info-v08.txt
+            data/pdf-fonts-v08.txt
+            data/pdf-text-v08.txt
+            data/pdf-text-v08-normalized.txt
+            data/pdf-v08-preview-page-01.png
+            data/pdf-v08-preview-page-02.png
+
+      - name: Publish Thai PDF snapshot branch
+        if: ${{ github.event_name == 'pull_request' }}
         shell: bash
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git checkout -B pdf-export
-          git add -f data/huai-kha-khaeng-integrated-master-gantt-v0.7.pdf data/pdf-preview-page-01.png data/pdf-preview-page-02.png
-          git commit -m 'Publish readable A3 Gantt PDF preview [skip ci]'
-          git push origin HEAD:pdf-export --force
-      - name: Publish optional generated PDF to main
-        if: ${{ vars.ENABLE_PDF_EXPORT == 'true' && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-        shell: bash
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -f data/huai-kha-khaeng-integrated-master-gantt-v0.7.pdf
-          if ! git diff --cached --quiet; then
-            git commit -m 'Update readable A3 Gantt PDF [skip ci]'
-            git push
-          fi
+          git checkout -B pdf-export-v08
+          git add -f \
+            data/huai-kha-khaeng-integrated-master-gantt-v0.8-thai.pdf \
+            data/pdf-v08-preview-page-01.png \
+            data/pdf-v08-preview-page-02.png
+          git commit -m 'Publish Thai Baseline v0.8 Gantt PDF preview [skip ci]'
+          git push origin HEAD:pdf-export-v08 --force
