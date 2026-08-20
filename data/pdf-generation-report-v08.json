@@ -1,4337 +1,704 @@
 {
   "output": "data/huai-kha-khaeng-integrated-master-gantt-v0.8-thai.pdf",
   "pages": 61,
-  "size_bytes": 904178,
+  "size_bytes": 913784,
   "activities": 1066,
   "plan_group_rows": 16,
   "area_group_rows": 178,
   "category_group_rows": 302,
   "task_rows": 1066,
-  "truncation_count": 617,
+  "truncation_count": 98,
   "truncation_by_type": {
-    "predecessor": 617
+    "predecessor": 98
   },
   "activity_title_truncations": [],
   "group_label_truncations": [],
   "all_truncations": [
     {
       "type": "predecessor",
-      "activity_id": "P01-PRE-REL",
-      "original": "P01-PRE-TEMP+1; P12-PRG-004; P03-SITE-A-REL; P02-M24",
-      "shown": "P01-PRE-TEMP+1; P12-PRG-00…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
       "activity_id": "P01-A21-REL",
       "original": "P03-SITE-A-REL; P07-QA-A-PREP; P08-HSE-A-REL; P10-ENV-A-REL; P01-PRE-REL",
-      "shown": "P03-SITE-A-REL; P07-QA-A-PR…",
-      "mode": "single-line"
+      "shown": "P03-SITE-A-REL; P07-QA-A-PREP;\nP08-HSE-A-REL; P10-ENV-A-REL; P01-PRE-R…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-A21-EW",
       "original": "P01-A21-CTRL(SS); P05-PLT-EARTH(SS); P11-A21-CIV-DOC; P08-A21-EARTH-PTW; P10-A21-EARTH-ENV",
-      "shown": "P01-A21-CTRL(SS); P05-PLT-E…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A21-BASE",
-      "original": "P01-A21-DRN(SS); P11-A21-CIV-DOC",
-      "shown": "P01-A21-DRN(SS); P11-A21-CIV…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A21-ELE",
-      "original": "P01-A21-UTIL(SS); P11-A21-UTIL-DOC",
-      "shown": "P01-A21-UTIL(SS); P11-A21-UTI…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A21-PAVE",
-      "original": "P01-A21-BASE(SS); P06-STR-10; P11-A21-LAND-DOC",
-      "shown": "P01-A21-BASE(SS); P06-STR-1…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A21-SOIL",
-      "original": "P01-A21-EW; P11-A21-LAND-DOC",
-      "shown": "P01-A21-EW; P11-A21-LAND-D…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A21-SOFT",
-      "original": "P01-A21-SOIL(SS); P06-LAND-10; P11-A21-LAND-DOC",
-      "shown": "P01-A21-SOIL(SS); P06-LAND-1…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A21-IRR",
-      "original": "P01-A21-UTIL; P01-A21-SOFT(SS); P11-A21-LAND-DOC",
-      "shown": "P01-A21-UTIL; P01-A21-SOFT(S…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A21-DRN",
-      "original": "P01-A21-EW(SS)+11; P11-A21-CIV-DOC",
-      "shown": "P01-A21-EW(SS)+11; P11-A21-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A21-UTIL",
-      "original": "P01-A21-EW(SS)+18; P06-STR-10; P11-A21-UTIL-DOC",
-      "shown": "P01-A21-EW(SS)+18; P06-STR-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A21-REST",
-      "original": "P01-A21-SOFT(SS); P01-A21-PAVE",
-      "shown": "P01-A21-SOFT(SS); P01-A21-P…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A21-FIN",
-      "original": "P01-A21-REST(SS); P01-A21-ELE; P01-A21-IRR(SS)",
-      "shown": "P01-A21-REST(SS); P01-A21-E…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A21-HO",
-      "original": "P01-A21-FIN; P01-A21-FURN; P01-A21-MON",
-      "shown": "P01-A21-FIN; P01-A21-FURN; P…",
-      "mode": "single-line"
+      "shown": "P01-A21-CTRL(SS); P05-PLT-EARTH(SS);\nP11-A21-CIV-DOC; P08-A21-EARTH-PTW; P1…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-A22-REL",
       "original": "P03-SITE-A-REL; P07-QA-A-PREP; P08-HSE-A-REL; P10-ENV-A-REL; P01-PRE-REL",
-      "shown": "P03-SITE-A-REL; P07-QA-A-PR…",
-      "mode": "single-line"
+      "shown": "P03-SITE-A-REL; P07-QA-A-PREP;\nP08-HSE-A-REL; P10-ENV-A-REL; P01-PRE-R…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-A22-EW",
       "original": "P01-A22-CTRL(SS); P05-PLT-EARTH(SS); P11-A22-CIV-DOC; P08-A22-EARTH-PTW; P10-A22-EARTH-ENV",
-      "shown": "P01-A22-CTRL(SS); P05-PLT-E…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A22-BASE",
-      "original": "P01-A22-DRN(SS); P11-A22-CIV-DOC",
-      "shown": "P01-A22-DRN(SS); P11-A22-CIV…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A22-ELE",
-      "original": "P01-A22-UTIL(SS); P11-A22-UTIL-DOC",
-      "shown": "P01-A22-UTIL(SS); P11-A22-UTI…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A22-PAVE",
-      "original": "P01-A22-BASE(SS); P06-STR-10; P11-A22-LAND-DOC",
-      "shown": "P01-A22-BASE(SS); P06-STR-1…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A22-SOIL",
-      "original": "P01-A22-EW; P11-A22-LAND-DOC",
-      "shown": "P01-A22-EW; P11-A22-LAND-D…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A22-SOFT",
-      "original": "P01-A22-SOIL(SS); P06-LAND-10; P11-A22-LAND-DOC",
-      "shown": "P01-A22-SOIL(SS); P06-LAND-1…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A22-IRR",
-      "original": "P01-A22-UTIL; P01-A22-SOFT(SS); P11-A22-LAND-DOC",
-      "shown": "P01-A22-UTIL; P01-A22-SOFT(S…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A22-DRN",
-      "original": "P01-A22-EW(SS)+11; P11-A22-CIV-DOC",
-      "shown": "P01-A22-EW(SS)+11; P11-A22-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A22-UTIL",
-      "original": "P01-A22-EW(SS)+18; P06-STR-10; P11-A22-UTIL-DOC",
-      "shown": "P01-A22-EW(SS)+18; P06-STR-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A22-REST",
-      "original": "P01-A22-SOFT(SS); P01-A22-PAVE",
-      "shown": "P01-A22-SOFT(SS); P01-A22-P…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A22-FIN",
-      "original": "P01-A22-REST(SS); P01-A22-ELE; P01-A22-IRR(SS)",
-      "shown": "P01-A22-REST(SS); P01-A22-E…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A22-HO",
-      "original": "P01-A22-FIN; P01-A22-FURN; P01-A22-MON",
-      "shown": "P01-A22-FIN; P01-A22-FURN; P…",
-      "mode": "single-line"
+      "shown": "P01-A22-CTRL(SS); P05-PLT-EARTH(SS);\nP11-A22-CIV-DOC; P08-A22-EARTH-PTW; P1…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-A23-REL",
       "original": "P03-SITE-A-REL; P07-QA-A-PREP; P08-HSE-A-REL; P10-ENV-A-REL; P01-PRE-REL",
-      "shown": "P03-SITE-A-REL; P07-QA-A-PR…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A23-EXC",
-      "original": "P01-A23-SUR(SS)+20; P05-PLT-EARTH(SS); P08-A23-EARTH-PTW; P10-A23-EARTH-ENV",
-      "shown": "P01-A23-SUR(SS)+20; P05-PLT-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A23-RBF",
-      "original": "P01-A23-BLI+2; P06-STR-10; P11-A23-STR-DOC",
-      "shown": "P01-A23-BLI+2; P06-STR-10; P1…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A23-FND",
-      "original": "P01-A23-HOLD; P05-PLT-STR(SS)",
-      "shown": "P01-A23-HOLD; P05-PLT-STR(S…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A23-GB",
-      "original": "P01-A23-FND(SS)+23; P05-PLT-STR(SS)",
-      "shown": "P01-A23-FND(SS)+23; P05-PLT-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A23-FRM",
-      "original": "P01-A23-GB(SS)+50; P05-PLT-STR(SS)",
-      "shown": "P01-A23-GB(SS)+50; P05-PLT-S…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A23-ROOF",
-      "original": "P01-A23-FRM(SS)+46; P05-PLT-STR(SS); P08-A23-WAH",
-      "shown": "P01-A23-FRM(SS)+46; P05-PLT…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A23-ENV",
-      "original": "P01-A23-ROOF(SS)+20; P06-ARC-10; P11-A23-ARC-DOC",
-      "shown": "P01-A23-ROOF(SS)+20; P06-AR…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A23-EWALL",
-      "original": "P01-A23-FRM(SS)+53; P06-ARC-10; P11-A23-ARC-DOC",
-      "shown": "P01-A23-FRM(SS)+53; P06-ARC…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A23-PART",
-      "original": "P01-A23-FRM(SS)+66; P11-A23-ARC-DOC",
-      "shown": "P01-A23-FRM(SS)+66; P11-A23-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A23-WFIN",
-      "original": "P01-A23-PART(SS)+86; P01-A23-MEP1(SS)+20",
-      "shown": "P01-A23-PART(SS)+86; P01-A2…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A23-DRW",
-      "original": "P01-A23-EWALL(SS); P06-ARC-10",
-      "shown": "P01-A23-EWALL(SS); P06-ARC-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A23-CEIL",
-      "original": "P01-A23-MEP1(SS)+66; P07-A23-CEIL-HOLD",
-      "shown": "P01-A23-MEP1(SS)+66; P07-A2…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A23-PNT",
-      "original": "P01-A23-WFIN(SS)+26; P01-A23-CEIL(SS)",
-      "shown": "P01-A23-WFIN(SS)+26; P01-A2…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A23-SAN",
-      "original": "P01-A23-PLB1; P01-A23-WFIN(SS)",
-      "shown": "P01-A23-PLB1; P01-A23-WFIN(…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A23-MEP1",
-      "original": "P01-A23-FRM(SS)+112; P05-PLT-MEP(SS); P11-A23-MEP-DOC",
-      "shown": "P01-A23-FRM(SS)+112; P05-PL…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A23-ELE1",
-      "original": "P01-A23-MEP1(SS)+7; P05-PLT-MEP(SS); P11-A23-MEP-DOC",
-      "shown": "P01-A23-MEP1(SS)+7; P05-PLT…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A23-ELE2",
-      "original": "P01-A23-ELE1; P01-A23-CEIL(SS); P06-MEP-10; P05-PLT-MEP(SS)",
-      "shown": "P01-A23-ELE1; P01-A23-CEIL(S…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A23-PLB1",
-      "original": "P01-A23-MEP1(SS); P05-PLT-MEP(SS); P11-A23-MEP-DOC",
-      "shown": "P01-A23-MEP1(SS); P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A23-HV1",
-      "original": "P01-A23-MEP1(SS); P05-PLT-MEP(SS); P11-A23-MEP-DOC",
-      "shown": "P01-A23-MEP1(SS); P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A23-HV2",
-      "original": "P01-A23-HV1; P06-MEP-10; P05-PLT-MEP(SS)",
-      "shown": "P01-A23-HV1; P06-MEP-10; P05…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A23-ICT1",
-      "original": "P01-A23-ELE1(SS)+39; P05-PLT-MEP(SS); P11-A23-MEP-DOC",
-      "shown": "P01-A23-ELE1(SS)+39; P05-PLT…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A23-ICT2",
-      "original": "P01-A23-ICT1+59; P06-ICT-10; P05-PLT-MEP(SS)",
-      "shown": "P01-A23-ICT1+59; P06-ICT-10; …",
-      "mode": "single-line"
+      "shown": "P03-SITE-A-REL; P07-QA-A-PREP;\nP08-HSE-A-REL; P10-ENV-A-REL; P01-PRE-R…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-A23-PRECOM",
       "original": "P01-A23-SAN(SS); P01-A23-ELE2(SS); P01-A23-HV2(SS); P01-A23-ICT2(SS)+49; P05-PLT-MEP(SS); P11-A23-TST-DOC; P08-A23-LOTO",
-      "shown": "P01-A23-SAN(SS); P01-A23-EL…",
-      "mode": "single-line"
+      "shown": "P01-A23-SAN(SS); P01-A23-ELE2(SS);\nP01-A23-HV2(SS); P01-A23-ICT2(SS)+49; P05-…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-A23-FUNC",
       "original": "P01-A23-PRECOM; P05-PLT-MEP(SS); P01-A23-ETST(FF); P01-A23-PTST(FF); P01-A23-HTST(FF); P01-A23-ITST(FF)",
-      "shown": "P01-A23-PRECOM; P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A23-COMM",
-      "original": "P01-A23-FUNC; P05-PLT-MEP(SS)",
-      "shown": "P01-A23-FUNC; P05-PLT-MEP(…",
-      "mode": "single-line"
+      "shown": "P01-A23-PRECOM; P05-PLT-MEP(SS);\nP01-A23-ETST(FF); P01-A23-PTST(FF); P01-A…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-A23-HO",
       "original": "P01-A23-CORR; P01-A23-ASB; P01-A23-COMM; P01-A23-ENV; P01-A23-DRW; P01-A23-FLR; P01-A23-PNT; P01-A23-FURN; P01-A23-EXT; P01-A23-EXC; P01-A23-EX01; P01-A23-EX02; P01-A23-EX03",
-      "shown": "P01-A23-CORR; P01-A23-ASB; …",
-      "mode": "single-line"
+      "shown": "P01-A23-CORR; P01-A23-ASB;\nP01-A23-COMM; P01-A23-ENV; P01-A23-DRW…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-A24-REL",
       "original": "P03-SITE-A-REL; P07-QA-A-PREP; P08-HSE-A-REL; P10-ENV-A-REL; P01-PRE-REL",
-      "shown": "P03-SITE-A-REL; P07-QA-A-PR…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A24-EXC",
-      "original": "P01-A24-SUR(SS)+14; P05-PLT-EARTH(SS); P08-A24-EARTH-PTW; P10-A24-EARTH-ENV",
-      "shown": "P01-A24-SUR(SS)+14; P05-PLT-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A24-RBF",
-      "original": "P01-A24-BLI; P06-STR-10; P11-A24-STR-DOC",
-      "shown": "P01-A24-BLI; P06-STR-10; P11-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A24-FND",
-      "original": "P01-A24-HOLD; P05-PLT-STR(SS)",
-      "shown": "P01-A24-HOLD; P05-PLT-STR(S…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A24-GB",
-      "original": "P01-A24-FND(SS)+9; P05-PLT-STR(SS)",
-      "shown": "P01-A24-FND(SS)+9; P05-PLT-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A24-FRM",
-      "original": "P01-A24-GB(SS)+18; P05-PLT-STR(SS)",
-      "shown": "P01-A24-GB(SS)+18; P05-PLT-S…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A24-ROOF",
-      "original": "P01-A24-FRM(SS)+32; P05-PLT-STR(SS); P08-A24-WAH",
-      "shown": "P01-A24-FRM(SS)+32; P05-PLT…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A24-ENV",
-      "original": "P01-A24-ROOF(SS)+14; P06-ARC-10; P11-A24-ARC-DOC",
-      "shown": "P01-A24-ROOF(SS)+14; P06-AR…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A24-EWALL",
-      "original": "P01-A24-FRM(SS)+37; P06-ARC-10; P11-A24-ARC-DOC",
-      "shown": "P01-A24-FRM(SS)+37; P06-ARC…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A24-PART",
-      "original": "P01-A24-FRM(SS)+46; P11-A24-ARC-DOC",
-      "shown": "P01-A24-FRM(SS)+46; P11-A24-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A24-WFIN",
-      "original": "P01-A24-PART(SS)+60; P01-A24-MEP1(SS)+14",
-      "shown": "P01-A24-PART(SS)+60; P01-A2…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A24-DRW",
-      "original": "P01-A24-EWALL(SS); P06-ARC-10",
-      "shown": "P01-A24-EWALL(SS); P06-ARC-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A24-CEIL",
-      "original": "P01-A24-MEP1(SS)+46; P07-A24-CEIL-HOLD",
-      "shown": "P01-A24-MEP1(SS)+46; P07-A2…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A24-PNT",
-      "original": "P01-A24-WFIN(SS)+18; P01-A24-CEIL(SS)",
-      "shown": "P01-A24-WFIN(SS)+18; P01-A2…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A24-SAN",
-      "original": "P01-A24-PLB1; P01-A24-WFIN(SS)",
-      "shown": "P01-A24-PLB1; P01-A24-WFIN(…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A24-MEP1",
-      "original": "P01-A24-FRM(SS)+37; P05-PLT-MEP(SS); P11-A24-MEP-DOC",
-      "shown": "P01-A24-FRM(SS)+37; P05-PLT…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A24-ELE1",
-      "original": "P01-A24-MEP1(SS); P05-PLT-MEP(SS); P11-A24-MEP-DOC",
-      "shown": "P01-A24-MEP1(SS); P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A24-ELE2",
-      "original": "P01-A24-ELE1; P01-A24-CEIL(SS); P06-MEP-10; P05-PLT-MEP(SS)",
-      "shown": "P01-A24-ELE1; P01-A24-CEIL(S…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A24-PLB1",
-      "original": "P01-A24-MEP1(SS); P05-PLT-MEP(SS); P11-A24-MEP-DOC",
-      "shown": "P01-A24-MEP1(SS); P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A24-HV1",
-      "original": "P01-A24-MEP1(SS); P05-PLT-MEP(SS); P11-A24-MEP-DOC",
-      "shown": "P01-A24-MEP1(SS); P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A24-HV2",
-      "original": "P01-A24-HV1; P06-MEP-10; P05-PLT-MEP(SS)",
-      "shown": "P01-A24-HV1; P06-MEP-10; P05…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A24-ICT1",
-      "original": "P01-A24-ELE1(SS); P05-PLT-MEP(SS); P11-A24-MEP-DOC",
-      "shown": "P01-A24-ELE1(SS); P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A24-ICT2",
-      "original": "P01-A24-ICT1; P06-ICT-10; P05-PLT-MEP(SS)",
-      "shown": "P01-A24-ICT1; P06-ICT-10; P05-…",
-      "mode": "single-line"
+      "shown": "P03-SITE-A-REL; P07-QA-A-PREP;\nP08-HSE-A-REL; P10-ENV-A-REL; P01-PRE-R…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-A24-PRECOM",
       "original": "P01-A24-SAN(SS); P01-A24-ELE2(SS); P01-A24-HV2(SS); P01-A24-ICT2(SS); P05-PLT-MEP(SS); P11-A24-TST-DOC; P08-A24-LOTO",
-      "shown": "P01-A24-SAN(SS); P01-A24-EL…",
-      "mode": "single-line"
+      "shown": "P01-A24-SAN(SS); P01-A24-ELE2(SS);\nP01-A24-HV2(SS); P01-A24-ICT2(SS); P05-PL…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-A24-FUNC",
       "original": "P01-A24-PRECOM; P05-PLT-MEP(SS); P01-A24-ETST(FF); P01-A24-PTST(FF); P01-A24-HTST(FF); P01-A24-KTST(FF)",
-      "shown": "P01-A24-PRECOM; P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A24-COMM",
-      "original": "P01-A24-FUNC; P05-PLT-MEP(SS)",
-      "shown": "P01-A24-FUNC; P05-PLT-MEP(…",
-      "mode": "single-line"
+      "shown": "P01-A24-PRECOM; P05-PLT-MEP(SS);\nP01-A24-ETST(FF); P01-A24-PTST(FF); P01-A…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-A24-HO",
       "original": "P01-A24-CORR; P01-A24-ASB; P01-A24-COMM; P01-A24-ENV; P01-A24-DRW; P01-A24-FLR; P01-A24-PNT; P01-A24-FURN; P01-A24-EXT; P01-A24-EXC; P01-A24-EX01; P01-A24-EX02; P01-A24-EX03",
-      "shown": "P01-A24-CORR; P01-A24-ASB; …",
-      "mode": "single-line"
+      "shown": "P01-A24-CORR; P01-A24-ASB;\nP01-A24-COMM; P01-A24-ENV; P01-A24-DRW…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-A25-REL",
       "original": "P03-SITE-A-REL; P07-QA-A-PREP; P08-HSE-A-REL; P10-ENV-A-REL; P01-PRE-REL",
-      "shown": "P03-SITE-A-REL; P07-QA-A-PR…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A25-EXC",
-      "original": "P01-A25-SUR(SS)+14; P05-PLT-EARTH(SS); P08-A25-EARTH-PTW; P10-A25-EARTH-ENV",
-      "shown": "P01-A25-SUR(SS)+14; P05-PLT-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A25-RBF",
-      "original": "P01-A25-BLI; P06-STR-10; P11-A25-STR-DOC",
-      "shown": "P01-A25-BLI; P06-STR-10; P11-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A25-FND",
-      "original": "P01-A25-HOLD; P05-PLT-STR(SS)",
-      "shown": "P01-A25-HOLD; P05-PLT-STR(S…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A25-GB",
-      "original": "P01-A25-FND(SS)+9; P05-PLT-STR(SS)",
-      "shown": "P01-A25-FND(SS)+9; P05-PLT-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A25-FRM",
-      "original": "P01-A25-GB(SS)+19; P05-PLT-STR(SS)",
-      "shown": "P01-A25-GB(SS)+19; P05-PLT-S…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A25-ROOF",
-      "original": "P01-A25-FRM(SS)+33; P05-PLT-STR(SS); P08-A25-WAH",
-      "shown": "P01-A25-FRM(SS)+33; P05-PLT…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A25-ENV",
-      "original": "P01-A25-ROOF(SS)+14; P06-ARC-10; P11-A25-ARC-DOC",
-      "shown": "P01-A25-ROOF(SS)+14; P06-AR…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A25-EWALL",
-      "original": "P01-A25-FRM(SS)+38; P06-ARC-10; P11-A25-ARC-DOC",
-      "shown": "P01-A25-FRM(SS)+38; P06-ARC…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A25-PART",
-      "original": "P01-A25-FRM(SS)+47; P11-A25-ARC-DOC",
-      "shown": "P01-A25-FRM(SS)+47; P11-A25-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A25-WFIN",
-      "original": "P01-A25-PART(SS)+61; P01-A25-MEP1(SS)+14",
-      "shown": "P01-A25-PART(SS)+61; P01-A2…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A25-DRW",
-      "original": "P01-A25-EWALL(SS); P06-ARC-10",
-      "shown": "P01-A25-EWALL(SS); P06-ARC-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A25-CEIL",
-      "original": "P01-A25-MEP1(SS)+47; P07-A25-CEIL-HOLD",
-      "shown": "P01-A25-MEP1(SS)+47; P07-A2…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A25-PNT",
-      "original": "P01-A25-WFIN(SS)+19; P01-A25-CEIL(SS)",
-      "shown": "P01-A25-WFIN(SS)+19; P01-A2…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A25-SAN",
-      "original": "P01-A25-PLB1; P01-A25-WFIN(SS)",
-      "shown": "P01-A25-PLB1; P01-A25-WFIN(…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A25-MEP1",
-      "original": "P01-A25-FRM(SS)+38; P05-PLT-MEP(SS); P11-A25-MEP-DOC",
-      "shown": "P01-A25-FRM(SS)+38; P05-PLT…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A25-ELE1",
-      "original": "P01-A25-MEP1(SS); P05-PLT-MEP(SS); P11-A25-MEP-DOC",
-      "shown": "P01-A25-MEP1(SS); P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A25-ELE2",
-      "original": "P01-A25-ELE1; P01-A25-CEIL(SS); P06-MEP-10; P05-PLT-MEP(SS)",
-      "shown": "P01-A25-ELE1; P01-A25-CEIL(S…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A25-PLB1",
-      "original": "P01-A25-MEP1(SS); P05-PLT-MEP(SS); P11-A25-MEP-DOC",
-      "shown": "P01-A25-MEP1(SS); P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A25-HV1",
-      "original": "P01-A25-MEP1(SS); P05-PLT-MEP(SS); P11-A25-MEP-DOC",
-      "shown": "P01-A25-MEP1(SS); P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A25-HV2",
-      "original": "P01-A25-HV1; P06-MEP-10; P05-PLT-MEP(SS)",
-      "shown": "P01-A25-HV1; P06-MEP-10; P05…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A25-ICT1",
-      "original": "P01-A25-ELE1(SS); P05-PLT-MEP(SS); P11-A25-MEP-DOC",
-      "shown": "P01-A25-ELE1(SS); P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A25-ICT2",
-      "original": "P01-A25-ICT1; P06-ICT-10; P05-PLT-MEP(SS)",
-      "shown": "P01-A25-ICT1; P06-ICT-10; P05-…",
-      "mode": "single-line"
+      "shown": "P03-SITE-A-REL; P07-QA-A-PREP;\nP08-HSE-A-REL; P10-ENV-A-REL; P01-PRE-R…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-A25-PRECOM",
       "original": "P01-A25-SAN(SS); P01-A25-ELE2(SS); P01-A25-HV2(SS); P01-A25-ICT2(SS); P05-PLT-MEP(SS); P11-A25-TST-DOC; P08-A25-LOTO",
-      "shown": "P01-A25-SAN(SS); P01-A25-EL…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A25-FUNC",
-      "original": "P01-A25-PRECOM; P05-PLT-MEP(SS); P01-A25-ETST(FF); P01-A25-ITST(FF)",
-      "shown": "P01-A25-PRECOM; P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A25-COMM",
-      "original": "P01-A25-FUNC; P05-PLT-MEP(SS)",
-      "shown": "P01-A25-FUNC; P05-PLT-MEP(…",
-      "mode": "single-line"
+      "shown": "P01-A25-SAN(SS); P01-A25-ELE2(SS);\nP01-A25-HV2(SS); P01-A25-ICT2(SS); P05-PL…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-A25-HO",
       "original": "P01-A25-CORR; P01-A25-ASB; P01-A25-COMM; P01-A25-ENV; P01-A25-DRW; P01-A25-FLR; P01-A25-PNT; P01-A25-FURN; P01-A25-EXT; P01-A25-EXC; P01-A25-EX01; P01-A25-EX02",
-      "shown": "P01-A25-CORR; P01-A25-ASB; …",
-      "mode": "single-line"
+      "shown": "P01-A25-CORR; P01-A25-ASB;\nP01-A25-COMM; P01-A25-ENV; P01-A25-DRW…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-A26-REL",
       "original": "P03-SITE-A-REL; P07-QA-A-PREP; P08-HSE-A-REL; P10-ENV-A-REL; P01-PRE-REL",
-      "shown": "P03-SITE-A-REL; P07-QA-A-PR…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A26-EXC",
-      "original": "P01-A26-SUR(SS)+13; P05-PLT-EARTH(SS); P08-A26-EARTH-PTW; P10-A26-EARTH-ENV",
-      "shown": "P01-A26-SUR(SS)+13; P05-PLT-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A26-RBF",
-      "original": "P01-A26-BLI; P06-STR-10; P11-A26-STR-DOC",
-      "shown": "P01-A26-BLI; P06-STR-10; P11-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A26-FND",
-      "original": "P01-A26-HOLD; P05-PLT-STR(SS)",
-      "shown": "P01-A26-HOLD; P05-PLT-STR(S…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A26-GB",
-      "original": "P01-A26-FND(SS)+9; P05-PLT-STR(SS)",
-      "shown": "P01-A26-FND(SS)+9; P05-PLT-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A26-FRM",
-      "original": "P01-A26-GB(SS)+17; P05-PLT-STR(SS)",
-      "shown": "P01-A26-GB(SS)+17; P05-PLT-S…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A26-ROOF",
-      "original": "P01-A26-FRM(SS)+30; P05-PLT-STR(SS); P08-A26-WAH",
-      "shown": "P01-A26-FRM(SS)+30; P05-PLT…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A26-ENV",
-      "original": "P01-A26-ROOF(SS)+13; P06-ARC-10; P11-A26-ARC-DOC",
-      "shown": "P01-A26-ROOF(SS)+13; P06-AR…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A26-EWALL",
-      "original": "P01-A26-FRM(SS)+34; P06-ARC-10; P11-A26-ARC-DOC",
-      "shown": "P01-A26-FRM(SS)+34; P06-ARC…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A26-PART",
-      "original": "P01-A26-FRM(SS)+43; P11-A26-ARC-DOC",
-      "shown": "P01-A26-FRM(SS)+43; P11-A26-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A26-WFIN",
-      "original": "P01-A26-PART(SS)+56; P01-A26-MEP1(SS)+13",
-      "shown": "P01-A26-PART(SS)+56; P01-A2…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A26-DRW",
-      "original": "P01-A26-EWALL(SS); P06-ARC-10",
-      "shown": "P01-A26-EWALL(SS); P06-ARC-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A26-CEIL",
-      "original": "P01-A26-MEP1(SS)+43; P07-A26-CEIL-HOLD",
-      "shown": "P01-A26-MEP1(SS)+43; P07-A2…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A26-PNT",
-      "original": "P01-A26-WFIN(SS)+17; P01-A26-CEIL(SS)",
-      "shown": "P01-A26-WFIN(SS)+17; P01-A2…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A26-SAN",
-      "original": "P01-A26-PLB1; P01-A26-WFIN(SS)",
-      "shown": "P01-A26-PLB1; P01-A26-WFIN(…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A26-MEP1",
-      "original": "P01-A26-FRM(SS)+34; P05-PLT-MEP(SS); P11-A26-MEP-DOC",
-      "shown": "P01-A26-FRM(SS)+34; P05-PLT…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A26-ELE1",
-      "original": "P01-A26-MEP1(SS); P05-PLT-MEP(SS); P11-A26-MEP-DOC",
-      "shown": "P01-A26-MEP1(SS); P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A26-ELE2",
-      "original": "P01-A26-ELE1; P01-A26-CEIL(SS); P06-MEP-10; P05-PLT-MEP(SS)",
-      "shown": "P01-A26-ELE1; P01-A26-CEIL(S…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A26-PLB1",
-      "original": "P01-A26-MEP1(SS); P05-PLT-MEP(SS); P11-A26-MEP-DOC",
-      "shown": "P01-A26-MEP1(SS); P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A26-HV1",
-      "original": "P01-A26-MEP1(SS); P05-PLT-MEP(SS); P11-A26-MEP-DOC",
-      "shown": "P01-A26-MEP1(SS); P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A26-HV2",
-      "original": "P01-A26-HV1; P06-MEP-10; P05-PLT-MEP(SS)",
-      "shown": "P01-A26-HV1; P06-MEP-10; P05…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A26-ICT1",
-      "original": "P01-A26-ELE1(SS); P05-PLT-MEP(SS); P11-A26-MEP-DOC",
-      "shown": "P01-A26-ELE1(SS); P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A26-ICT2",
-      "original": "P01-A26-ICT1; P06-ICT-10; P05-PLT-MEP(SS)",
-      "shown": "P01-A26-ICT1; P06-ICT-10; P05-…",
-      "mode": "single-line"
+      "shown": "P03-SITE-A-REL; P07-QA-A-PREP;\nP08-HSE-A-REL; P10-ENV-A-REL; P01-PRE-R…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-A26-PRECOM",
       "original": "P01-A26-SAN(SS); P01-A26-ELE2(SS); P01-A26-HV2(SS); P01-A26-ICT2(SS); P05-PLT-MEP(SS); P11-A26-TST-DOC; P08-A26-LOTO",
-      "shown": "P01-A26-SAN(SS); P01-A26-EL…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A26-FUNC",
-      "original": "P01-A26-PRECOM; P05-PLT-MEP(SS); P01-A26-WTST(FF); P01-A26-CTST(FF)",
-      "shown": "P01-A26-PRECOM; P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A26-COMM",
-      "original": "P01-A26-FUNC; P05-PLT-MEP(SS)",
-      "shown": "P01-A26-FUNC; P05-PLT-MEP(…",
-      "mode": "single-line"
+      "shown": "P01-A26-SAN(SS); P01-A26-ELE2(SS);\nP01-A26-HV2(SS); P01-A26-ICT2(SS); P05-PL…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-A26-HO",
       "original": "P01-A26-CORR; P01-A26-ASB; P01-A26-COMM; P01-A26-ENV; P01-A26-DRW; P01-A26-FLR; P01-A26-PNT; P01-A26-FURN; P01-A26-EXT; P01-A26-EXC; P01-A26-EX01; P01-A26-EX02; P01-A26-EX03",
-      "shown": "P01-A26-CORR; P01-A26-ASB; …",
-      "mode": "single-line"
+      "shown": "P01-A26-CORR; P01-A26-ASB;\nP01-A26-COMM; P01-A26-ENV; P01-A26-DRW…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-A27-REL",
       "original": "P03-SITE-A-REL; P07-QA-A-PREP; P08-HSE-A-REL; P10-ENV-A-REL; P01-PRE-REL",
-      "shown": "P03-SITE-A-REL; P07-QA-A-PR…",
-      "mode": "single-line"
+      "shown": "P03-SITE-A-REL; P07-QA-A-PREP;\nP08-HSE-A-REL; P10-ENV-A-REL; P01-PRE-R…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-A27-EW",
       "original": "P01-A27-CTRL(SS); P05-PLT-EARTH(SS); P11-A27-CIV-DOC; P08-A27-EARTH-PTW; P10-A27-EARTH-ENV",
-      "shown": "P01-A27-CTRL(SS); P05-PLT-E…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A27-BASE",
-      "original": "P01-A27-DRN(SS); P11-A27-CIV-DOC",
-      "shown": "P01-A27-DRN(SS); P11-A27-CIV…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A27-ELE",
-      "original": "P01-A27-UTIL(SS); P11-A27-UTIL-DOC",
-      "shown": "P01-A27-UTIL(SS); P11-A27-UTI…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A27-PAVE",
-      "original": "P01-A27-BASE(SS); P06-STR-10; P05-PLT-LAND(SS); P11-A27-LAND-DOC",
-      "shown": "P01-A27-BASE(SS); P06-STR-1…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A27-SOIL",
-      "original": "P01-A27-EW; P05-PLT-LAND(SS); P11-A27-LAND-DOC",
-      "shown": "P01-A27-EW; P05-PLT-LAND(S…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A27-SOFT",
-      "original": "P01-A27-SOIL(SS); P06-LAND-10; P05-PLT-LAND(SS); P11-A27-LAND-DOC",
-      "shown": "P01-A27-SOIL(SS); P06-LAND-1…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A27-IRR",
-      "original": "P01-A27-UTIL; P01-A27-SOFT(SS); P05-PLT-LAND(SS); P11-A27-LAND-DOC",
-      "shown": "P01-A27-UTIL; P01-A27-SOFT(S…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A27-DRN",
-      "original": "P01-A27-EW(SS)+15; P11-A27-CIV-DOC",
-      "shown": "P01-A27-EW(SS)+15; P11-A27-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A27-UTIL",
-      "original": "P01-A27-EW(SS)+24; P06-STR-10; P11-A27-UTIL-DOC",
-      "shown": "P01-A27-EW(SS)+24; P06-STR-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A27-REST",
-      "original": "P01-A27-SOFT(SS); P01-A27-PAVE; P05-PLT-LAND(SS)",
-      "shown": "P01-A27-SOFT(SS); P01-A27-P…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A27-FIN",
-      "original": "P01-A27-REST(SS); P01-A27-ELE; P01-A27-IRR(SS)",
-      "shown": "P01-A27-REST(SS); P01-A27-E…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A27-HO",
-      "original": "P01-A27-FIN; P01-A27-FURN; P01-A27-MON",
-      "shown": "P01-A27-FIN; P01-A27-FURN; P…",
-      "mode": "single-line"
+      "shown": "P01-A27-CTRL(SS); P05-PLT-EARTH(SS);\nP11-A27-CIV-DOC; P08-A27-EARTH-PTW; P1…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-A28-REL",
       "original": "P03-SITE-A-REL; P07-QA-A-PREP; P08-HSE-A-REL; P10-ENV-A-REL; P01-PRE-REL",
-      "shown": "P03-SITE-A-REL; P07-QA-A-PR…",
-      "mode": "single-line"
+      "shown": "P03-SITE-A-REL; P07-QA-A-PREP;\nP08-HSE-A-REL; P10-ENV-A-REL; P01-PRE-R…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-A28-EW",
       "original": "P01-A28-CTRL(SS); P05-PLT-EARTH(SS); P11-A28-CIV-DOC; P08-A28-EARTH-PTW; P10-A28-EARTH-ENV",
-      "shown": "P01-A28-CTRL(SS); P05-PLT-E…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A28-BASE",
-      "original": "P01-A28-DRN(SS); P11-A28-CIV-DOC",
-      "shown": "P01-A28-DRN(SS); P11-A28-CIV…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A28-ELE",
-      "original": "P01-A28-UTIL(SS); P11-A28-UTIL-DOC",
-      "shown": "P01-A28-UTIL(SS); P11-A28-UTI…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A28-PAVE",
-      "original": "P01-A28-BASE(SS); P06-STR-10; P05-PLT-LAND(SS); P11-A28-LAND-DOC",
-      "shown": "P01-A28-BASE(SS); P06-STR-1…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A28-SOIL",
-      "original": "P01-A28-EW; P05-PLT-LAND(SS); P11-A28-LAND-DOC",
-      "shown": "P01-A28-EW; P05-PLT-LAND(S…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A28-SOFT",
-      "original": "P01-A28-SOIL(SS); P06-LAND-10; P05-PLT-LAND(SS); P11-A28-LAND-DOC",
-      "shown": "P01-A28-SOIL(SS); P06-LAND-1…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A28-IRR",
-      "original": "P01-A28-UTIL; P01-A28-SOFT(SS); P05-PLT-LAND(SS); P11-A28-LAND-DOC",
-      "shown": "P01-A28-UTIL; P01-A28-SOFT(S…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A28-DRN",
-      "original": "P01-A28-EW(SS)+17; P11-A28-CIV-DOC",
-      "shown": "P01-A28-EW(SS)+17; P11-A28-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A28-UTIL",
-      "original": "P01-A28-EW(SS)+26; P06-STR-10; P11-A28-UTIL-DOC",
-      "shown": "P01-A28-EW(SS)+26; P06-STR-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A28-REST",
-      "original": "P01-A28-SOFT(SS); P01-A28-PAVE; P05-PLT-LAND(SS)",
-      "shown": "P01-A28-SOFT(SS); P01-A28-P…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A28-FIN",
-      "original": "P01-A28-REST(SS); P01-A28-ELE; P01-A28-IRR(SS)",
-      "shown": "P01-A28-REST(SS); P01-A28-E…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A28-HO",
-      "original": "P01-A28-FIN; P01-A28-FURN; P01-A28-MON",
-      "shown": "P01-A28-FIN; P01-A28-FURN; P…",
-      "mode": "single-line"
+      "shown": "P01-A28-CTRL(SS); P05-PLT-EARTH(SS);\nP11-A28-CIV-DOC; P08-A28-EARTH-PTW; P1…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-A29-REL",
       "original": "P03-SITE-A-REL; P07-QA-A-PREP; P08-HSE-A-REL; P10-ENV-A-REL; P01-PRE-REL",
-      "shown": "P03-SITE-A-REL; P07-QA-A-PR…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A29-EXC",
-      "original": "P01-A29-SUR(SS)+7; P05-PLT-EARTH(SS); P08-A29-EARTH-PTW; P10-A29-EARTH-ENV",
-      "shown": "P01-A29-SUR(SS)+7; P05-PLT-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A29-RBF",
-      "original": "P01-A29-BLI; P06-STR-10; P11-A29-STR-DOC",
-      "shown": "P01-A29-BLI; P06-STR-10; P11-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A29-FND",
-      "original": "P01-A29-HOLD; P05-PLT-STR(SS)",
-      "shown": "P01-A29-HOLD; P05-PLT-STR(S…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A29-GB",
-      "original": "P01-A29-FND(SS)+4; P05-PLT-STR(SS)",
-      "shown": "P01-A29-FND(SS)+4; P05-PLT-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A29-FRM",
-      "original": "P01-A29-GB(SS)+9; P05-PLT-STR(SS)",
-      "shown": "P01-A29-GB(SS)+9; P05-PLT-S…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A29-ROOF",
-      "original": "P01-A29-FRM(SS)+15; P05-PLT-STR(SS); P08-A29-WAH",
-      "shown": "P01-A29-FRM(SS)+15; P05-PLT…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A29-ENV",
-      "original": "P01-A29-ROOF(SS)+7; P06-ARC-10; P11-A29-ARC-DOC",
-      "shown": "P01-A29-ROOF(SS)+7; P06-AR…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A29-EWALL",
-      "original": "P01-A29-FRM(SS)+18; P06-ARC-10; P11-A29-ARC-DOC",
-      "shown": "P01-A29-FRM(SS)+18; P06-ARC…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A29-PART",
-      "original": "P01-A29-FRM(SS)+22; P11-A29-ARC-DOC",
-      "shown": "P01-A29-FRM(SS)+22; P11-A29-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A29-WFIN",
-      "original": "P01-A29-PART(SS)+29; P01-A29-MEP1(SS)+7",
-      "shown": "P01-A29-PART(SS)+29; P01-A2…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A29-DRW",
-      "original": "P01-A29-EWALL(SS); P06-ARC-10",
-      "shown": "P01-A29-EWALL(SS); P06-ARC-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A29-CEIL",
-      "original": "P01-A29-MEP1(SS)+22; P07-A29-CEIL-HOLD",
-      "shown": "P01-A29-MEP1(SS)+22; P07-A2…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A29-PNT",
-      "original": "P01-A29-WFIN(SS)+9; P01-A29-CEIL(SS)",
-      "shown": "P01-A29-WFIN(SS)+9; P01-A29-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A29-SAN",
-      "original": "P01-A29-PLB1; P01-A29-WFIN(SS)",
-      "shown": "P01-A29-PLB1; P01-A29-WFIN(…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A29-MEP1",
-      "original": "P01-A29-FRM(SS)+18; P05-PLT-MEP(SS); P11-A29-MEP-DOC",
-      "shown": "P01-A29-FRM(SS)+18; P05-PLT…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A29-ELE1",
-      "original": "P01-A29-MEP1(SS); P05-PLT-MEP(SS); P11-A29-MEP-DOC",
-      "shown": "P01-A29-MEP1(SS); P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A29-ELE2",
-      "original": "P01-A29-ELE1; P01-A29-CEIL(SS); P06-MEP-10; P05-PLT-MEP(SS)",
-      "shown": "P01-A29-ELE1; P01-A29-CEIL(S…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A29-PLB1",
-      "original": "P01-A29-MEP1(SS); P05-PLT-MEP(SS); P11-A29-MEP-DOC",
-      "shown": "P01-A29-MEP1(SS); P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A29-HV1",
-      "original": "P01-A29-MEP1(SS); P05-PLT-MEP(SS); P11-A29-MEP-DOC",
-      "shown": "P01-A29-MEP1(SS); P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A29-HV2",
-      "original": "P01-A29-HV1; P06-MEP-10; P05-PLT-MEP(SS)",
-      "shown": "P01-A29-HV1; P06-MEP-10; P05…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A29-ICT1",
-      "original": "P01-A29-ELE1(SS); P05-PLT-MEP(SS); P11-A29-MEP-DOC",
-      "shown": "P01-A29-ELE1(SS); P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A29-ICT2",
-      "original": "P01-A29-ICT1; P06-ICT-10; P05-PLT-MEP(SS)",
-      "shown": "P01-A29-ICT1; P06-ICT-10; P05-…",
-      "mode": "single-line"
+      "shown": "P03-SITE-A-REL; P07-QA-A-PREP;\nP08-HSE-A-REL; P10-ENV-A-REL; P01-PRE-R…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-A29-PRECOM",
       "original": "P01-A29-SAN(SS); P01-A29-ELE2(SS); P01-A29-HV2(SS); P01-A29-ICT2(SS); P05-PLT-MEP(SS); P11-A29-TST-DOC; P08-A29-LOTO",
-      "shown": "P01-A29-SAN(SS); P01-A29-EL…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A29-FUNC",
-      "original": "P01-A29-PRECOM; P05-PLT-MEP(SS); P01-A29-ETST(FF); P01-A29-PTST(FF)",
-      "shown": "P01-A29-PRECOM; P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-A29-COMM",
-      "original": "P01-A29-FUNC; P05-PLT-MEP(SS)",
-      "shown": "P01-A29-FUNC; P05-PLT-MEP(…",
-      "mode": "single-line"
+      "shown": "P01-A29-SAN(SS); P01-A29-ELE2(SS);\nP01-A29-HV2(SS); P01-A29-ICT2(SS); P05-PL…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-A29-HO",
       "original": "P01-A29-CORR; P01-A29-ASB; P01-A29-COMM; P01-A29-ENV; P01-A29-DRW; P01-A29-FLR; P01-A29-PNT; P01-A29-FURN; P01-A29-EXT; P01-A29-EXC",
-      "shown": "P01-A29-CORR; P01-A29-ASB; …",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-CP05-GATE",
-      "original": "P01-A23-HO; P01-A24-HO; P01-A25-HO; P01-A26-HO; P01-A29-HO",
-      "shown": "P01-A23-HO; P01-A24-HO; P01-…",
-      "mode": "single-line"
+      "shown": "P01-A29-CORR; P01-A29-ASB;\nP01-A29-COMM; P01-A29-ENV; P01-A29-DRW…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-B31-REL",
       "original": "P03-SITE-B-REL; P07-QA-B-PREP; P08-HSE-B-REL; P10-ENV-B-REL; P01-PRE-REL",
-      "shown": "P03-SITE-B-REL; P07-QA-B-PR…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B31-EXC",
-      "original": "P01-B31-SUR(SS)+8; P05-PLT-EARTH(SS); P08-B31-EARTH-PTW; P10-B31-EARTH-ENV",
-      "shown": "P01-B31-SUR(SS)+8; P05-PLT-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B31-RBF",
-      "original": "P01-B31-BLI; P06-STR-10; P11-B31-STR-DOC",
-      "shown": "P01-B31-BLI; P06-STR-10; P11-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B31-FND",
-      "original": "P01-B31-HOLD; P05-PLT-STR(SS)",
-      "shown": "P01-B31-HOLD; P05-PLT-STR(S…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B31-GB",
-      "original": "P01-B31-FND(SS)+5; P05-PLT-STR(SS)",
-      "shown": "P01-B31-FND(SS)+5; P05-PLT-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B31-FRM",
-      "original": "P01-B31-GB(SS)+10; P05-PLT-STR(SS)",
-      "shown": "P01-B31-GB(SS)+10; P05-PLT-S…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B31-ROOF",
-      "original": "P01-B31-FRM(SS)+18; P05-PLT-STR(SS); P08-B31-WAH",
-      "shown": "P01-B31-FRM(SS)+18; P05-PLT…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B31-ENV",
-      "original": "P01-B31-ROOF(SS)+8; P06-ARC-10; P11-B31-ARC-DOC",
-      "shown": "P01-B31-ROOF(SS)+8; P06-AR…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B31-EWALL",
-      "original": "P01-B31-FRM(SS)+21; P06-ARC-10; P11-B31-ARC-DOC",
-      "shown": "P01-B31-FRM(SS)+21; P06-ARC…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B31-PART",
-      "original": "P01-B31-FRM(SS)+26; P11-B31-ARC-DOC",
-      "shown": "P01-B31-FRM(SS)+26; P11-B31-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B31-WFIN",
-      "original": "P01-B31-PART(SS)+34; P01-B31-MEP1(SS)+8",
-      "shown": "P01-B31-PART(SS)+34; P01-B3…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B31-DRW",
-      "original": "P01-B31-EWALL(SS); P06-ARC-10",
-      "shown": "P01-B31-EWALL(SS); P06-ARC-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B31-CEIL",
-      "original": "P01-B31-MEP1(SS)+26; P07-B31-CEIL-HOLD",
-      "shown": "P01-B31-MEP1(SS)+26; P07-B3…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B31-PNT",
-      "original": "P01-B31-WFIN(SS)+10; P01-B31-CEIL(SS)",
-      "shown": "P01-B31-WFIN(SS)+10; P01-B3…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B31-SAN",
-      "original": "P01-B31-PLB1; P01-B31-WFIN(SS)",
-      "shown": "P01-B31-PLB1; P01-B31-WFIN(…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B31-MEP1",
-      "original": "P01-B31-FRM(SS)+21; P05-PLT-MEP(SS); P11-B31-MEP-DOC",
-      "shown": "P01-B31-FRM(SS)+21; P05-PLT…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B31-ELE1",
-      "original": "P01-B31-MEP1(SS); P05-PLT-MEP(SS); P11-B31-MEP-DOC",
-      "shown": "P01-B31-MEP1(SS); P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B31-ELE2",
-      "original": "P01-B31-ELE1; P01-B31-CEIL(SS); P06-MEP-10; P05-PLT-MEP(SS)",
-      "shown": "P01-B31-ELE1; P01-B31-CEIL(S…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B31-PLB1",
-      "original": "P01-B31-MEP1(SS); P05-PLT-MEP(SS); P11-B31-MEP-DOC",
-      "shown": "P01-B31-MEP1(SS); P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B31-HV1",
-      "original": "P01-B31-MEP1(SS); P05-PLT-MEP(SS); P11-B31-MEP-DOC",
-      "shown": "P01-B31-MEP1(SS); P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B31-HV2",
-      "original": "P01-B31-HV1; P06-MEP-10; P05-PLT-MEP(SS)",
-      "shown": "P01-B31-HV1; P06-MEP-10; P05…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B31-ICT1",
-      "original": "P01-B31-ELE1(SS); P05-PLT-MEP(SS); P11-B31-MEP-DOC",
-      "shown": "P01-B31-ELE1(SS); P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B31-ICT2",
-      "original": "P01-B31-ICT1; P06-ICT-10; P05-PLT-MEP(SS)",
-      "shown": "P01-B31-ICT1; P06-ICT-10; P05-…",
-      "mode": "single-line"
+      "shown": "P03-SITE-B-REL; P07-QA-B-PREP;\nP08-HSE-B-REL; P10-ENV-B-REL; P01-PRE-R…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-B31-PRECOM",
       "original": "P01-B31-SAN(SS); P01-B31-ELE2(SS); P01-B31-HV2(SS); P01-B31-ICT2(SS); P05-PLT-MEP(SS); P11-B31-TST-DOC; P08-B31-LOTO",
-      "shown": "P01-B31-SAN(SS); P01-B31-EL…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B31-FUNC",
-      "original": "P01-B31-PRECOM; P05-PLT-MEP(SS); P01-B31-PTST(FF); P01-B31-ETST(FF)",
-      "shown": "P01-B31-PRECOM; P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B31-COMM",
-      "original": "P01-B31-FUNC; P05-PLT-MEP(SS)",
-      "shown": "P01-B31-FUNC; P05-PLT-MEP(…",
-      "mode": "single-line"
+      "shown": "P01-B31-SAN(SS); P01-B31-ELE2(SS);\nP01-B31-HV2(SS); P01-B31-ICT2(SS); P05-PL…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-B31-HO",
       "original": "P01-B31-CORR; P01-B31-ASB; P01-B31-COMM; P01-B31-ENV; P01-B31-DRW; P01-B31-FLR; P01-B31-PNT; P01-B31-FURN; P01-B31-EXT; P01-B31-EXC",
-      "shown": "P01-B31-CORR; P01-B31-ASB; …",
-      "mode": "single-line"
+      "shown": "P01-B31-CORR; P01-B31-ASB;\nP01-B31-COMM; P01-B31-ENV; P01-B31-DRW…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-B32-REL",
       "original": "P03-SITE-B-REL; P07-QA-B-PREP; P08-HSE-B-REL; P10-ENV-B-REL; P01-PRE-REL",
-      "shown": "P03-SITE-B-REL; P07-QA-B-PR…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B32-EXC",
-      "original": "P01-B32-SUR(SS)+6; P05-PLT-EARTH(SS); P08-B32-EARTH-PTW; P10-B32-EARTH-ENV",
-      "shown": "P01-B32-SUR(SS)+6; P05-PLT-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B32-RBF",
-      "original": "P01-B32-BLI; P06-STR-10; P11-B32-STR-DOC",
-      "shown": "P01-B32-BLI; P06-STR-10; P11-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B32-FND",
-      "original": "P01-B32-HOLD; P05-PLT-STR(SS)",
-      "shown": "P01-B32-HOLD; P05-PLT-STR(S…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B32-GB",
-      "original": "P01-B32-FND(SS)+4; P05-PLT-STR(SS)",
-      "shown": "P01-B32-FND(SS)+4; P05-PLT-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B32-FRM",
-      "original": "P01-B32-GB(SS)+8; P05-PLT-STR(SS)",
-      "shown": "P01-B32-GB(SS)+8; P05-PLT-S…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B32-ROOF",
-      "original": "P01-B32-FRM(SS)+15; P05-PLT-STR(SS); P08-B32-WAH",
-      "shown": "P01-B32-FRM(SS)+15; P05-PLT…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B32-ENV",
-      "original": "P01-B32-ROOF(SS)+6; P06-ARC-10; P11-B32-ARC-DOC",
-      "shown": "P01-B32-ROOF(SS)+6; P06-AR…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B32-EWALL",
-      "original": "P01-B32-FRM(SS)+17; P06-ARC-10; P11-B32-ARC-DOC",
-      "shown": "P01-B32-FRM(SS)+17; P06-ARC…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B32-PART",
-      "original": "P01-B32-FRM(SS)+21; P11-B32-ARC-DOC",
-      "shown": "P01-B32-FRM(SS)+21; P11-B32-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B32-WFIN",
-      "original": "P01-B32-PART(SS)+27; P01-B32-MEP1(SS)+6",
-      "shown": "P01-B32-PART(SS)+27; P01-B3…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B32-DRW",
-      "original": "P01-B32-EWALL(SS); P06-ARC-10",
-      "shown": "P01-B32-EWALL(SS); P06-ARC-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B32-CEIL",
-      "original": "P01-B32-MEP1(SS)+21; P07-B32-CEIL-HOLD",
-      "shown": "P01-B32-MEP1(SS)+21; P07-B3…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B32-PNT",
-      "original": "P01-B32-WFIN(SS)+8; P01-B32-CEIL(SS)",
-      "shown": "P01-B32-WFIN(SS)+8; P01-B32-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B32-SAN",
-      "original": "P01-B32-PLB1; P01-B32-WFIN(SS)",
-      "shown": "P01-B32-PLB1; P01-B32-WFIN(…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B32-MEP1",
-      "original": "P01-B32-FRM(SS)+17; P05-PLT-MEP(SS); P11-B32-MEP-DOC",
-      "shown": "P01-B32-FRM(SS)+17; P05-PLT…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B32-ELE1",
-      "original": "P01-B32-MEP1(SS); P05-PLT-MEP(SS); P11-B32-MEP-DOC",
-      "shown": "P01-B32-MEP1(SS); P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B32-ELE2",
-      "original": "P01-B32-ELE1; P01-B32-CEIL(SS); P06-MEP-10; P05-PLT-MEP(SS)",
-      "shown": "P01-B32-ELE1; P01-B32-CEIL(S…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B32-PLB1",
-      "original": "P01-B32-MEP1(SS); P05-PLT-MEP(SS); P11-B32-MEP-DOC",
-      "shown": "P01-B32-MEP1(SS); P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B32-HV1",
-      "original": "P01-B32-MEP1(SS); P05-PLT-MEP(SS); P11-B32-MEP-DOC",
-      "shown": "P01-B32-MEP1(SS); P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B32-HV2",
-      "original": "P01-B32-HV1; P06-MEP-10; P05-PLT-MEP(SS)",
-      "shown": "P01-B32-HV1; P06-MEP-10; P05…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B32-ICT1",
-      "original": "P01-B32-ELE1(SS); P05-PLT-MEP(SS); P11-B32-MEP-DOC",
-      "shown": "P01-B32-ELE1(SS); P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B32-ICT2",
-      "original": "P01-B32-ICT1; P06-ICT-10; P05-PLT-MEP(SS)",
-      "shown": "P01-B32-ICT1; P06-ICT-10; P05-…",
-      "mode": "single-line"
+      "shown": "P03-SITE-B-REL; P07-QA-B-PREP;\nP08-HSE-B-REL; P10-ENV-B-REL; P01-PRE-R…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-B32-PRECOM",
       "original": "P01-B32-SAN(SS); P01-B32-ELE2(SS); P01-B32-HV2(SS); P01-B32-ICT2(SS); P05-PLT-MEP(SS); P11-B32-TST-DOC; P08-B32-LOTO",
-      "shown": "P01-B32-SAN(SS); P01-B32-EL…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B32-FUNC",
-      "original": "P01-B32-PRECOM; P05-PLT-MEP(SS); P01-B32-WTST(FF); P01-B32-ETST(FF)",
-      "shown": "P01-B32-PRECOM; P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B32-COMM",
-      "original": "P01-B32-FUNC; P05-PLT-MEP(SS)",
-      "shown": "P01-B32-FUNC; P05-PLT-MEP(…",
-      "mode": "single-line"
+      "shown": "P01-B32-SAN(SS); P01-B32-ELE2(SS);\nP01-B32-HV2(SS); P01-B32-ICT2(SS); P05-PL…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-B32-HO",
       "original": "P01-B32-CORR; P01-B32-ASB; P01-B32-COMM; P01-B32-ENV; P01-B32-DRW; P01-B32-FLR; P01-B32-PNT; P01-B32-FURN; P01-B32-EXT; P01-B32-EXC",
-      "shown": "P01-B32-CORR; P01-B32-ASB; …",
-      "mode": "single-line"
+      "shown": "P01-B32-CORR; P01-B32-ASB;\nP01-B32-COMM; P01-B32-ENV; P01-B32-DRW…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-B33-REL",
       "original": "P03-SITE-B-REL; P07-QA-B-PREP; P08-HSE-B-REL; P10-ENV-B-REL; P01-PRE-REL",
-      "shown": "P03-SITE-B-REL; P07-QA-B-PR…",
-      "mode": "single-line"
+      "shown": "P03-SITE-B-REL; P07-QA-B-PREP;\nP08-HSE-B-REL; P10-ENV-B-REL; P01-PRE-R…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-B33-EW",
       "original": "P01-B33-CTRL(SS); P05-PLT-EARTH(SS); P11-B33-CIV-DOC; P08-B33-EARTH-PTW; P10-B33-EARTH-ENV",
-      "shown": "P01-B33-CTRL(SS); P05-PLT-E…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B33-BASE",
-      "original": "P01-B33-DRN(SS); P11-B33-CIV-DOC",
-      "shown": "P01-B33-DRN(SS); P11-B33-CIV…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B33-ELE",
-      "original": "P01-B33-UTIL(SS); P11-B33-UTIL-DOC",
-      "shown": "P01-B33-UTIL(SS); P11-B33-UTI…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B33-PAVE",
-      "original": "P01-B33-BASE(SS); P06-STR-10; P05-PLT-LAND(SS); P11-B33-LAND-DOC",
-      "shown": "P01-B33-BASE(SS); P06-STR-1…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B33-SOIL",
-      "original": "P01-B33-EW; P05-PLT-LAND(SS); P11-B33-LAND-DOC",
-      "shown": "P01-B33-EW; P05-PLT-LAND(S…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B33-SOFT",
-      "original": "P01-B33-SOIL(SS); P06-LAND-10; P05-PLT-LAND(SS); P11-B33-LAND-DOC",
-      "shown": "P01-B33-SOIL(SS); P06-LAND-1…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B33-IRR",
-      "original": "P01-B33-UTIL; P01-B33-SOFT(SS); P05-PLT-LAND(SS); P11-B33-LAND-DOC",
-      "shown": "P01-B33-UTIL; P01-B33-SOFT(S…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B33-DRN",
-      "original": "P01-B33-EW(SS)+17; P11-B33-CIV-DOC",
-      "shown": "P01-B33-EW(SS)+17; P11-B33-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B33-UTIL",
-      "original": "P01-B33-EW(SS)+26; P06-STR-10; P11-B33-UTIL-DOC",
-      "shown": "P01-B33-EW(SS)+26; P06-STR-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B33-REST",
-      "original": "P01-B33-SOFT(SS); P01-B33-PAVE; P05-PLT-LAND(SS)",
-      "shown": "P01-B33-SOFT(SS); P01-B33-P…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B33-FIN",
-      "original": "P01-B33-REST(SS); P01-B33-ELE; P01-B33-IRR(SS)",
-      "shown": "P01-B33-REST(SS); P01-B33-E…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B33-HO",
-      "original": "P01-B33-FIN; P01-B33-FURN; P01-B33-MON",
-      "shown": "P01-B33-FIN; P01-B33-FURN; P…",
-      "mode": "single-line"
+      "shown": "P01-B33-CTRL(SS); P05-PLT-EARTH(SS);\nP11-B33-CIV-DOC; P08-B33-EARTH-PTW; P1…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-B34-REL",
       "original": "P03-SITE-B-REL; P07-QA-B-PREP; P08-HSE-B-REL; P10-ENV-B-REL; P01-PRE-REL",
-      "shown": "P03-SITE-B-REL; P07-QA-B-PR…",
-      "mode": "single-line"
+      "shown": "P03-SITE-B-REL; P07-QA-B-PREP;\nP08-HSE-B-REL; P10-ENV-B-REL; P01-PRE-R…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-B34-EW",
       "original": "P01-B34-CTRL(SS); P05-PLT-EARTH(SS); P11-B34-CIV-DOC; P08-B34-EARTH-PTW; P10-B34-EARTH-ENV",
-      "shown": "P01-B34-CTRL(SS); P05-PLT-E…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B34-BASE",
-      "original": "P01-B34-DRN(SS); P11-B34-CIV-DOC",
-      "shown": "P01-B34-DRN(SS); P11-B34-CIV…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B34-ELE",
-      "original": "P01-B34-UTIL(SS); P11-B34-UTIL-DOC",
-      "shown": "P01-B34-UTIL(SS); P11-B34-UTI…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B34-PAVE",
-      "original": "P01-B34-BASE(SS); P06-STR-10; P05-PLT-LAND(SS); P11-B34-LAND-DOC",
-      "shown": "P01-B34-BASE(SS); P06-STR-1…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B34-SOIL",
-      "original": "P01-B34-EW; P05-PLT-LAND(SS); P11-B34-LAND-DOC",
-      "shown": "P01-B34-EW; P05-PLT-LAND(S…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B34-SOFT",
-      "original": "P01-B34-SOIL(SS); P06-LAND-10; P05-PLT-LAND(SS); P11-B34-LAND-DOC",
-      "shown": "P01-B34-SOIL(SS); P06-LAND-1…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B34-IRR",
-      "original": "P01-B34-UTIL; P01-B34-SOFT(SS); P05-PLT-LAND(SS); P11-B34-LAND-DOC",
-      "shown": "P01-B34-UTIL; P01-B34-SOFT(S…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B34-DRN",
-      "original": "P01-B34-EW(SS)+9; P11-B34-CIV-DOC",
-      "shown": "P01-B34-EW(SS)+9; P11-B34-CI…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B34-UTIL",
-      "original": "P01-B34-EW(SS)+14; P06-STR-10; P11-B34-UTIL-DOC",
-      "shown": "P01-B34-EW(SS)+14; P06-STR-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B34-REST",
-      "original": "P01-B34-SOFT(SS); P01-B34-PAVE; P05-PLT-LAND(SS)",
-      "shown": "P01-B34-SOFT(SS); P01-B34-P…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B34-FIN",
-      "original": "P01-B34-REST(SS); P01-B34-ELE; P01-B34-IRR(SS)",
-      "shown": "P01-B34-REST(SS); P01-B34-E…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-B34-HO",
-      "original": "P01-B34-FIN; P01-B34-FURN; P01-B34-MON",
-      "shown": "P01-B34-FIN; P01-B34-FURN; P…",
-      "mode": "single-line"
+      "shown": "P01-B34-CTRL(SS); P05-PLT-EARTH(SS);\nP11-B34-CIV-DOC; P08-B34-EARTH-PTW; P1…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-C41-REL",
       "original": "P03-SITE-C-REL; P07-QA-C-PREP; P08-HSE-C-REL; P10-ENV-C-REL; P01-PRE-REL",
-      "shown": "P03-SITE-C-REL; P07-QA-C-PR…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C41-EXC",
-      "original": "P01-C41-SUR(SS)+8; P05-PLT-EARTH(SS); P08-C41-EARTH-PTW; P10-C41-EARTH-ENV",
-      "shown": "P01-C41-SUR(SS)+8; P05-PLT-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C41-RBF",
-      "original": "P01-C41-BLI; P06-STR-10; P11-C41-STR-DOC",
-      "shown": "P01-C41-BLI; P06-STR-10; P11-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C41-FND",
-      "original": "P01-C41-HOLD; P05-PLT-STR(SS)",
-      "shown": "P01-C41-HOLD; P05-PLT-STR(…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C41-GB",
-      "original": "P01-C41-FND(SS)+6; P05-PLT-STR(SS)",
-      "shown": "P01-C41-FND(SS)+6; P05-PLT-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C41-FRM",
-      "original": "P01-C41-GB(SS)+11; P05-PLT-STR(SS)",
-      "shown": "P01-C41-GB(SS)+11; P05-PLT-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C41-ROOF",
-      "original": "P01-C41-FRM(SS)+20; P05-PLT-STR(SS); P08-C41-WAH",
-      "shown": "P01-C41-FRM(SS)+20; P05-PLT…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C41-ENV",
-      "original": "P01-C41-ROOF(SS)+8; P06-ARC-10; P11-C41-ARC-DOC",
-      "shown": "P01-C41-ROOF(SS)+8; P06-AR…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C41-EWALL",
-      "original": "P01-C41-FRM(SS)+22; P06-ARC-10; P11-C41-ARC-DOC",
-      "shown": "P01-C41-FRM(SS)+22; P06-AR…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C41-PART",
-      "original": "P01-C41-FRM(SS)+28; P11-C41-ARC-DOC",
-      "shown": "P01-C41-FRM(SS)+28; P11-C41…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C41-WFIN",
-      "original": "P01-C41-PART(SS)+36; P01-C41-MEP1(SS)+8",
-      "shown": "P01-C41-PART(SS)+36; P01-C4…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C41-DRW",
-      "original": "P01-C41-EWALL(SS); P06-ARC-10",
-      "shown": "P01-C41-EWALL(SS); P06-ARC-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C41-CEIL",
-      "original": "P01-C41-MEP1(SS)+28; P07-C41-CEIL-HOLD",
-      "shown": "P01-C41-MEP1(SS)+28; P07-C4…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C41-PNT",
-      "original": "P01-C41-WFIN(SS)+11; P01-C41-CEIL(SS)",
-      "shown": "P01-C41-WFIN(SS)+11; P01-C4…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C41-SAN",
-      "original": "P01-C41-PLB1; P01-C41-WFIN(SS)",
-      "shown": "P01-C41-PLB1; P01-C41-WFIN(…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C41-MEP1",
-      "original": "P01-C41-FRM(SS)+22; P05-PLT-MEP(SS); P11-C41-MEP-DOC",
-      "shown": "P01-C41-FRM(SS)+22; P05-PLT…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C41-ELE1",
-      "original": "P01-C41-MEP1(SS); P05-PLT-MEP(SS); P11-C41-MEP-DOC",
-      "shown": "P01-C41-MEP1(SS); P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C41-ELE2",
-      "original": "P01-C41-ELE1; P01-C41-CEIL(SS); P06-MEP-10; P05-PLT-MEP(SS)",
-      "shown": "P01-C41-ELE1; P01-C41-CEIL(S…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C41-PLB1",
-      "original": "P01-C41-MEP1(SS); P05-PLT-MEP(SS); P11-C41-MEP-DOC",
-      "shown": "P01-C41-MEP1(SS); P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C41-HV1",
-      "original": "P01-C41-MEP1(SS); P05-PLT-MEP(SS); P11-C41-MEP-DOC",
-      "shown": "P01-C41-MEP1(SS); P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C41-HV2",
-      "original": "P01-C41-HV1; P06-MEP-10; P05-PLT-MEP(SS)",
-      "shown": "P01-C41-HV1; P06-MEP-10; P0…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C41-ICT1",
-      "original": "P01-C41-ELE1(SS); P05-PLT-MEP(SS); P11-C41-MEP-DOC",
-      "shown": "P01-C41-ELE1(SS); P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C41-ICT2",
-      "original": "P01-C41-ICT1; P06-ICT-10; P05-PLT-MEP(SS)",
-      "shown": "P01-C41-ICT1; P06-ICT-10; P05…",
-      "mode": "single-line"
+      "shown": "P03-SITE-C-REL; P07-QA-C-PREP;\nP08-HSE-C-REL; P10-ENV-C-REL; P01-PRE-R…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-C41-PRECOM",
       "original": "P01-C41-SAN(SS); P01-C41-ELE2(SS); P01-C41-HV2(SS); P01-C41-ICT2(SS); P05-PLT-MEP(SS); P11-C41-TST-DOC; P08-C41-LOTO",
-      "shown": "P01-C41-SAN(SS); P01-C41-EL…",
-      "mode": "single-line"
+      "shown": "P01-C41-SAN(SS); P01-C41-ELE2(SS);\nP01-C41-HV2(SS); P01-C41-ICT2(SS); P05-PL…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-C41-FUNC",
       "original": "P01-C41-PRECOM; P05-PLT-MEP(SS); P01-C41-ETST(FF); P01-C41-PTST(FF); P01-C41-ITST(FF)",
-      "shown": "P01-C41-PRECOM; P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C41-COMM",
-      "original": "P01-C41-FUNC; P05-PLT-MEP(SS)",
-      "shown": "P01-C41-FUNC; P05-PLT-MEP(…",
-      "mode": "single-line"
+      "shown": "P01-C41-PRECOM; P05-PLT-MEP(SS);\nP01-C41-ETST(FF); P01-C41-PTST(FF); P01-C…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-C41-HO",
       "original": "P01-C41-CORR; P01-C41-ASB; P01-C41-COMM; P01-C41-ENV; P01-C41-DRW; P01-C41-FLR; P01-C41-PNT; P01-C41-FURN; P01-C41-EXT; P01-C41-EXC",
-      "shown": "P01-C41-CORR; P01-C41-ASB; …",
-      "mode": "single-line"
+      "shown": "P01-C41-CORR; P01-C41-ASB;\nP01-C41-COMM; P01-C41-ENV; P01-C41-DR…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-C42A-REL",
       "original": "P03-SITE-C-REL; P07-QA-C-PREP; P08-HSE-C-REL; P10-ENV-C-REL; P01-PRE-REL",
-      "shown": "P03-SITE-C-REL; P07-QA-C-PR…",
-      "mode": "single-line"
+      "shown": "P03-SITE-C-REL; P07-QA-C-PREP;\nP08-HSE-C-REL; P10-ENV-C-REL; P01-PRE-R…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-C42A-EXC",
       "original": "P01-C42A-SUR(SS)+8; P05-PLT-EARTH(SS); P08-C42A-EARTH-PTW; P10-C42A-EARTH-ENV",
-      "shown": "P01-C42A-SUR(SS)+8; P05-PLT…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42A-RBF",
-      "original": "P01-C42A-BLI; P06-STR-10; P11-C42A-STR-DOC",
-      "shown": "P01-C42A-BLI; P06-STR-10; P1…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42A-FMF",
-      "original": "P01-C42A-BLI; P11-C42A-STR-DOC",
-      "shown": "P01-C42A-BLI; P11-C42A-STR-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42A-FND",
-      "original": "P01-C42A-HOLD; P05-PLT-STR(SS)",
-      "shown": "P01-C42A-HOLD; P05-PLT-STR…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42A-GB",
-      "original": "P01-C42A-FND(SS)+5; P05-PLT-STR(SS)",
-      "shown": "P01-C42A-FND(SS)+5; P05-PLT…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42A-FRM",
-      "original": "P01-C42A-GB(SS)+10; P05-PLT-STR(SS)",
-      "shown": "P01-C42A-GB(SS)+10; P05-PLT…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42A-ROOF",
-      "original": "P01-C42A-FRM(SS)+18; P05-PLT-STR(SS); P08-C42A-WAH",
-      "shown": "P01-C42A-FRM(SS)+18; P05-PL…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42A-ENV",
-      "original": "P01-C42A-ROOF(SS)+8; P06-ARC-10; P11-C42A-ARC-DOC",
-      "shown": "P01-C42A-ROOF(SS)+8; P06-A…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42A-EWALL",
-      "original": "P01-C42A-FRM(SS)+21; P06-ARC-10; P11-C42A-ARC-DOC",
-      "shown": "P01-C42A-FRM(SS)+21; P06-AR…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42A-PART",
-      "original": "P01-C42A-FRM(SS)+26; P11-C42A-ARC-DOC",
-      "shown": "P01-C42A-FRM(SS)+26; P11-C4…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42A-WFIN",
-      "original": "P01-C42A-PART(SS)+34; P01-C42A-MEP1(SS)+8",
-      "shown": "P01-C42A-PART(SS)+34; P01-C…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42A-DRW",
-      "original": "P01-C42A-EWALL(SS); P06-ARC-10",
-      "shown": "P01-C42A-EWALL(SS); P06-AR…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42A-CEIL",
-      "original": "P01-C42A-MEP1(SS)+26; P07-C42A-CEIL-HOLD",
-      "shown": "P01-C42A-MEP1(SS)+26; P07-C…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42A-PNT",
-      "original": "P01-C42A-WFIN(SS)+10; P01-C42A-CEIL(SS)",
-      "shown": "P01-C42A-WFIN(SS)+10; P01-C…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42A-SAN",
-      "original": "P01-C42A-PLB1; P01-C42A-WFIN(SS)",
-      "shown": "P01-C42A-PLB1; P01-C42A-WFI…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42A-MEP1",
-      "original": "P01-C42A-FRM(SS)+21; P05-PLT-MEP(SS); P11-C42A-MEP-DOC",
-      "shown": "P01-C42A-FRM(SS)+21; P05-PL…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42A-ELE1",
-      "original": "P01-C42A-MEP1(SS); P05-PLT-MEP(SS); P11-C42A-MEP-DOC",
-      "shown": "P01-C42A-MEP1(SS); P05-PLT-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42A-ELE2",
-      "original": "P01-C42A-ELE1; P01-C42A-CEIL(SS); P06-MEP-10; P05-PLT-MEP(SS)",
-      "shown": "P01-C42A-ELE1; P01-C42A-CEI…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42A-PLB1",
-      "original": "P01-C42A-MEP1(SS); P05-PLT-MEP(SS); P11-C42A-MEP-DOC",
-      "shown": "P01-C42A-MEP1(SS); P05-PLT-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42A-HV1",
-      "original": "P01-C42A-MEP1(SS); P05-PLT-MEP(SS); P11-C42A-MEP-DOC",
-      "shown": "P01-C42A-MEP1(SS); P05-PLT-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42A-HV2",
-      "original": "P01-C42A-HV1; P06-MEP-10; P05-PLT-MEP(SS)",
-      "shown": "P01-C42A-HV1; P06-MEP-10; P…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42A-ICT1",
-      "original": "P01-C42A-ELE1(SS); P05-PLT-MEP(SS); P11-C42A-MEP-DOC",
-      "shown": "P01-C42A-ELE1(SS); P05-PLT-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42A-ICT2",
-      "original": "P01-C42A-ICT1; P06-ICT-10; P05-PLT-MEP(SS)",
-      "shown": "P01-C42A-ICT1; P06-ICT-10; P0…",
-      "mode": "single-line"
+      "shown": "P01-C42A-SUR(SS)+8; P05-PLT-EARTH(SS);\nP08-C42A-EARTH-PTW; P10-C42A-EARTH-EN…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-C42A-PRECOM",
       "original": "P01-C42A-SAN(SS); P01-C42A-ELE2(SS); P01-C42A-HV2(SS); P01-C42A-ICT2(SS); P05-PLT-MEP(SS); P11-C42A-TST-DOC; P08-C42A-LOTO",
-      "shown": "P01-C42A-SAN(SS); P01-C42A-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42A-FUNC",
-      "original": "P01-C42A-PRECOM; P05-PLT-MEP(SS); P01-C42A-ETST(FF); P01-C42A-PTST(FF)",
-      "shown": "P01-C42A-PRECOM; P05-PLT-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42A-COMM",
-      "original": "P01-C42A-FUNC; P05-PLT-MEP(SS)",
-      "shown": "P01-C42A-FUNC; P05-PLT-MEP…",
-      "mode": "single-line"
+      "shown": "P01-C42A-SAN(SS); P01-C42A-ELE2(SS);\nP01-C42A-HV2(SS); P01-C42A-ICT2(SS); P05-…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-C42A-HO",
       "original": "P01-C42A-CORR; P01-C42A-ASB; P01-C42A-COMM; P01-C42A-ENV; P01-C42A-DRW; P01-C42A-FLR; P01-C42A-PNT; P01-C42A-FURN; P01-C42A-EXT; P01-C42A-EXC",
-      "shown": "P01-C42A-CORR; P01-C42A-AS…",
-      "mode": "single-line"
+      "shown": "P01-C42A-CORR; P01-C42A-ASB;\nP01-C42A-COMM; P01-C42A-ENV; P01-C42A-…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-C42B-REL",
       "original": "P03-SITE-C-REL; P07-QA-C-PREP; P08-HSE-C-REL; P10-ENV-C-REL; P01-PRE-REL",
-      "shown": "P03-SITE-C-REL; P07-QA-C-PR…",
-      "mode": "single-line"
+      "shown": "P03-SITE-C-REL; P07-QA-C-PREP;\nP08-HSE-C-REL; P10-ENV-C-REL; P01-PRE-R…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-C42B-EXC",
       "original": "P01-C42B-SUR(SS)+8; P05-PLT-EARTH(SS); P08-C42B-EARTH-PTW; P10-C42B-EARTH-ENV",
-      "shown": "P01-C42B-SUR(SS)+8; P05-PLT…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42B-RBF",
-      "original": "P01-C42B-BLI; P06-STR-10; P11-C42B-STR-DOC",
-      "shown": "P01-C42B-BLI; P06-STR-10; P1…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42B-FMF",
-      "original": "P01-C42B-BLI; P11-C42B-STR-DOC",
-      "shown": "P01-C42B-BLI; P11-C42B-STR-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42B-FND",
-      "original": "P01-C42B-HOLD; P05-PLT-STR(SS)",
-      "shown": "P01-C42B-HOLD; P05-PLT-STR…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42B-GB",
-      "original": "P01-C42B-FND(SS)+5; P05-PLT-STR(SS)",
-      "shown": "P01-C42B-FND(SS)+5; P05-PLT…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42B-FRM",
-      "original": "P01-C42B-GB(SS)+10; P05-PLT-STR(SS)",
-      "shown": "P01-C42B-GB(SS)+10; P05-PLT…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42B-ROOF",
-      "original": "P01-C42B-FRM(SS)+18; P05-PLT-STR(SS); P08-C42B-WAH",
-      "shown": "P01-C42B-FRM(SS)+18; P05-PL…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42B-ENV",
-      "original": "P01-C42B-ROOF(SS)+8; P06-ARC-10; P11-C42B-ARC-DOC",
-      "shown": "P01-C42B-ROOF(SS)+8; P06-A…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42B-EWALL",
-      "original": "P01-C42B-FRM(SS)+21; P06-ARC-10; P11-C42B-ARC-DOC",
-      "shown": "P01-C42B-FRM(SS)+21; P06-AR…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42B-PART",
-      "original": "P01-C42B-FRM(SS)+26; P11-C42B-ARC-DOC",
-      "shown": "P01-C42B-FRM(SS)+26; P11-C4…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42B-WFIN",
-      "original": "P01-C42B-PART(SS)+34; P01-C42B-MEP1(SS)+8",
-      "shown": "P01-C42B-PART(SS)+34; P01-C…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42B-DRW",
-      "original": "P01-C42B-EWALL(SS); P06-ARC-10",
-      "shown": "P01-C42B-EWALL(SS); P06-AR…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42B-CEIL",
-      "original": "P01-C42B-MEP1(SS)+26; P07-C42B-CEIL-HOLD",
-      "shown": "P01-C42B-MEP1(SS)+26; P07-C…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42B-PNT",
-      "original": "P01-C42B-WFIN(SS)+10; P01-C42B-CEIL(SS)",
-      "shown": "P01-C42B-WFIN(SS)+10; P01-C…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42B-SAN",
-      "original": "P01-C42B-PLB1; P01-C42B-WFIN(SS)",
-      "shown": "P01-C42B-PLB1; P01-C42B-WFI…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42B-MEP1",
-      "original": "P01-C42B-FRM(SS)+21; P05-PLT-MEP(SS); P11-C42B-MEP-DOC",
-      "shown": "P01-C42B-FRM(SS)+21; P05-PL…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42B-ELE1",
-      "original": "P01-C42B-MEP1(SS); P05-PLT-MEP(SS); P11-C42B-MEP-DOC",
-      "shown": "P01-C42B-MEP1(SS); P05-PLT-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42B-ELE2",
-      "original": "P01-C42B-ELE1; P01-C42B-CEIL(SS); P06-MEP-10; P05-PLT-MEP(SS)",
-      "shown": "P01-C42B-ELE1; P01-C42B-CEI…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42B-PLB1",
-      "original": "P01-C42B-MEP1(SS); P05-PLT-MEP(SS); P11-C42B-MEP-DOC",
-      "shown": "P01-C42B-MEP1(SS); P05-PLT-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42B-HV1",
-      "original": "P01-C42B-MEP1(SS); P05-PLT-MEP(SS); P11-C42B-MEP-DOC",
-      "shown": "P01-C42B-MEP1(SS); P05-PLT-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42B-HV2",
-      "original": "P01-C42B-HV1; P06-MEP-10; P05-PLT-MEP(SS)",
-      "shown": "P01-C42B-HV1; P06-MEP-10; P…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42B-ICT1",
-      "original": "P01-C42B-ELE1(SS); P05-PLT-MEP(SS); P11-C42B-MEP-DOC",
-      "shown": "P01-C42B-ELE1(SS); P05-PLT-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42B-ICT2",
-      "original": "P01-C42B-ICT1; P06-ICT-10; P05-PLT-MEP(SS)",
-      "shown": "P01-C42B-ICT1; P06-ICT-10; P0…",
-      "mode": "single-line"
+      "shown": "P01-C42B-SUR(SS)+8; P05-PLT-EARTH(SS);\nP08-C42B-EARTH-PTW; P10-C42B-EARTH-EN…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-C42B-PRECOM",
       "original": "P01-C42B-SAN(SS); P01-C42B-ELE2(SS); P01-C42B-HV2(SS); P01-C42B-ICT2(SS); P05-PLT-MEP(SS); P11-C42B-TST-DOC; P08-C42B-LOTO",
-      "shown": "P01-C42B-SAN(SS); P01-C42B-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42B-FUNC",
-      "original": "P01-C42B-PRECOM; P05-PLT-MEP(SS); P01-C42B-ETST(FF); P01-C42B-PTST(FF)",
-      "shown": "P01-C42B-PRECOM; P05-PLT-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42B-COMM",
-      "original": "P01-C42B-FUNC; P05-PLT-MEP(SS)",
-      "shown": "P01-C42B-FUNC; P05-PLT-MEP…",
-      "mode": "single-line"
+      "shown": "P01-C42B-SAN(SS); P01-C42B-ELE2(SS);\nP01-C42B-HV2(SS); P01-C42B-ICT2(SS); P05-…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-C42B-HO",
       "original": "P01-C42B-CORR; P01-C42B-ASB; P01-C42B-COMM; P01-C42B-ENV; P01-C42B-DRW; P01-C42B-FLR; P01-C42B-PNT; P01-C42B-FURN; P01-C42B-EXT; P01-C42B-EXC",
-      "shown": "P01-C42B-CORR; P01-C42B-AS…",
-      "mode": "single-line"
+      "shown": "P01-C42B-CORR; P01-C42B-ASB;\nP01-C42B-COMM; P01-C42B-ENV; P01-C42B-…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-C42C-REL",
       "original": "P03-SITE-C-REL; P07-QA-C-PREP; P08-HSE-C-REL; P10-ENV-C-REL; P01-PRE-REL",
-      "shown": "P03-SITE-C-REL; P07-QA-C-PR…",
-      "mode": "single-line"
+      "shown": "P03-SITE-C-REL; P07-QA-C-PREP;\nP08-HSE-C-REL; P10-ENV-C-REL; P01-PRE-R…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-C42C-EXC",
       "original": "P01-C42C-SUR(SS)+8; P05-PLT-EARTH(SS); P08-C42C-EARTH-PTW; P10-C42C-EARTH-ENV",
-      "shown": "P01-C42C-SUR(SS)+8; P05-PLT…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42C-RBF",
-      "original": "P01-C42C-BLI; P06-STR-10; P11-C42C-STR-DOC",
-      "shown": "P01-C42C-BLI; P06-STR-10; P1…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42C-FMF",
-      "original": "P01-C42C-BLI; P11-C42C-STR-DOC",
-      "shown": "P01-C42C-BLI; P11-C42C-STR-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42C-FND",
-      "original": "P01-C42C-HOLD; P05-PLT-STR(SS)",
-      "shown": "P01-C42C-HOLD; P05-PLT-STR…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42C-GB",
-      "original": "P01-C42C-FND(SS)+5; P05-PLT-STR(SS)",
-      "shown": "P01-C42C-FND(SS)+5; P05-PLT…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42C-FRM",
-      "original": "P01-C42C-GB(SS)+10; P05-PLT-STR(SS)",
-      "shown": "P01-C42C-GB(SS)+10; P05-PLT…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42C-ROOF",
-      "original": "P01-C42C-FRM(SS)+18; P05-PLT-STR(SS); P08-C42C-WAH",
-      "shown": "P01-C42C-FRM(SS)+18; P05-PL…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42C-ENV",
-      "original": "P01-C42C-ROOF(SS)+8; P06-ARC-10; P11-C42C-ARC-DOC",
-      "shown": "P01-C42C-ROOF(SS)+8; P06-A…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42C-EWALL",
-      "original": "P01-C42C-FRM(SS)+21; P06-ARC-10; P11-C42C-ARC-DOC",
-      "shown": "P01-C42C-FRM(SS)+21; P06-A…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42C-PART",
-      "original": "P01-C42C-FRM(SS)+26; P11-C42C-ARC-DOC",
-      "shown": "P01-C42C-FRM(SS)+26; P11-C4…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42C-WFIN",
-      "original": "P01-C42C-PART(SS)+34; P01-C42C-MEP1(SS)+8",
-      "shown": "P01-C42C-PART(SS)+34; P01-C…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42C-DRW",
-      "original": "P01-C42C-EWALL(SS); P06-ARC-10",
-      "shown": "P01-C42C-EWALL(SS); P06-AR…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42C-CEIL",
-      "original": "P01-C42C-MEP1(SS)+26; P07-C42C-CEIL-HOLD",
-      "shown": "P01-C42C-MEP1(SS)+26; P07-C…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42C-PNT",
-      "original": "P01-C42C-WFIN(SS)+10; P01-C42C-CEIL(SS)",
-      "shown": "P01-C42C-WFIN(SS)+10; P01-C…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42C-SAN",
-      "original": "P01-C42C-PLB1; P01-C42C-WFIN(SS)",
-      "shown": "P01-C42C-PLB1; P01-C42C-WFI…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42C-MEP1",
-      "original": "P01-C42C-FRM(SS)+21; P05-PLT-MEP(SS); P11-C42C-MEP-DOC",
-      "shown": "P01-C42C-FRM(SS)+21; P05-PL…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42C-ELE1",
-      "original": "P01-C42C-MEP1(SS); P05-PLT-MEP(SS); P11-C42C-MEP-DOC",
-      "shown": "P01-C42C-MEP1(SS); P05-PLT-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42C-ELE2",
-      "original": "P01-C42C-ELE1; P01-C42C-CEIL(SS); P06-MEP-10; P05-PLT-MEP(SS)",
-      "shown": "P01-C42C-ELE1; P01-C42C-CEI…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42C-PLB1",
-      "original": "P01-C42C-MEP1(SS); P05-PLT-MEP(SS); P11-C42C-MEP-DOC",
-      "shown": "P01-C42C-MEP1(SS); P05-PLT-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42C-HV1",
-      "original": "P01-C42C-MEP1(SS); P05-PLT-MEP(SS); P11-C42C-MEP-DOC",
-      "shown": "P01-C42C-MEP1(SS); P05-PLT-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42C-HV2",
-      "original": "P01-C42C-HV1; P06-MEP-10; P05-PLT-MEP(SS)",
-      "shown": "P01-C42C-HV1; P06-MEP-10; P…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42C-ICT1",
-      "original": "P01-C42C-ELE1(SS); P05-PLT-MEP(SS); P11-C42C-MEP-DOC",
-      "shown": "P01-C42C-ELE1(SS); P05-PLT-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42C-ICT2",
-      "original": "P01-C42C-ICT1; P06-ICT-10; P05-PLT-MEP(SS)",
-      "shown": "P01-C42C-ICT1; P06-ICT-10; P0…",
-      "mode": "single-line"
+      "shown": "P01-C42C-SUR(SS)+8; P05-PLT-EARTH(SS);\nP08-C42C-EARTH-PTW; P10-C42C-EARTH-E…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-C42C-PRECOM",
       "original": "P01-C42C-SAN(SS); P01-C42C-ELE2(SS); P01-C42C-HV2(SS); P01-C42C-ICT2(SS); P05-PLT-MEP(SS); P11-C42C-TST-DOC; P08-C42C-LOTO",
-      "shown": "P01-C42C-SAN(SS); P01-C42C-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42C-FUNC",
-      "original": "P01-C42C-PRECOM; P05-PLT-MEP(SS); P01-C42C-ETST(FF); P01-C42C-PTST(FF)",
-      "shown": "P01-C42C-PRECOM; P05-PLT-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C42C-COMM",
-      "original": "P01-C42C-FUNC; P05-PLT-MEP(SS)",
-      "shown": "P01-C42C-FUNC; P05-PLT-MEP…",
-      "mode": "single-line"
+      "shown": "P01-C42C-SAN(SS); P01-C42C-ELE2(SS);\nP01-C42C-HV2(SS); P01-C42C-ICT2(SS); P05-…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-C42C-HO",
       "original": "P01-C42C-CORR; P01-C42C-ASB; P01-C42C-COMM; P01-C42C-ENV; P01-C42C-DRW; P01-C42C-FLR; P01-C42C-PNT; P01-C42C-FURN; P01-C42C-EXT; P01-C42C-EXC",
-      "shown": "P01-C42C-CORR; P01-C42C-AS…",
-      "mode": "single-line"
+      "shown": "P01-C42C-CORR; P01-C42C-ASB;\nP01-C42C-COMM; P01-C42C-ENV; P01-C42C-…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-C43-REL",
       "original": "P03-SITE-C-REL; P07-QA-C-PREP; P08-HSE-C-REL; P10-ENV-C-REL; P01-PRE-REL",
-      "shown": "P03-SITE-C-REL; P07-QA-C-PR…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C43-EXC",
-      "original": "P01-C43-SUR(SS)+6; P05-PLT-EARTH(SS); P08-C43-EARTH-PTW; P10-C43-EARTH-ENV",
-      "shown": "P01-C43-SUR(SS)+6; P05-PLT-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C43-RBF",
-      "original": "P01-C43-BLI; P06-STR-10; P11-C43-STR-DOC",
-      "shown": "P01-C43-BLI; P06-STR-10; P11-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C43-FND",
-      "original": "P01-C43-HOLD; P05-PLT-STR(SS)",
-      "shown": "P01-C43-HOLD; P05-PLT-STR(…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C43-GB",
-      "original": "P01-C43-FND(SS)+4; P05-PLT-STR(SS)",
-      "shown": "P01-C43-FND(SS)+4; P05-PLT-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C43-FRM",
-      "original": "P01-C43-GB(SS)+8; P05-PLT-STR(SS)",
-      "shown": "P01-C43-GB(SS)+8; P05-PLT-S…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C43-ROOF",
-      "original": "P01-C43-FRM(SS)+15; P05-PLT-STR(SS); P08-C43-WAH",
-      "shown": "P01-C43-FRM(SS)+15; P05-PLT…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C43-ENV",
-      "original": "P01-C43-ROOF(SS)+6; P06-ARC-10; P11-C43-ARC-DOC",
-      "shown": "P01-C43-ROOF(SS)+6; P06-AR…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C43-EWALL",
-      "original": "P01-C43-FRM(SS)+17; P06-ARC-10; P11-C43-ARC-DOC",
-      "shown": "P01-C43-FRM(SS)+17; P06-AR…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C43-PART",
-      "original": "P01-C43-FRM(SS)+21; P11-C43-ARC-DOC",
-      "shown": "P01-C43-FRM(SS)+21; P11-C43…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C43-WFIN",
-      "original": "P01-C43-PART(SS)+27; P01-C43-MEP1(SS)+6",
-      "shown": "P01-C43-PART(SS)+27; P01-C4…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C43-DRW",
-      "original": "P01-C43-EWALL(SS); P06-ARC-10",
-      "shown": "P01-C43-EWALL(SS); P06-ARC-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C43-CEIL",
-      "original": "P01-C43-MEP1(SS)+21; P07-C43-CEIL-HOLD",
-      "shown": "P01-C43-MEP1(SS)+21; P07-C4…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C43-PNT",
-      "original": "P01-C43-WFIN(SS)+8; P01-C43-CEIL(SS)",
-      "shown": "P01-C43-WFIN(SS)+8; P01-C43-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C43-SAN",
-      "original": "P01-C43-PLB1; P01-C43-WFIN(SS)",
-      "shown": "P01-C43-PLB1; P01-C43-WFIN(…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C43-MEP1",
-      "original": "P01-C43-FRM(SS)+17; P05-PLT-MEP(SS); P11-C43-MEP-DOC",
-      "shown": "P01-C43-FRM(SS)+17; P05-PLT…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C43-ELE1",
-      "original": "P01-C43-MEP1(SS); P05-PLT-MEP(SS); P11-C43-MEP-DOC",
-      "shown": "P01-C43-MEP1(SS); P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C43-ELE2",
-      "original": "P01-C43-ELE1; P01-C43-CEIL(SS); P06-MEP-10; P05-PLT-MEP(SS)",
-      "shown": "P01-C43-ELE1; P01-C43-CEIL(S…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C43-PLB1",
-      "original": "P01-C43-MEP1(SS); P05-PLT-MEP(SS); P11-C43-MEP-DOC",
-      "shown": "P01-C43-MEP1(SS); P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C43-HV1",
-      "original": "P01-C43-MEP1(SS); P05-PLT-MEP(SS); P11-C43-MEP-DOC",
-      "shown": "P01-C43-MEP1(SS); P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C43-HV2",
-      "original": "P01-C43-HV1; P06-MEP-10; P05-PLT-MEP(SS)",
-      "shown": "P01-C43-HV1; P06-MEP-10; P0…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C43-ICT1",
-      "original": "P01-C43-ELE1(SS); P05-PLT-MEP(SS); P11-C43-MEP-DOC",
-      "shown": "P01-C43-ELE1(SS); P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C43-ICT2",
-      "original": "P01-C43-ICT1; P06-ICT-10; P05-PLT-MEP(SS)",
-      "shown": "P01-C43-ICT1; P06-ICT-10; P05…",
-      "mode": "single-line"
+      "shown": "P03-SITE-C-REL; P07-QA-C-PREP;\nP08-HSE-C-REL; P10-ENV-C-REL; P01-PRE-R…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-C43-PRECOM",
       "original": "P01-C43-SAN(SS); P01-C43-ELE2(SS); P01-C43-HV2(SS); P01-C43-ICT2(SS); P05-PLT-MEP(SS); P11-C43-TST-DOC; P08-C43-LOTO",
-      "shown": "P01-C43-SAN(SS); P01-C43-EL…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C43-FUNC",
-      "original": "P01-C43-PRECOM; P05-PLT-MEP(SS); P01-C43-PTST(FF); P01-C43-CTST(FF)",
-      "shown": "P01-C43-PRECOM; P05-PLT-M…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-C43-COMM",
-      "original": "P01-C43-FUNC; P05-PLT-MEP(SS)",
-      "shown": "P01-C43-FUNC; P05-PLT-MEP(…",
-      "mode": "single-line"
+      "shown": "P01-C43-SAN(SS); P01-C43-ELE2(SS);\nP01-C43-HV2(SS); P01-C43-ICT2(SS); P05-PL…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-C43-HO",
       "original": "P01-C43-CORR; P01-C43-ASB; P01-C43-COMM; P01-C43-ENV; P01-C43-DRW; P01-C43-FLR; P01-C43-PNT; P01-C43-FURN; P01-C43-EXT; P01-C43-EXC; P01-C43-EX01",
-      "shown": "P01-C43-CORR; P01-C43-ASB; …",
-      "mode": "single-line"
+      "shown": "P01-C43-CORR; P01-C43-ASB;\nP01-C43-COMM; P01-C43-ENV; P01-C43-DR…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-D51-REL",
       "original": "P03-SITE-D-REL; P07-QA-D-PREP; P08-HSE-D-REL; P10-ENV-D-REL; P16-HER-D-PERMIT; P01-PRE-REL",
-      "shown": "P03-SITE-D-REL; P07-QA-D-PR…",
-      "mode": "single-line"
+      "shown": "P03-SITE-D-REL; P07-QA-D-PREP;\nP08-HSE-D-REL; P10-ENV-D-REL; P16-HER-D…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-D51-EW",
       "original": "P01-D51-CTRL(SS); P05-PLT-EARTH(SS); P05-PLT-D(SS); P11-D51-CIV-DOC; P08-D51-EARTH-PTW; P10-D51-EARTH-ENV",
-      "shown": "P01-D51-CTRL(SS); P05-PLT-E…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D51-BASE",
-      "original": "P01-D51-DRN(SS); P05-PLT-D(SS); P11-D51-CIV-DOC",
-      "shown": "P01-D51-DRN(SS); P05-PLT-D(…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D51-ELE",
-      "original": "P01-D51-UTIL(SS); P05-PLT-D(SS); P11-D51-UTIL-DOC",
-      "shown": "P01-D51-UTIL(SS); P05-PLT-D(…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D51-PAVE",
-      "original": "P01-D51-BASE(SS); P06-D-10; P05-PLT-D(SS); P11-D51-LAND-DOC",
-      "shown": "P01-D51-BASE(SS); P06-D-10; …",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D51-SOIL",
-      "original": "P01-D51-EW; P05-PLT-D(SS); P11-D51-LAND-DOC",
-      "shown": "P01-D51-EW; P05-PLT-D(SS); P…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D51-SOFT",
-      "original": "P01-D51-SOIL(SS); P06-D-10; P05-PLT-D(SS); P11-D51-LAND-DOC",
-      "shown": "P01-D51-SOIL(SS); P06-D-10; P…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D51-IRR",
-      "original": "P01-D51-UTIL; P01-D51-SOFT(SS); P05-PLT-D(SS); P11-D51-LAND-DOC",
-      "shown": "P01-D51-UTIL; P01-D51-SOFT(…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D51-DRN",
-      "original": "P01-D51-EW(SS)+16; P05-PLT-D(SS); P11-D51-CIV-DOC",
-      "shown": "P01-D51-EW(SS)+16; P05-PLT-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D51-UTIL",
-      "original": "P01-D51-EW(SS)+26; P06-D-10; P05-PLT-D(SS); P11-D51-UTIL-DOC",
-      "shown": "P01-D51-EW(SS)+26; P06-D-10;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D51-REST",
-      "original": "P01-D51-SOFT(SS); P01-D51-PAVE",
-      "shown": "P01-D51-SOFT(SS); P01-D51-P…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D51-FIN",
-      "original": "P01-D51-REST(SS); P01-D51-ELE; P01-D51-IRR(SS)",
-      "shown": "P01-D51-REST(SS); P01-D51-E…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D51-HO",
-      "original": "P01-D51-FIN; P01-D51-FURN; P01-D51-MON",
-      "shown": "P01-D51-FIN; P01-D51-FURN; P…",
-      "mode": "single-line"
+      "shown": "P01-D51-CTRL(SS); P05-PLT-EARTH(SS);\nP05-PLT-D(SS); P11-D51-CIV-DOC; P08-D51-…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-D52-REL",
       "original": "P03-SITE-D-REL; P07-QA-D-PREP; P08-HSE-D-REL; P10-ENV-D-REL; P16-HER-D-PERMIT; P01-PRE-REL",
-      "shown": "P03-SITE-D-REL; P07-QA-D-PR…",
-      "mode": "single-line"
+      "shown": "P03-SITE-D-REL; P07-QA-D-PREP;\nP08-HSE-D-REL; P10-ENV-D-REL; P16-HER-D…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-D52-EW",
       "original": "P01-D52-CTRL(SS); P05-PLT-EARTH(SS); P05-PLT-D(SS); P11-D52-CIV-DOC; P08-D52-EARTH-PTW; P10-D52-EARTH-ENV",
-      "shown": "P01-D52-CTRL(SS); P05-PLT-E…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D52-BASE",
-      "original": "P01-D52-DRN(SS); P05-PLT-D(SS); P11-D52-CIV-DOC",
-      "shown": "P01-D52-DRN(SS); P05-PLT-D(…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D52-ELE",
-      "original": "P01-D52-UTIL(SS); P05-PLT-D(SS); P11-D52-UTIL-DOC",
-      "shown": "P01-D52-UTIL(SS); P05-PLT-D(…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D52-PAVE",
-      "original": "P01-D52-BASE(SS); P06-D-10; P05-PLT-D(SS); P11-D52-LAND-DOC",
-      "shown": "P01-D52-BASE(SS); P06-D-10; …",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D52-SOIL",
-      "original": "P01-D52-EW; P05-PLT-LAND(SS); P05-PLT-D(SS); P11-D52-LAND-DOC",
-      "shown": "P01-D52-EW; P05-PLT-LAND(S…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D52-SOFT",
-      "original": "P01-D52-SOIL(SS); P06-D-10; P05-PLT-LAND(SS); P05-PLT-D(SS); P11-D52-LAND-DOC",
-      "shown": "P01-D52-SOIL(SS); P06-D-10; P…",
-      "mode": "single-line"
+      "shown": "P01-D52-CTRL(SS); P05-PLT-EARTH(SS);\nP05-PLT-D(SS); P11-D52-CIV-DOC; P08-D52-…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-D52-IRR",
       "original": "P01-D52-UTIL; P01-D52-SOFT(SS); P05-PLT-LAND(SS); P05-PLT-D(SS); P11-D52-LAND-DOC",
-      "shown": "P01-D52-UTIL; P01-D52-SOFT(…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D52-DRN",
-      "original": "P01-D52-EW(SS)+18; P05-PLT-D(SS); P11-D52-CIV-DOC",
-      "shown": "P01-D52-EW(SS)+18; P05-PLT-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D52-UTIL",
-      "original": "P01-D52-EW(SS)+28; P06-D-10; P05-PLT-D(SS); P11-D52-UTIL-DOC",
-      "shown": "P01-D52-EW(SS)+28; P06-D-10;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D52-REST",
-      "original": "P01-D52-SOFT(SS); P01-D52-PAVE; P05-PLT-LAND(SS)",
-      "shown": "P01-D52-SOFT(SS); P01-D52-P…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D52-FIN",
-      "original": "P01-D52-REST(SS); P01-D52-ELE; P01-D52-IRR(SS)",
-      "shown": "P01-D52-REST(SS); P01-D52-E…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D52-HO",
-      "original": "P01-D52-FIN; P01-D52-FURN; P01-D52-MON",
-      "shown": "P01-D52-FIN; P01-D52-FURN; P…",
-      "mode": "single-line"
+      "shown": "P01-D52-UTIL; P01-D52-SOFT(SS);\nP05-PLT-LAND(SS); P05-PLT-D(SS); P11-D52-…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-D53-REL",
       "original": "P03-SITE-D-REL; P07-QA-D-PREP; P08-HSE-D-REL; P10-ENV-D-REL; P16-HER-D-PERMIT; P01-PRE-REL",
-      "shown": "P03-SITE-D-REL; P07-QA-D-PR…",
-      "mode": "single-line"
+      "shown": "P03-SITE-D-REL; P07-QA-D-PREP;\nP08-HSE-D-REL; P10-ENV-D-REL; P16-HER-D…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-D53-EW",
       "original": "P01-D53-CTRL(SS); P05-PLT-EARTH(SS); P05-PLT-D(SS); P11-D53-CIV-DOC; P08-D53-EARTH-PTW; P10-D53-EARTH-ENV",
-      "shown": "P01-D53-CTRL(SS); P05-PLT-E…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D53-BASE",
-      "original": "P01-D53-DRN(SS); P05-PLT-D(SS); P11-D53-CIV-DOC",
-      "shown": "P01-D53-DRN(SS); P05-PLT-D(…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D53-ELE",
-      "original": "P01-D53-UTIL(SS); P05-PLT-D(SS); P11-D53-UTIL-DOC",
-      "shown": "P01-D53-UTIL(SS); P05-PLT-D(…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D53-PAVE",
-      "original": "P01-D53-BASE(SS); P06-D-10; P05-PLT-LAND(SS); P05-PLT-D(SS); P11-D53-LAND-DOC",
-      "shown": "P01-D53-BASE(SS); P06-D-10; …",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D53-SOIL",
-      "original": "P01-D53-EW; P05-PLT-LAND(SS); P05-PLT-D(SS); P11-D53-LAND-DOC",
-      "shown": "P01-D53-EW; P05-PLT-LAND(S…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D53-SOFT",
-      "original": "P01-D53-SOIL(SS); P06-D-10; P05-PLT-LAND(SS); P05-PLT-D(SS); P11-D53-LAND-DOC",
-      "shown": "P01-D53-SOIL(SS); P06-D-10; P…",
-      "mode": "single-line"
+      "shown": "P01-D53-CTRL(SS); P05-PLT-EARTH(SS);\nP05-PLT-D(SS); P11-D53-CIV-DOC; P08-D53-…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-D53-IRR",
       "original": "P01-D53-UTIL; P01-D53-SOFT(SS); P05-PLT-LAND(SS); P05-PLT-D(SS); P11-D53-LAND-DOC",
-      "shown": "P01-D53-UTIL; P01-D53-SOFT(…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D53-DRN",
-      "original": "P01-D53-EW(SS)+18; P05-PLT-D(SS); P11-D53-CIV-DOC",
-      "shown": "P01-D53-EW(SS)+18; P05-PLT-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D53-UTIL",
-      "original": "P01-D53-EW(SS)+29; P06-D-10; P05-PLT-D(SS); P11-D53-UTIL-DOC",
-      "shown": "P01-D53-EW(SS)+29; P06-D-10;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D53-REST",
-      "original": "P01-D53-SOFT(SS); P01-D53-PAVE; P05-PLT-LAND(SS)",
-      "shown": "P01-D53-SOFT(SS); P01-D53-P…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D53-FIN",
-      "original": "P01-D53-REST(SS); P01-D53-ELE; P01-D53-IRR(SS)",
-      "shown": "P01-D53-REST(SS); P01-D53-E…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D53-HO",
-      "original": "P01-D53-FIN; P01-D53-FURN; P01-D53-MON",
-      "shown": "P01-D53-FIN; P01-D53-FURN; P…",
-      "mode": "single-line"
+      "shown": "P01-D53-UTIL; P01-D53-SOFT(SS);\nP05-PLT-LAND(SS); P05-PLT-D(SS); P11-D53-…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-D54-REL",
       "original": "P03-SITE-D-REL; P07-QA-D-PREP; P08-HSE-D-REL; P10-ENV-D-REL; P16-HER-D-PERMIT; P01-PRE-REL",
-      "shown": "P03-SITE-D-REL; P07-QA-D-PR…",
-      "mode": "single-line"
+      "shown": "P03-SITE-D-REL; P07-QA-D-PREP;\nP08-HSE-D-REL; P10-ENV-D-REL; P16-HER-D…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-D54-EW",
       "original": "P01-D54-CTRL(SS); P05-PLT-EARTH(SS); P05-PLT-D(SS); P11-D54-CIV-DOC; P08-D54-EARTH-PTW; P10-D54-EARTH-ENV",
-      "shown": "P01-D54-CTRL(SS); P05-PLT-E…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D54-BASE",
-      "original": "P01-D54-DRN(SS); P05-PLT-D(SS); P11-D54-CIV-DOC",
-      "shown": "P01-D54-DRN(SS); P05-PLT-D(…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D54-ELE",
-      "original": "P01-D54-UTIL(SS); P05-PLT-D(SS); P11-D54-UTIL-DOC",
-      "shown": "P01-D54-UTIL(SS); P05-PLT-D(…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D54-PAVE",
-      "original": "P01-D54-BASE(SS); P06-D-10; P05-PLT-LAND(SS); P05-PLT-D(SS); P11-D54-LAND-DOC",
-      "shown": "P01-D54-BASE(SS); P06-D-10; …",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D54-SOIL",
-      "original": "P01-D54-EW; P05-PLT-LAND(SS); P05-PLT-D(SS); P11-D54-LAND-DOC",
-      "shown": "P01-D54-EW; P05-PLT-LAND(S…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D54-SOFT",
-      "original": "P01-D54-SOIL(SS); P06-D-10; P05-PLT-LAND(SS); P05-PLT-D(SS); P11-D54-LAND-DOC",
-      "shown": "P01-D54-SOIL(SS); P06-D-10; P…",
-      "mode": "single-line"
+      "shown": "P01-D54-CTRL(SS); P05-PLT-EARTH(SS);\nP05-PLT-D(SS); P11-D54-CIV-DOC; P08-D54-…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-D54-IRR",
       "original": "P01-D54-UTIL; P01-D54-SOFT(SS); P05-PLT-LAND(SS); P05-PLT-D(SS); P11-D54-LAND-DOC",
-      "shown": "P01-D54-UTIL; P01-D54-SOFT(…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D54-DRN",
-      "original": "P01-D54-EW(SS)+16; P05-PLT-D(SS); P11-D54-CIV-DOC",
-      "shown": "P01-D54-EW(SS)+16; P05-PLT-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D54-UTIL",
-      "original": "P01-D54-EW(SS)+26; P06-D-10; P05-PLT-D(SS); P11-D54-UTIL-DOC",
-      "shown": "P01-D54-EW(SS)+26; P06-D-10;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D54-REST",
-      "original": "P01-D54-SOFT(SS); P01-D54-PAVE; P05-PLT-LAND(SS)",
-      "shown": "P01-D54-SOFT(SS); P01-D54-P…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D54-FIN",
-      "original": "P01-D54-REST(SS); P01-D54-ELE; P01-D54-IRR(SS)",
-      "shown": "P01-D54-REST(SS); P01-D54-E…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D54-HO",
-      "original": "P01-D54-FIN; P01-D54-FURN; P01-D54-MON",
-      "shown": "P01-D54-FIN; P01-D54-FURN; P…",
-      "mode": "single-line"
+      "shown": "P01-D54-UTIL; P01-D54-SOFT(SS);\nP05-PLT-LAND(SS); P05-PLT-D(SS); P11-D54-…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-D55-REL",
       "original": "P03-SITE-D-REL; P07-QA-D-PREP; P08-HSE-D-REL; P10-ENV-D-REL; P16-HER-D-PERMIT; P01-PRE-REL",
-      "shown": "P03-SITE-D-REL; P07-QA-D-PR…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D55-PRE",
-      "original": "P01-D55-PIPE; P01-D55-PUMP; P01-D55-ELE; P11-D55-TST-DOC",
-      "shown": "P01-D55-PIPE; P01-D55-PUMP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D55-ACC",
-      "original": "P01-D55-RES(SS); P05-PLT-D(SS)",
-      "shown": "P01-D55-RES(SS); P05-PLT-D(…",
-      "mode": "single-line"
+      "shown": "P03-SITE-D-REL; P07-QA-D-PREP;\nP08-HSE-D-REL; P10-ENV-D-REL; P16-HER-D…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-D55-PONT",
       "original": "P01-D55-LIFT(SS); P01-D55-FAB; P05-PLT-D(SS); P11-D55-MAR-DOC; P08-D55-WATER-PTW",
-      "shown": "P01-D55-LIFT(SS); P01-D55-FA…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D55-ELE",
-      "original": "P06-MEP-10; P01-D55-PUMP(SS); P05-PLT-D(SS)",
-      "shown": "P06-MEP-10; P01-D55-PUMP(S…",
-      "mode": "single-line"
+      "shown": "P01-D55-LIFT(SS); P01-D55-FAB; P05-PLT-D(\nSS); P11-D55-MAR-DOC; P08-D55-WATER-PT…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-D55-LIFT",
       "original": "P01-D55-ACC; P01-D55-FAB(SS); P05-PLT-D(SS); P11-D55-MAR-DOC; P08-D55-LIFT-PTW; P09-D55-LIFT-ROUTE",
-      "shown": "P01-D55-ACC; P01-D55-FAB(SS…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D55-PIPE",
-      "original": "P01-D55-PONT(SS); P06-MEP-10; P05-PLT-D(SS)",
-      "shown": "P01-D55-PONT(SS); P06-MEP-1…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-D55-PUMP",
-      "original": "P01-D55-PONT(SS); P06-MEP-10; P05-PLT-D(SS)",
-      "shown": "P01-D55-PONT(SS); P06-MEP-1…",
-      "mode": "single-line"
+      "shown": "P01-D55-ACC; P01-D55-FAB(SS); P05-PLT-D(\nSS); P11-D55-MAR-DOC; P08-D55-LIFT-PTW;…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-CP06-GATE",
       "original": "P01-A21-HO; P01-A22-HO; P01-A27-HO; P01-B31-HO; P01-B32-HO; P01-B33-HO; P01-B34-HO; P01-C41-HO; P01-C42A-HO; P01-C42B-HO; P01-C42C-HO; P01-C43-HO; P01-D51-HO; P01-D52-HO; P01-D53-HO",
-      "shown": "P01-A21-HO; P01-A22-HO; P01-…",
-      "mode": "single-line"
+      "shown": "P01-A21-HO; P01-A22-HO; P01-A27-HO;\nP01-B31-HO; P01-B32-HO; P01-B33-HO; P01-…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-CO-001",
       "original": "P01-CP05-GATE+1; P01-CP06-GATE(FF)+120; P01-A21-HO(FF); P01-A22-HO(FF); P01-A23-HO(FF); P01-A24-HO(FF); P01-A25-HO(FF); P01-A26-HO(FF); P01-A27-HO(FF); P01-A28-HO(FF); P01-A29-HO(FF); P01-B31-HO(FF); P01-B32-HO(FF); P01-B33-HO(FF); P01-B34-HO(FF); P01-C41-HO(FF); P01-C42A-HO(FF); P01-C42B-HO(FF); P01-C42C-HO(FF); P01-C43-HO(FF); P01-D51-HO(FF); P01-D52-HO(FF); P01-D53-HO(FF); P01-D54-HO(FF); P01-D55-HO(FF)",
-      "shown": "P01-CP05-GATE+1; P01-CP06-…",
-      "mode": "single-line"
+      "shown": "P01-CP05-GATE+1; P01-CP06-GATE(FF)+120;\nP01-A21-HO(FF); P01-A22-HO(FF); P01-A23-H…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-CO-D493",
       "original": "P01-CO-001; P03-SITE-DEMOB(FF); P10-ENV-REST(FF); P16-HER-REST(FF); P04-WF-CO(SS)",
-      "shown": "P01-CO-001; P03-SITE-DEMOB(…",
-      "mode": "single-line"
+      "shown": "P01-CO-001; P03-SITE-DEMOB(FF);\nP10-ENV-REST(FF); P16-HER-REST(FF); P04-…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-CO-005",
       "original": "P01-CO-002; P01-CO-003; P01-CO-004; P15-CAR-FIN; P13-BIM-HO; P07-QA-COMM; P01-CO-D497; P14-AI-009; P02-COM-FTC; P08-HSE-DRILLS",
-      "shown": "P01-CO-002; P01-CO-003; P01-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P01-CO-006",
-      "original": "P01-CO-005; P02-M497; P01-CO-ACC; P11-CDE-CO; P12-PRG-CO",
-      "shown": "P01-CO-005; P02-M497; P01-C…",
-      "mode": "single-line"
+      "shown": "P01-CO-002; P01-CO-003; P01-CO-004;\nP15-CAR-FIN; P13-BIM-HO; P07-QA-COMM; P…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P01-CO-004",
       "original": "P01-CO-001; P03-SITE-DEMOB(FF); P05-PLT-DEMOB(FF); P09-TRF-REST(FF); P10-ENV-REST(FF); P16-HER-REST(FF); P10-ENV-WASTE(FF)",
-      "shown": "P01-CO-001; P03-SITE-DEMOB(…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P02-COM-003",
-      "original": "P02-COM-001(SS)+44; P07-QA-001; P11-CDE-004(FF)",
-      "shown": "P02-COM-001(SS)+44; P07-QA-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P02-COM-FTC",
-      "original": "P02-COM-002; P02-COM-A(FF); P02-COM-B(FF); P02-COM-C(FF); P02-COM-D(FF)",
-      "shown": "P02-COM-002; P02-COM-A(FF);…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P03-SITE-DEMOB",
-      "original": "P03-SITE-D-OPS(FF); P03-SITE-A-OPS(FF); P03-SITE-B-OPS(FF); P03-SITE-C-OPS(FF)",
-      "shown": "P03-SITE-D-OPS(FF); P03-SITE…",
-      "mode": "single-line"
+      "shown": "P01-CO-001; P03-SITE-DEMOB(FF);\nP05-PLT-DEMOB(FF); P09-TRF-REST(FF); P1…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P03-SITE-A-REL",
       "original": "P03-SITE-003; P03-SITE-005; P08-HSE-A-REL; P10-ENV-A-REL; P04-WF-002; P05-PLT-002; P09-TRF-002; P11-CDE-004; P04-WF-A(SS); P07-QA-A-MON(SS); P08-HSE-A-MON(SS); P09-TRF-A(SS); P10-ENV-A-MON(SS); P16-HER-A-MON(SS); P03-SITE-002; P03-SITE-004; P04-WF-003",
-      "shown": "P03-SITE-003; P03-SITE-005; P…",
-      "mode": "single-line"
+      "shown": "P03-SITE-003; P03-SITE-005; P08-HSE-A-REL;\nP10-ENV-A-REL; P04-WF-002; P05-PLT-002; P…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P03-SITE-B-REL",
       "original": "P03-SITE-003; P03-SITE-005; P08-HSE-B-REL; P10-ENV-B-REL; P04-WF-002; P05-PLT-002; P09-TRF-002; P11-CDE-004; P04-WF-BC(SS); P07-QA-B-MON(SS); P08-HSE-B-MON(SS); P09-TRF-B(SS); P10-ENV-B-MON(SS); P16-HER-B-MON(SS)",
-      "shown": "P03-SITE-003; P03-SITE-005; P…",
-      "mode": "single-line"
+      "shown": "P03-SITE-003; P03-SITE-005; P08-HSE-B-REL;\nP10-ENV-B-REL; P04-WF-002; P05-PLT-002; P…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P03-SITE-C-REL",
       "original": "P03-SITE-003; P03-SITE-005; P08-HSE-C-REL; P10-ENV-C-REL; P04-WF-002; P05-PLT-002; P09-TRF-002; P11-CDE-004; P04-WF-BC(SS); P07-QA-C-MON(SS); P08-HSE-C-MON(SS); P09-TRF-C(SS); P10-ENV-C-MON(SS); P16-HER-C-MON(SS)",
-      "shown": "P03-SITE-003; P03-SITE-005; P…",
-      "mode": "single-line"
+      "shown": "P03-SITE-003; P03-SITE-005; P08-HSE-C-REL;\nP10-ENV-C-REL; P04-WF-002; P05-PLT-002;…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P03-SITE-D-REL",
       "original": "P03-SITE-003; P03-SITE-005; P08-HSE-D-REL; P10-ENV-D-REL; P16-HER-D-PERMIT; P04-WF-002; P05-PLT-002; P09-TRF-002; P11-CDE-004; P04-WF-D(SS); P07-QA-D-MON(SS); P08-HSE-D-MON(SS); P09-TRF-D(SS); P10-ENV-D-MON(SS); P16-HER-D-MON(SS)",
-      "shown": "P03-SITE-003; P03-SITE-005; P…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P04-WF-CO",
-      "original": "P04-WF-A(FF); P04-WF-BC(FF); P04-WF-D(FF); P04-WF-REVIEW(FF)",
-      "shown": "P04-WF-A(FF); P04-WF-BC(FF);…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P05-PLT-002",
-      "original": "P05-PLT-001(SS)+19; P04-WF-002(SS)+14",
-      "shown": "P05-PLT-001(SS)+19; P04-WF-0…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P05-PLT-EARTH",
-      "original": "P05-PLT-001; P05-PLT-002; P09-TRF-002",
-      "shown": "P05-PLT-001; P05-PLT-002; P09…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P05-PLT-LAND",
-      "original": "P05-PLT-001; P05-PLT-002; P09-TRF-002",
-      "shown": "P05-PLT-001; P05-PLT-002; P09…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P05-PLT-MEP",
-      "original": "P05-PLT-001; P05-PLT-002; P09-TRF-002",
-      "shown": "P05-PLT-001; P05-PLT-002; P09…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P05-PLT-STR",
-      "original": "P05-PLT-001; P05-PLT-002; P09-TRF-002",
-      "shown": "P05-PLT-001; P05-PLT-002; P09…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P05-PLT-D",
-      "original": "P05-PLT-001; P05-PLT-002; P09-TRF-002; P16-HER-D-PERMIT",
-      "shown": "P05-PLT-001; P05-PLT-002; P09…",
-      "mode": "single-line"
+      "shown": "P03-SITE-003; P03-SITE-005; P08-HSE-D-REL;\nP10-ENV-D-REL; P16-HER-D-PERMIT; P04-W…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P05-PLT-DEMOB",
       "original": "P05-PLT-LAND(FF); P05-PLT-D(FF); P05-PLT-EARTH(FF); P05-PLT-STR(FF); P05-PLT-MEP(FF)",
-      "shown": "P05-PLT-LAND(FF); P05-PLT-D(…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P07-QA-COMM",
-      "original": "P07-QA-A-MON(FF); P07-QA-B-MON(FF); P07-QA-C-MON(FF); P07-QA-D-MON(FF)",
-      "shown": "P07-QA-A-MON(FF); P07-QA-B-…",
-      "mode": "single-line"
+      "shown": "P05-PLT-LAND(FF); P05-PLT-D(FF);\nP05-PLT-EARTH(FF); P05-PLT-STR(FF); P05-…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P07-A23-CEIL-HOLD",
       "original": "P01-A23-REL; P07-QA-A-PREP; P01-A23-MEP1(SS)+151; P01-A23-ELE1(SS)+144; P01-A23-PLB1(SS)+144; P01-A23-HV1(SS)+135; P01-A23-ICT1(SS)+105",
-      "shown": "P01-A23-REL; P07-QA-A-PREP;…",
-      "mode": "single-line"
+      "shown": "P01-A23-REL; P07-QA-A-PREP;\nP01-A23-MEP1(SS)+151; P01-A23-ELE1(SS)+…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P07-A24-CEIL-HOLD",
       "original": "P01-A24-REL; P07-QA-A-PREP; P01-A24-MEP1(SS)+106; P01-A24-ELE1(SS)+101; P01-A24-PLB1(SS)+101; P01-A24-HV1(SS)+94; P01-A24-ICT1(SS)+73",
-      "shown": "P01-A24-REL; P07-QA-A-PREP;…",
-      "mode": "single-line"
+      "shown": "P01-A24-REL; P07-QA-A-PREP;\nP01-A24-MEP1(SS)+106; P01-A24-ELE1(SS)+…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P07-A25-CEIL-HOLD",
       "original": "P01-A25-REL; P07-QA-A-PREP; P01-A25-MEP1(SS)+108; P01-A25-ELE1(SS)+103; P01-A25-PLB1(SS)+103; P01-A25-HV1(SS)+96; P01-A25-ICT1(SS)+75",
-      "shown": "P01-A25-REL; P07-QA-A-PREP;…",
-      "mode": "single-line"
+      "shown": "P01-A25-REL; P07-QA-A-PREP;\nP01-A25-MEP1(SS)+108; P01-A25-ELE1(SS)+…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P07-A26-CEIL-HOLD",
       "original": "P01-A26-REL; P07-QA-A-PREP; P01-A26-MEP1(SS)+99; P01-A26-ELE1(SS)+95; P01-A26-PLB1(SS)+95; P01-A26-HV1(SS)+89; P01-A26-ICT1(SS)+69",
-      "shown": "P01-A26-REL; P07-QA-A-PREP;…",
-      "mode": "single-line"
+      "shown": "P01-A26-REL; P07-QA-A-PREP;\nP01-A26-MEP1(SS)+99; P01-A26-ELE1(SS)+9…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P07-A29-CEIL-HOLD",
       "original": "P01-A29-REL; P07-QA-A-PREP; P01-A29-MEP1(SS)+50; P01-A29-ELE1(SS)+48; P01-A29-PLB1(SS)+48; P01-A29-HV1(SS)+45; P01-A29-ICT1(SS)+35",
-      "shown": "P01-A29-REL; P07-QA-A-PREP;…",
-      "mode": "single-line"
+      "shown": "P01-A29-REL; P07-QA-A-PREP;\nP01-A29-MEP1(SS)+50; P01-A29-ELE1(SS)+4…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P07-B31-CEIL-HOLD",
       "original": "P01-B31-REL; P07-QA-B-PREP; P01-B31-MEP1(SS)+60; P01-B31-ELE1(SS)+57; P01-B31-PLB1(SS)+57; P01-B31-HV1(SS)+53; P01-B31-ICT1(SS)+41",
-      "shown": "P01-B31-REL; P07-QA-B-PREP;…",
-      "mode": "single-line"
+      "shown": "P01-B31-REL; P07-QA-B-PREP;\nP01-B31-MEP1(SS)+60; P01-B31-ELE1(SS)+5…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P07-B32-CEIL-HOLD",
       "original": "P01-B32-REL; P07-QA-B-PREP; P01-B32-MEP1(SS)+48; P01-B32-ELE1(SS)+46; P01-B32-PLB1(SS)+46; P01-B32-HV1(SS)+43; P01-B32-ICT1(SS)+33",
-      "shown": "P01-B32-REL; P07-QA-B-PREP;…",
-      "mode": "single-line"
+      "shown": "P01-B32-REL; P07-QA-B-PREP;\nP01-B32-MEP1(SS)+48; P01-B32-ELE1(SS)+4…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P07-C41-CEIL-HOLD",
       "original": "P01-C41-REL; P07-QA-C-PREP; P01-C41-MEP1(SS)+65; P01-C41-ELE1(SS)+62; P01-C41-PLB1(SS)+62; P01-C41-HV1(SS)+58; P01-C41-ICT1(SS)+45",
-      "shown": "P01-C41-REL; P07-QA-C-PREP;…",
-      "mode": "single-line"
+      "shown": "P01-C41-REL; P07-QA-C-PREP;\nP01-C41-MEP1(SS)+65; P01-C41-ELE1(SS)+6…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P07-C42A-CEIL-HOLD",
       "original": "P01-C42A-REL; P07-QA-C-PREP; P01-C42A-MEP1(SS)+60; P01-C42A-ELE1(SS)+57; P01-C42A-PLB1(SS)+57; P01-C42A-HV1(SS)+53; P01-C42A-ICT1(SS)+41",
-      "shown": "P01-C42A-REL; P07-QA-C-PRE…",
-      "mode": "single-line"
+      "shown": "P01-C42A-REL; P07-QA-C-PREP;\nP01-C42A-MEP1(SS)+60; P01-C42A-ELE1(SS)…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P07-C42B-CEIL-HOLD",
       "original": "P01-C42B-REL; P07-QA-C-PREP; P01-C42B-MEP1(SS)+60; P01-C42B-ELE1(SS)+57; P01-C42B-PLB1(SS)+57; P01-C42B-HV1(SS)+53; P01-C42B-ICT1(SS)+41",
-      "shown": "P01-C42B-REL; P07-QA-C-PRE…",
-      "mode": "single-line"
+      "shown": "P01-C42B-REL; P07-QA-C-PREP;\nP01-C42B-MEP1(SS)+60; P01-C42B-ELE1(SS)…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P07-C42C-CEIL-HOLD",
       "original": "P01-C42C-REL; P07-QA-C-PREP; P01-C42C-MEP1(SS)+60; P01-C42C-ELE1(SS)+57; P01-C42C-PLB1(SS)+57; P01-C42C-HV1(SS)+53; P01-C42C-ICT1(SS)+41",
-      "shown": "P01-C42C-REL; P07-QA-C-PRE…",
-      "mode": "single-line"
+      "shown": "P01-C42C-REL; P07-QA-C-PREP;\nP01-C42C-MEP1(SS)+60; P01-C42C-ELE1(SS)…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P07-C43-CEIL-HOLD",
       "original": "P01-C43-REL; P07-QA-C-PREP; P01-C43-MEP1(SS)+48; P01-C43-ELE1(SS)+46; P01-C43-PLB1(SS)+46; P01-C43-HV1(SS)+43; P01-C43-ICT1(SS)+33",
-      "shown": "P01-C43-REL; P07-QA-C-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P08-A23-WAH",
-      "original": "P01-A23-REL; P08-HSE-A-REL; P01-A23-FRM(SS)+89",
-      "shown": "P01-A23-REL; P08-HSE-A-REL; …",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P08-A23-LOTO",
-      "original": "P01-A23-REL; P08-HSE-A-REL; P01-A23-ELE2(SS)+63",
-      "shown": "P01-A23-REL; P08-HSE-A-REL; …",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P08-A24-WAH",
-      "original": "P01-A24-REL; P08-HSE-A-REL; P01-A24-FRM(SS)+62",
-      "shown": "P01-A24-REL; P08-HSE-A-REL; …",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P08-A24-LOTO",
-      "original": "P01-A24-REL; P08-HSE-A-REL; P01-A24-ELE2(SS)+44",
-      "shown": "P01-A24-REL; P08-HSE-A-REL; …",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P08-A25-WAH",
-      "original": "P01-A25-REL; P08-HSE-A-REL; P01-A25-FRM(SS)+64",
-      "shown": "P01-A25-REL; P08-HSE-A-REL; …",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P08-A25-LOTO",
-      "original": "P01-A25-REL; P08-HSE-A-REL; P01-A25-ELE2(SS)+45",
-      "shown": "P01-A25-REL; P08-HSE-A-REL; …",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P08-A26-WAH",
-      "original": "P01-A26-REL; P08-HSE-A-REL; P01-A26-FRM(SS)+58",
-      "shown": "P01-A26-REL; P08-HSE-A-REL; …",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P08-A26-LOTO",
-      "original": "P01-A26-REL; P08-HSE-A-REL; P01-A26-ELE2(SS)+41",
-      "shown": "P01-A26-REL; P08-HSE-A-REL; …",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P08-A29-WAH",
-      "original": "P01-A29-REL; P08-HSE-A-REL; P01-A29-FRM(SS)+30",
-      "shown": "P01-A29-REL; P08-HSE-A-REL; …",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P08-A29-LOTO",
-      "original": "P01-A29-REL; P08-HSE-A-REL; P01-A29-ELE2(SS)+21",
-      "shown": "P01-A29-REL; P08-HSE-A-REL; …",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P08-B31-WAH",
-      "original": "P01-B31-REL; P08-HSE-B-REL; P01-B31-FRM(SS)+35",
-      "shown": "P01-B31-REL; P08-HSE-B-REL; …",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P08-B31-LOTO",
-      "original": "P01-B31-REL; P08-HSE-B-REL; P01-B31-ELE2(SS)+25",
-      "shown": "P01-B31-REL; P08-HSE-B-REL; …",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P08-B32-WAH",
-      "original": "P01-B32-REL; P08-HSE-B-REL; P01-B32-FRM(SS)+29",
-      "shown": "P01-B32-REL; P08-HSE-B-REL; …",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P08-B32-LOTO",
-      "original": "P01-B32-REL; P08-HSE-B-REL; P01-B32-ELE2(SS)+20",
-      "shown": "P01-B32-REL; P08-HSE-B-REL; …",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P08-C41-WAH",
-      "original": "P01-C41-REL; P08-HSE-C-REL; P01-C41-FRM(SS)+37",
-      "shown": "P01-C41-REL; P08-HSE-C-REL;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P08-C41-LOTO",
-      "original": "P01-C41-REL; P08-HSE-C-REL; P01-C41-ELE2(SS)+27",
-      "shown": "P01-C41-REL; P08-HSE-C-REL;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P08-C42A-WAH",
-      "original": "P01-C42A-REL; P08-HSE-C-REL; P01-C42A-FRM(SS)+35",
-      "shown": "P01-C42A-REL; P08-HSE-C-RE…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P08-C42A-LOTO",
-      "original": "P01-C42A-REL; P08-HSE-C-REL; P01-C42A-ELE2(SS)+25",
-      "shown": "P01-C42A-REL; P08-HSE-C-RE…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P08-C42B-WAH",
-      "original": "P01-C42B-REL; P08-HSE-C-REL; P01-C42B-FRM(SS)+35",
-      "shown": "P01-C42B-REL; P08-HSE-C-RE…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P08-C42B-LOTO",
-      "original": "P01-C42B-REL; P08-HSE-C-REL; P01-C42B-ELE2(SS)+25",
-      "shown": "P01-C42B-REL; P08-HSE-C-RE…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P08-C42C-WAH",
-      "original": "P01-C42C-REL; P08-HSE-C-REL; P01-C42C-FRM(SS)+35",
-      "shown": "P01-C42C-REL; P08-HSE-C-RE…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P08-C42C-LOTO",
-      "original": "P01-C42C-REL; P08-HSE-C-REL; P01-C42C-ELE2(SS)+25",
-      "shown": "P01-C42C-REL; P08-HSE-C-RE…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P08-C43-WAH",
-      "original": "P01-C43-REL; P08-HSE-C-REL; P01-C43-FRM(SS)+29",
-      "shown": "P01-C43-REL; P08-HSE-C-REL;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P08-C43-LOTO",
-      "original": "P01-C43-REL; P08-HSE-C-REL; P01-C43-ELE2(SS)+20",
-      "shown": "P01-C43-REL; P08-HSE-C-REL;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P08-D55-WATER-PTW",
-      "original": "P01-D55-RES; P08-HSE-D-REL; P10-ENV-D-REL; P16-HER-D-PERMIT",
-      "shown": "P01-D55-RES; P08-HSE-D-REL;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P09-TRF-REST",
-      "original": "P09-TRF-D; P09-TRF-A; P09-TRF-B; P09-TRF-C",
-      "shown": "P09-TRF-D; P09-TRF-A; P09-TR…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P09-D55-LIFT-ROUTE",
-      "original": "P09-TRF-002; P09-TRF-003; P05-PLT-002",
-      "shown": "P09-TRF-002; P09-TRF-003; P0…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P10-ENV-REST",
-      "original": "P10-ENV-A-MON(FF); P10-ENV-B-MON(FF); P10-ENV-C-MON(FF); P10-ENV-D-MON(FF)",
-      "shown": "P10-ENV-A-MON(FF); P10-ENV-…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-CDE-CO",
-      "original": "P11-CDE-004; P11-CDE-PRE(FF); P11-CDE-ZA(FF); P11-CDE-ZBC(FF); P11-CDE-ZD(FF)",
-      "shown": "P11-CDE-004; P11-CDE-PRE(F…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-A23-STR-DOC",
-      "original": "P11-CDE-004; P07-QA-A-PREP; P13-BIM-A-COORD(SS)+207; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-A-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-A23-ARC-DOC",
-      "original": "P11-CDE-004; P07-QA-A-PREP; P13-BIM-A-COORD(SS)+415; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-A-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-A23-MEP-DOC",
-      "original": "P11-CDE-004; P07-QA-A-PREP; P13-BIM-A-COORD(SS)+428; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-A-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-A23-TST-DOC",
-      "original": "P11-CDE-004; P07-QA-A-PREP; P13-BIM-A-COORD(SS)+698; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-A-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-A24-STR-DOC",
-      "original": "P11-CDE-004; P07-QA-A-PREP; P13-BIM-A-COORD(SS)+295; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-A-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-A24-ARC-DOC",
-      "original": "P11-CDE-004; P07-QA-A-PREP; P13-BIM-A-COORD(SS)+440; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-A-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-A24-MEP-DOC",
-      "original": "P11-CDE-004; P07-QA-A-PREP; P13-BIM-A-COORD(SS)+449; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-A-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-A24-TST-DOC",
-      "original": "P11-CDE-004; P07-QA-A-PREP; P13-BIM-A-COORD(SS)+638; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-A-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-A25-STR-DOC",
-      "original": "P11-CDE-004; P07-QA-A-PREP; P13-BIM-A-COORD(SS)+327; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-A-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-A25-ARC-DOC",
-      "original": "P11-CDE-004; P07-QA-A-PREP; P13-BIM-A-COORD(SS)+475; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-A-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-A25-MEP-DOC",
-      "original": "P11-CDE-004; P07-QA-A-PREP; P13-BIM-A-COORD(SS)+484; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-A-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-A25-TST-DOC",
-      "original": "P11-CDE-004; P07-QA-A-PREP; P13-BIM-A-COORD(SS)+677; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-A-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-A26-STR-DOC",
-      "original": "P11-CDE-004; P07-QA-A-PREP; P13-BIM-A-COORD(SS)+351; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-A-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-A26-ARC-DOC",
-      "original": "P11-CDE-004; P07-QA-A-PREP; P13-BIM-A-COORD(SS)+486; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-A-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-A26-MEP-DOC",
-      "original": "P11-CDE-004; P07-QA-A-PREP; P13-BIM-A-COORD(SS)+495; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-A-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-A26-TST-DOC",
-      "original": "P11-CDE-004; P07-QA-A-PREP; P13-BIM-A-COORD(SS)+671; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-A-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-A29-STR-DOC",
-      "original": "P11-CDE-004; P07-QA-A-PREP; P13-BIM-A-COORD(SS)+578; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-A-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-A29-ARC-DOC",
-      "original": "P11-CDE-004; P07-QA-A-PREP; P13-BIM-A-COORD(SS)+647; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-A-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-A29-MEP-DOC",
-      "original": "P11-CDE-004; P07-QA-A-PREP; P13-BIM-A-COORD(SS)+652; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-A-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-A29-TST-DOC",
-      "original": "P11-CDE-004; P07-QA-A-PREP; P13-BIM-A-COORD(SS)+742; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-A-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-B31-STR-DOC",
-      "original": "P11-CDE-004; P07-QA-B-PREP; P13-BIM-B-COORD(SS)+239; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-B-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-B31-ARC-DOC",
-      "original": "P11-CDE-004; P07-QA-B-PREP; P13-BIM-B-COORD(SS)+321; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-B-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-B31-MEP-DOC",
-      "original": "P11-CDE-004; P07-QA-B-PREP; P13-BIM-B-COORD(SS)+326; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-B-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-B31-TST-DOC",
-      "original": "P11-CDE-004; P07-QA-B-PREP; P13-BIM-B-COORD(SS)+433; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-B-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-B32-STR-DOC",
-      "original": "P11-CDE-004; P07-QA-B-PREP; P13-BIM-B-COORD(SS)+252; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-B-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-B32-ARC-DOC",
-      "original": "P11-CDE-004; P07-QA-B-PREP; P13-BIM-B-COORD(SS)+318; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-B-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-B32-MEP-DOC",
-      "original": "P11-CDE-004; P07-QA-B-PREP; P13-BIM-B-COORD(SS)+322; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-B-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-B32-TST-DOC",
-      "original": "P11-CDE-004; P07-QA-B-PREP; P13-BIM-B-COORD(SS)+408; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-B-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-C41-STR-DOC",
-      "original": "P11-CDE-004; P07-QA-C-PREP; P13-BIM-C-COORD(SS)+262; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-C-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-C41-ARC-DOC",
-      "original": "P11-CDE-004; P07-QA-C-PREP; P13-BIM-C-COORD(SS)+351; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-C-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-C41-MEP-DOC",
-      "original": "P11-CDE-004; P07-QA-C-PREP; P13-BIM-C-COORD(SS)+356; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-C-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-C41-TST-DOC",
-      "original": "P11-CDE-004; P07-QA-C-PREP; P13-BIM-C-COORD(SS)+471; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-C-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-C42A-STR-DOC",
-      "original": "P11-CDE-004; P07-QA-C-PREP; P13-BIM-C-COORD(SS)+259; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-C-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-C42A-ARC-DOC",
-      "original": "P11-CDE-004; P07-QA-C-PREP; P13-BIM-C-COORD(SS)+341; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-C-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-C42A-MEP-DOC",
-      "original": "P11-CDE-004; P07-QA-C-PREP; P13-BIM-C-COORD(SS)+346; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-C-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-C42A-TST-DOC",
-      "original": "P11-CDE-004; P07-QA-C-PREP; P13-BIM-C-COORD(SS)+453; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-C-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-C42B-STR-DOC",
-      "original": "P11-CDE-004; P07-QA-C-PREP; P13-BIM-C-COORD(SS)+309; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-C-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-C42B-ARC-DOC",
-      "original": "P11-CDE-004; P07-QA-C-PREP; P13-BIM-C-COORD(SS)+391; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-C-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-C42B-MEP-DOC",
-      "original": "P11-CDE-004; P07-QA-C-PREP; P13-BIM-C-COORD(SS)+396; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-C-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-C42B-TST-DOC",
-      "original": "P11-CDE-004; P07-QA-C-PREP; P13-BIM-C-COORD(SS)+503; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-C-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-C42C-STR-DOC",
-      "original": "P11-CDE-004; P07-QA-C-PREP; P13-BIM-C-COORD(SS)+359; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-C-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-C42C-ARC-DOC",
-      "original": "P11-CDE-004; P07-QA-C-PREP; P13-BIM-C-COORD(SS)+441; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-C-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-C42C-MEP-DOC",
-      "original": "P11-CDE-004; P07-QA-C-PREP; P13-BIM-C-COORD(SS)+446; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-C-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-C42C-TST-DOC",
-      "original": "P11-CDE-004; P07-QA-C-PREP; P13-BIM-C-COORD(SS)+553; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-C-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-C43-STR-DOC",
-      "original": "P11-CDE-004; P07-QA-C-PREP; P13-BIM-C-COORD(SS)+382; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-C-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-C43-ARC-DOC",
-      "original": "P11-CDE-004; P07-QA-C-PREP; P13-BIM-C-COORD(SS)+448; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-C-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-C43-MEP-DOC",
-      "original": "P11-CDE-004; P07-QA-C-PREP; P13-BIM-C-COORD(SS)+452; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-C-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-C43-TST-DOC",
-      "original": "P11-CDE-004; P07-QA-C-PREP; P13-BIM-C-COORD(SS)+538; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-C-PREP;…",
-      "mode": "single-line"
+      "shown": "P01-C43-REL; P07-QA-C-PREP;\nP01-C43-MEP1(SS)+48; P01-C43-ELE1(SS)+4…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P11-A21-CIV-DOC",
       "original": "P11-CDE-004; P07-QA-A-PREP; P13-BIM-A-COORD(SS)+123; P01-PRE-DES(SS)+168",
-      "shown": "P11-CDE-004; P07-QA-A-PREP;…",
-      "mode": "single-line"
+      "shown": "P11-CDE-004; P07-QA-A-PREP;\nP13-BIM-A-COORD(SS)+123; P01-PRE-DES(S…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P11-A21-UTIL-DOC",
       "original": "P11-CDE-004; P07-QA-A-PREP; P13-BIM-A-COORD(SS)+153; P01-PRE-DES(SS)+198",
-      "shown": "P11-CDE-004; P07-QA-A-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-A21-LAND-DOC",
-      "original": "P11-CDE-004; P07-QA-A-PREP; P13-BIM-A-COORD(SS)+210; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-A-PREP;…",
-      "mode": "single-line"
+      "shown": "P11-CDE-004; P07-QA-A-PREP;\nP13-BIM-A-COORD(SS)+153; P01-PRE-DES(S…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P11-A22-CIV-DOC",
       "original": "P11-CDE-004; P07-QA-A-PREP; P13-BIM-A-COORD(SS)+162; P01-PRE-DES(SS)+207",
-      "shown": "P11-CDE-004; P07-QA-A-PREP;…",
-      "mode": "single-line"
+      "shown": "P11-CDE-004; P07-QA-A-PREP;\nP13-BIM-A-COORD(SS)+162; P01-PRE-DES(S…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P11-A22-UTIL-DOC",
       "original": "P11-CDE-004; P07-QA-A-PREP; P13-BIM-A-COORD(SS)+192; P01-PRE-DES(SS)+237",
-      "shown": "P11-CDE-004; P07-QA-A-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-A22-LAND-DOC",
-      "original": "P11-CDE-004; P07-QA-A-PREP; P13-BIM-A-COORD(SS)+250; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-A-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-A27-CIV-DOC",
-      "original": "P11-CDE-004; P07-QA-A-PREP; P13-BIM-A-COORD(SS)+468; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-A-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-A27-UTIL-DOC",
-      "original": "P11-CDE-004; P07-QA-A-PREP; P13-BIM-A-COORD(SS)+510; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-A-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-A27-LAND-DOC",
-      "original": "P11-CDE-004; P07-QA-A-PREP; P13-BIM-A-COORD(SS)+588; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-A-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-A28-CIV-DOC",
-      "original": "P11-CDE-004; P07-QA-A-PREP; P13-BIM-A-COORD(SS)+600; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-A-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-A28-UTIL-DOC",
-      "original": "P11-CDE-004; P07-QA-A-PREP; P13-BIM-A-COORD(SS)+647; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-A-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-A28-LAND-DOC",
-      "original": "P11-CDE-004; P07-QA-A-PREP; P13-BIM-A-COORD(SS)+732; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-A-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-B33-CIV-DOC",
-      "original": "P11-CDE-004; P07-QA-B-PREP; P13-BIM-B-COORD(SS)+225; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-B-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-B33-UTIL-DOC",
-      "original": "P11-CDE-004; P07-QA-B-PREP; P13-BIM-B-COORD(SS)+272; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-B-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-B33-LAND-DOC",
-      "original": "P11-CDE-004; P07-QA-B-PREP; P13-BIM-B-COORD(SS)+357; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-B-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-B34-CIV-DOC",
-      "original": "P11-CDE-004; P07-QA-B-PREP; P13-BIM-B-COORD(SS)+433; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-B-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-B34-UTIL-DOC",
-      "original": "P11-CDE-004; P07-QA-B-PREP; P13-BIM-B-COORD(SS)+459; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-B-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-B34-LAND-DOC",
-      "original": "P11-CDE-004; P07-QA-B-PREP; P13-BIM-B-COORD(SS)+505; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-B-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-D51-CIV-DOC",
-      "original": "P11-CDE-004; P07-QA-D-PREP; P13-BIM-D-COORD(SS)+26; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-D-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-D51-UTIL-DOC",
-      "original": "P11-CDE-004; P07-QA-D-PREP; P13-BIM-D-COORD(SS)+99; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-D-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-D51-LAND-DOC",
-      "original": "P11-CDE-004; P07-QA-D-PREP; P13-BIM-D-COORD(SS)+153; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-D-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-D52-CIV-DOC",
-      "original": "P11-CDE-004; P07-QA-D-PREP; P13-BIM-D-COORD(SS)+157; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-D-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-D52-UTIL-DOC",
-      "original": "P11-CDE-004; P07-QA-D-PREP; P13-BIM-D-COORD(SS)+206; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-D-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-D52-LAND-DOC",
-      "original": "P11-CDE-004; P07-QA-D-PREP; P13-BIM-D-COORD(SS)+297; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-D-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-D53-CIV-DOC",
-      "original": "P11-CDE-004; P07-QA-D-PREP; P13-BIM-D-COORD(SS)+328; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-D-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-D53-UTIL-DOC",
-      "original": "P11-CDE-004; P07-QA-D-PREP; P13-BIM-D-COORD(SS)+378; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-D-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-D53-LAND-DOC",
-      "original": "P11-CDE-004; P07-QA-D-PREP; P13-BIM-D-COORD(SS)+472; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-D-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-D54-CIV-DOC",
-      "original": "P11-CDE-004; P07-QA-D-PREP; P13-BIM-D-COORD(SS)+485; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-D-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-D54-UTIL-DOC",
-      "original": "P11-CDE-004; P07-QA-D-PREP; P13-BIM-D-COORD(SS)+529; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-D-PREP;…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P11-D54-LAND-DOC",
-      "original": "P11-CDE-004; P07-QA-D-PREP; P13-BIM-D-COORD(SS)+613; P01-PRE-DES",
-      "shown": "P11-CDE-004; P07-QA-D-PREP;…",
-      "mode": "single-line"
+      "shown": "P11-CDE-004; P07-QA-A-PREP;\nP13-BIM-A-COORD(SS)+192; P01-PRE-DES(S…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P11-D55-MAR-DOC",
       "original": "P11-CDE-004; P07-QA-D-PREP; P13-BIM-D-COORD(SS)+530; P01-PRE-DES; P16-HER-D-PERMIT",
-      "shown": "P11-CDE-004; P07-QA-D-PREP;…",
-      "mode": "single-line"
+      "shown": "P11-CDE-004; P07-QA-D-PREP;\nP13-BIM-D-COORD(SS)+530; P01-PRE-DES;…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P11-D55-TST-DOC",
       "original": "P11-CDE-004; P07-QA-D-PREP; P13-BIM-D-COORD(SS)+701; P01-PRE-DES; P16-HER-D-PERMIT",
-      "shown": "P11-CDE-004; P07-QA-D-PREP;…",
-      "mode": "single-line"
+      "shown": "P11-CDE-004; P07-QA-D-PREP;\nP13-BIM-D-COORD(SS)+701; P01-PRE-DES;…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P12-PRG-CO",
       "original": "P12-PRG-004; P12-PRG-PRE(FF); P12-PRG-ZA(FF); P12-PRG-ZBC(FF); P12-PRG-ZD(FF)",
-      "shown": "P12-PRG-004; P12-PRG-PRE(F…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P13-BIM-004",
-      "original": "P13-BIM-003(SS)+14; P11-CDE-004(FF)",
-      "shown": "P13-BIM-003(SS)+14; P11-CDE-…",
-      "mode": "single-line"
+      "shown": "P12-PRG-004; P12-PRG-PRE(FF);\nP12-PRG-ZA(FF); P12-PRG-ZBC(FF); P12-PR…",
+      "mode": "two-line"
     },
     {
       "type": "predecessor",
       "activity_id": "P13-BIM-ASB",
       "original": "P13-BIM-005; P13-BIM-A-COORD(FF); P13-BIM-A-4D(FF); P13-BIM-B-COORD(FF); P13-BIM-B-4D(FF); P13-BIM-C-COORD(FF); P13-BIM-C-4D(FF); P13-BIM-D-COORD(FF); P13-BIM-D-4D(FF)",
-      "shown": "P13-BIM-005; P13-BIM-A-COOR…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P14-AI-003",
-      "original": "P14-AI-002(SS)+24; P11-CDE-004(FF)",
-      "shown": "P14-AI-002(SS)+24; P11-CDE-0…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P14-AI-009",
-      "original": "P14-AI-007(SS)+919; P14-AI-008(FF)",
-      "shown": "P14-AI-007(SS)+919; P14-AI-00…",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P15-CAR-REP",
-      "original": "P15-CAR-003; P15-CAR-A(FF); P15-CAR-BC(FF); P15-CAR-D(FF); P15-CAR-PRE(SS)",
-      "shown": "P15-CAR-003; P15-CAR-A(FF); …",
-      "mode": "single-line"
-    },
-    {
-      "type": "predecessor",
-      "activity_id": "P16-HER-REST",
-      "original": "P16-HER-D-MON(FF); P16-HER-A-MON(FF); P16-HER-B-MON(FF); P16-HER-C-MON(FF)",
-      "shown": "P16-HER-D-MON(FF); P16-HER…",
-      "mode": "single-line"
+      "shown": "P13-BIM-005; P13-BIM-A-COORD(FF);\nP13-BIM-A-4D(FF); P13-BIM-B-COORD(FF); P…",
+      "mode": "two-line"
     }
   ]
 }
