@@ -14,6 +14,7 @@ import { applyPostIntegrationRepairsV4 } from './post-integration-repairs-v4.js'
 import { applyScopeApplicabilityV7 } from './scope-applicability-v7.js';
 import { applyThaiActivityAlignmentV8, thaiLocalizationStats } from './thai-activity-alignment-v8.js';
 import { normalizeThaiWorkCategoriesV8 } from './thai-category-normalization-v8.js';
+import { applyThaiEditorialPolishV8, thaiEditorialIssues } from './thai-editorial-polish-v8.js';
 import { applyProposalDrivingChain } from './critical-driver.js';
 import { applyCpmAnalysis, computedCriticalPath } from './cpm-analysis.js';
 import { validationReport } from './schedule-validation.js';
@@ -33,12 +34,14 @@ applyPostIntegrationRepairsV4(schedule);
 applyScopeApplicabilityV7(schedule);
 applyThaiActivityAlignmentV8(schedule);
 normalizeThaiWorkCategoriesV8(schedule);
+applyThaiEditorialPolishV8(schedule);
 applyProposalDrivingChain(schedule);
 applyCpmAnalysis(schedule, 'P01-CO-006');
 
 export const masterSchedule = sortSchedule(schedule);
 export const scheduleStats = stats(masterSchedule);
 export const localizationStats = thaiLocalizationStats(masterSchedule);
+export const editorialIssues = thaiEditorialIssues(masterSchedule);
 export const cpm = computedCriticalPath(masterSchedule, 'P01-CO-006');
 export const validation = validationReport(masterSchedule);
 export const masterCSV = () => toCSV(masterSchedule);
