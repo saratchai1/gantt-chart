@@ -8,6 +8,12 @@ const REPLACEMENTS=[
   [/\bLogic\b/gi,'ตรรกะความสัมพันธ์']
 ];
 
+const EXACT_VISIBLE_NAMES={
+  'P06-ICT-02':'จัดส่งเอกสารขออนุมัติวัสดุ ตัวอย่าง แหล่งผลิต และแผนทดสอบ — วัสดุระบบสื่อสารและระบบอัจฉริยะ',
+  'P06-MEP-02':'จัดส่งเอกสารขออนุมัติวัสดุ ตัวอย่าง แหล่งผลิต และแผนทดสอบ — อุปกรณ์หลักระบบประกอบอาคาร',
+  'P06-ICT-07':'ตรวจโรงงาน แหล่งผลิต และใบรับรองตามความจำเป็น — วัสดุระบบสื่อสารและระบบอัจฉริยะ'
+};
+
 export const FORBIDDEN_VISIBLE_ENGLISH_TERMS=[
   'Toolbox Meeting','Audit Trail','Digital Twin','Metadata','Workflow','Offline','Logic'
 ];
@@ -28,8 +34,8 @@ function polish(value){
  */
 export function applyThaiEditorialPolishV8(rows){
   for(const row of rows){
-    row.activity_name=polish(row.activity_name);
-    row.activity_name_th=polish(row.activity_name_th||row.activity_name);
+    row.activity_name=EXACT_VISIBLE_NAMES[row.activity_id]||polish(row.activity_name);
+    row.activity_name_th=row.activity_name;
     row.building_area=polish(row.building_area);
     row.building_area_th=polish(row.building_area_th||row.building_area);
     row.work_category_th=polish(row.work_category_th);
