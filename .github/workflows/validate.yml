@@ -27,6 +27,8 @@ jobs:
         run: npm run export
       - name: Export Plan 01 Thai activity alignment registers
         run: npm run thai-review
+      - name: Deep audit Thai content and benchmark alignment
+        run: npm run audit-thai
       - name: Upload schedule data
         uses: actions/upload-artifact@v4
         with:
