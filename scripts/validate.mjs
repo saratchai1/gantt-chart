@@ -1,8 +1,8 @@
 import fs from 'node:fs';
-import { masterSchedule, scheduleStats, localizationStats, validation, cpm } from '../src/build-schedule.js';
+import { masterSchedule, scheduleStats, localizationStats, editorialIssues, validation, cpm } from '../src/build-schedule.js';
 
 fs.mkdirSync('data', { recursive: true });
-fs.writeFileSync('data/validation-report.json', JSON.stringify({ stats:scheduleStats, localization:localizationStats, cpm, ...validation }, null, 2));
+fs.writeFileSync('data/validation-report.json', JSON.stringify({ stats:scheduleStats, localization:localizationStats, editorial_issues:editorialIssues, cpm, ...validation }, null, 2));
 
 const nc=validation.network_coverage;
 const sc=validation.scope_applicability;
@@ -23,6 +23,7 @@ console.log(`WHERE_APPLICABLE rows requiring IFC/BOQ confirmation: ${sc.where_ap
 console.log(`Thai primary activity names: ${localizationStats.thai_primary}/${localizationStats.total}`);
 console.log(`Thai translation review required: ${localizationStats.review_required}`);
 console.log(`Plan 01 Thai translation review required: ${localizationStats.plan01_review_required}`);
+console.log(`Thai editorial English-term issues: ${editorialIssues.length}`);
 console.log(`Thai translation statuses: ${Object.entries(localizationStats.by_status).map(([k,v])=>`${k}=${v}`).join(', ')}`);
 console.log(`Non-Plan-01 activities without D1200 successor path: ${nc.unconnected_support_to_final.length}`);
 if(nc.unconnected_support_to_final.length) console.log(`Remaining support exceptions: ${nc.unconnected_support_to_final.join(', ')}`);
@@ -52,9 +53,13 @@ if(localizationStats.thai_primary!==localizationStats.total){
 if(localizationStats.plan01_review_required){
   localizationErrors.push(`Plan 01 has ${localizationStats.plan01_review_required} activity names requiring Thai review`);
 }
+if(editorialIssues.length){
+  localizationErrors.push(`${editorialIssues.length} visible Thai fields still contain forbidden editorial English terms`);
+}
 if(localizationErrors.length){
   console.log('LOCALIZATION_ERRORS_BEGIN');
   for(const e of localizationErrors)console.log(e);
+  for(const issue of editorialIssues)console.log(JSON.stringify(issue));
   console.log('LOCALIZATION_ERRORS_END');
 }
 
@@ -63,7 +68,8 @@ if (validation.structure_errors.length || validation.dependency_cycles.length ||
     structure_errors: validation.structure_errors,
     dependency_cycles: validation.dependency_cycles,
     network_integrity_errors: validation.network_integrity_errors,
-    localization_errors: localizationErrors
+    localization_errors: localizationErrors,
+    editorial_issues:editorialIssues
   }, null, 2));
   process.exit(1);
 }
