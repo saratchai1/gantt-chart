@@ -5,9 +5,9 @@
     1191,
     842
   ],
-  "ink_ratio_min": 0.086662,
+  "ink_ratio_min": 0.087065,
   "ink_ratio_max": 0.512222,
-  "ink_ratio_mean": 0.2765661147540983,
+  "ink_ratio_mean": 0.2783346721311475,
   "errors": [],
   "advisories": [],
   "contact_sheets": [
@@ -41,7 +41,7 @@
       "file": "data/pdf-v08-pages/page-02.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.334123,
+      "ink_ratio": 0.335491,
       "nonwhite_bbox": [
         24,
         20,
@@ -50,7 +50,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.37559,
+      "left_table_ink_ratio": 0.378378,
       "timeline_ink_ratio": 0.391144
     },
     {
@@ -58,7 +58,7 @@
       "file": "data/pdf-v08-pages/page-03.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.396958,
+      "ink_ratio": 0.398338,
       "nonwhite_bbox": [
         24,
         20,
@@ -67,7 +67,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.448893,
+      "left_table_ink_ratio": 0.451706,
       "timeline_ink_ratio": 0.460362
     },
     {
@@ -75,7 +75,7 @@
       "file": "data/pdf-v08-pages/page-04.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.315374,
+      "ink_ratio": 0.316722,
       "nonwhite_bbox": [
         24,
         20,
@@ -84,7 +84,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.354913,
+      "left_table_ink_ratio": 0.357661,
       "timeline_ink_ratio": 0.366555
     },
     {
@@ -92,7 +92,7 @@
       "file": "data/pdf-v08-pages/page-05.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.253543,
+      "ink_ratio": 0.255383,
       "nonwhite_bbox": [
         24,
         20,
@@ -101,7 +101,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.284402,
+      "left_table_ink_ratio": 0.288154,
       "timeline_ink_ratio": 0.294037
     },
     {
@@ -109,7 +109,7 @@
       "file": "data/pdf-v08-pages/page-06.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.332986,
+      "ink_ratio": 0.334929,
       "nonwhite_bbox": [
         24,
         20,
@@ -118,7 +118,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.377124,
+      "left_table_ink_ratio": 0.381083,
       "timeline_ink_ratio": 0.383939
     },
     {
@@ -126,7 +126,7 @@
       "file": "data/pdf-v08-pages/page-07.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.318836,
+      "ink_ratio": 0.319738,
       "nonwhite_bbox": [
         24,
         20,
@@ -135,7 +135,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.359463,
+      "left_table_ink_ratio": 0.361301,
       "timeline_ink_ratio": 0.369569
     },
     {
@@ -143,7 +143,7 @@
       "file": "data/pdf-v08-pages/page-08.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.443324,
+      "ink_ratio": 0.444042,
       "nonwhite_bbox": [
         24,
         20,
@@ -152,7 +152,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.505556,
+      "left_table_ink_ratio": 0.50702,
       "timeline_ink_ratio": 0.509173
     },
     {
@@ -160,7 +160,7 @@
       "file": "data/pdf-v08-pages/page-09.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.237384,
+      "ink_ratio": 0.239377,
       "nonwhite_bbox": [
         24,
         20,
@@ -169,7 +169,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.262506,
+      "left_table_ink_ratio": 0.266568,
       "timeline_ink_ratio": 0.279358
     },
     {
@@ -177,7 +177,7 @@
       "file": "data/pdf-v08-pages/page-10.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.417688,
+      "ink_ratio": 0.419082,
       "nonwhite_bbox": [
         24,
         20,
@@ -186,7 +186,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.477267,
+      "left_table_ink_ratio": 0.480108,
       "timeline_ink_ratio": 0.478394
     },
     {
@@ -194,7 +194,7 @@
       "file": "data/pdf-v08-pages/page-11.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.243636,
+      "ink_ratio": 0.245498,
       "nonwhite_bbox": [
         24,
         20,
@@ -203,7 +203,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.269962,
+      "left_table_ink_ratio": 0.273757,
       "timeline_ink_ratio": 0.286124
     },
     {
@@ -211,7 +211,7 @@
       "file": "data/pdf-v08-pages/page-12.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.443762,
+      "ink_ratio": 0.44537,
       "nonwhite_bbox": [
         24,
         20,
@@ -220,7 +220,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.504036,
+      "left_table_ink_ratio": 0.507314,
       "timeline_ink_ratio": 0.512877
     },
     {
@@ -228,7 +228,7 @@
       "file": "data/pdf-v08-pages/page-13.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.368174,
+      "ink_ratio": 0.369655,
       "nonwhite_bbox": [
         24,
         20,
@@ -237,7 +237,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.41536,
+      "left_table_ink_ratio": 0.418378,
       "timeline_ink_ratio": 0.42749
     },
     {
@@ -245,7 +245,7 @@
       "file": "data/pdf-v08-pages/page-14.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.361648,
+      "ink_ratio": 0.363847,
       "nonwhite_bbox": [
         24,
         20,
@@ -254,7 +254,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.407493,
+      "left_table_ink_ratio": 0.411974,
       "timeline_ink_ratio": 0.420621
     },
     {
@@ -262,7 +262,7 @@
       "file": "data/pdf-v08-pages/page-15.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.324912,
+      "ink_ratio": 0.326991,
       "nonwhite_bbox": [
         24,
         20,
@@ -271,7 +271,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.365211,
+      "left_table_ink_ratio": 0.369448,
       "timeline_ink_ratio": 0.377686
     },
     {
@@ -279,7 +279,7 @@
       "file": "data/pdf-v08-pages/page-16.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.255388,
+      "ink_ratio": 0.256923,
       "nonwhite_bbox": [
         24,
         20,
@@ -288,7 +288,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.287983,
+      "left_table_ink_ratio": 0.291111,
       "timeline_ink_ratio": 0.294436
     },
     {
@@ -296,7 +296,7 @@
       "file": "data/pdf-v08-pages/page-17.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.322096,
+      "ink_ratio": 0.324644,
       "nonwhite_bbox": [
         24,
         20,
@@ -305,7 +305,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.364575,
+      "left_table_ink_ratio": 0.369767,
       "timeline_ink_ratio": 0.370943
     },
     {
@@ -313,7 +313,7 @@
       "file": "data/pdf-v08-pages/page-18.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.292343,
+      "ink_ratio": 0.293351,
       "nonwhite_bbox": [
         24,
         20,
@@ -322,7 +322,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.329249,
+      "left_table_ink_ratio": 0.331304,
       "timeline_ink_ratio": 0.338777
     },
     {
@@ -330,7 +330,7 @@
       "file": "data/pdf-v08-pages/page-19.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.433953,
+      "ink_ratio": 0.435905,
       "nonwhite_bbox": [
         24,
         20,
@@ -339,7 +339,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.493289,
+      "left_table_ink_ratio": 0.497267,
       "timeline_ink_ratio": 0.500446
     },
     {
@@ -347,7 +347,7 @@
       "file": "data/pdf-v08-pages/page-20.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.347568,
+      "ink_ratio": 0.348376,
       "nonwhite_bbox": [
         24,
         20,
@@ -356,7 +356,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.393269,
+      "left_table_ink_ratio": 0.394915,
       "timeline_ink_ratio": 0.401902
     },
     {
@@ -364,7 +364,7 @@
       "file": "data/pdf-v08-pages/page-21.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.508023,
+      "ink_ratio": 0.509432,
       "nonwhite_bbox": [
         24,
         20,
@@ -373,7 +373,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.578405,
+      "left_table_ink_ratio": 0.581276,
       "timeline_ink_ratio": 0.586119
     },
     {
@@ -381,7 +381,7 @@
       "file": "data/pdf-v08-pages/page-22.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.343325,
+      "ink_ratio": 0.345666,
       "nonwhite_bbox": [
         24,
         20,
@@ -390,7 +390,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.38551,
+      "left_table_ink_ratio": 0.390279,
       "timeline_ink_ratio": 0.400687
     },
     {
@@ -398,7 +398,7 @@
       "file": "data/pdf-v08-pages/page-23.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.395708,
+      "ink_ratio": 0.39753,
       "nonwhite_bbox": [
         24,
         20,
@@ -407,7 +407,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.45019,
+      "left_table_ink_ratio": 0.453903,
       "timeline_ink_ratio": 0.454861
     },
     {
@@ -415,7 +415,7 @@
       "file": "data/pdf-v08-pages/page-24.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.184782,
+      "ink_ratio": 0.186376,
       "nonwhite_bbox": [
         24,
         20,
@@ -424,7 +424,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.202664,
+      "left_table_ink_ratio": 0.205914,
       "timeline_ink_ratio": 0.217572
     },
     {
@@ -432,7 +432,7 @@
       "file": "data/pdf-v08-pages/page-25.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.359224,
+      "ink_ratio": 0.361355,
       "nonwhite_bbox": [
         24,
         20,
@@ -441,7 +441,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.408658,
+      "left_table_ink_ratio": 0.413001,
       "timeline_ink_ratio": 0.412832
     },
     {
@@ -449,7 +449,7 @@
       "file": "data/pdf-v08-pages/page-26.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.20631,
+      "ink_ratio": 0.208531,
       "nonwhite_bbox": [
         24,
         20,
@@ -458,7 +458,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.227991,
+      "left_table_ink_ratio": 0.232517,
       "timeline_ink_ratio": 0.241968
     },
     {
@@ -466,7 +466,7 @@
       "file": "data/pdf-v08-pages/page-27.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.352796,
+      "ink_ratio": 0.355141,
       "nonwhite_bbox": [
         24,
         20,
@@ -475,7 +475,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.401358,
+      "left_table_ink_ratio": 0.406136,
       "timeline_ink_ratio": 0.405371
     },
     {
@@ -483,7 +483,7 @@
       "file": "data/pdf-v08-pages/page-28.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.206458,
+      "ink_ratio": 0.208802,
       "nonwhite_bbox": [
         24,
         20,
@@ -492,7 +492,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.228489,
+      "left_table_ink_ratio": 0.233265,
       "timeline_ink_ratio": 0.241852
     },
     {
@@ -500,7 +500,7 @@
       "file": "data/pdf-v08-pages/page-29.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.353008,
+      "ink_ratio": 0.355438,
       "nonwhite_bbox": [
         24,
         20,
@@ -509,7 +509,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.401908,
+      "left_table_ink_ratio": 0.406861,
       "timeline_ink_ratio": 0.405176
     },
     {
@@ -517,7 +517,7 @@
       "file": "data/pdf-v08-pages/page-30.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.206564,
+      "ink_ratio": 0.208767,
       "nonwhite_bbox": [
         24,
         20,
@@ -526,7 +526,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.228639,
+      "left_table_ink_ratio": 0.233129,
       "timeline_ink_ratio": 0.241921
     },
     {
@@ -534,7 +534,7 @@
       "file": "data/pdf-v08-pages/page-31.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.353028,
+      "ink_ratio": 0.355336,
       "nonwhite_bbox": [
         24,
         20,
@@ -543,7 +543,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.401965,
+      "left_table_ink_ratio": 0.40667,
       "timeline_ink_ratio": 0.405189
     },
     {
@@ -551,7 +551,7 @@
       "file": "data/pdf-v08-pages/page-32.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.233881,
+      "ink_ratio": 0.235813,
       "nonwhite_bbox": [
         24,
         20,
@@ -560,7 +560,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.260445,
+      "left_table_ink_ratio": 0.264382,
       "timeline_ink_ratio": 0.272938
     },
     {
@@ -568,7 +568,7 @@
       "file": "data/pdf-v08-pages/page-33.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.435554,
+      "ink_ratio": 0.437088,
       "nonwhite_bbox": [
         24,
         20,
@@ -577,7 +577,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.496708,
+      "left_table_ink_ratio": 0.499833,
       "timeline_ink_ratio": 0.500587
     },
     {
@@ -585,7 +585,7 @@
       "file": "data/pdf-v08-pages/page-34.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.39939,
+      "ink_ratio": 0.401574,
       "nonwhite_bbox": [
         24,
         20,
@@ -594,7 +594,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.450611,
+      "left_table_ink_ratio": 0.455061,
       "timeline_ink_ratio": 0.464114
     },
     {
@@ -602,7 +602,7 @@
       "file": "data/pdf-v08-pages/page-35.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.394496,
+      "ink_ratio": 0.39702,
       "nonwhite_bbox": [
         24,
         20,
@@ -611,7 +611,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.445625,
+      "left_table_ink_ratio": 0.450769,
       "timeline_ink_ratio": 0.457797
     },
     {
@@ -619,7 +619,7 @@
       "file": "data/pdf-v08-pages/page-36.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.371672,
+      "ink_ratio": 0.374477,
       "nonwhite_bbox": [
         24,
         20,
@@ -628,7 +628,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.418069,
+      "left_table_ink_ratio": 0.423786,
       "timeline_ink_ratio": 0.433374
     },
     {
@@ -636,7 +636,7 @@
       "file": "data/pdf-v08-pages/page-37.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.399926,
+      "ink_ratio": 0.40254,
       "nonwhite_bbox": [
         24,
         20,
@@ -645,7 +645,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.45192,
+      "left_table_ink_ratio": 0.457246,
       "timeline_ink_ratio": 0.464172
     },
     {
@@ -653,7 +653,7 @@
       "file": "data/pdf-v08-pages/page-38.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.388067,
+      "ink_ratio": 0.38913,
       "nonwhite_bbox": [
         24,
         20,
@@ -662,7 +662,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.439541,
+      "left_table_ink_ratio": 0.441707,
       "timeline_ink_ratio": 0.448748
     },
     {
@@ -670,7 +670,7 @@
       "file": "data/pdf-v08-pages/page-39.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.344956,
+      "ink_ratio": 0.347182,
       "nonwhite_bbox": [
         24,
         20,
@@ -679,7 +679,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.39169,
+      "left_table_ink_ratio": 0.396228,
       "timeline_ink_ratio": 0.39683
     },
     {
@@ -687,7 +687,7 @@
       "file": "data/pdf-v08-pages/page-40.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.20036,
+      "ink_ratio": 0.201662,
       "nonwhite_bbox": [
         24,
         20,
@@ -696,7 +696,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.201443,
+      "left_table_ink_ratio": 0.204097,
       "timeline_ink_ratio": 0.260838
     },
     {
@@ -704,7 +704,7 @@
       "file": "data/pdf-v08-pages/page-41.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.162171,
+      "ink_ratio": 0.163262,
       "nonwhite_bbox": [
         24,
         20,
@@ -713,7 +713,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.160514,
+      "left_table_ink_ratio": 0.162738,
       "timeline_ink_ratio": 0.213987
     },
     {
@@ -721,7 +721,7 @@
       "file": "data/pdf-v08-pages/page-42.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.210612,
+      "ink_ratio": 0.211744,
       "nonwhite_bbox": [
         24,
         20,
@@ -730,7 +730,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.194856,
+      "left_table_ink_ratio": 0.197165,
       "timeline_ink_ratio": 0.297501
     },
     {
@@ -738,7 +738,7 @@
       "file": "data/pdf-v08-pages/page-43.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.166935,
+      "ink_ratio": 0.167386,
       "nonwhite_bbox": [
         24,
         20,
@@ -747,7 +747,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.175828,
+      "left_table_ink_ratio": 0.176746,
       "timeline_ink_ratio": 0.206513
     },
     {
@@ -755,7 +755,7 @@
       "file": "data/pdf-v08-pages/page-44.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.152598,
+      "ink_ratio": 0.152274,
       "nonwhite_bbox": [
         24,
         20,
@@ -764,7 +764,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.181162,
+      "left_table_ink_ratio": 0.180502,
       "timeline_ink_ratio": 0.160911
     },
     {
@@ -772,7 +772,7 @@
       "file": "data/pdf-v08-pages/page-45.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.137162,
+      "ink_ratio": 0.136957,
       "nonwhite_bbox": [
         24,
         20,
@@ -781,7 +781,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.160386,
+      "left_table_ink_ratio": 0.159967,
       "timeline_ink_ratio": 0.146457
     },
     {
@@ -789,7 +789,7 @@
       "file": "data/pdf-v08-pages/page-46.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.16783,
+      "ink_ratio": 0.169284,
       "nonwhite_bbox": [
         24,
         20,
@@ -798,7 +798,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.165695,
+      "left_table_ink_ratio": 0.168658,
       "timeline_ink_ratio": 0.221266
     },
     {
@@ -806,7 +806,7 @@
       "file": "data/pdf-v08-pages/page-47.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.158853,
+      "ink_ratio": 0.16139,
       "nonwhite_bbox": [
         24,
         20,
@@ -815,7 +815,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.163339,
+      "left_table_ink_ratio": 0.168509,
       "timeline_ink_ratio": 0.201347
     },
     {
@@ -823,7 +823,7 @@
       "file": "data/pdf-v08-pages/page-48.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.145868,
+      "ink_ratio": 0.146769,
       "nonwhite_bbox": [
         24,
         20,
@@ -832,7 +832,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.150737,
+      "left_table_ink_ratio": 0.152572,
       "timeline_ink_ratio": 0.183178
     },
     {
@@ -840,7 +840,7 @@
       "file": "data/pdf-v08-pages/page-49.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.138938,
+      "ink_ratio": 0.14058,
       "nonwhite_bbox": [
         24,
         20,
@@ -849,7 +849,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.154259,
+      "left_table_ink_ratio": 0.157606,
       "timeline_ink_ratio": 0.159952
     },
     {
@@ -857,7 +857,7 @@
       "file": "data/pdf-v08-pages/page-50.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.129557,
+      "ink_ratio": 0.129953,
       "nonwhite_bbox": [
         24,
         20,
@@ -866,7 +866,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.144239,
+      "left_table_ink_ratio": 0.145046,
       "timeline_ink_ratio": 0.148092
     },
     {
@@ -874,7 +874,7 @@
       "file": "data/pdf-v08-pages/page-51.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.196961,
+      "ink_ratio": 0.197627,
       "nonwhite_bbox": [
         24,
         20,
@@ -883,7 +883,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.18983,
+      "left_table_ink_ratio": 0.191188,
       "timeline_ink_ratio": 0.267144
     },
     {
@@ -891,7 +891,7 @@
       "file": "data/pdf-v08-pages/page-52.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.138688,
+      "ink_ratio": 0.138497,
       "nonwhite_bbox": [
         24,
         20,
@@ -900,7 +900,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.134238,
+      "left_table_ink_ratio": 0.13385,
       "timeline_ink_ratio": 0.185334
     },
     {
@@ -908,7 +908,7 @@
       "file": "data/pdf-v08-pages/page-53.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.131211,
+      "ink_ratio": 0.13092,
       "nonwhite_bbox": [
         24,
         20,
@@ -917,7 +917,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.14367,
+      "left_table_ink_ratio": 0.143077,
       "timeline_ink_ratio": 0.153089
     },
     {
@@ -925,7 +925,7 @@
       "file": "data/pdf-v08-pages/page-54.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.172283,
+      "ink_ratio": 0.175839,
       "nonwhite_bbox": [
         24,
         20,
@@ -934,7 +934,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.178734,
+      "left_table_ink_ratio": 0.185981,
       "timeline_ink_ratio": 0.216177
     },
     {
@@ -942,7 +942,7 @@
       "file": "data/pdf-v08-pages/page-55.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.141912,
+      "ink_ratio": 0.148602,
       "nonwhite_bbox": [
         24,
         20,
@@ -951,7 +951,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.160843,
+      "left_table_ink_ratio": 0.174478,
       "timeline_ink_ratio": 0.159052
     },
     {
@@ -959,7 +959,7 @@
       "file": "data/pdf-v08-pages/page-56.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.136289,
+      "ink_ratio": 0.142774,
       "nonwhite_bbox": [
         24,
         20,
@@ -968,7 +968,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.154047,
+      "left_table_ink_ratio": 0.167263,
       "timeline_ink_ratio": 0.153192
     },
     {
@@ -976,7 +976,7 @@
       "file": "data/pdf-v08-pages/page-57.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.138446,
+      "ink_ratio": 0.14455,
       "nonwhite_bbox": [
         24,
         20,
@@ -985,7 +985,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.156626,
+      "left_table_ink_ratio": 0.169066,
       "timeline_ink_ratio": 0.155667
     },
     {
@@ -993,7 +993,7 @@
       "file": "data/pdf-v08-pages/page-58.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.161176,
+      "ink_ratio": 0.164684,
       "nonwhite_bbox": [
         24,
         20,
@@ -1002,7 +1002,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.16579,
+      "left_table_ink_ratio": 0.17294,
       "timeline_ink_ratio": 0.203855
     },
     {
@@ -1010,7 +1010,7 @@
       "file": "data/pdf-v08-pages/page-59.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.20725,
+      "ink_ratio": 0.207478,
       "nonwhite_bbox": [
         24,
         20,
@@ -1019,7 +1019,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.190194,
+      "left_table_ink_ratio": 0.190659,
       "timeline_ink_ratio": 0.294402
     },
     {
@@ -1027,7 +1027,7 @@
       "file": "data/pdf-v08-pages/page-60.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.195685,
+      "ink_ratio": 0.196036,
       "nonwhite_bbox": [
         24,
         20,
@@ -1036,7 +1036,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.192637,
+      "left_table_ink_ratio": 0.193352,
       "timeline_ink_ratio": 0.260193
     },
     {
@@ -1044,7 +1044,7 @@
       "file": "data/pdf-v08-pages/page-61.png",
       "width": 1191,
       "height": 842,
-      "ink_ratio": 0.086662,
+      "ink_ratio": 0.087065,
       "nonwhite_bbox": [
         24,
         20,
@@ -1053,7 +1053,7 @@
       ],
       "right_edge_ink_ratio": 0.0,
       "bottom_edge_ink_ratio": 0.0,
-      "left_table_ink_ratio": 0.077362,
+      "left_table_ink_ratio": 0.078183,
       "timeline_ink_ratio": 0.121514
     }
   ]
