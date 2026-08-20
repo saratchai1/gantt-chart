@@ -76,8 +76,10 @@ jobs:
         run: |
           set -euo pipefail
           PDF='data/huai-kha-khaeng-integrated-master-gantt-v0.8-thai.pdf'
+          TEXT='data/pdf-text-v08.txt'
           pdfinfo "$PDF" | tee data/pdf-info-v08.txt
           pdffonts "$PDF" | tee data/pdf-fonts-v08.txt
+          pdftotext "$PDF" "$TEXT"
 
           pages=$(pdfinfo "$PDF" | awk '/^Pages:/ {print $2}')
           test -n "$pages"
@@ -94,12 +96,12 @@ jobs:
           done
           test "$bad" -eq 0
 
-          pdffonts "$PDF" | grep -Eiq 'Garuda'
-          pdftotext "$PDF" - | grep -q 'แผนงานก่อสร้างห้วยขาแข้ง'
-          pdftotext "$PDF" - | grep -q 'งานปรับบริเวณ สำรวจ และปักผัง'
-          pdftotext "$PDF" - | grep -q 'งานโครงสร้าง'
-          pdftotext "$PDF" - | grep -q 'สถาปัตย์'
-          pdftotext "$PDF" - | grep -q 'งานระบบไฟฟ้าและสื่อสาร'
+          grep -Eiq 'Garuda' data/pdf-fonts-v08.txt
+          grep -q 'แผนงานก่อสร้างห้วยขาแข้ง' "$TEXT"
+          grep -q 'งานปรับบริเวณ สำรวจ และปักผัง' "$TEXT"
+          grep -q 'งานโครงสร้าง' "$TEXT"
+          grep -q 'สถาปัตย์' "$TEXT"
+          grep -q 'งานระบบไฟฟ้าและสื่อสาร' "$TEXT"
 
           pdftoppm -png -f 1 -singlefile -r 120 "$PDF" data/pdf-v08-preview-page-01 >/dev/null 2>&1
           pdftoppm -png -f 2 -singlefile -r 120 "$PDF" data/pdf-v08-preview-page-02 >/dev/null 2>&1
@@ -113,6 +115,7 @@ jobs:
             data/huai-kha-khaeng-integrated-master-gantt-v0.8-thai.pdf
             data/pdf-info-v08.txt
             data/pdf-fonts-v08.txt
+            data/pdf-text-v08.txt
             data/pdf-v08-preview-page-01.png
             data/pdf-v08-preview-page-02.png
 
