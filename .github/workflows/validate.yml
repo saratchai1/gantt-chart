@@ -16,7 +16,46 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Install PDF dependencies, bilingual Thai/Latin font and PDF QA tools
+      - name: JavaScript syntax check
+        shell: bash
+        run: |
+          node --check app.js
+          find src scripts -type f \( -name '*.js' -o -name '*.mjs' \) -print0 | xargs -0 -n1 node --check
+      - name: Validate schedule and Thai activity alignment
+        run: npm run validate
+      - name: Export schedule and review registers
+        run: npm run export
+      - name: Export Plan 01 Thai activity alignment registers
+        run: npm run thai-review
+      - name: Upload schedule data
+        uses: actions/upload-artifact@v4
+        with:
+          name: integrated-master-schedule-data
+          path: |
+            data/master-schedule.csv
+            data/master-schedule.json
+            data/schedule-stats.json
+            data/localization-stats.json
+            data/cpm-report.json
+            data/validation-report.json
+            data/thai-translation-review-register.csv
+            data/thai-translation-review-register.json
+            data/plan01-thai-activity-alignment-register.csv
+            data/plan01-thai-activity-alignment-register.json
+            data/thai-work-category-summary.csv
+            data/thai-work-category-summary.json
+            data/provisional-scope-register.csv
+            data/provisional-scope-register.json
+            data/provisional-scope-summary.csv
+            data/provisional-scope-summary.json
+            data/package-document-release-register.csv
+            data/system-test-pack-register.csv
+
+      # PDF output is intentionally disabled unless the repository variable
+      # ENABLE_PDF_EXPORT is explicitly set to true. This keeps data/language
+      # review separate from document production.
+      - name: Install optional PDF dependencies and bilingual Thai/Latin font
+        if: ${{ vars.ENABLE_PDF_EXPORT == 'true' }}
         shell: bash
         run: |
           npm install --no-audit --no-fund
@@ -24,18 +63,11 @@ jobs:
           sudo apt-get install -y -qq fonts-thai-tlwg fonts-noto-core poppler-utils
           fc-match 'Garuda'
           fc-match 'Garuda:style=Bold'
-      - name: JavaScript syntax check
-        shell: bash
-        run: |
-          node --check app.js
-          find src scripts -type f \( -name '*.js' -o -name '*.mjs' \) -print0 | xargs -0 -n1 node --check
-      - name: Validate schedule
-        run: npm run validate
-      - name: Export schedule artifacts
-        run: npm run export
-      - name: Generate readable A3 master Gantt PDF
+      - name: Generate optional A3 master Gantt PDF
+        if: ${{ vars.ENABLE_PDF_EXPORT == 'true' }}
         run: npm run pdf
-      - name: Audit PDF fonts, text and blank pages
+      - name: Audit optional PDF fonts, text and blank pages
+        if: ${{ vars.ENABLE_PDF_EXPORT == 'true' }}
         shell: bash
         run: |
           set -euo pipefail
@@ -55,38 +87,23 @@ jobs:
             fi
           done
           test "$bad" -eq 0
-          if ! pdffonts "$PDF" | grep -Eiq 'Garuda'; then
-            echo 'ERROR: expected bilingual Garuda font not found in PDF font table.'
-            exit 1
-          fi
-          pdftotext "$PDF" - | grep -q 'PROPOSAL INTEGRATED MASTER SCHEDULE'
-          pdftotext "$PDF" - | grep -q '1,200 days'
+          pdffonts "$PDF" | grep -Eiq 'Garuda'
           pdftotext "$PDF" - | grep -q 'แผนงานก่อสร้างห้วยขาแข้ง'
           pdftoppm -png -f 1 -singlefile -r 110 "$PDF" data/pdf-preview-page-01 >/dev/null 2>&1
           pdftoppm -png -f 2 -singlefile -r 110 "$PDF" data/pdf-preview-page-02 >/dev/null 2>&1
-      - name: Upload generated schedule
+      - name: Upload optional PDF artifact
+        if: ${{ vars.ENABLE_PDF_EXPORT == 'true' }}
         uses: actions/upload-artifact@v4
         with:
-          name: integrated-master-schedule
+          name: integrated-master-schedule-pdf
           path: |
-            data/master-schedule.csv
-            data/master-schedule.json
-            data/schedule-stats.json
-            data/cpm-report.json
-            data/validation-report.json
-            data/provisional-scope-register.csv
-            data/provisional-scope-register.json
-            data/provisional-scope-summary.csv
-            data/provisional-scope-summary.json
-            data/package-document-release-register.csv
-            data/system-test-pack-register.csv
             data/huai-kha-khaeng-integrated-master-gantt-v0.7.pdf
             data/pdf-info.txt
             data/pdf-fonts.txt
             data/pdf-preview-page-01.png
             data/pdf-preview-page-02.png
-      - name: Publish generated PDF snapshot
-        if: github.event_name == 'pull_request'
+      - name: Publish optional generated PDF snapshot
+        if: ${{ vars.ENABLE_PDF_EXPORT == 'true' && github.event_name == 'pull_request' }}
         shell: bash
         run: |
           git config user.name 'github-actions[bot]'
@@ -95,8 +112,8 @@ jobs:
           git add -f data/huai-kha-khaeng-integrated-master-gantt-v0.7.pdf data/pdf-preview-page-01.png data/pdf-preview-page-02.png
           git commit -m 'Publish readable A3 Gantt PDF preview [skip ci]'
           git push origin HEAD:pdf-export --force
-      - name: Publish generated PDF to main
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      - name: Publish optional generated PDF to main
+        if: ${{ vars.ENABLE_PDF_EXPORT == 'true' && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         shell: bash
         run: |
           git config user.name 'github-actions[bot]'

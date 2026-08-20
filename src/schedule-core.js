@@ -24,8 +24,15 @@ export function addTask({
     plan_no: String(plan).padStart(2, '0'),
     zone,
     building_area: area,
+    building_area_th: '',
+    building_area_en: '',
     discipline,
+    discipline_th: '',
+    discipline_en: '',
+    work_category_th: '',
     activity_name: name,
+    activity_name_th: '',
+    activity_name_en: '',
     duration_days: durationDays,
     predecessors: pred,
     predecessor: pred.map(p => p.id).join(';'),
@@ -46,6 +53,8 @@ export function addTask({
     source_reference: source,
     resource_group: resourceGroup,
     notes,
+    translation_status: '',
+    translation_note: '',
     network_from_start: '',
     network_to_final: '',
     computed_free_float_days: '',
@@ -118,10 +127,14 @@ export function stats(rows = schedule) {
 
 export function toCSV(rows = schedule) {
   const fields = [
-    'activity_id','wbs','plan_no','zone','building_area','discipline','activity_name','duration_days',
+    'activity_id','wbs','plan_no','zone',
+    'building_area','building_area_th','building_area_en',
+    'discipline','discipline_th','discipline_en','work_category_th',
+    'activity_name','activity_name_th','activity_name_en','duration_days',
     'predecessor','relationship','lag_days','start_day','finish_day','milestone','critical','computed_critical',
     'computed_total_float_days','computed_free_float_days','network_from_start','network_to_final','driving_successor','responsible_party',
-    'installment_start','installment_end','deliverable_evidence','basis_type','timing_basis','scope_applicability','scope_note','source_reference','resource_group','notes'
+    'installment_start','installment_end','deliverable_evidence','basis_type','timing_basis','scope_applicability','scope_note',
+    'source_reference','resource_group','notes','translation_status','translation_note'
   ];
   const esc = value => {
     const s = value == null ? '' : String(value);

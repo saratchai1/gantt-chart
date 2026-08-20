@@ -1,8 +1,8 @@
 import fs from 'node:fs';
-import { masterSchedule, scheduleStats, validation, cpm } from '../src/build-schedule.js';
+import { masterSchedule, scheduleStats, localizationStats, validation, cpm } from '../src/build-schedule.js';
 
 fs.mkdirSync('data', { recursive: true });
-fs.writeFileSync('data/validation-report.json', JSON.stringify({ stats:scheduleStats, cpm, ...validation }, null, 2));
+fs.writeFileSync('data/validation-report.json', JSON.stringify({ stats:scheduleStats, localization:localizationStats, cpm, ...validation }, null, 2));
 
 const nc=validation.network_coverage;
 const sc=validation.scope_applicability;
@@ -20,6 +20,10 @@ console.log(`Plan 01 physical through NTP→D1200: ${nc.plan01_physical_through.
 console.log(`Plan 01 handovers through NTP→D1200: ${nc.plan01_handovers_through.connected}/${nc.plan01_handovers_through.total} (${nc.plan01_handovers_through.coverage_pct}%)`);
 console.log(`Scope applicability counts: ${Object.entries(sc.by_status).map(([k,v])=>`${k}=${v}`).join(', ')}`);
 console.log(`WHERE_APPLICABLE rows requiring IFC/BOQ confirmation: ${sc.where_applicable.length}`);
+console.log(`Thai primary activity names: ${localizationStats.thai_primary}/${localizationStats.total}`);
+console.log(`Thai translation review required: ${localizationStats.review_required}`);
+console.log(`Plan 01 Thai translation review required: ${localizationStats.plan01_review_required}`);
+console.log(`Thai translation statuses: ${Object.entries(localizationStats.by_status).map(([k,v])=>`${k}=${v}`).join(', ')}`);
 console.log(`Non-Plan-01 activities without D1200 successor path: ${nc.unconnected_support_to_final.length}`);
 if(nc.unconnected_support_to_final.length) console.log(`Remaining support exceptions: ${nc.unconnected_support_to_final.join(', ')}`);
 console.log(`Representative critical path (${cpm.representative_path.length} activities): ${cpm.representative_path.join(' -> ')}`);
@@ -41,11 +45,25 @@ if (validation.network_integrity_errors.length) {
   console.log('NETWORK_INTEGRITY_ERRORS_END');
 }
 
-if (validation.structure_errors.length || validation.dependency_cycles.length || validation.network_integrity_errors.length) {
+const localizationErrors=[];
+if(localizationStats.thai_primary!==localizationStats.total){
+  localizationErrors.push(`Thai-primary activity coverage is ${localizationStats.thai_primary}/${localizationStats.total}`);
+}
+if(localizationStats.plan01_review_required){
+  localizationErrors.push(`Plan 01 has ${localizationStats.plan01_review_required} activity names requiring Thai review`);
+}
+if(localizationErrors.length){
+  console.log('LOCALIZATION_ERRORS_BEGIN');
+  for(const e of localizationErrors)console.log(e);
+  console.log('LOCALIZATION_ERRORS_END');
+}
+
+if (validation.structure_errors.length || validation.dependency_cycles.length || validation.network_integrity_errors.length || localizationErrors.length) {
   console.error(JSON.stringify({
     structure_errors: validation.structure_errors,
     dependency_cycles: validation.dependency_cycles,
-    network_integrity_errors: validation.network_integrity_errors
+    network_integrity_errors: validation.network_integrity_errors,
+    localization_errors: localizationErrors
   }, null, 2));
   process.exit(1);
 }
