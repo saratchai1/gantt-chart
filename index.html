@@ -1,122 +1,25 @@
 <!doctype html>
 <html lang="th">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>แผนงานก่อสร้างห้วยขาแข้ง — Integrated Master Gantt</title>
-  <link rel="stylesheet" href="./style.css" />
-  <link rel="stylesheet" href="./timing.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PDF Visual QA — Huai Kha Khaeng v0.8</title>
+  <style>
+    body{font-family:Arial,"Noto Sans Thai",sans-serif;margin:32px;line-height:1.5;background:#f7f8fa;color:#111827}
+    main{max-width:1100px;margin:auto;background:white;padding:28px;border-radius:12px;box-shadow:0 6px 24px #0001}
+    a{display:inline-block;margin:6px 12px 18px 0;padding:10px 14px;background:#0f4c5c;color:white;text-decoration:none;border-radius:7px}
+    img{display:block;max-width:100%;border:1px solid #cbd5e1;margin:12px 0 30px}
+    code{background:#eef2f7;padding:2px 5px;border-radius:4px}
+  </style>
 </head>
-<body>
-  <header class="app-header">
-    <div>
-      <div class="eyebrow">PROPOSAL INTEGRATED MASTER SCHEDULE · BASELINE v0.8 · THAI ACTIVITY ALIGNMENT</div>
-      <h1>แผนงานก่อสร้างห้วยขาแข้ง — แผนที่ 01–16</h1>
-      <p>ระยะเวลาโครงการ 1,200 วัน · 497 งวดงาน · แสดงชื่อกิจกรรมและหมวดงานภาษาไทย โดยเก็บชื่อภาษาอังกฤษเดิมไว้ตรวจสอบย้อนกลับ</p>
-    </div>
-    <div class="header-actions">
-      <button id="exportCsv">ส่งออก CSV</button>
-      <button id="exportJson">ส่งออก JSON</button>
-    </div>
-  </header>
-
-  <section class="metrics" id="metrics"></section>
-
-  <section class="toolbar">
-    <label>ค้นหา
-      <input id="search" type="search" placeholder="รหัส / WBS / อาคาร / กิจกรรม / คำอังกฤษเดิม…" />
-    </label>
-    <label>แผน
-      <select id="planFilter"><option value="">ทุกแผน 01–16</option></select>
-    </label>
-    <label>พื้นที่
-      <select id="zoneFilter"><option value="">ทุกพื้นที่</option></select>
-    </label>
-    <label>หมวดงาน
-      <select id="disciplineFilter"><option value="">ทุกหมวดงาน</option></select>
-    </label>
-    <label>ที่มากิจกรรม
-      <select id="basisFilter">
-        <option value="">ทั้งหมด</option>
-        <option value="SOURCE">SOURCE</option>
-        <option value="DERIVED">DERIVED</option>
-        <option value="ASSUMPTION">ASSUMPTION</option>
-      </select>
-    </label>
-    <label>ที่มาระยะเวลา
-      <select id="timingFilter">
-        <option value="">ทั้งหมด</option>
-        <option value="SOURCE">ระยะเวลาจากต้นทาง</option>
-        <option value="ASSUMPTION">ระยะเวลาสมมติฐานข้อเสนอ</option>
-      </select>
-    </label>
-    <label>สถานะขอบเขต
-      <select id="scopeFilter">
-        <option value="">ทุกสถานะ</option>
-        <option value="SOURCE_REQUIRED">SOURCE_REQUIRED</option>
-        <option value="DERIVED_FROM_SCOPE">DERIVED_FROM_SCOPE</option>
-        <option value="WHERE_APPLICABLE">WHERE_APPLICABLE</option>
-        <option value="CONTROL_STREAM">CONTROL_STREAM</option>
-      </select>
-    </label>
-    <label class="check"><input id="criticalOnly" type="checkbox" /> เฉพาะกิจกรรมวิกฤต Float = 0</label>
-    <label class="check"><input id="networkOnly" type="checkbox" /> เฉพาะ Network ครบ NTP→D1200</label>
-    <label>เส้นความสัมพันธ์
-      <select id="linkMode">
-        <option value="off">ปิด</option>
-        <option value="driving" selected>เฉพาะเส้นขับเคลื่อน</option>
-        <option value="all">ทุกเส้นที่มองเห็น</option>
-      </select>
-    </label>
-    <label>ขนาด
-      <select id="zoom">
-        <option value="1.25">ย่อ</option>
-        <option value="2" selected>ปกติ</option>
-        <option value="3">ละเอียด</option>
-      </select>
-    </label>
-    <button id="resetFilters" class="secondary">ล้างตัวกรอง</button>
-  </section>
-
-  <section class="legend">
-    <span><i class="swatch normal"></i> กิจกรรม</span>
-    <span><i class="swatch critical"></i> กิจกรรมวิกฤต Float = 0</span>
-    <span><i class="swatch disconnected"></i> Network ไม่ครบถึง D1200</span>
-    <span><i class="link-sample normal"></i> ความสัมพันธ์</span>
-    <span><i class="link-sample driving"></i> ความสัมพันธ์ขับเคลื่อน</span>
-    <span><i class="diamond"></i> จุดควบคุม</span>
-    <span><b class="basis source">SOURCE</b> กิจกรรม/ข้อควบคุมจากเอกสารต้นทาง</span>
-    <span><b class="basis derived">DERIVED</b> แตกกิจกรรมจากกระบวนการต้นทาง</span>
-    <span><b class="basis assumption">ASSUMPTION</b> รายละเอียดระดับข้อเสนอ</span>
-    <span><b class="timing-chip source">T:SRC</b> วันหรือช่วงเวลาจากต้นทาง</span>
-    <span><b class="timing-chip assumption">T:ASM</b> ช่วงเวลาสมมติฐานข้อเสนอ</span>
-    <span><b class="scope-chip source-required">SCOPE:SRC</b> ขอบเขตหลักจากแผนที่ 1</span>
-    <span><b class="scope-chip derived-scope">SCOPE:DRV</b> รายละเอียดที่แตกจากขอบเขต</span>
-    <span><b class="scope-chip provisional">SCOPE:PROV</b> ต้องยืนยันจาก IFC / BOQ / Equipment Schedule</span>
-    <span><b class="scope-chip control">SCOPE:CTL</b> กระบวนการควบคุมและหลักฐาน</span>
-  </section>
-
-  <main class="gantt-shell" id="ganttShell">
-    <div class="gantt-head left-head">
-      <div class="col wbs">WBS</div>
-      <div class="col activity">กิจกรรม</div>
-      <div class="col dur">ระยะเวลา</div>
-      <div class="col days">วันเริ่ม–สิ้นสุด</div>
-    </div>
-    <div class="gantt-head timeline-head" id="timelineHead"></div>
-    <div class="left-grid" id="leftGrid"></div>
-    <div class="timeline-grid" id="timelineGrid"></div>
-  </main>
-
-  <aside class="drawer" id="drawer" aria-hidden="true">
-    <button class="drawer-close" id="drawerClose" aria-label="ปิด">×</button>
-    <div id="drawerContent"></div>
-  </aside>
-
-  <footer>
-    Baseline v0.8 ใช้แผนงานตัวอย่างเฉพาะมาตรฐานการจัดลำดับ WBS คำเรียกหมวดงาน และระดับความละเอียด ไม่ได้นำระยะเวลา วันที่ หรือ Logic ของตัวอย่างมาใช้ ชื่อภาษาไทยเป็นข้อมูลหลักสำหรับการทบทวน ส่วนชื่อภาษาอังกฤษเดิมถูกเก็บในข้อมูลส่งออกเพื่อให้ตรวจสอบย้อนกลับได้ กิจกรรม WHERE_APPLICABLE ต้องยืนยันกับแบบ IFC, BOQ, Equipment Schedule, Shop Drawing และ Commissioning Matrix ก่อนรับรอง Contract Baseline
-  </footer>
-
-  <script type="module" src="./app.js"></script>
-</body>
-</html>
+<body><main>
+  <h1>PDF Visual QA — Baseline v0.8 ภาษาไทย</h1>
+  <p>Temporary review page. Source commit: <code>bb94a5c1eabbad0dd64f2108a916e5866b32b84b</code></p>
+  <p><a id="pdf-link" href="./data/huai-kha-khaeng-integrated-master-gantt-v0.8-thai.pdf">เปิด PDF 48 หน้า</a></p>
+  <h2>ภาพตัวอย่างหน้า 1</h2>
+  <a id="preview1-link" href="./data/pdf-v08-preview-page-01.png">เปิด PNG หน้า 1</a>
+  <img src="./data/pdf-v08-preview-page-01.png" alt="PDF page 1 preview">
+  <h2>ภาพตัวอย่างหน้า 2</h2>
+  <a id="preview2-link" href="./data/pdf-v08-preview-page-02.png">เปิด PNG หน้า 2</a>
+  <img src="./data/pdf-v08-preview-page-02.png" alt="PDF page 2 preview">
+</main></body></html>
