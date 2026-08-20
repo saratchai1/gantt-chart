@@ -1,11 +1,12 @@
 {
   "name": "huai-kha-khaeng-integrated-gantt",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "private": true,
   "type": "module",
   "scripts": {
     "validate": "node scripts/validate.mjs",
     "export": "node scripts/export.mjs",
+    "thai-review": "node scripts/export-thai-review.mjs",
     "pdf": "node scripts/generate-pdf-bilingual.mjs"
   },
   "dependencies": {
