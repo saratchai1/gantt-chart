@@ -17,11 +17,12 @@ jobs:
         with:
           node-version: '24'
 
-      - name: JavaScript syntax check
+      - name: Source syntax check
         shell: bash
         run: |
           node --check app.js
           find src scripts -type f \( -name '*.js' -o -name '*.mjs' \) -print0 | xargs -0 -n1 node --check
+          python3 -m py_compile scripts/audit-pdf-render-v08.py
 
       - name: Validate schedule and Thai activity alignment
         run: npm run validate
@@ -56,13 +57,13 @@ jobs:
             data/package-document-release-register.csv
             data/system-test-pack-register.csv
 
-      - name: Install PDF dependencies and bilingual Thai/Latin font
+      - name: Install PDF, font and raster-audit dependencies
         if: ${{ github.event_name == 'pull_request' }}
         shell: bash
         run: |
           npm install --no-audit --no-fund
           sudo apt-get update -qq
-          sudo apt-get install -y -qq fonts-thai-tlwg fonts-noto-core poppler-utils
+          sudo apt-get install -y -qq fonts-thai-tlwg fonts-noto-core poppler-utils python3-pil
           fc-match 'Garuda'
           fc-match 'Garuda:style=Bold'
 
@@ -70,7 +71,7 @@ jobs:
         if: ${{ github.event_name == 'pull_request' }}
         run: npm run pdf
 
-      - name: Audit PDF fonts, Thai text and blank pages
+      - name: Extract and render PDF for QA
         if: ${{ github.event_name == 'pull_request' }}
         shell: bash
         run: |
@@ -78,9 +79,12 @@ jobs:
           PDF='data/huai-kha-khaeng-integrated-master-gantt-v0.8-thai.pdf'
           TEXT='data/pdf-text-v08.txt'
           NORMALIZED='data/pdf-text-v08-normalized.txt'
+          TSV='data/pdf-tsv-v08.tsv'
+
           pdfinfo "$PDF" | tee data/pdf-info-v08.txt
           pdffonts "$PDF" | tee data/pdf-fonts-v08.txt
           pdftotext "$PDF" "$TEXT"
+          pdftotext -tsv "$PDF" "$TSV"
           tr '\n\r\f\t' '    ' < "$TEXT" | tr -s ' ' > "$NORMALIZED"
 
           pages=$(pdfinfo "$PDF" | awk '/^Pages:/ {print $2}')
@@ -103,10 +107,21 @@ jobs:
           text_chars=$(tr -d '[:space:]' < "$TEXT" | wc -m)
           test "$text_chars" -gt 50000
 
+          rm -rf data/pdf-v08-pages
+          mkdir -p data/pdf-v08-pages
+          pdftoppm -png -r 72 "$PDF" data/pdf-v08-pages/page >/dev/null 2>&1
           pdftoppm -png -f 1 -singlefile -r 120 "$PDF" data/pdf-v08-preview-page-01 >/dev/null 2>&1
           pdftoppm -png -f 2 -singlefile -r 120 "$PDF" data/pdf-v08-preview-page-02 >/dev/null 2>&1
 
-      - name: Upload Thai PDF artifact
+      - name: Deep-audit PDF hierarchy, activity coverage and Thai content
+        if: ${{ github.event_name == 'pull_request' }}
+        run: node scripts/audit-pdf-v08.mjs
+
+      - name: Audit rasterized pages and create contact sheets
+        if: ${{ github.event_name == 'pull_request' }}
+        run: python3 scripts/audit-pdf-render-v08.py
+
+      - name: Upload Thai PDF and QA artifact
         if: ${{ github.event_name == 'pull_request' }}
         uses: actions/upload-artifact@v4
         with:
@@ -117,10 +132,17 @@ jobs:
             data/pdf-fonts-v08.txt
             data/pdf-text-v08.txt
             data/pdf-text-v08-normalized.txt
+            data/pdf-tsv-v08.tsv
+            data/pdf-generation-report-v08.json
+            data/pdf-deep-audit-v08.json
+            data/pdf-deep-audit-v08.md
+            data/pdf-render-audit-v08.json
+            data/pdf-render-audit-v08.md
             data/pdf-v08-preview-page-01.png
             data/pdf-v08-preview-page-02.png
+            data/pdf-v08-contact-sheet-*.png
 
-      - name: Publish Thai PDF snapshot branch
+      - name: Publish reviewed Thai PDF snapshot branch
         if: ${{ github.event_name == 'pull_request' }}
         shell: bash
         run: |
@@ -130,6 +152,10 @@ jobs:
           git add -f \
             data/huai-kha-khaeng-integrated-master-gantt-v0.8-thai.pdf \
             data/pdf-v08-preview-page-01.png \
-            data/pdf-v08-preview-page-02.png
-          git commit -m 'Publish Thai Baseline v0.8 Gantt PDF preview [skip ci]'
+            data/pdf-v08-preview-page-02.png \
+            data/pdf-v08-contact-sheet-*.png \
+            data/pdf-generation-report-v08.json \
+            data/pdf-deep-audit-v08.json \
+            data/pdf-render-audit-v08.json
+          git commit -m 'Publish reviewed Thai Baseline v0.8 Gantt PDF [skip ci]'
           git push origin HEAD:pdf-export-v08 --force
