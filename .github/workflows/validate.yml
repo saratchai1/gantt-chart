@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -27,13 +28,16 @@ jobs:
       - name: Validate schedule and Thai activity alignment
         run: npm run validate
 
+      - name: Validate web zone hierarchy and color semantics
+        run: npm run web:validate
+
       - name: Export schedule and review registers
         run: npm run export
 
       - name: Export Plan 01 Thai activity alignment registers
         run: npm run thai-review
 
-      - name: Upload schedule data
+      - name: Upload schedule and web-validation data
         uses: actions/upload-artifact@v4
         with:
           name: integrated-master-schedule-data
@@ -44,6 +48,7 @@ jobs:
             data/localization-stats.json
             data/cpm-report.json
             data/validation-report.json
+            data/web-hierarchy-validation.json
             data/thai-translation-review-register.csv
             data/thai-translation-review-register.json
             data/plan01-thai-activity-alignment-register.csv
@@ -57,8 +62,11 @@ jobs:
             data/package-document-release-register.csv
             data/system-test-pack-register.csv
 
+      # PDF production is intentionally opt-in. It runs only when the
+      # repository variable ENABLE_PDF_EXPORT=true and the PR branch starts
+      # with pdf/, or when this workflow is launched manually.
       - name: Install PDF, font and raster-audit dependencies
-        if: ${{ github.event_name == 'pull_request' }}
+        if: ${{ vars.ENABLE_PDF_EXPORT == 'true' && (github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'pdf/')) }}
         shell: bash
         run: |
           npm install --no-audit --no-fund
@@ -68,11 +76,11 @@ jobs:
           fc-match 'Garuda:style=Bold'
 
       - name: Generate final Thai A3 master Gantt PDF
-        if: ${{ github.event_name == 'pull_request' }}
+        if: ${{ vars.ENABLE_PDF_EXPORT == 'true' && (github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'pdf/')) }}
         run: npm run pdf
 
       - name: Extract and render final PDF for QA
-        if: ${{ github.event_name == 'pull_request' }}
+        if: ${{ vars.ENABLE_PDF_EXPORT == 'true' && (github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'pdf/')) }}
         shell: bash
         run: |
           set -euo pipefail
@@ -117,15 +125,15 @@ jobs:
           pdftoppm -png -f "$pages" -singlefile -r 120 "$PDF" data/pdf-v081-preview-page-final >/dev/null 2>&1
 
       - name: Deep-audit hierarchy, activity coverage and full Thai content
-        if: ${{ github.event_name == 'pull_request' }}
+        if: ${{ vars.ENABLE_PDF_EXPORT == 'true' && (github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'pdf/')) }}
         run: npm run pdf:audit
 
       - name: Audit rasterized pages and create contact sheets
-        if: ${{ github.event_name == 'pull_request' }}
+        if: ${{ vars.ENABLE_PDF_EXPORT == 'true' && (github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'pdf/')) }}
         run: python3 scripts/audit-pdf-render-v081.py
 
       - name: Upload final Thai PDF and QA artifact
-        if: ${{ github.event_name == 'pull_request' }}
+        if: ${{ vars.ENABLE_PDF_EXPORT == 'true' && (github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'pdf/')) }}
         uses: actions/upload-artifact@v4
         with:
           name: integrated-master-schedule-pdf-v081-thai
@@ -148,7 +156,7 @@ jobs:
             data/pdf-v081-contact-sheet-*.png
 
       - name: Publish final reviewed PDF snapshot branch
-        if: ${{ github.event_name == 'pull_request' }}
+        if: ${{ vars.ENABLE_PDF_EXPORT == 'true' && startsWith(github.head_ref, 'pdf/') }}
         shell: bash
         run: |
           git config user.name 'github-actions[bot]'
