@@ -10,7 +10,6 @@ const OUTPUTS = {
   json: 'data/pdf-deep-audit-v081.json',
   markdown: 'data/pdf-deep-audit-v081.md'
 };
-
 for (const file of Object.values(INPUTS)) {
   if (!fs.existsSync(file)) throw new Error(`Missing required PDF audit input: ${file}`);
 }
@@ -20,13 +19,11 @@ const normalize = value => String(value ?? '')
   .replace(/[\u200B-\u200D\uFEFF]/g, '')
   .replace(/\s+/g, ' ')
   .trim();
-
 const thaiSearchKey = value => normalize(value)
   .normalize('NFD')
   .replace(/[\u0300-\u036F\u0E31\u0E34-\u0E3A\u0E47-\u0E4E]/g, '')
   .replace(/[^\u0E00-\u0E7FA-Za-z0-9]/g, '')
   .toLowerCase();
-
 const zoneKey = row => normalize(row.zone) || 'Project-wide';
 const areaName = row => normalize(row.building_area) || 'ทั้งโครงการ';
 const categoryName = row => normalize(row.work_category_th || row.discipline) || 'งานทั่วไป';
@@ -38,7 +35,6 @@ const textSearchKey = thaiSearchKey(textRaw);
 const generation = JSON.parse(fs.readFileSync(INPUTS.generation, 'utf8'));
 const errors = [];
 const advisories = [];
-
 const addError = (message, detail = null) => errors.push({ message, detail });
 const addAdvisory = (message, detail = null) => advisories.push({ message, detail });
 const containsThaiPhrase = phrase => {
@@ -51,28 +47,20 @@ for (const term of [
   ' zero-float', ' rows', 'project-wide', 'physical delivery', 'payment & commercial',
   'scope to verify', 'activity / id / area', 'a3 landscape', 'page '
 ]) {
-  if (textLower.includes(term.toLowerCase())) addError(`Visible legacy/English term remains in PDF: ${term}`);
+  if (textLower.includes(term)) addError(`Visible legacy/English term remains in PDF: ${term}`);
 }
-if (/\b\d+d\b/i.test(textRaw)) addError('Legacy English day unit remains in PDF (for example 34d).');
-
+// Lower-case d is the legacy English day suffix. Upper-case D in 4D/5D and
+// project-day notation D1200 is an accepted technical label.
+if (/\b\d+d\b/.test(textRaw)) addError('Legacy English day unit remains in PDF (for example 34d).');
 for (const glyph of ['\uFFFD', '□', '�']) {
   if (textRaw.includes(glyph)) addError(`Corrupt or missing-glyph marker found: ${JSON.stringify(glyph)}`);
 }
 
 for (const phrase of [
-  'แผนงานก่อสร้างห้วยขาแข้ง',
-  'ฉบับฐาน v0.8.1',
-  'พื้นที่ดำเนินงาน',
-  'อาคาร / บริเวณ',
-  'หมวดงาน',
-  'งานปรับบริเวณ',
-  'งานโครงสร้าง',
-  'สถาปัตย์',
-  'งานระบบไฟฟ้าและสื่อสาร',
-  'งานระบบสุขาภิบาลและป้องกันอัคคีภัย',
-  'งานระบบปรับอากาศและระบายอากาศ',
-  'งานระบบพิเศษ',
-  'จุดควบคุม'
+  'แผนงานก่อสร้างห้วยขาแข้ง', 'ฉบับฐาน v0.8.1', 'พื้นที่', 'อาคาร', 'หมวดงาน',
+  'งานปรับบริเวณ', 'งานโครงสร้าง', 'สถาปัตย์', 'งานระบบไฟฟ้าและสื่อสาร',
+  'งานระบบสุขาภิบาลและป้องกันอัคคีภัย', 'งานระบบปรับอากาศและระบายอากาศ',
+  'งานระบบพิเศษ', 'จุดควบคุม'
 ]) {
   if (!containsThaiPhrase(phrase)) addError(`Required Thai content phrase not found in PDF: ${phrase}`);
 }
@@ -106,7 +94,6 @@ for (const [label, actual, expected] of [
 ]) {
   if (actual !== expected) addError(`PDF ${label} count is incorrect`, { expected, actual });
 }
-
 for (const [label, list] of [
   ['missing activity IDs', generation.missing_activity_ids],
   ['duplicate activity IDs', generation.duplicate_activity_ids],
@@ -161,7 +148,6 @@ for (const line of lineMap.values()) {
     observedIdPages.get(candidate).push(line.page);
   }
 }
-
 const missingIds = [...expectedIds].filter(id => !observedIdPages.has(id));
 const duplicateRows = [...observedIdPages.entries()].filter(([, pages]) => pages.length !== 1);
 if (missingIds.length) addError('Activity rows are missing from the PDF activity column', {
@@ -180,7 +166,6 @@ for (let page = 2; page <= generation.pages; page++) {
   if (!idsPerPage[page]) emptyDetailPages.push(page);
 }
 if (emptyDetailPages.length) addError('Detail pages without activity rows were found', { pages: emptyDetailPages });
-
 const sparseDetailPages = Object.entries(idsPerPage)
   .filter(([page, count]) => Number(page) >= 2 && count < 3)
   .map(([page, count]) => ({ page: Number(page), activity_rows: count }));
