@@ -23,7 +23,7 @@ jobs:
         run: |
           node --check app.js
           find src scripts -type f \( -name '*.js' -o -name '*.mjs' \) -print0 | xargs -0 -n1 node --check
-          python3 -m py_compile scripts/audit-pdf-render-v08.py scripts/audit-pdf-render-v081.py
+          python3 -m py_compile scripts/audit-pdf-render-v08.py scripts/audit-pdf-render-v081.py scripts/audit-pdf-render-v082.py
 
       - name: Validate schedule and Thai activity alignment
         run: npm run validate
@@ -75,27 +75,27 @@ jobs:
           fc-match 'Garuda'
           fc-match 'Garuda:style=Bold'
 
-      - name: Generate final Thai A3 master Gantt PDF
+      - name: Generate Thai A3 master Gantt PDF with zone color hierarchy
         if: ${{ vars.ENABLE_PDF_EXPORT == 'true' && (github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'pdf/')) }}
         run: npm run pdf
 
-      - name: Extract and render final PDF for QA
+      - name: Extract and render v0.8.2 PDF for QA
         if: ${{ vars.ENABLE_PDF_EXPORT == 'true' && (github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'pdf/')) }}
         shell: bash
         run: |
           set -euo pipefail
-          PDF='data/huai-kha-khaeng-integrated-master-gantt-v0.8.1-thai.pdf'
-          TEXT='data/pdf-text-v081.txt'
-          NORMALIZED='data/pdf-text-v081-normalized.txt'
-          TSV='data/pdf-tsv-v081.tsv'
+          PDF='data/huai-kha-khaeng-integrated-master-gantt-v0.8.2-thai.pdf'
+          TEXT='data/pdf-text-v082.txt'
+          NORMALIZED='data/pdf-text-v082-normalized.txt'
+          TSV='data/pdf-tsv-v082.tsv'
 
-          pdfinfo "$PDF" | tee data/pdf-info-v081.txt
-          pdffonts "$PDF" | tee data/pdf-fonts-v081.txt
+          pdfinfo "$PDF" | tee data/pdf-info-v082.txt
+          pdffonts "$PDF" | tee data/pdf-fonts-v082.txt
           pdftotext "$PDF" "$TEXT"
           pdftotext -tsv "$PDF" "$TSV"
           tr '\n\r\f\t' '    ' < "$TEXT" | tr -s ' ' > "$NORMALIZED"
 
-          grep -q '(A3)' data/pdf-info-v081.txt
+          grep -q '(A3)' data/pdf-info-v082.txt
           pages=$(pdfinfo "$PDF" | awk '/^Pages:/ {print $2}')
           test -n "$pages"
           test "$pages" -gt 1
@@ -111,66 +111,66 @@ jobs:
           done
           test "$bad" -eq 0
 
-          grep -Eiq 'Garuda.*yes.*yes.*yes' data/pdf-fonts-v081.txt
+          grep -Eiq 'Garuda.*yes.*yes.*yes' data/pdf-fonts-v082.txt
           grep -Fq 'แผนงานก่อสร้างห้วยขาแข้ง' "$NORMALIZED"
           text_chars=$(tr -d '[:space:]' < "$TEXT" | wc -m)
           test "$text_chars" -gt 170000
 
-          rm -rf data/pdf-v081-pages
-          mkdir -p data/pdf-v081-pages
-          pdftoppm -png -r 72 "$PDF" data/pdf-v081-pages/page >/dev/null 2>&1
-          pdftoppm -png -f 1 -singlefile -r 120 "$PDF" data/pdf-v081-preview-page-01 >/dev/null 2>&1
-          pdftoppm -png -f 2 -singlefile -r 120 "$PDF" data/pdf-v081-preview-page-02 >/dev/null 2>&1
-          pdftoppm -png -f 10 -singlefile -r 120 "$PDF" data/pdf-v081-preview-page-10 >/dev/null 2>&1
-          pdftoppm -png -f "$pages" -singlefile -r 120 "$PDF" data/pdf-v081-preview-page-final >/dev/null 2>&1
+          rm -rf data/pdf-v082-pages
+          mkdir -p data/pdf-v082-pages
+          pdftoppm -png -r 72 "$PDF" data/pdf-v082-pages/page >/dev/null 2>&1
+          pdftoppm -png -f 1 -singlefile -r 120 "$PDF" data/pdf-v082-preview-page-01 >/dev/null 2>&1
+          pdftoppm -png -f 2 -singlefile -r 120 "$PDF" data/pdf-v082-preview-page-02 >/dev/null 2>&1
+          pdftoppm -png -f 10 -singlefile -r 120 "$PDF" data/pdf-v082-preview-page-10 >/dev/null 2>&1
+          pdftoppm -png -f "$pages" -singlefile -r 120 "$PDF" data/pdf-v082-preview-page-final >/dev/null 2>&1
 
-      - name: Deep-audit hierarchy, activity coverage and full Thai content
+      - name: Deep-audit hierarchy, activity coverage and Thai content
         if: ${{ vars.ENABLE_PDF_EXPORT == 'true' && (github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'pdf/')) }}
         run: npm run pdf:audit
 
-      - name: Audit rasterized pages and create contact sheets
+      - name: Audit rasterized pages, hierarchy colors and contact sheets
         if: ${{ vars.ENABLE_PDF_EXPORT == 'true' && (github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'pdf/')) }}
-        run: python3 scripts/audit-pdf-render-v081.py
+        run: python3 scripts/audit-pdf-render-v082.py
 
-      - name: Upload final Thai PDF and QA artifact
+      - name: Upload final Thai v0.8.2 PDF and QA artifact
         if: ${{ vars.ENABLE_PDF_EXPORT == 'true' && (github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'pdf/')) }}
         uses: actions/upload-artifact@v4
         with:
-          name: integrated-master-schedule-pdf-v081-thai
+          name: integrated-master-schedule-pdf-v082-thai
           path: |
-            data/huai-kha-khaeng-integrated-master-gantt-v0.8.1-thai.pdf
-            data/pdf-info-v081.txt
-            data/pdf-fonts-v081.txt
-            data/pdf-text-v081.txt
-            data/pdf-text-v081-normalized.txt
-            data/pdf-tsv-v081.tsv
-            data/pdf-generation-report-v081.json
-            data/pdf-deep-audit-v081.json
-            data/pdf-deep-audit-v081.md
-            data/pdf-render-audit-v081.json
-            data/pdf-render-audit-v081.md
-            data/pdf-v081-preview-page-01.png
-            data/pdf-v081-preview-page-02.png
-            data/pdf-v081-preview-page-10.png
-            data/pdf-v081-preview-page-final.png
-            data/pdf-v081-contact-sheet-*.png
+            data/huai-kha-khaeng-integrated-master-gantt-v0.8.2-thai.pdf
+            data/pdf-info-v082.txt
+            data/pdf-fonts-v082.txt
+            data/pdf-text-v082.txt
+            data/pdf-text-v082-normalized.txt
+            data/pdf-tsv-v082.tsv
+            data/pdf-generation-report-v082.json
+            data/pdf-deep-audit-v082.json
+            data/pdf-deep-audit-v082.md
+            data/pdf-render-audit-v082.json
+            data/pdf-render-audit-v082.md
+            data/pdf-v082-preview-page-01.png
+            data/pdf-v082-preview-page-02.png
+            data/pdf-v082-preview-page-10.png
+            data/pdf-v082-preview-page-final.png
+            data/pdf-v082-contact-sheet-*.png
 
-      - name: Publish final reviewed PDF snapshot branch
+      - name: Publish reviewed v0.8.2 PDF snapshot branch
         if: ${{ vars.ENABLE_PDF_EXPORT == 'true' && startsWith(github.head_ref, 'pdf/') }}
         shell: bash
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git checkout -B pdf-export-v081
+          git checkout -B pdf-export-v082
           git add -f \
-            data/huai-kha-khaeng-integrated-master-gantt-v0.8.1-thai.pdf \
-            data/pdf-v081-preview-page-01.png \
-            data/pdf-v081-preview-page-02.png \
-            data/pdf-v081-preview-page-10.png \
-            data/pdf-v081-preview-page-final.png \
-            data/pdf-v081-contact-sheet-*.png \
-            data/pdf-generation-report-v081.json \
-            data/pdf-deep-audit-v081.json \
-            data/pdf-render-audit-v081.json
-          git commit -m 'Publish final Thai v0.8.1 Gantt PDF [skip ci]'
-          git push origin HEAD:pdf-export-v081 --force
+            data/huai-kha-khaeng-integrated-master-gantt-v0.8.2-thai.pdf \
+            data/pdf-v082-preview-page-01.png \
+            data/pdf-v082-preview-page-02.png \
+            data/pdf-v082-preview-page-10.png \
+            data/pdf-v082-preview-page-final.png \
+            data/pdf-v082-contact-sheet-*.png \
+            data/pdf-generation-report-v082.json \
+            data/pdf-deep-audit-v082.json \
+            data/pdf-render-audit-v082.json
+          git commit -m 'Publish reviewed Thai v0.8.2 Gantt PDF [skip ci]'
+          git push origin HEAD:pdf-export-v082 --force
