@@ -10,9 +10,9 @@
 <body>
   <header class="app-header">
     <div>
-      <div class="eyebrow">PROPOSAL INTEGRATED MASTER SCHEDULE · BASELINE v0.8 · THAI ACTIVITY ALIGNMENT</div>
+      <div class="eyebrow">PROPOSAL INTEGRATED MASTER SCHEDULE · BASELINE v0.8.1 · WEB HIERARCHY R1</div>
       <h1>แผนงานก่อสร้างห้วยขาแข้ง — แผนที่ 01–16</h1>
-      <p>ระยะเวลาโครงการ 1,200 วัน · 497 งวดงาน · แสดงชื่อกิจกรรมและหมวดงานภาษาไทย โดยเก็บชื่อภาษาอังกฤษเดิมไว้ตรวจสอบย้อนกลับ</p>
+      <p>ลำดับการแสดงผล: แผน → โซนหลัก A–D → โซนย่อย/อาคาร–บริเวณ → งาน/หมวดงาน → กิจกรรม โดยใช้สีฟ้าสำหรับโซนหลัก สีเขียวสำหรับโซนย่อย และสีเทาสำหรับงาน</p>
     </div>
     <div class="header-actions">
       <button id="exportCsv">ส่งออก CSV</button>
@@ -24,16 +24,16 @@
 
   <section class="toolbar">
     <label>ค้นหา
-      <input id="search" type="search" placeholder="รหัส / WBS / อาคาร / กิจกรรม / คำอังกฤษเดิม…" />
+      <input id="search" type="search" placeholder="รหัส / WBS / โซนหลัก / โซนย่อย / งาน / กิจกรรม…" />
     </label>
     <label>แผน
       <select id="planFilter"><option value="">ทุกแผน 01–16</option></select>
     </label>
-    <label>พื้นที่
-      <select id="zoneFilter"><option value="">ทุกพื้นที่</option></select>
+    <label>โซนหลัก / พื้นที่ดำเนินงาน
+      <select id="zoneFilter"><option value="">ทุกโซนหลักและพื้นที่</option></select>
     </label>
-    <label>หมวดงาน
-      <select id="disciplineFilter"><option value="">ทุกหมวดงาน</option></select>
+    <label>งาน / หมวดงาน
+      <select id="disciplineFilter"><option value="">ทุกงานและหมวดงาน</option></select>
     </label>
     <label>ที่มากิจกรรม
       <select id="basisFilter">
@@ -78,7 +78,12 @@
     <button id="resetFilters" class="secondary">ล้างตัวกรอง</button>
   </section>
 
-  <section class="legend">
+  <section class="legend" aria-label="คำอธิบายสีและสัญลักษณ์">
+    <span class="hierarchy-legend">ลำดับชั้น:</span>
+    <span><i class="swatch zone-main"></i> สีฟ้า — โซนหลัก A–D</span>
+    <span><i class="swatch subzone"></i> สีเขียว — โซนย่อย / อาคาร–บริเวณ</span>
+    <span><i class="swatch work"></i> สีเทา — งาน / หมวดงาน เช่น งานโครงสร้างและสถาปัตย์</span>
+    <i class="legend-separator" aria-hidden="true"></i>
     <span><i class="swatch normal"></i> กิจกรรม</span>
     <span><i class="swatch critical"></i> กิจกรรมวิกฤต Float = 0</span>
     <span><i class="swatch disconnected"></i> Network ไม่ครบถึง D1200</span>
@@ -98,9 +103,9 @@
 
   <main class="gantt-shell" id="ganttShell">
     <div class="gantt-head left-head">
-      <div class="col wbs">WBS</div>
-      <div class="col activity">กิจกรรม</div>
-      <div class="col dur">ระยะเวลา</div>
+      <div class="col wbs">WBS / รหัสกลุ่ม</div>
+      <div class="col activity">โซน / งาน / กิจกรรม</div>
+      <div class="col dur">จำนวน / ระยะเวลา</div>
       <div class="col days">วันเริ่ม–สิ้นสุด</div>
     </div>
     <div class="gantt-head timeline-head" id="timelineHead"></div>
@@ -114,7 +119,7 @@
   </aside>
 
   <footer>
-    Baseline v0.8 ใช้แผนงานตัวอย่างเฉพาะมาตรฐานการจัดลำดับ WBS คำเรียกหมวดงาน และระดับความละเอียด ไม่ได้นำระยะเวลา วันที่ หรือ Logic ของตัวอย่างมาใช้ ชื่อภาษาไทยเป็นข้อมูลหลักสำหรับการทบทวน ส่วนชื่อภาษาอังกฤษเดิมถูกเก็บในข้อมูลส่งออกเพื่อให้ตรวจสอบย้อนกลับได้ กิจกรรม WHERE_APPLICABLE ต้องยืนยันกับแบบ IFC, BOQ, Equipment Schedule, Shop Drawing และ Commissioning Matrix ก่อนรับรอง Contract Baseline
+    Baseline v0.8.1 แสดงข้อมูลตามลำดับ แผน → โซนหลัก → โซนย่อย/อาคาร–บริเวณ → งาน/หมวดงาน → กิจกรรม การปรับสีและลำดับชั้นใน Web App ไม่ได้เปลี่ยน Activity ID, Duration, Start–Finish, Dependency หรือ CPM ชื่อภาษาอังกฤษเดิมยังอยู่ในรายละเอียดและข้อมูลส่งออกเพื่อให้ตรวจสอบย้อนกลับได้ กิจกรรม WHERE_APPLICABLE ต้องยืนยันกับแบบ IFC, BOQ, Equipment Schedule, Shop Drawing และ Commissioning Matrix ก่อนรับรอง Contract Baseline
   </footer>
 
   <script type="module" src="./app.js"></script>
