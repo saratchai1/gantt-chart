@@ -28,8 +28,7 @@ jobs:
             scripts/audit-pdf-render-v08.py \
             scripts/audit-pdf-render-v081.py \
             scripts/audit-pdf-render-v082.py \
-            scripts/audit-team-pdf-render-220869.py \
-            scripts/audit-team-pdf-render-220869-v091.py
+            scripts/audit-team-pdf-render-220869.py
 
       - name: Validate integrated detailed schedule
         run: npm run validate
@@ -37,13 +36,13 @@ jobs:
       - name: Validate detailed web zone hierarchy
         run: npm run web:validate
 
-      - name: Validate corrected Excel 220869 team Gantt
+      - name: Validate Excel 220869 source-driven team Gantt
         run: npm run team:validate
 
       - name: Export integrated schedule and review registers
         run: npm run export
 
-      - name: Export corrected Excel 220869 team Gantt and confirmation registers
+      - name: Export Excel 220869 team Gantt and mapping registers
         run: npm run team:export
 
       - name: Export Plan 01 Thai activity alignment registers
@@ -52,7 +51,7 @@ jobs:
       - name: Upload schedule, source-driven Gantt and validation data
         uses: actions/upload-artifact@v4
         with:
-          name: integrated-and-team-gantt-data-v091
+          name: integrated-and-team-gantt-data
           path: |
             data/master-schedule.csv
             data/master-schedule.json
@@ -63,14 +62,9 @@ jobs:
             data/web-hierarchy-validation.json
             data/team-gantt-220869.csv
             data/team-gantt-220869.json
-            data/team-gantt-220869-v091.csv
-            data/team-gantt-220869-v091.json
             data/team-source-register-220869.json
             data/team-gantt-mapping-register-220869.csv
-            data/team-gantt-mapping-register-220869-v091.csv
-            data/team-gantt-timing-confirmation-register-220869-v091.csv
             data/team-gantt-validation-220869.json
-            data/team-gantt-validation-220869-v091.json
             data/thai-translation-review-register.csv
             data/thai-translation-review-register.json
             data/plan01-thai-activity-alignment-register.csv
@@ -94,7 +88,7 @@ jobs:
           fc-match 'Garuda'
           fc-match 'Garuda:style=Bold'
 
-      # Detailed 1,066-activity PDF remains a separate opt-in issue.
+      # Detailed 1,066-activity PDF is retained as a separate opt-in issue.
       - name: Generate Thai A3 detailed master Gantt PDF
         if: ${{ github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'pdf/detailed-') }}
         run: npm run pdf
@@ -177,107 +171,94 @@ jobs:
           git commit -m 'Publish reviewed Thai v0.8.2 detailed Gantt PDF [skip ci]'
           git push origin HEAD:pdf-export-v082 --force
 
-      # Excel 220869 source-driven v0.9.1 PDF is the primary team issue.
-      - name: Generate corrected Excel 220869 Team Gantt PDF v0.9.1
+      # Excel 220869 source-driven PDF is the primary team issue.
+      - name: Generate Excel 220869 Team Gantt PDF
         if: ${{ github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'pdf/team-') }}
         run: npm run team:pdf
 
-      - name: Extract and render Excel 220869 Team Gantt PDF v0.9.1 for QA
+      - name: Extract and render Excel 220869 Team Gantt PDF for QA
         if: ${{ github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'pdf/team-') }}
         shell: bash
         run: |
           set -euo pipefail
-          PDF='data/huai-kha-khaeng-team-gantt-220869-v0.9.1-thai.pdf'
-          TEXT='data/team-pdf-text-220869-v091.txt'
-          NORMALIZED='data/team-pdf-text-220869-v091-normalized.txt'
-          TSV='data/team-pdf-tsv-220869-v091.tsv'
-          pdfinfo "$PDF" | tee data/team-pdf-info-220869-v091.txt
-          pdffonts "$PDF" | tee data/team-pdf-fonts-220869-v091.txt
+          PDF='data/huai-kha-khaeng-team-gantt-220869-v0.9.0-thai.pdf'
+          TEXT='data/team-pdf-text-220869.txt'
+          NORMALIZED='data/team-pdf-text-220869-normalized.txt'
+          TSV='data/team-pdf-tsv-220869.tsv'
+          pdfinfo "$PDF" | tee data/team-pdf-info-220869.txt
+          pdffonts "$PDF" | tee data/team-pdf-fonts-220869.txt
           pdftotext "$PDF" "$TEXT"
           pdftotext -tsv "$PDF" "$TSV"
           tr '\n\r\f\t' '    ' < "$TEXT" | tr -s ' ' > "$NORMALIZED"
-          grep -q '(A3)' data/team-pdf-info-220869-v091.txt
+          grep -q '(A3)' data/team-pdf-info-220869.txt
           pages=$(pdfinfo "$PDF" | awk '/^Pages:/ {print $2}')
           test -n "$pages"
           test "$pages" -gt 1
           bad=0
           for page in $(seq 1 "$pages"); do
             chars=$(pdftotext -f "$page" -l "$page" "$PDF" - | tr -d '[:space:]' | wc -m)
-            printf 'Team PDF v0.9.1 page %s text characters: %s\n' "$page" "$chars"
+            printf 'Team PDF page %s text characters: %s\n' "$page" "$chars"
             if [ "$chars" -lt 40 ]; then
               echo "ERROR: blank or effectively blank Team PDF page $page ($chars chars)"
               bad=1
             fi
           done
           test "$bad" -eq 0
-          grep -Eiq 'Garuda.*yes.*yes.*yes' data/team-pdf-fonts-220869-v091.txt
-          grep -Fq 'ฉบับแก้ไข v0.9.1' "$NORMALIZED"
-          grep -Fq 'ช่วงเวลาครอบคลุม' "$NORMALIZED"
-          grep -Fq 'TBC — รอยืนยัน' "$NORMALIZED"
-          grep -Fq 'ไม่ใช่ Cash Flow หรือ Payment Schedule' "$NORMALIZED"
-          grep -Fq 'fef660d14ae8ddecda66af3980cee939ac72c84d' "$NORMALIZED"
-          grep -Fq '1405af254e0ffb590455de45170cbcf25d38790c' "$NORMALIZED"
-          grep -Fq 'โซน Drop-off' "$NORMALIZED"
-          if grep -Fq 'โซนพื้นที่ศึกษาธรรมชาติ (zone D)rop-off' "$NORMALIZED"; then
-            echo 'ERROR: malformed Excel source text remains visible in team issue PDF'
-            exit 1
-          fi
+          grep -Eiq 'Garuda.*yes.*yes.*yes' data/team-pdf-fonts-220869.txt
+          grep -Fq 'ส่งให้ดร.ก้อง 220869.xlsx' "$NORMALIZED"
+          grep -Fq 'โซนพื้นที่ศึกษาธรรมชาติ (zone D)rop-off' "$NORMALIZED"
           text_chars=$(tr -d '[:space:]' < "$TEXT" | wc -m)
           test "$text_chars" -gt 18000
-          rm -rf data/team-pdf-pages-220869-v091
-          mkdir -p data/team-pdf-pages-220869-v091
-          pdftoppm -png -r 72 "$PDF" data/team-pdf-pages-220869-v091/page >/dev/null 2>&1
-          pdftoppm -png -f 1 -singlefile -r 120 "$PDF" data/team-pdf-preview-page-01-v091 >/dev/null 2>&1
-          pdftoppm -png -f 2 -singlefile -r 120 "$PDF" data/team-pdf-preview-page-02-v091 >/dev/null 2>&1
+          rm -rf data/team-pdf-pages-220869
+          mkdir -p data/team-pdf-pages-220869
+          pdftoppm -png -r 72 "$PDF" data/team-pdf-pages-220869/page >/dev/null 2>&1
+          pdftoppm -png -f 1 -singlefile -r 120 "$PDF" data/team-pdf-preview-page-01 >/dev/null 2>&1
+          pdftoppm -png -f 2 -singlefile -r 120 "$PDF" data/team-pdf-preview-page-02 >/dev/null 2>&1
           sample_page=$(( pages > 4 ? 4 : pages ))
-          pdftoppm -png -f "$sample_page" -singlefile -r 120 "$PDF" data/team-pdf-preview-page-sample-v091 >/dev/null 2>&1
-          pdftoppm -png -f "$pages" -singlefile -r 120 "$PDF" data/team-pdf-preview-page-final-v091 >/dev/null 2>&1
+          pdftoppm -png -f "$sample_page" -singlefile -r 120 "$PDF" data/team-pdf-preview-page-sample >/dev/null 2>&1
+          pdftoppm -png -f "$pages" -singlefile -r 120 "$PDF" data/team-pdf-preview-page-final >/dev/null 2>&1
 
-      - name: Deep-audit Excel 220869 Team Gantt PDF v0.9.1
+      - name: Deep-audit Excel 220869 Team Gantt PDF
         if: ${{ github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'pdf/team-') }}
         run: npm run team:pdf:audit
 
-      - name: Raster and semantic-color audit Excel 220869 Team Gantt PDF v0.9.1
+      - name: Raster and hierarchy-color audit Excel 220869 Team Gantt PDF
         if: ${{ github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'pdf/team-') }}
-        run: python3 scripts/audit-team-pdf-render-220869-v091.py
+        run: python3 scripts/audit-team-pdf-render-220869.py
 
-      - name: Upload Excel 220869 Team Gantt PDF v0.9.1 and QA artifact
+      - name: Upload Excel 220869 Team Gantt PDF and QA artifact
         if: ${{ github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'pdf/team-') }}
         uses: actions/upload-artifact@v4
         with:
-          name: team-gantt-220869-pdf-v091-thai
+          name: team-gantt-220869-pdf-v090-thai
           path: |
-            data/huai-kha-khaeng-team-gantt-220869-v0.9.1-thai.pdf
-            data/team-pdf-info-220869-v091.txt
-            data/team-pdf-fonts-220869-v091.txt
-            data/team-pdf-text-220869-v091.txt
-            data/team-pdf-text-220869-v091-normalized.txt
-            data/team-pdf-tsv-220869-v091.tsv
-            data/team-pdf-generation-report-220869-v091.json
-            data/team-pdf-deep-audit-220869-v091.json
-            data/team-pdf-deep-audit-220869-v091.md
-            data/team-pdf-render-audit-220869-v091.json
-            data/team-pdf-render-audit-220869-v091.md
-            data/team-pdf-preview-page-*-v091.png
-            data/team-pdf-contact-sheet-220869-v091-*.png
-            data/team-gantt-timing-confirmation-register-220869-v091.csv
-            data/team-gantt-mapping-register-220869-v091.csv
+            data/huai-kha-khaeng-team-gantt-220869-v0.9.0-thai.pdf
+            data/team-pdf-info-220869.txt
+            data/team-pdf-fonts-220869.txt
+            data/team-pdf-text-220869.txt
+            data/team-pdf-text-220869-normalized.txt
+            data/team-pdf-tsv-220869.tsv
+            data/team-pdf-generation-report-220869.json
+            data/team-pdf-deep-audit-220869.json
+            data/team-pdf-deep-audit-220869.md
+            data/team-pdf-render-audit-220869.json
+            data/team-pdf-render-audit-220869.md
+            data/team-pdf-preview-page-*.png
+            data/team-pdf-contact-sheet-220869-*.png
 
-      - name: Publish reviewed Excel 220869 Team Gantt PDF v0.9.1 snapshot branch
+      - name: Publish reviewed Excel 220869 Team Gantt PDF snapshot branch
         if: ${{ startsWith(github.head_ref, 'pdf/team-') }}
         shell: bash
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git checkout -B pdf-export-team-220869-v091
+          git checkout -B pdf-export-team-220869
           git add -f \
-            data/huai-kha-khaeng-team-gantt-220869-v0.9.1-thai.pdf \
-            data/team-pdf-preview-page-*-v091.png \
-            data/team-pdf-contact-sheet-220869-v091-*.png \
-            data/team-pdf-generation-report-220869-v091.json \
-            data/team-pdf-deep-audit-220869-v091.json \
-            data/team-pdf-render-audit-220869-v091.json \
-            data/team-gantt-timing-confirmation-register-220869-v091.csv \
-            data/team-gantt-mapping-register-220869-v091.csv
-          git commit -m 'Publish reviewed Excel 220869 Team Gantt v0.9.1 PDF [skip ci]'
-          git push origin HEAD:pdf-export-team-220869-v091 --force
+            data/huai-kha-khaeng-team-gantt-220869-v0.9.0-thai.pdf \
+            data/team-pdf-preview-page-*.png \
+            data/team-pdf-contact-sheet-220869-*.png \
+            data/team-pdf-generation-report-220869.json \
+            data/team-pdf-deep-audit-220869.json \
+            data/team-pdf-render-audit-220869.json
+          git commit -m 'Publish reviewed Excel 220869 Team Gantt PDF [skip ci]'
+          git push origin HEAD:pdf-export-team-220869 --force
