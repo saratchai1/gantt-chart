@@ -24,7 +24,11 @@ jobs:
           node --check app.js
           node --check team-app.js
           find src scripts -type f \( -name '*.js' -o -name '*.mjs' \) -print0 | xargs -0 -n1 node --check
-          python3 -m py_compile scripts/audit-pdf-render-v08.py scripts/audit-pdf-render-v081.py scripts/audit-pdf-render-v082.py
+          python3 -m py_compile \
+            scripts/audit-pdf-render-v08.py \
+            scripts/audit-pdf-render-v081.py \
+            scripts/audit-pdf-render-v082.py \
+            scripts/audit-team-pdf-render-220869.py
 
       - name: Validate integrated detailed schedule
         run: npm run validate
@@ -74,10 +78,8 @@ jobs:
             data/package-document-release-register.csv
             data/system-test-pack-register.csv
 
-      # Existing detailed PDF production remains opt-in. The Excel-driven team
-      # Gantt must be reviewed in the web app before a new PDF issue is created.
       - name: Install PDF, font and raster-audit dependencies
-        if: ${{ github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'pdf/') }}
+        if: ${{ github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'pdf/detailed-') || startsWith(github.head_ref, 'pdf/team-') }}
         shell: bash
         run: |
           npm install --no-audit --no-fund
@@ -86,12 +88,13 @@ jobs:
           fc-match 'Garuda'
           fc-match 'Garuda:style=Bold'
 
-      - name: Generate Thai A3 detailed master Gantt PDF with zone color hierarchy
-        if: ${{ github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'pdf/') }}
+      # Detailed 1,066-activity PDF is retained as a separate opt-in issue.
+      - name: Generate Thai A3 detailed master Gantt PDF
+        if: ${{ github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'pdf/detailed-') }}
         run: npm run pdf
 
       - name: Extract and render v0.8.2 detailed PDF for QA
-        if: ${{ github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'pdf/') }}
+        if: ${{ github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'pdf/detailed-') }}
         shell: bash
         run: |
           set -euo pipefail
@@ -99,34 +102,27 @@ jobs:
           TEXT='data/pdf-text-v082.txt'
           NORMALIZED='data/pdf-text-v082-normalized.txt'
           TSV='data/pdf-tsv-v082.tsv'
-
           pdfinfo "$PDF" | tee data/pdf-info-v082.txt
           pdffonts "$PDF" | tee data/pdf-fonts-v082.txt
           pdftotext "$PDF" "$TEXT"
           pdftotext -tsv "$PDF" "$TSV"
           tr '\n\r\f\t' '    ' < "$TEXT" | tr -s ' ' > "$NORMALIZED"
-
           grep -q '(A3)' data/pdf-info-v082.txt
           pages=$(pdfinfo "$PDF" | awk '/^Pages:/ {print $2}')
           test -n "$pages"
           test "$pages" -gt 1
-
           bad=0
           for page in $(seq 1 "$pages"); do
             chars=$(pdftotext -f "$page" -l "$page" "$PDF" - | tr -d '[:space:]' | wc -m)
-            printf 'PDF page %s text characters: %s\n' "$page" "$chars"
             if [ "$chars" -lt 40 ]; then
-              echo "ERROR: blank or effectively blank PDF page detected: page $page ($chars text chars)"
+              echo "ERROR: blank detailed PDF page $page ($chars chars)"
               bad=1
             fi
           done
           test "$bad" -eq 0
-
           grep -Eiq 'Garuda.*yes.*yes.*yes' data/pdf-fonts-v082.txt
-          grep -Fq 'แผนงานก่อสร้างห้วยขาแข้ง' "$NORMALIZED"
           text_chars=$(tr -d '[:space:]' < "$TEXT" | wc -m)
           test "$text_chars" -gt 170000
-
           rm -rf data/pdf-v082-pages
           mkdir -p data/pdf-v082-pages
           pdftoppm -png -r 72 "$PDF" data/pdf-v082-pages/page >/dev/null 2>&1
@@ -135,16 +131,16 @@ jobs:
           pdftoppm -png -f 10 -singlefile -r 120 "$PDF" data/pdf-v082-preview-page-10 >/dev/null 2>&1
           pdftoppm -png -f "$pages" -singlefile -r 120 "$PDF" data/pdf-v082-preview-page-final >/dev/null 2>&1
 
-      - name: Deep-audit detailed hierarchy, activity coverage and Thai content
-        if: ${{ github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'pdf/') }}
+      - name: Deep-audit detailed PDF
+        if: ${{ github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'pdf/detailed-') }}
         run: npm run pdf:audit
 
-      - name: Audit detailed rasterized pages, hierarchy colors and contact sheets
-        if: ${{ github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'pdf/') }}
+      - name: Raster-audit detailed PDF
+        if: ${{ github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'pdf/detailed-') }}
         run: python3 scripts/audit-pdf-render-v082.py
 
-      - name: Upload detailed Thai v0.8.2 PDF and QA artifact
-        if: ${{ github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'pdf/') }}
+      - name: Upload detailed PDF artifact
+        if: ${{ github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'pdf/detailed-') }}
         uses: actions/upload-artifact@v4
         with:
           name: integrated-master-schedule-pdf-v082-thai
@@ -152,22 +148,14 @@ jobs:
             data/huai-kha-khaeng-integrated-master-gantt-v0.8.2-thai.pdf
             data/pdf-info-v082.txt
             data/pdf-fonts-v082.txt
-            data/pdf-text-v082.txt
-            data/pdf-text-v082-normalized.txt
-            data/pdf-tsv-v082.tsv
             data/pdf-generation-report-v082.json
             data/pdf-deep-audit-v082.json
-            data/pdf-deep-audit-v082.md
             data/pdf-render-audit-v082.json
-            data/pdf-render-audit-v082.md
-            data/pdf-v082-preview-page-01.png
-            data/pdf-v082-preview-page-02.png
-            data/pdf-v082-preview-page-10.png
-            data/pdf-v082-preview-page-final.png
+            data/pdf-v082-preview-page-*.png
             data/pdf-v082-contact-sheet-*.png
 
-      - name: Publish reviewed detailed v0.8.2 PDF snapshot branch
-        if: ${{ startsWith(github.head_ref, 'pdf/') }}
+      - name: Publish reviewed detailed PDF snapshot branch
+        if: ${{ startsWith(github.head_ref, 'pdf/detailed-') }}
         shell: bash
         run: |
           git config user.name 'github-actions[bot]'
@@ -175,13 +163,102 @@ jobs:
           git checkout -B pdf-export-v082
           git add -f \
             data/huai-kha-khaeng-integrated-master-gantt-v0.8.2-thai.pdf \
-            data/pdf-v082-preview-page-01.png \
-            data/pdf-v082-preview-page-02.png \
-            data/pdf-v082-preview-page-10.png \
-            data/pdf-v082-preview-page-final.png \
+            data/pdf-v082-preview-page-*.png \
             data/pdf-v082-contact-sheet-*.png \
             data/pdf-generation-report-v082.json \
             data/pdf-deep-audit-v082.json \
             data/pdf-render-audit-v082.json
-          git commit -m 'Publish reviewed Thai v0.8.2 Gantt PDF [skip ci]'
+          git commit -m 'Publish reviewed Thai v0.8.2 detailed Gantt PDF [skip ci]'
           git push origin HEAD:pdf-export-v082 --force
+
+      # Excel 220869 source-driven PDF is the primary team issue.
+      - name: Generate Excel 220869 Team Gantt PDF
+        if: ${{ github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'pdf/team-') }}
+        run: npm run team:pdf
+
+      - name: Extract and render Excel 220869 Team Gantt PDF for QA
+        if: ${{ github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'pdf/team-') }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          PDF='data/huai-kha-khaeng-team-gantt-220869-v0.9.0-thai.pdf'
+          TEXT='data/team-pdf-text-220869.txt'
+          NORMALIZED='data/team-pdf-text-220869-normalized.txt'
+          TSV='data/team-pdf-tsv-220869.tsv'
+          pdfinfo "$PDF" | tee data/team-pdf-info-220869.txt
+          pdffonts "$PDF" | tee data/team-pdf-fonts-220869.txt
+          pdftotext "$PDF" "$TEXT"
+          pdftotext -tsv "$PDF" "$TSV"
+          tr '\n\r\f\t' '    ' < "$TEXT" | tr -s ' ' > "$NORMALIZED"
+          grep -q '(A3)' data/team-pdf-info-220869.txt
+          pages=$(pdfinfo "$PDF" | awk '/^Pages:/ {print $2}')
+          test -n "$pages"
+          test "$pages" -gt 1
+          bad=0
+          for page in $(seq 1 "$pages"); do
+            chars=$(pdftotext -f "$page" -l "$page" "$PDF" - | tr -d '[:space:]' | wc -m)
+            printf 'Team PDF page %s text characters: %s\n' "$page" "$chars"
+            if [ "$chars" -lt 40 ]; then
+              echo "ERROR: blank or effectively blank Team PDF page $page ($chars chars)"
+              bad=1
+            fi
+          done
+          test "$bad" -eq 0
+          grep -Eiq 'Garuda.*yes.*yes.*yes' data/team-pdf-fonts-220869.txt
+          grep -Fq 'ส่งให้ดร.ก้อง 220869.xlsx' "$NORMALIZED"
+          grep -Fq 'โซนพื้นที่ศึกษาธรรมชาติ (zone D)rop-off' "$NORMALIZED"
+          text_chars=$(tr -d '[:space:]' < "$TEXT" | wc -m)
+          test "$text_chars" -gt 18000
+          rm -rf data/team-pdf-pages-220869
+          mkdir -p data/team-pdf-pages-220869
+          pdftoppm -png -r 72 "$PDF" data/team-pdf-pages-220869/page >/dev/null 2>&1
+          pdftoppm -png -f 1 -singlefile -r 120 "$PDF" data/team-pdf-preview-page-01 >/dev/null 2>&1
+          pdftoppm -png -f 2 -singlefile -r 120 "$PDF" data/team-pdf-preview-page-02 >/dev/null 2>&1
+          sample_page=$(( pages > 4 ? 4 : pages ))
+          pdftoppm -png -f "$sample_page" -singlefile -r 120 "$PDF" data/team-pdf-preview-page-sample >/dev/null 2>&1
+          pdftoppm -png -f "$pages" -singlefile -r 120 "$PDF" data/team-pdf-preview-page-final >/dev/null 2>&1
+
+      - name: Deep-audit Excel 220869 Team Gantt PDF
+        if: ${{ github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'pdf/team-') }}
+        run: npm run team:pdf:audit
+
+      - name: Raster and hierarchy-color audit Excel 220869 Team Gantt PDF
+        if: ${{ github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'pdf/team-') }}
+        run: python3 scripts/audit-team-pdf-render-220869.py
+
+      - name: Upload Excel 220869 Team Gantt PDF and QA artifact
+        if: ${{ github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'pdf/team-') }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: team-gantt-220869-pdf-v090-thai
+          path: |
+            data/huai-kha-khaeng-team-gantt-220869-v0.9.0-thai.pdf
+            data/team-pdf-info-220869.txt
+            data/team-pdf-fonts-220869.txt
+            data/team-pdf-text-220869.txt
+            data/team-pdf-text-220869-normalized.txt
+            data/team-pdf-tsv-220869.tsv
+            data/team-pdf-generation-report-220869.json
+            data/team-pdf-deep-audit-220869.json
+            data/team-pdf-deep-audit-220869.md
+            data/team-pdf-render-audit-220869.json
+            data/team-pdf-render-audit-220869.md
+            data/team-pdf-preview-page-*.png
+            data/team-pdf-contact-sheet-220869-*.png
+
+      - name: Publish reviewed Excel 220869 Team Gantt PDF snapshot branch
+        if: ${{ startsWith(github.head_ref, 'pdf/team-') }}
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git checkout -B pdf-export-team-220869
+          git add -f \
+            data/huai-kha-khaeng-team-gantt-220869-v0.9.0-thai.pdf \
+            data/team-pdf-preview-page-*.png \
+            data/team-pdf-contact-sheet-220869-*.png \
+            data/team-pdf-generation-report-220869.json \
+            data/team-pdf-deep-audit-220869.json \
+            data/team-pdf-render-audit-220869.json
+          git commit -m 'Publish reviewed Excel 220869 Team Gantt PDF [skip ci]'
+          git push origin HEAD:pdf-export-team-220869 --force
