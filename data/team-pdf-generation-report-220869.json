@@ -1,0 +1,889 @@
+{
+  "version": "0.9.0",
+  "output": "data/huai-kha-khaeng-team-gantt-220869-v0.9.0-thai.pdf",
+  "source_file": "ส่งให้ดร.ก้อง 220869.xlsx",
+  "source_sheet": "Sheet1",
+  "pages": 8,
+  "size_bytes": 131634,
+  "activities": 107,
+  "physical_activities": 96,
+  "special_cost_activities": 11,
+  "work_groups": 10,
+  "zone_groups": 35,
+  "task_rows": 107,
+  "rendered_activity_rows": 107,
+  "unique_rendered_activity_rows": 107,
+  "missing_activity_ids": [],
+  "duplicate_activity_ids": [],
+  "unexpected_activity_ids": [],
+  "source_issue_count": 1,
+  "mapping_counts": {
+    "AREA_AND_WORK_EXACT": 87,
+    "ZONE_EQUIPMENT_SCOPE_MATCH": 4,
+    "AREA_ALL_WORK_FALLBACK": 5,
+    "CONTROL_STREAM_MATCH": 11
+  },
+  "max_task_row_height": 40.7,
+  "max_title_lines": 2,
+  "max_issue_lines": 2,
+  "visible_truncations": 0,
+  "hierarchy": "หัวข้องานจาก Excel → โซนหลัก → กิจกรรมตาม Excel",
+  "row_metrics": [
+    {
+      "team_activity_id": "T220869-W01-003",
+      "source_row": 3,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W01-004",
+      "source_row": 4,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W01-005",
+      "source_row": 5,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W01-006",
+      "source_row": 6,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W01-007",
+      "source_row": 7,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W01-008",
+      "source_row": 8,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W01-010",
+      "source_row": 10,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W01-011",
+      "source_row": 11,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W01-012",
+      "source_row": 12,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W01-013",
+      "source_row": 13,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W01-014",
+      "source_row": 14,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W01-016",
+      "source_row": 16,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W01-017",
+      "source_row": 17,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W01-019",
+      "source_row": 19,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W02-022",
+      "source_row": 22,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W02-023",
+      "source_row": 23,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W02-024",
+      "source_row": 24,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W02-025",
+      "source_row": 25,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W02-026",
+      "source_row": 26,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W02-028",
+      "source_row": 28,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W02-030",
+      "source_row": 30,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W02-031",
+      "source_row": 31,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W02-033",
+      "source_row": 33,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W03-036",
+      "source_row": 36,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W03-037",
+      "source_row": 37,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W03-038",
+      "source_row": 38,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W03-039",
+      "source_row": 39,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W03-040",
+      "source_row": 40,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W03-042",
+      "source_row": 42,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W03-044",
+      "source_row": 44,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W03-045",
+      "source_row": 45,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W03-047",
+      "source_row": 47,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W04-050",
+      "source_row": 50,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W04-051",
+      "source_row": 51,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W04-052",
+      "source_row": 52,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W04-053",
+      "source_row": 53,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W04-054",
+      "source_row": 54,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W04-056",
+      "source_row": 56,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W04-058",
+      "source_row": 58,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W04-059",
+      "source_row": 59,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W04-061",
+      "source_row": 61,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W05-064",
+      "source_row": 64,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W05-065",
+      "source_row": 65,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W05-066",
+      "source_row": 66,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W05-067",
+      "source_row": 67,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W05-068",
+      "source_row": 68,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W05-070",
+      "source_row": 70,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W05-071",
+      "source_row": 71,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W06-074",
+      "source_row": 74,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W06-075",
+      "source_row": 75,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W06-076",
+      "source_row": 76,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W06-077",
+      "source_row": 77,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W06-079",
+      "source_row": 79,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W06-081",
+      "source_row": 81,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W06-083",
+      "source_row": 83,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W07-086",
+      "source_row": 86,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W07-087",
+      "source_row": 87,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W07-088",
+      "source_row": 88,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W07-089",
+      "source_row": 89,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W07-090",
+      "source_row": 90,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W07-092",
+      "source_row": 92,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W07-094",
+      "source_row": 94,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W07-095",
+      "source_row": 95,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W07-097",
+      "source_row": 97,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-100",
+      "source_row": 100,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-101",
+      "source_row": 101,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-102",
+      "source_row": 102,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-103",
+      "source_row": 103,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-104",
+      "source_row": 104,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-105",
+      "source_row": 105,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-106",
+      "source_row": 106,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-107",
+      "source_row": 107,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-108",
+      "source_row": 108,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-109",
+      "source_row": 109,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-111",
+      "source_row": 111,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-112",
+      "source_row": 112,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-113",
+      "source_row": 113,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-114",
+      "source_row": 114,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-116",
+      "source_row": 116,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-117",
+      "source_row": 117,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-118",
+      "source_row": 118,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-119",
+      "source_row": 119,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-121",
+      "source_row": 121,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-122",
+      "source_row": 122,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-123",
+      "source_row": 123,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W09-126",
+      "source_row": 126,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W09-127",
+      "source_row": 127,
+      "height": 40.7,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 2
+    },
+    {
+      "team_activity_id": "T220869-W09-128",
+      "source_row": 128,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W09-129",
+      "source_row": 129,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W09-130",
+      "source_row": 130,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W09-131",
+      "source_row": 131,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W09-132",
+      "source_row": 132,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W09-134",
+      "source_row": 134,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W09-136",
+      "source_row": 136,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W09-138",
+      "source_row": 138,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W09-139",
+      "source_row": 139,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W10-01",
+      "source_row": 141,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W10-02",
+      "source_row": 142,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W10-03",
+      "source_row": 143,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W10-04",
+      "source_row": 144,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W10-05",
+      "source_row": 145,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W10-06",
+      "source_row": 147,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W10-07",
+      "source_row": 148,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W10-08",
+      "source_row": 149,
+      "height": 35.7,
+      "title_lines": 2,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W10-09",
+      "source_row": 151,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W10-10",
+      "source_row": 153,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W10-11",
+      "source_row": 154,
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "issue_lines": 0
+    }
+  ]
+}
