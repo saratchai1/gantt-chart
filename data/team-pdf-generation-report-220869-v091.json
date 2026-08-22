@@ -1,0 +1,1025 @@
+{
+  "version": "0.9.1",
+  "issue_status": "FOR_TEAM_APPROVAL",
+  "output": "data/huai-kha-khaeng-team-gantt-220869-v0.9.1-thai.pdf",
+  "revision": {
+    "version": "0.9.1",
+    "issue_status": "FOR_TEAM_APPROVAL",
+    "source_file": "ส่งให้ดร.ก้อง 220869.xlsx",
+    "source_sheet": "Sheet1",
+    "source_rows": "1–154",
+    "source_file_id": "file_00000000f65c81faae3adc35640d6567",
+    "source_register_commit_sha": "1405af254e0ffb590455de45170cbcf25d38790c",
+    "baseline_version": "v0.8.2",
+    "baseline_commit_sha": "fef660d14ae8ddecda66af3980cee939ac72c84d",
+    "baseline_scope": "Integrated detailed master schedule, 1,066 activities",
+    "timing_definition": "Elapsed span between earliest mapped start and latest mapped finish; not work effort",
+    "network_definition": "Summary scope Gantt only; no independent predecessor network or CPM calculation",
+    "special_cost_definition": "Control/allowance window only; not cost loading, cash flow or payment timing"
+  },
+  "build_commit_sha": "b581739f777a3dc231ec648e1a2d1249da2b5689",
+  "pages": 8,
+  "size_bytes": 140925,
+  "activities": 107,
+  "physical_activities": 96,
+  "special_cost_activities": 11,
+  "confirmed_timing_rows": 101,
+  "tbc_timing_rows": 6,
+  "tbc_source_rows": [
+    22,
+    33,
+    64,
+    74,
+    83,
+    108
+  ],
+  "control_window_rows": 11,
+  "critical_exposure_rows": 10,
+  "resolved_source_issues": 1,
+  "unresolved_source_issues": 0,
+  "work_groups": 10,
+  "zone_groups": 35,
+  "task_rows": 107,
+  "rendered_activity_rows": 107,
+  "unique_rendered_activity_rows": 107,
+  "missing_activity_ids": [],
+  "duplicate_activity_ids": [],
+  "unexpected_activity_ids": [],
+  "mapping_counts": {
+    "AREA_AND_WORK_EXACT": 86,
+    "ZONE_EQUIPMENT_SCOPE_MATCH": 4,
+    "TIMING_TBC": 6,
+    "CONTROL_STREAM_MATCH": 11
+  },
+  "max_task_row_height": 42.7,
+  "max_title_lines": 2,
+  "max_note_lines": 1,
+  "visible_truncations": 0,
+  "hierarchy": "หัวข้องานจาก Excel → โซนหลัก → กิจกรรมตาม Excel",
+  "timing_semantics": "Elapsed span / TBC / control allowance window",
+  "row_metrics": [
+    {
+      "team_activity_id": "T220869-W01-003",
+      "source_row": 3,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W01-004",
+      "source_row": 4,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W01-005",
+      "source_row": 5,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W01-006",
+      "source_row": 6,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W01-007",
+      "source_row": 7,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W01-008",
+      "source_row": 8,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W01-010",
+      "source_row": 10,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W01-011",
+      "source_row": 11,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W01-012",
+      "source_row": 12,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W01-013",
+      "source_row": 13,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W01-014",
+      "source_row": 14,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W01-016",
+      "source_row": 16,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W01-017",
+      "source_row": 17,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W01-019",
+      "source_row": 19,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W02-022",
+      "source_row": 22,
+      "timing_status": "TBC_TEAM_CONFIRMATION",
+      "height": 33.7,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 1
+    },
+    {
+      "team_activity_id": "T220869-W02-023",
+      "source_row": 23,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W02-024",
+      "source_row": 24,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W02-025",
+      "source_row": 25,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W02-026",
+      "source_row": 26,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W02-028",
+      "source_row": 28,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W02-030",
+      "source_row": 30,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W02-031",
+      "source_row": 31,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W02-033",
+      "source_row": 33,
+      "timing_status": "TBC_TEAM_CONFIRMATION",
+      "height": 33.7,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 1
+    },
+    {
+      "team_activity_id": "T220869-W03-036",
+      "source_row": 36,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W03-037",
+      "source_row": 37,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W03-038",
+      "source_row": 38,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W03-039",
+      "source_row": 39,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W03-040",
+      "source_row": 40,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W03-042",
+      "source_row": 42,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W03-044",
+      "source_row": 44,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W03-045",
+      "source_row": 45,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W03-047",
+      "source_row": 47,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W04-050",
+      "source_row": 50,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W04-051",
+      "source_row": 51,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W04-052",
+      "source_row": 52,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W04-053",
+      "source_row": 53,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W04-054",
+      "source_row": 54,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W04-056",
+      "source_row": 56,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W04-058",
+      "source_row": 58,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W04-059",
+      "source_row": 59,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W04-061",
+      "source_row": 61,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W05-064",
+      "source_row": 64,
+      "timing_status": "TBC_TEAM_CONFIRMATION",
+      "height": 33.7,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 1
+    },
+    {
+      "team_activity_id": "T220869-W05-065",
+      "source_row": 65,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W05-066",
+      "source_row": 66,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W05-067",
+      "source_row": 67,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W05-068",
+      "source_row": 68,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W05-070",
+      "source_row": 70,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W05-071",
+      "source_row": 71,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W06-074",
+      "source_row": 74,
+      "timing_status": "TBC_TEAM_CONFIRMATION",
+      "height": 33.7,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 1
+    },
+    {
+      "team_activity_id": "T220869-W06-075",
+      "source_row": 75,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W06-076",
+      "source_row": 76,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W06-077",
+      "source_row": 77,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W06-079",
+      "source_row": 79,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W06-081",
+      "source_row": 81,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W06-083",
+      "source_row": 83,
+      "timing_status": "TBC_TEAM_CONFIRMATION",
+      "height": 33.7,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 1
+    },
+    {
+      "team_activity_id": "T220869-W07-086",
+      "source_row": 86,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W07-087",
+      "source_row": 87,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W07-088",
+      "source_row": 88,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W07-089",
+      "source_row": 89,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W07-090",
+      "source_row": 90,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W07-092",
+      "source_row": 92,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W07-094",
+      "source_row": 94,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W07-095",
+      "source_row": 95,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W07-097",
+      "source_row": 97,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-100",
+      "source_row": 100,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-101",
+      "source_row": 101,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-102",
+      "source_row": 102,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-103",
+      "source_row": 103,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-104",
+      "source_row": 104,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-105",
+      "source_row": 105,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-106",
+      "source_row": 106,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-107",
+      "source_row": 107,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-108",
+      "source_row": 108,
+      "timing_status": "TBC_TEAM_CONFIRMATION",
+      "height": 33.7,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 1
+    },
+    {
+      "team_activity_id": "T220869-W08-109",
+      "source_row": 109,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-111",
+      "source_row": 111,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-112",
+      "source_row": 112,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-113",
+      "source_row": 113,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-114",
+      "source_row": 114,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-116",
+      "source_row": 116,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-117",
+      "source_row": 117,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-118",
+      "source_row": 118,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-119",
+      "source_row": 119,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-121",
+      "source_row": 121,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-122",
+      "source_row": 122,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W08-123",
+      "source_row": 123,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W09-126",
+      "source_row": 126,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W09-127",
+      "source_row": 127,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 33.7,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 1
+    },
+    {
+      "team_activity_id": "T220869-W09-128",
+      "source_row": 128,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W09-129",
+      "source_row": 129,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W09-130",
+      "source_row": 130,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W09-131",
+      "source_row": 131,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W09-132",
+      "source_row": 132,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W09-134",
+      "source_row": 134,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W09-136",
+      "source_row": 136,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W09-138",
+      "source_row": 138,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W09-139",
+      "source_row": 139,
+      "timing_status": "MAPPED_ELAPSED_SPAN",
+      "height": 31,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 0
+    },
+    {
+      "team_activity_id": "T220869-W10-01",
+      "source_row": 141,
+      "timing_status": "CONTROL_ALLOWANCE_WINDOW",
+      "height": 33.7,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 1
+    },
+    {
+      "team_activity_id": "T220869-W10-02",
+      "source_row": 142,
+      "timing_status": "CONTROL_ALLOWANCE_WINDOW",
+      "height": 33.7,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 1
+    },
+    {
+      "team_activity_id": "T220869-W10-03",
+      "source_row": 143,
+      "timing_status": "CONTROL_ALLOWANCE_WINDOW",
+      "height": 33.7,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 1
+    },
+    {
+      "team_activity_id": "T220869-W10-04",
+      "source_row": 144,
+      "timing_status": "CONTROL_ALLOWANCE_WINDOW",
+      "height": 33.7,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 1
+    },
+    {
+      "team_activity_id": "T220869-W10-05",
+      "source_row": 145,
+      "timing_status": "CONTROL_ALLOWANCE_WINDOW",
+      "height": 33.7,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 1
+    },
+    {
+      "team_activity_id": "T220869-W10-06",
+      "source_row": 147,
+      "timing_status": "CONTROL_ALLOWANCE_WINDOW",
+      "height": 33.7,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 1
+    },
+    {
+      "team_activity_id": "T220869-W10-07",
+      "source_row": 148,
+      "timing_status": "CONTROL_ALLOWANCE_WINDOW",
+      "height": 33.7,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 1
+    },
+    {
+      "team_activity_id": "T220869-W10-08",
+      "source_row": 149,
+      "timing_status": "CONTROL_ALLOWANCE_WINDOW",
+      "height": 42.7,
+      "title_lines": 2,
+      "sub_lines": 1,
+      "note_lines": 1
+    },
+    {
+      "team_activity_id": "T220869-W10-09",
+      "source_row": 151,
+      "timing_status": "CONTROL_ALLOWANCE_WINDOW",
+      "height": 33.7,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 1
+    },
+    {
+      "team_activity_id": "T220869-W10-10",
+      "source_row": 153,
+      "timing_status": "CONTROL_ALLOWANCE_WINDOW",
+      "height": 33.7,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 1
+    },
+    {
+      "team_activity_id": "T220869-W10-11",
+      "source_row": 154,
+      "timing_status": "CONTROL_ALLOWANCE_WINDOW",
+      "height": 33.7,
+      "title_lines": 1,
+      "sub_lines": 1,
+      "note_lines": 1
+    }
+  ]
+}

@@ -3,15 +3,16 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>แผนงานก่อสร้างห้วยขาแข้ง — Gantt ตามกิจกรรมทีมงาน 220869</title>
+  <title>แผนงานก่อสร้างห้วยขาแข้ง — Gantt ตามกิจกรรมทีมงาน 220869 v0.9.1</title>
   <link rel="stylesheet" href="./team-style.css" />
+  <link rel="stylesheet" href="./team-v091.css" />
 </head>
 <body>
   <header class="app-header">
     <div>
-      <div class="eyebrow">TEAM ACTIVITY GANTT · EXCEL SOURCE 220869 · BASELINE TIMING DERIVATION</div>
+      <div class="eyebrow">TEAM ACTIVITY GANTT · EXCEL SOURCE 220869 · REVISION v0.9.1</div>
       <h1>แผนงานก่อสร้างห้วยขาแข้ง — กิจกรรมตามไฟล์ทีมงาน</h1>
-      <p>ใช้หัวข้องาน โซน และรายการกิจกรรมจากไฟล์ “ส่งให้ดร.ก้อง 220869.xlsx” เป็นโครงหลักโดยตรง แสดงลำดับ งาน → โซนหลัก → กิจกรรมตาม Excel รวม 107 รายการ</p>
+      <p>ใช้หัวข้องาน โซน และกิจกรรมจากไฟล์ “ส่งให้ดร.ก้อง 220869.xlsx” รวม 107 รายการ โดยแยกช่วงเวลาที่จับคู่ได้ ช่วงควบคุมค่าใช้จ่าย และรายการ TBC ที่รอทีมยืนยันอย่างชัดเจน</p>
     </div>
     <div class="header-actions">
       <a class="link-button" href="./detailed.html">เปิดแผนรายละเอียด 1,066 กิจกรรม</a>
@@ -22,9 +23,14 @@
 
   <section class="metrics" id="metrics"></section>
 
+  <section class="source-note revision">
+    <b>Revision Control:</b>
+    ขอบเขตใช้ Source Register จาก Excel ที่ตรึงไว้ที่ Commit <code>1405af254e0ffb590455de45170cbcf25d38790c</code> และช่วงเวลาที่จับคู่ได้อ้างอิง Detailed Baseline v0.8.2 ที่ Commit <code>fef660d14ae8ddecda66af3980cee939ac72c84d</code>
+  </section>
+
   <section class="source-note">
-    <b>ขอบเขตมาจาก Excel แต่เวลาไม่ได้มาจาก Excel:</b>
-    ไฟล์ทีมงานมีหัวข้องานและรายการกิจกรรม แต่ไม่มีวันเริ่ม วันสิ้นสุด ระยะเวลา หรือ Predecessor ดังนั้นแถบเวลาในหน้านี้คำนวณจากช่วงรวมของกิจกรรมที่จับคู่ได้ใน Existing Integrated Baseline v0.8.2 โดยเก็บระดับการจับคู่และ Activity ID เดิมไว้ตรวจสอบทุกแถว
+    <b>ความหมายของเวลา:</b>
+    คอลัมน์นี้เป็น “ช่วงเวลาครอบคลุม” จากวันเริ่มแรกถึงวันสิ้นสุดสุดท้ายของกิจกรรมรายละเอียดที่จับคู่ได้ ไม่ใช่จำนวนวันทำงานหรือ Work Effort รายการที่หลักฐานไม่พอจะแสดง TBC โดยไม่มีแถบเวลา ส่วนค่าใช้จ่ายพิเศษแสดงเพียงช่วงควบคุม/ช่วงที่ค่าใช้จ่ายอาจเกิดขึ้น ไม่ใช่ Cost Loading, Cash Flow หรือ Payment Schedule และ Gantt 107 แถวนี้ไม่มี Predecessor Network หรือ CPM แยกต่างหาก
   </section>
 
   <section class="toolbar">
@@ -37,19 +43,17 @@
     <label>โซนหลัก
       <select id="zoneFilter"><option value="">ทุกโซน</option></select>
     </label>
-    <label>ระดับการจับคู่เวลา
+    <label>สถานะการจับคู่เวลา
       <select id="mappingFilter">
-        <option value="">ทุกระดับ</option>
+        <option value="">ทุกสถานะ</option>
         <option value="AREA_AND_WORK_EXACT">ตรงโซนย่อยและหมวดงาน</option>
         <option value="ZONE_EQUIPMENT_SCOPE_MATCH">ตรงขอบเขตครุภัณฑ์ระดับโซน</option>
-        <option value="AREA_ALL_WORK_FALLBACK">ใช้ช่วงรวมโซนย่อย</option>
-        <option value="ZONE_WORK_FALLBACK">ใช้หมวดงานระดับโซน</option>
-        <option value="ZONE_ALL_WORK_FALLBACK">ใช้ช่วงรวมโซนหลัก</option>
-        <option value="CONTROL_STREAM_MATCH">จับคู่กระบวนการควบคุม</option>
-        <option value="PROJECT_CONTROL_FALLBACK">ใช้ช่วงควบคุมโครงการ</option>
+        <option value="TIMING_TBC">TBC — รอทีมยืนยัน Package และช่วงเวลา</option>
+        <option value="CONTROL_STREAM_MATCH">ช่วงควบคุม/ช่วงที่ค่าใช้จ่ายอาจเกิดขึ้น</option>
+        <option value="PROJECT_CONTROL_FALLBACK">ช่วงควบคุมโครงการ</option>
       </select>
     </label>
-    <label class="check"><input id="criticalOnly" type="checkbox" /> เฉพาะรายการที่เกี่ยวข้องกับกิจกรรมวิกฤต</label>
+    <label class="check"><input id="criticalOnly" type="checkbox" /> เฉพาะรายการที่มีงานย่อย Float = 0</label>
     <label>ขนาด Timeline
       <select id="zoom">
         <option value="1.25">ย่อ</option>
@@ -64,16 +68,17 @@
     <span><i class="swatch work"></i> สีเทา — หัวข้องานจาก Excel</span>
     <span><i class="swatch zone"></i> สีฟ้า — โซนหลัก A–D / ทั้งโครงการ</span>
     <span><i class="swatch activity"></i> สีเขียว — กิจกรรมตาม Excel</span>
+    <span><i class="swatch tbc"></i> สีเหลือง — TBC ไม่มีแถบเวลา</span>
+    <span><i class="swatch control"></i> เส้นประ — ช่วงควบคุมค่าใช้จ่าย ไม่ใช่ Cash Flow</span>
     <span class="legend-separator" aria-hidden="true"></span>
-    <span><i class="swatch critical"></i> สีแดง — เกี่ยวข้องกับกิจกรรมเดิมที่ Float = 0</span>
-    <span><i class="swatch issue"></i> สีเหลือง — ข้อความต้นทางต้องตรวจ</span>
+    <span><i class="swatch critical-exposure"></i> เส้นแดง — มีอย่างน้อยหนึ่งกิจกรรมรายละเอียดอยู่บน Critical Path; ไม่ได้หมายถึงทั้ง Summary bar เป็น Critical</span>
   </section>
 
   <main class="gantt-shell" id="ganttShell">
     <div class="gantt-head left-head">
       <div class="col">WBS</div>
       <div class="col">หัวข้องาน / โซน / กิจกรรมจาก Excel</div>
-      <div class="col">จำนวน / ระยะเวลา</div>
+      <div class="col">ช่วงเวลาครอบคลุม / สถานะ</div>
       <div class="col">วันเริ่ม–สิ้นสุด</div>
     </div>
     <div class="gantt-head timeline-head" id="timelineHead"></div>
@@ -87,7 +92,7 @@
   </aside>
 
   <footer>
-    Source register: “ส่งให้ดร.ก้อง 220869.xlsx”, Sheet1, แถว 1–154 · กิจกรรม Gantt 107 รายการ = งานก่อสร้าง 96 รายการ + ค่าใช้จ่ายพิเศษ 11 รายการ · ข้อความต้นทางที่ผิดรูปแบบถูกเก็บไว้และแสดงคำที่ใช้จับคู่แยกต่างหาก ไม่ได้แก้ข้อมูลต้นทางโดยเงียบ · Existing Detailed Baseline ยังคงเปิดได้จากปุ่มด้านบน
+    Source Register: “ส่งให้ดร.ก้อง 220869.xlsx”, Sheet1, แถว 1–154 · 107 รายการ = งานก่อสร้าง 96 รายการ + ค่าใช้จ่ายพิเศษ 11 รายการ · Revision v0.9.1 กำหนด TBC 6 รายการแทนการใช้ช่วงรวมโซนอย่างไม่ยืนยัน แก้คำแสดงผลแถว 127 เป็น “โซน Drop-off” โดยคงข้อความต้นทางไว้ใน Audit Trail และยกเลิกการจับคู่ห้องปั๊มและถังเก็บน้ำพื้นที่ A กับอาคารห้องนิรันดร์
   </footer>
 
   <script type="module" src="./team-app.js"></script>

@@ -1,0 +1,224 @@
+{
+  "status": "PASS",
+  "pages": 8,
+  "page_size_pixels": [
+    1191,
+    842
+  ],
+  "ink_ratio_min": 0.519355,
+  "ink_ratio_max": 0.622718,
+  "ink_ratio_mean": 0.559754,
+  "semantic_color_pixels": {
+    "work_gray": 507482,
+    "zone_blue": 802354,
+    "activity_green": 1796243,
+    "tbc_yellow": 249494,
+    "control_window_green": 3148638,
+    "critical_exposure_red": 1456
+  },
+  "errors": [],
+  "advisories": [],
+  "contact_sheets": [
+    "data/team-pdf-contact-sheet-220869-v091-01.png"
+  ],
+  "page_metrics": [
+    {
+      "page": 1,
+      "file": "data/team-pdf-pages-220869-v091/page-1.png",
+      "width": 1191,
+      "height": 842,
+      "ink_ratio": 0.519355,
+      "nonwhite_bbox": [
+        0,
+        0,
+        1191,
+        814
+      ],
+      "right_edge_ink_ratio": 0.083135,
+      "bottom_edge_ink_ratio": 0.0,
+      "semantic_color_pixels": {
+        "work_gray": 211180,
+        "zone_blue": 227,
+        "activity_green": 84383,
+        "tbc_yellow": 44351,
+        "control_window_green": 1705,
+        "critical_exposure_red": 0
+      }
+    },
+    {
+      "page": 2,
+      "file": "data/team-pdf-pages-220869-v091/page-2.png",
+      "width": 1191,
+      "height": 842,
+      "ink_ratio": 0.579299,
+      "nonwhite_bbox": [
+        24,
+        20,
+        1167,
+        814
+      ],
+      "right_edge_ink_ratio": 0.0,
+      "bottom_edge_ink_ratio": 0.0,
+      "semantic_color_pixels": {
+        "work_gray": 49513,
+        "zone_blue": 108069,
+        "activity_green": 248495,
+        "tbc_yellow": 33817,
+        "control_window_green": 494201,
+        "critical_exposure_red": 147
+      },
+      "left_table_ink_ratio": 0.657885,
+      "timeline_ink_ratio": 0.675931
+    },
+    {
+      "page": 3,
+      "file": "data/team-pdf-pages-220869-v091/page-3.png",
+      "width": 1191,
+      "height": 842,
+      "ink_ratio": 0.585393,
+      "nonwhite_bbox": [
+        24,
+        20,
+        1167,
+        814
+      ],
+      "right_edge_ink_ratio": 0.0,
+      "bottom_edge_ink_ratio": 0.0,
+      "semantic_color_pixels": {
+        "work_gray": 49139,
+        "zone_blue": 174320,
+        "activity_green": 185560,
+        "tbc_yellow": 34305,
+        "control_window_green": 430359,
+        "critical_exposure_red": 135
+      },
+      "left_table_ink_ratio": 0.664117,
+      "timeline_ink_ratio": 0.682521
+    },
+    {
+      "page": 4,
+      "file": "data/team-pdf-pages-220869-v091/page-4.png",
+      "width": 1191,
+      "height": 842,
+      "ink_ratio": 0.569485,
+      "nonwhite_bbox": [
+        24,
+        20,
+        1167,
+        814
+      ],
+      "right_edge_ink_ratio": 0.0,
+      "bottom_edge_ink_ratio": 0.0,
+      "semantic_color_pixels": {
+        "work_gray": 48924,
+        "zone_blue": 130699,
+        "activity_green": 217290,
+        "tbc_yellow": 33891,
+        "control_window_green": 463120,
+        "critical_exposure_red": 270
+      },
+      "left_table_ink_ratio": 0.6471,
+      "timeline_ink_ratio": 0.661948
+    },
+    {
+      "page": 5,
+      "file": "data/team-pdf-pages-220869-v091/page-5.png",
+      "width": 1191,
+      "height": 842,
+      "ink_ratio": 0.622718,
+      "nonwhite_bbox": [
+        24,
+        20,
+        1167,
+        814
+      ],
+      "right_edge_ink_ratio": 0.0,
+      "bottom_edge_ink_ratio": 0.0,
+      "semantic_color_pixels": {
+        "work_gray": 49408,
+        "zone_blue": 153657,
+        "activity_green": 217474,
+        "tbc_yellow": 68650,
+        "control_window_green": 402134,
+        "critical_exposure_red": 0
+      },
+      "left_table_ink_ratio": 0.711206,
+      "timeline_ink_ratio": 0.718369
+    },
+    {
+      "page": 6,
+      "file": "data/team-pdf-pages-220869-v091/page-6.png",
+      "width": 1191,
+      "height": 842,
+      "ink_ratio": 0.538032,
+      "nonwhite_bbox": [
+        24,
+        20,
+        1167,
+        814
+      ],
+      "right_edge_ink_ratio": 0.0,
+      "bottom_edge_ink_ratio": 0.0,
+      "semantic_color_pixels": {
+        "work_gray": 25398,
+        "zone_blue": 85869,
+        "activity_green": 246956,
+        "tbc_yellow": 33733,
+        "control_window_green": 517375,
+        "critical_exposure_red": 146
+      },
+      "left_table_ink_ratio": 0.605303,
+      "timeline_ink_ratio": 0.635343
+    },
+    {
+      "page": 7,
+      "file": "data/team-pdf-pages-220869-v091/page-7.png",
+      "width": 1191,
+      "height": 842,
+      "ink_ratio": 0.538223,
+      "nonwhite_bbox": [
+        24,
+        20,
+        1167,
+        814
+      ],
+      "right_edge_ink_ratio": 0.0,
+      "bottom_edge_ink_ratio": 0.0,
+      "semantic_color_pixels": {
+        "work_gray": 48410,
+        "zone_blue": 129156,
+        "activity_green": 220038,
+        "tbc_yellow": 634,
+        "control_window_green": 461525,
+        "critical_exposure_red": 135
+      },
+      "left_table_ink_ratio": 0.609273,
+      "timeline_ink_ratio": 0.629631
+    },
+    {
+      "page": 8,
+      "file": "data/team-pdf-pages-220869-v091/page-8.png",
+      "width": 1191,
+      "height": 842,
+      "ink_ratio": 0.525527,
+      "nonwhite_bbox": [
+        24,
+        20,
+        1167,
+        814
+      ],
+      "right_edge_ink_ratio": 0.0,
+      "bottom_edge_ink_ratio": 0.0,
+      "semantic_color_pixels": {
+        "work_gray": 25510,
+        "zone_blue": 20357,
+        "activity_green": 376047,
+        "tbc_yellow": 113,
+        "control_window_green": 378219,
+        "critical_exposure_red": 623
+      },
+      "left_table_ink_ratio": 0.602986,
+      "timeline_ink_ratio": 0.600284
+    }
+  ]
+}
