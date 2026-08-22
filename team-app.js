@@ -16,12 +16,26 @@ const els = Object.fromEntries(ids.map(id => [id, document.getElementById(id)]))
 const collapsedWorks = new Set();
 const collapsedZones = new Set();
 const rowById = new Map(teamGanttRows.map(row => [row.team_activity_id, row]));
+const strongPhysicalMatchLevels = new Set(['AREA_AND_WORK_EXACT','ZONE_EQUIPMENT_SCOPE_MATCH']);
 let pxDay = Number(els.zoom.value);
 
 const esc = value => String(value ?? '').replace(/[&<>"']/g, character => ({
   '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'
 }[character]));
 const nfmt = value => new Intl.NumberFormat('th-TH').format(value);
+
+function mappingLabel(level) {
+  const labels = {
+    AREA_AND_WORK_EXACT: 'ตรงโซนย่อยและหมวดงาน',
+    ZONE_EQUIPMENT_SCOPE_MATCH: 'ตรงขอบเขตครุภัณฑ์ระดับโซน',
+    AREA_ALL_WORK_FALLBACK: 'ใช้ช่วงรวมโซนย่อย',
+    ZONE_WORK_FALLBACK: 'ใช้หมวดงานระดับโซน',
+    ZONE_ALL_WORK_FALLBACK: 'ใช้ช่วงรวมโซนหลัก',
+    CONTROL_STREAM_MATCH: 'จับคู่กระบวนการควบคุม',
+    PROJECT_CONTROL_FALLBACK: 'ใช้ช่วงควบคุมโครงการ'
+  };
+  return labels[level] || level;
+}
 
 function initFilters() {
   const works = [...new Map(teamGanttRows.map(row => [row.work_code, row.work_name])).entries()]
@@ -62,16 +76,16 @@ function filteredRows() {
 }
 
 function renderMetrics(rows, hierarchy) {
-  const exact = rows.filter(row => row.match_level === 'AREA_AND_WORK_EXACT').length;
-  const fallback = rows.filter(row => row.source_kind === 'PHYSICAL_SCOPE' && row.match_level !== 'AREA_AND_WORK_EXACT').length;
+  const strong = rows.filter(row => row.source_kind === 'PHYSICAL_SCOPE' && strongPhysicalMatchLevels.has(row.match_level)).length;
+  const fallback = rows.filter(row => row.source_kind === 'PHYSICAL_SCOPE' && !strongPhysicalMatchLevels.has(row.match_level)).length;
   const issues = rows.filter(row => row.source_issue).length;
   const critical = rows.filter(row => row.computed_critical === 'Y').length;
   const metrics = [
     ['กิจกรรมจาก Excel', nfmt(teamGanttStats.source_rows), `แสดง ${nfmt(rows.length)} รายการ`, ''],
     ['หมวดงาน', nfmt(hierarchy.length), '9 หมวดงานก่อสร้าง + 1 หมวดค่าใช้จ่ายพิเศษ', ''],
-    ['จับคู่ตรง', nfmt(exact), 'โซนย่อยและหมวดงานตรงกับ Baseline เดิม', 'ok'],
-    ['ใช้ช่วงสำรอง', nfmt(fallback), 'ชื่อหรือการแตกหมวดใน Baseline เดิมไม่ตรง Excel', fallback ? 'warn' : 'ok'],
-    ['กิจกรรมวิกฤต', nfmt(critical), 'มีอย่างน้อยหนึ่งกิจกรรม Baseline ที่ Float = 0', 'critical'],
+    ['จับคู่ขอบเขตชัดเจน', nfmt(strong), 'ตรงโซนย่อย/หมวดงาน หรือครุภัณฑ์ระดับโซน', 'ok'],
+    ['ใช้ช่วงสำรอง', nfmt(fallback), 'Baseline เดิมไม่มีชื่อหรือการแตกหมวดตรงกับ Excel', fallback ? 'warn' : 'ok'],
+    ['เกี่ยวข้องกับงานวิกฤต', nfmt(critical), 'มีอย่างน้อยหนึ่งกิจกรรม Baseline ที่ Float = 0', 'critical'],
     ['ข้อความต้นทางต้องตรวจ', nfmt(issues), 'คงข้อความ Excel เดิมและแสดงคำที่ใช้จับคู่แยกกัน', issues ? 'warn' : 'ok']
   ];
   els.metrics.innerHTML = metrics.map(([key,value,detail,className]) => (
@@ -133,7 +147,7 @@ function activityRows(row) {
   const left = document.createElement('div');
   left.className = `activity-row ${row.computed_critical === 'Y' ? 'critical-row' : ''} ${row.source_issue ? 'source-issue-row' : ''}`;
   left.dataset.id = row.team_activity_id;
-  const matchLabel = row.match_level === 'AREA_AND_WORK_EXACT' ? 'จับคู่ตรง' : 'ช่วงเวลาอนุมาน';
+  const matchLabel = mappingLabel(row.match_level);
   left.innerHTML = `
     <div class="cell code">${esc(row.wbs)}</div>
     <div class="cell name">
@@ -150,7 +164,7 @@ function activityRows(row) {
   bar.className = `activity-bar ${row.computed_critical === 'Y' ? 'critical' : ''} ${row.source_issue ? 'source-issue' : ''}`;
   bar.style.left = `${(row.start_day - 1) * pxDay}px`;
   bar.style.width = `${Math.max(3, row.duration_days * pxDay)}px`;
-  bar.title = `${row.activity_name} · D${row.start_day}–D${row.finish_day} · ${row.match_level} · ${row.matched_activity_count} baseline activities`;
+  bar.title = `${row.activity_name} · D${row.start_day}–D${row.finish_day} · ${mappingLabel(row.match_level)} · อ้างอิง ${row.matched_activity_count} กิจกรรมเดิม`;
   time.append(bar);
   return [left, time];
 }
@@ -179,7 +193,7 @@ function render() {
     for (const zone of work.zones) {
       const zoneKey = `${workKey}|${zone.zone_code}`;
       const zoneCollapsed = collapsedZones.has(zoneKey);
-      const zoneLabel = zone.zone_code === 'PROJECT' ? 'ทั้งโครงการ' : `${zone.zone_name}`;
+      const zoneLabel = zone.zone_code === 'PROJECT' ? 'ทั้งโครงการ' : zone.zone_name;
       const [zoneLeft, zoneTime] = groupRows('zone', zoneKey, zoneLabel, zone.rows, zoneCollapsed);
       els.leftGrid.append(zoneLeft);
       els.timelineGrid.append(zoneTime);
@@ -215,7 +229,7 @@ function showDetail(id) {
       <dt>โซนหลัก</dt><dd>${esc(row.zone_name)}</dd>
       <dt>ช่วงวัน Gantt</dt><dd>D${row.start_day}–D${row.finish_day} · ${nfmt(row.duration_days)} วัน</dd>
       <dt>ที่มาของเวลา</dt><dd>อนุมานจาก Existing Integrated Baseline v0.8.2 — Excel ไม่ได้ระบุวันหรือระยะเวลา</dd>
-      <dt>ระดับการจับคู่</dt><dd>${esc(row.match_level)}</dd>
+      <dt>ระดับการจับคู่</dt><dd>${esc(mappingLabel(row.match_level))} (${esc(row.match_level)})</dd>
       <dt>เหตุผลการจับคู่</dt><dd>${esc(row.mapping_note)}</dd>
       <dt>กิจกรรมเดิมที่อ้างอิง</dt><dd>${nfmt(row.matched_activity_count)} รายการ</dd>
       <dt>Activity ID เดิม</dt><dd class="mono">${row.matched_activity_ids.map(esc).join('<br>')}</dd>
