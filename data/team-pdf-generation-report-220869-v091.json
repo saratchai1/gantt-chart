@@ -17,7 +17,7 @@
     "network_definition": "Summary scope Gantt only; no independent predecessor network or CPM calculation",
     "special_cost_definition": "Control/allowance window only; not cost loading, cash flow or payment timing"
   },
-  "build_commit_sha": "b581739f777a3dc231ec648e1a2d1249da2b5689",
+  "build_commit_sha": "b5a954c15cc4291dd4cb92f8d0d8936c2a90b4eb",
   "pages": 8,
   "size_bytes": 140925,
   "activities": 107,
