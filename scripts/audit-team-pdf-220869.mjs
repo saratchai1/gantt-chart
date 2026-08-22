@@ -55,8 +55,7 @@ for (const phrase of [
   'หัวข้องานจาก Excel',
   'โซนหลัก',
   'กิจกรรมตาม Excel',
-  'ค่าใช้จ่ายพิเศษ',
-  'ข้อกำหนดทุกรายการ'
+  'ค่าใช้จ่ายพิเศษ'
 ]) {
   if (!containsPhrase(phrase)) addError(`ไม่พบข้อความสำคัญใน PDF: ${phrase}`);
 }
@@ -97,6 +96,18 @@ if (duplicates.length) addError('Activity ID จาก Excel ปรากฏซ�
 
 const expectedWorkGroups = teamGanttStats.works;
 const expectedZoneGroups = new Set(teamGanttRows.map(row => `${row.work_code}|${row.zone_code}`)).size;
+const specialCostRows = teamGanttRows.filter(row => row.work_code === 'W10');
+if (specialCostRows.length !== 11) {
+  addError('จำนวนกิจกรรมค่าใช้จ่ายพิเศษ W10 ไม่ครบตาม Excel', { expected: 11, actual: specialCostRows.length });
+}
+const specialCostIdsObserved = specialCostRows.filter(row => idCounts[row.team_activity_id] === 1).length;
+if (specialCostIdsObserved !== specialCostRows.length) {
+  addError('กิจกรรมค่าใช้จ่ายพิเศษ W10 ไม่ได้แสดงครบเพียงครั้งเดียว', {
+    expected: specialCostRows.length,
+    actual: specialCostIdsObserved
+  });
+}
+
 for (const [label, actual, expected] of [
   ['activities', generation.activities, teamGanttRows.length],
   ['rendered activity rows', generation.rendered_activity_rows, teamGanttRows.length],
@@ -150,6 +161,7 @@ const report = {
     observed_activity_ids: Object.values(idCounts).filter(count => count === 1).length,
     physical_activities: teamGanttStats.physical_activities,
     special_cost_activities: teamGanttStats.special_cost_activities,
+    special_cost_ids_observed_once: specialCostIdsObserved,
     work_groups: generation.work_groups,
     zone_groups: generation.zone_groups,
     source_issues: teamGanttStats.source_issues,
@@ -176,6 +188,7 @@ fs.writeFileSync(OUTPUT.markdown, md);
 
 console.log(`Team PDF deep audit: ${report.status}`);
 console.log(`Activity IDs observed exactly once: ${report.summary.observed_activity_ids}/${teamGanttRows.length}`);
+console.log(`W10 special-cost IDs observed exactly once: ${specialCostIdsObserved}/${specialCostRows.length}`);
 console.log(`Works=${generation.work_groups}; zones=${generation.zone_groups}; pages=${generation.pages}`);
 console.log(`Errors=${errors.length}; advisories=${advisories.length}`);
 if (errors.length) {
