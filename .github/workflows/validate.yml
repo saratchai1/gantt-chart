@@ -22,25 +22,32 @@ jobs:
         shell: bash
         run: |
           node --check app.js
+          node --check team-app.js
           find src scripts -type f \( -name '*.js' -o -name '*.mjs' \) -print0 | xargs -0 -n1 node --check
           python3 -m py_compile scripts/audit-pdf-render-v08.py scripts/audit-pdf-render-v081.py scripts/audit-pdf-render-v082.py
 
-      - name: Validate schedule and Thai activity alignment
+      - name: Validate integrated detailed schedule
         run: npm run validate
 
-      - name: Validate web zone hierarchy and color semantics
+      - name: Validate detailed web zone hierarchy
         run: npm run web:validate
 
-      - name: Export schedule and review registers
+      - name: Validate Excel 220869 source-driven team Gantt
+        run: npm run team:validate
+
+      - name: Export integrated schedule and review registers
         run: npm run export
+
+      - name: Export Excel 220869 team Gantt and mapping registers
+        run: npm run team:export
 
       - name: Export Plan 01 Thai activity alignment registers
         run: npm run thai-review
 
-      - name: Upload schedule and web-validation data
+      - name: Upload schedule, source-driven Gantt and validation data
         uses: actions/upload-artifact@v4
         with:
-          name: integrated-master-schedule-data
+          name: integrated-and-team-gantt-data
           path: |
             data/master-schedule.csv
             data/master-schedule.json
@@ -49,6 +56,11 @@ jobs:
             data/cpm-report.json
             data/validation-report.json
             data/web-hierarchy-validation.json
+            data/team-gantt-220869.csv
+            data/team-gantt-220869.json
+            data/team-source-register-220869.json
+            data/team-gantt-mapping-register-220869.csv
+            data/team-gantt-validation-220869.json
             data/thai-translation-review-register.csv
             data/thai-translation-review-register.json
             data/plan01-thai-activity-alignment-register.csv
@@ -62,8 +74,8 @@ jobs:
             data/package-document-release-register.csv
             data/system-test-pack-register.csv
 
-      # PDF production runs only for explicitly named pdf/ pull requests or
-      # a manual workflow dispatch. Normal web/data pull requests stay fast.
+      # Existing detailed PDF production remains opt-in. The Excel-driven team
+      # Gantt must be reviewed in the web app before a new PDF issue is created.
       - name: Install PDF, font and raster-audit dependencies
         if: ${{ github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'pdf/') }}
         shell: bash
@@ -74,11 +86,11 @@ jobs:
           fc-match 'Garuda'
           fc-match 'Garuda:style=Bold'
 
-      - name: Generate Thai A3 master Gantt PDF with zone color hierarchy
+      - name: Generate Thai A3 detailed master Gantt PDF with zone color hierarchy
         if: ${{ github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'pdf/') }}
         run: npm run pdf
 
-      - name: Extract and render v0.8.2 PDF for QA
+      - name: Extract and render v0.8.2 detailed PDF for QA
         if: ${{ github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'pdf/') }}
         shell: bash
         run: |
@@ -123,15 +135,15 @@ jobs:
           pdftoppm -png -f 10 -singlefile -r 120 "$PDF" data/pdf-v082-preview-page-10 >/dev/null 2>&1
           pdftoppm -png -f "$pages" -singlefile -r 120 "$PDF" data/pdf-v082-preview-page-final >/dev/null 2>&1
 
-      - name: Deep-audit hierarchy, activity coverage and Thai content
+      - name: Deep-audit detailed hierarchy, activity coverage and Thai content
         if: ${{ github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'pdf/') }}
         run: npm run pdf:audit
 
-      - name: Audit rasterized pages, hierarchy colors and contact sheets
+      - name: Audit detailed rasterized pages, hierarchy colors and contact sheets
         if: ${{ github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'pdf/') }}
         run: python3 scripts/audit-pdf-render-v082.py
 
-      - name: Upload final Thai v0.8.2 PDF and QA artifact
+      - name: Upload detailed Thai v0.8.2 PDF and QA artifact
         if: ${{ github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'pdf/') }}
         uses: actions/upload-artifact@v4
         with:
@@ -154,7 +166,7 @@ jobs:
             data/pdf-v082-preview-page-final.png
             data/pdf-v082-contact-sheet-*.png
 
-      - name: Publish reviewed v0.8.2 PDF snapshot branch
+      - name: Publish reviewed detailed v0.8.2 PDF snapshot branch
         if: ${{ startsWith(github.head_ref, 'pdf/') }}
         shell: bash
         run: |

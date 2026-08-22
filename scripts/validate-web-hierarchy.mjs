@@ -44,7 +44,7 @@ if (!plan01) {
   for (const zone of plan01.zones.filter(zone => isMainZone(zone.zone_code))) {
     if (!zone.subzones.length) addError(`Main zone ${zone.zone_code} has no subzones`);
     for (const subzone of zone.subzones) {
-      if (!subzone.works.length) addError(`Subzone has no work-category groups`, {
+      if (!subzone.works.length) addError('Subzone has no work-category groups', {
         zone: zone.zone_code,
         subzone: subzone.label
       });
@@ -58,7 +58,7 @@ if (!hierarchy.stats.subzones) addError('No subzone groups were created');
 if (!hierarchy.stats.works) addError('No work-category groups were created');
 
 const css = fs.readFileSync('style.css', 'utf8');
-const html = fs.readFileSync('index.html', 'utf8');
+const html = fs.readFileSync('detailed.html', 'utf8');
 const app = fs.readFileSync('app.js', 'utf8');
 const requiredCssSelectors = [
   '.zone-row', '.subzone-row', '.work-row',
@@ -75,14 +75,14 @@ for (const phrase of [
   'สีฟ้า — โซนหลัก A–D',
   'สีเขียว — โซนย่อย / อาคาร–บริเวณ',
   'สีเทา — งาน / หมวดงาน',
-  'แผน → โซนหลัก A–D → โซนย่อย/อาคาร–บริเวณ → งาน/หมวดงาน → กิจกรรม'
+  'แผนงานรายละเอียด 1,066 กิจกรรม'
 ]) {
-  if (!html.includes(phrase)) addError(`Required hierarchy explanation is missing from index.html: ${phrase}`);
+  if (!html.includes(phrase)) addError(`Required detailed hierarchy explanation is missing from detailed.html: ${phrase}`);
 }
-for (const type of ["plan", "zone", "subzone", "work"]) {
+for (const type of ['plan', 'zone', 'subzone', 'work']) {
   if (!app.includes(`${type}: new Set()`)) addError(`Collapse-state set is missing for hierarchy type: ${type}`);
 }
-if (!app.includes('buildWebHierarchy(rows, planNames)')) addError('Web app does not render from the shared hierarchy model');
+if (!app.includes('buildWebHierarchy(rows, planNames)')) addError('Detailed web app does not render from the shared hierarchy model');
 
 const nonMainZoneGroups = hierarchy.plans
   .flatMap(plan => plan.zones)
@@ -96,6 +96,7 @@ if (nonMainZoneGroups > hierarchy.stats.zones * 0.8) {
 
 const report = {
   status: errors.length ? 'FAIL' : advisories.length ? 'PASS_WITH_ADVISORIES' : 'PASS',
+  validated_page: 'detailed.html',
   hierarchy: hierarchy.stats,
   plan01_main_zones: plan01
     ? plan01.zones.filter(zone => zone.main_zone).map(zone => ({
@@ -114,7 +115,7 @@ const report = {
 
 fs.mkdirSync('data', { recursive: true });
 fs.writeFileSync('data/web-hierarchy-validation.json', JSON.stringify(report, null, 2));
-console.log(`Web hierarchy validation: ${report.status}`);
+console.log(`Detailed web hierarchy validation: ${report.status}`);
 console.log(`Plans=${hierarchy.stats.plans}; zones=${hierarchy.stats.zones}; main zones=${hierarchy.stats.main_zones}; subzones=${hierarchy.stats.subzones}; works=${hierarchy.stats.works}; activities=${hierarchy.stats.activities}`);
 console.log(`Errors=${errors.length}; advisories=${advisories.length}`);
 if (errors.length) {
