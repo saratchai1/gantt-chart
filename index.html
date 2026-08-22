@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>แผนงานก่อสร้างห้วยขาแข้ง — Integrated Master Gantt</title>
-  <link rel="stylesheet" href="./style.css" />
-  <link rel="stylesheet" href="./timing.css" />
+  <title>แผนงานก่อสร้างห้วยขาแข้ง — Gantt ตามกิจกรรมทีมงาน 220869</title>
+  <link rel="stylesheet" href="./team-style.css" />
 </head>
 <body>
   <header class="app-header">
     <div>
-      <div class="eyebrow">PROPOSAL INTEGRATED MASTER SCHEDULE · BASELINE v0.8.1 · WEB HIERARCHY R1</div>
-      <h1>แผนงานก่อสร้างห้วยขาแข้ง — แผนที่ 01–16</h1>
-      <p>ลำดับการแสดงผล: แผน → โซนหลัก A–D → โซนย่อย/อาคาร–บริเวณ → งาน/หมวดงาน → กิจกรรม โดยใช้สีฟ้าสำหรับโซนหลัก สีเขียวสำหรับโซนย่อย และสีเทาสำหรับงาน</p>
+      <div class="eyebrow">TEAM ACTIVITY GANTT · EXCEL SOURCE 220869 · BASELINE TIMING DERIVATION</div>
+      <h1>แผนงานก่อสร้างห้วยขาแข้ง — กิจกรรมตามไฟล์ทีมงาน</h1>
+      <p>ใช้หัวข้องาน โซน และรายการกิจกรรมจากไฟล์ “ส่งให้ดร.ก้อง 220869.xlsx” เป็นโครงหลักโดยตรง แสดงลำดับ งาน → โซนหลัก → กิจกรรมตาม Excel รวม 106 รายการ</p>
     </div>
     <div class="header-actions">
+      <a class="link-button" href="./detailed.html">เปิดแผนรายละเอียด 1,066 กิจกรรม</a>
       <button id="exportCsv">ส่งออก CSV</button>
       <button id="exportJson">ส่งออก JSON</button>
     </div>
@@ -22,91 +22,57 @@
 
   <section class="metrics" id="metrics"></section>
 
+  <section class="source-note">
+    <b>ขอบเขตมาจาก Excel แต่เวลาไม่ได้มาจาก Excel:</b>
+    ไฟล์ทีมงานมีหัวข้องานและรายการกิจกรรม แต่ไม่มีวันเริ่ม วันสิ้นสุด ระยะเวลา หรือ Predecessor ดังนั้นแถบเวลาในหน้านี้คำนวณจากช่วงรวมของกิจกรรมที่จับคู่ได้ใน Existing Integrated Baseline v0.8.2 โดยเก็บระดับการจับคู่และ Activity ID เดิมไว้ตรวจสอบทุกแถว
+  </section>
+
   <section class="toolbar">
     <label>ค้นหา
-      <input id="search" type="search" placeholder="รหัส / WBS / โซนหลัก / โซนย่อย / งาน / กิจกรรม…" />
+      <input id="search" type="search" placeholder="หัวข้องาน / โซน / กิจกรรม / แถว Excel / Activity ID เดิม…" />
     </label>
-    <label>แผน
-      <select id="planFilter"><option value="">ทุกแผน 01–16</option></select>
+    <label>หัวข้องาน
+      <select id="workFilter"><option value="">ทุกหัวข้องาน</option></select>
     </label>
-    <label>โซนหลัก / พื้นที่ดำเนินงาน
-      <select id="zoneFilter"><option value="">ทุกโซนหลักและพื้นที่</option></select>
+    <label>โซนหลัก
+      <select id="zoneFilter"><option value="">ทุกโซน</option></select>
     </label>
-    <label>งาน / หมวดงาน
-      <select id="disciplineFilter"><option value="">ทุกงานและหมวดงาน</option></select>
-    </label>
-    <label>ที่มากิจกรรม
-      <select id="basisFilter">
-        <option value="">ทั้งหมด</option>
-        <option value="SOURCE">SOURCE</option>
-        <option value="DERIVED">DERIVED</option>
-        <option value="ASSUMPTION">ASSUMPTION</option>
+    <label>ระดับการจับคู่เวลา
+      <select id="mappingFilter">
+        <option value="">ทุกระดับ</option>
+        <option value="AREA_AND_WORK_EXACT">ตรงโซนย่อยและหมวดงาน</option>
+        <option value="AREA_ALL_WORK_FALLBACK">ใช้ช่วงรวมโซนย่อย</option>
+        <option value="ZONE_WORK_FALLBACK">ใช้หมวดงานระดับโซน</option>
+        <option value="ZONE_ALL_WORK_FALLBACK">ใช้ช่วงรวมโซนหลัก</option>
+        <option value="CONTROL_STREAM_MATCH">จับคู่กระบวนการควบคุม</option>
       </select>
     </label>
-    <label>ที่มาระยะเวลา
-      <select id="timingFilter">
-        <option value="">ทั้งหมด</option>
-        <option value="SOURCE">ระยะเวลาจากต้นทาง</option>
-        <option value="ASSUMPTION">ระยะเวลาสมมติฐานข้อเสนอ</option>
-      </select>
-    </label>
-    <label>สถานะขอบเขต
-      <select id="scopeFilter">
-        <option value="">ทุกสถานะ</option>
-        <option value="SOURCE_REQUIRED">SOURCE_REQUIRED</option>
-        <option value="DERIVED_FROM_SCOPE">DERIVED_FROM_SCOPE</option>
-        <option value="WHERE_APPLICABLE">WHERE_APPLICABLE</option>
-        <option value="CONTROL_STREAM">CONTROL_STREAM</option>
-      </select>
-    </label>
-    <label class="check"><input id="criticalOnly" type="checkbox" /> เฉพาะกิจกรรมวิกฤต Float = 0</label>
-    <label class="check"><input id="networkOnly" type="checkbox" /> เฉพาะ Network ครบ NTP→D1200</label>
-    <label>เส้นความสัมพันธ์
-      <select id="linkMode">
-        <option value="off">ปิด</option>
-        <option value="driving" selected>เฉพาะเส้นขับเคลื่อน</option>
-        <option value="all">ทุกเส้นที่มองเห็น</option>
-      </select>
-    </label>
-    <label>ขนาด
+    <label class="check"><input id="criticalOnly" type="checkbox" /> เฉพาะรายการที่เกี่ยวข้องกับกิจกรรมวิกฤต</label>
+    <label>ขนาด Timeline
       <select id="zoom">
         <option value="1.25">ย่อ</option>
         <option value="2" selected>ปกติ</option>
         <option value="3">ละเอียด</option>
       </select>
     </label>
-    <button id="resetFilters" class="secondary">ล้างตัวกรอง</button>
+    <button id="resetFilters">ล้างตัวกรอง</button>
   </section>
 
-  <section class="legend" aria-label="คำอธิบายสีและสัญลักษณ์">
-    <span class="hierarchy-legend">ลำดับชั้น:</span>
-    <span><i class="swatch zone-main"></i> สีฟ้า — โซนหลัก A–D</span>
-    <span><i class="swatch subzone"></i> สีเขียว — โซนย่อย / อาคาร–บริเวณ</span>
-    <span><i class="swatch work"></i> สีเทา — งาน / หมวดงาน เช่น งานโครงสร้างและสถาปัตย์</span>
-    <i class="legend-separator" aria-hidden="true"></i>
-    <span><i class="swatch normal"></i> กิจกรรม</span>
-    <span><i class="swatch critical"></i> กิจกรรมวิกฤต Float = 0</span>
-    <span><i class="swatch disconnected"></i> Network ไม่ครบถึง D1200</span>
-    <span><i class="link-sample normal"></i> ความสัมพันธ์</span>
-    <span><i class="link-sample driving"></i> ความสัมพันธ์ขับเคลื่อน</span>
-    <span><i class="diamond"></i> จุดควบคุม</span>
-    <span><b class="basis source">SOURCE</b> กิจกรรม/ข้อควบคุมจากเอกสารต้นทาง</span>
-    <span><b class="basis derived">DERIVED</b> แตกกิจกรรมจากกระบวนการต้นทาง</span>
-    <span><b class="basis assumption">ASSUMPTION</b> รายละเอียดระดับข้อเสนอ</span>
-    <span><b class="timing-chip source">T:SRC</b> วันหรือช่วงเวลาจากต้นทาง</span>
-    <span><b class="timing-chip assumption">T:ASM</b> ช่วงเวลาสมมติฐานข้อเสนอ</span>
-    <span><b class="scope-chip source-required">SCOPE:SRC</b> ขอบเขตหลักจากแผนที่ 1</span>
-    <span><b class="scope-chip derived-scope">SCOPE:DRV</b> รายละเอียดที่แตกจากขอบเขต</span>
-    <span><b class="scope-chip provisional">SCOPE:PROV</b> ต้องยืนยันจาก IFC / BOQ / Equipment Schedule</span>
-    <span><b class="scope-chip control">SCOPE:CTL</b> กระบวนการควบคุมและหลักฐาน</span>
+  <section class="legend" aria-label="คำอธิบายสี">
+    <span><i class="swatch work"></i> สีเทา — หัวข้องานจาก Excel</span>
+    <span><i class="swatch zone"></i> สีฟ้า — โซนหลัก A–D / ทั้งโครงการ</span>
+    <span><i class="swatch activity"></i> สีเขียว — กิจกรรมตาม Excel</span>
+    <span class="legend-separator" aria-hidden="true"></span>
+    <span><i class="swatch critical"></i> สีแดง — เกี่ยวข้องกับกิจกรรมเดิมที่ Float = 0</span>
+    <span><i class="swatch issue"></i> สีเหลือง — ข้อความต้นทางต้องตรวจ</span>
   </section>
 
   <main class="gantt-shell" id="ganttShell">
     <div class="gantt-head left-head">
-      <div class="col wbs">WBS / รหัสกลุ่ม</div>
-      <div class="col activity">โซน / งาน / กิจกรรม</div>
-      <div class="col dur">จำนวน / ระยะเวลา</div>
-      <div class="col days">วันเริ่ม–สิ้นสุด</div>
+      <div class="col">WBS</div>
+      <div class="col">หัวข้องาน / โซน / กิจกรรมจาก Excel</div>
+      <div class="col">จำนวน / ระยะเวลา</div>
+      <div class="col">วันเริ่ม–สิ้นสุด</div>
     </div>
     <div class="gantt-head timeline-head" id="timelineHead"></div>
     <div class="left-grid" id="leftGrid"></div>
@@ -119,9 +85,9 @@
   </aside>
 
   <footer>
-    Baseline v0.8.1 แสดงข้อมูลตามลำดับ แผน → โซนหลัก → โซนย่อย/อาคาร–บริเวณ → งาน/หมวดงาน → กิจกรรม การปรับสีและลำดับชั้นใน Web App ไม่ได้เปลี่ยน Activity ID, Duration, Start–Finish, Dependency หรือ CPM ชื่อภาษาอังกฤษเดิมยังอยู่ในรายละเอียดและข้อมูลส่งออกเพื่อให้ตรวจสอบย้อนกลับได้ กิจกรรม WHERE_APPLICABLE ต้องยืนยันกับแบบ IFC, BOQ, Equipment Schedule, Shop Drawing และ Commissioning Matrix ก่อนรับรอง Contract Baseline
+    Source register: “ส่งให้ดร.ก้อง 220869.xlsx”, Sheet1, แถว 1–154 · กิจกรรม Gantt 106 รายการ = งานก่อสร้าง 95 รายการ + ค่าใช้จ่ายพิเศษ 11 รายการ · ข้อความต้นทางที่ผิดรูปแบบถูกเก็บไว้และแสดงคำที่ใช้จับคู่แยกต่างหาก ไม่ได้แก้ข้อมูลต้นทางโดยเงียบ · Existing Detailed Baseline ยังคงเปิดได้จากปุ่มด้านบน
   </footer>
 
-  <script type="module" src="./app.js"></script>
+  <script type="module" src="./team-app.js"></script>
 </body>
 </html>
