@@ -50,7 +50,10 @@ const areaAliases = Object.freeze({
   B_EQUIPMENT: [],
   B_PARKING: ['ลานจอดรถ พื้นที่ B', 'โซนลานจอดรถ'],
   C_RECEPTION: ['อาคารต้อนรับ พื้นที่ C', 'โซนพื้นที่ต้อนรับ'],
-  C_TENT: ['บ้านเต็นท์ Cluster 1', 'บ้านเต็นท์ Cluster 2', 'บ้านเต็นท์ Cluster 3', 'โซนพื้นที่บ้านเต็นท์'],
+  C_TENT: [
+    'บ้านเต็นท์', 'พื้นที่บ้านเต็นท์', 'โซนพื้นที่บ้านเต็นท์',
+    'บ้านเต็นท์ Cluster 1', 'บ้านเต็นท์ Cluster 2', 'บ้านเต็นท์ Cluster 3'
+  ],
   C_PUMP_TANK: ['อาคารห้องปั๊ม พื้นที่ C', 'ห้องปั๊มและถังเก็บน้ำ'],
   C_EQUIPMENT: [],
   D_NATURE1: ['พื้นที่ศึกษาธรรมชาติ 1', 'โซนศึกษาธรรมชาติ 1'],
@@ -71,6 +74,8 @@ const interiorSuffixes = new Set(['WFIN','DRW','CEIL','FLR','PNT','FURN','EX01',
 const equipmentSuffixes = new Set(['FURN','EX01','EX02','EX03','EQP','PUMP','TANK','INST']);
 const landscapeSuffixes = new Set(['SUR','CTRL','EW','DRN','UTIL','BASE','PAVE','ELE','FURN','SOIL','SOFT','IRR','MON','REST','FIN']);
 const specialSuffixes = new Set(['ICT1','ICT2','EX01','EX02','EX03','ELE','ELE1','ELE2','PROC','PUMP','CTRL','INST','FUNC','COMM']);
+const equipmentMappingKeys = new Set(['A_EQUIPMENT','B_EQUIPMENT','C_EQUIPMENT']);
+const strongPhysicalMatchLevels = new Set(['AREA_AND_WORK_EXACT','ZONE_EQUIPMENT_SCOPE_MATCH']);
 
 const familyRules = Object.freeze({
   W01: row => structuralCategories.has(row.work_category_th) || structuralSuffixes.has(taskSuffix(row)),
@@ -127,11 +132,19 @@ function mapPhysicalSourceItem(item) {
   const familyRows = zoneRows.filter(familyRule);
   const exactAreaRows = zoneRows.filter(row => areaMatches(row, item.mapping_key));
   const exact = exactAreaRows.filter(familyRule);
+  const zoneEquipmentRows = equipmentMappingKeys.has(item.mapping_key)
+    ? zoneRows.filter(row => row.work_category_th === 'งานครุภัณฑ์' || equipmentSuffixes.has(taskSuffix(row)))
+    : [];
 
   let matched = exact;
   let matchLevel = 'AREA_AND_WORK_EXACT';
   let mappingNote = 'จับคู่โซนย่อยและหมวดงานกับกิจกรรมรายละเอียดใน Baseline';
 
+  if (!matched.length && zoneEquipmentRows.length) {
+    matched = zoneEquipmentRows;
+    matchLevel = 'ZONE_EQUIPMENT_SCOPE_MATCH';
+    mappingNote = 'รายการ Excel เป็นงานครุภัณฑ์ระดับโซน จึงจับคู่เฉพาะกิจกรรมครุภัณฑ์/อุปกรณ์ในโซน ไม่ใช้ช่วงรวมของหมวดงานอื่น';
+  }
   if (!matched.length && exactAreaRows.length) {
     matched = exactAreaRows;
     matchLevel = 'AREA_ALL_WORK_FALLBACK';
@@ -239,7 +252,8 @@ export const teamGanttStats = Object.freeze({
   works: new Set(teamGanttRows.map(row => row.work_code)).size,
   zones: new Set(teamGanttRows.map(row => row.zone_code)).size,
   exact_area_work_matches: teamGanttRows.filter(row => row.match_level === 'AREA_AND_WORK_EXACT').length,
-  fallback_matches: teamGanttRows.filter(row => row.match_level !== 'AREA_AND_WORK_EXACT' && row.source_kind === 'PHYSICAL_SCOPE').length,
+  explicit_scope_matches: teamGanttRows.filter(row => strongPhysicalMatchLevels.has(row.match_level)).length,
+  fallback_matches: teamGanttRows.filter(row => !strongPhysicalMatchLevels.has(row.match_level) && row.source_kind === 'PHYSICAL_SCOPE').length,
   source_issues: teamGanttRows.filter(row => row.source_issue).length,
   start_day: Math.min(...teamGanttRows.map(row => row.start_day)),
   finish_day: Math.max(...teamGanttRows.map(row => row.finish_day))
