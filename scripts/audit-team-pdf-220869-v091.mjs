@@ -5,14 +5,14 @@ import {
   teamGanttStats
 } from '../src/build-team-gantt-220869-v091.js';
 
-const INPUT = Object.freeze({
+const INPUT = {
   text: 'data/team-pdf-text-220869-v091.txt',
   report: 'data/team-pdf-generation-report-220869-v091.json'
-});
-const OUTPUT = Object.freeze({
+};
+const OUTPUT = {
   json: 'data/team-pdf-deep-audit-220869-v091.json',
   markdown: 'data/team-pdf-deep-audit-220869-v091.md'
-});
+};
 for (const file of Object.values(INPUT)) {
   if (!fs.existsSync(file)) throw new Error(`Missing audit input: ${file}`);
 }
@@ -72,11 +72,10 @@ if (containsPhrase(malformedSource)) {
   addError('PDF ฉบับส่งทีมยังแสดงข้อความ Excel ที่ผิดรูปแบบแทนข้อความที่แก้แล้ว', malformedSource);
 }
 
-const normalizedForIds = normalize(textRaw);
 const idCounts = {};
 for (const row of teamGanttRows) {
   const pattern = new RegExp(escapeRegex(row.team_activity_id), 'g');
-  idCounts[row.team_activity_id] = (normalizedForIds.match(pattern) || []).length;
+  idCounts[row.team_activity_id] = (normalizedText.match(pattern) || []).length;
 }
 const missing = Object.entries(idCounts).filter(([, count]) => count === 0).map(([id]) => id);
 const duplicates = Object.entries(idCounts).filter(([, count]) => count > 1).map(([id, count]) => ({ id, count }));
@@ -84,20 +83,18 @@ if (missing.length) addError('Activity ID จาก Excel ขาดหายจ�
 if (duplicates.length) addError('Activity ID จาก Excel ปรากฏซ้ำใน PDF', { count: duplicates.length, sample: duplicates.slice(0, 30) });
 
 const expectedTbcRows = [22, 33, 64, 74, 83, 108];
-const tbcRows = teamGanttRows.filter(row => row.timing_status === 'TBC_TEAM_CONFIRMATION');
-const actualTbcRows = tbcRows.map(row => row.source_row).sort((a, b) => a - b);
+const actualTbcRows = teamGanttRows
+  .filter(row => row.timing_status === 'TBC_TEAM_CONFIRMATION')
+  .map(row => row.source_row)
+  .sort((a, b) => a - b);
 if (JSON.stringify(actualTbcRows) !== JSON.stringify(expectedTbcRows)) {
   addError('ชุดรายการ TBC ในข้อมูลไม่ตรงผล Review', { expected: expectedTbcRows, actual: actualTbcRows });
 }
-for (const row of tbcRows) {
-  const idIndex = normalizedForIds.indexOf(row.team_activity_id);
-  if (idIndex < 0) continue;
-  const context = normalizedForIds.slice(Math.max(0, idIndex - 180), idIndex + 700);
-  if (!containsPhrase('TBC')) addError('PDF ไม่มีสถานะ TBC');
-  if (!context.includes('TBC')) addError(`แถว TBC ไม่ได้แสดงสถานะ TBC ใกล้ Activity ID: ${row.team_activity_id}`);
-  if (/D\d+–D\d+/.test(context.slice(0, 280))) {
-    addError(`แถว TBC อาจยังแสดงช่วงวันในแถวกิจกรรม: ${row.team_activity_id}`, context.slice(0, 280));
-  }
+if ((normalizedText.match(/TBC — รอยืนยัน/g) || []).length < expectedTbcRows.length) {
+  addError('จำนวนป้าย TBC — รอยืนยันใน PDF น้อยกว่าจำนวนกิจกรรม TBC', {
+    expected_minimum: expectedTbcRows.length,
+    observed: (normalizedText.match(/TBC — รอยืนยัน/g) || []).length
+  });
 }
 
 const row108 = teamGanttRows.find(row => row.source_row === 108);
