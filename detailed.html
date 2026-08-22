@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>แผนงานก่อสร้างห้วยขาแข้ง — Detailed Integrated Master Gantt</title>
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./timing.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div>
+      <div class="eyebrow">DETAILED INTEGRATED MASTER SCHEDULE · BASELINE v0.8.2</div>
+      <h1>แผนงานรายละเอียด 1,066 กิจกรรม — แผนที่ 01–16</h1>
+      <p>หน้ารายละเอียดสำหรับตรวจ Logic, CPM, Predecessor และหลักฐานประกอบ ส่วนหน้าหลักใช้รายการกิจกรรมจากไฟล์ Excel “ส่งให้ดร.ก้อง 220869.xlsx” ตามคอมเมนต์ทีมงาน</p>
+    </div>
+    <div class="header-actions">
+      <a href="./index.html" style="background:#fff;border:1px solid #fff;border-radius:7px;padding:8px 12px;color:#173a63;font-weight:700;text-decoration:none">กลับ Gantt ตาม Excel</a>
+      <button id="exportCsv">ส่งออก CSV</button>
+      <button id="exportJson">ส่งออก JSON</button>
+    </div>
+  </header>
+
+  <section class="metrics" id="metrics"></section>
+
+  <section class="toolbar">
+    <label>ค้นหา
+      <input id="search" type="search" placeholder="รหัส / WBS / โซนหลัก / โซนย่อย / งาน / กิจกรรม…" />
+    </label>
+    <label>แผน
+      <select id="planFilter"><option value="">ทุกแผน 01–16</option></select>
+    </label>
+    <label>โซนหลัก / พื้นที่ดำเนินงาน
+      <select id="zoneFilter"><option value="">ทุกโซนหลักและพื้นที่</option></select>
+    </label>
+    <label>งาน / หมวดงาน
+      <select id="disciplineFilter"><option value="">ทุกงานและหมวดงาน</option></select>
+    </label>
+    <label>ที่มากิจกรรม
+      <select id="basisFilter">
+        <option value="">ทั้งหมด</option>
+        <option value="SOURCE">SOURCE</option>
+        <option value="DERIVED">DERIVED</option>
+        <option value="ASSUMPTION">ASSUMPTION</option>
+      </select>
+    </label>
+    <label>ที่มาระยะเวลา
+      <select id="timingFilter">
+        <option value="">ทั้งหมด</option>
+        <option value="SOURCE">ระยะเวลาจากต้นทาง</option>
+        <option value="ASSUMPTION">ระยะเวลาสมมติฐานข้อเสนอ</option>
+      </select>
+    </label>
+    <label>สถานะขอบเขต
+      <select id="scopeFilter">
+        <option value="">ทุกสถานะ</option>
+        <option value="SOURCE_REQUIRED">SOURCE_REQUIRED</option>
+        <option value="DERIVED_FROM_SCOPE">DERIVED_FROM_SCOPE</option>
+        <option value="WHERE_APPLICABLE">WHERE_APPLICABLE</option>
+        <option value="CONTROL_STREAM">CONTROL_STREAM</option>
+      </select>
+    </label>
+    <label class="check"><input id="criticalOnly" type="checkbox" /> เฉพาะกิจกรรมวิกฤต Float = 0</label>
+    <label class="check"><input id="networkOnly" type="checkbox" /> เฉพาะ Network ครบ NTP→D1200</label>
+    <label>เส้นความสัมพันธ์
+      <select id="linkMode">
+        <option value="off">ปิด</option>
+        <option value="driving" selected>เฉพาะเส้นขับเคลื่อน</option>
+        <option value="all">ทุกเส้นที่มองเห็น</option>
+      </select>
+    </label>
+    <label>ขนาด
+      <select id="zoom">
+        <option value="1.25">ย่อ</option>
+        <option value="2" selected>ปกติ</option>
+        <option value="3">ละเอียด</option>
+      </select>
+    </label>
+    <button id="resetFilters" class="secondary">ล้างตัวกรอง</button>
+  </section>
+
+  <section class="legend" aria-label="คำอธิบายสีและสัญลักษณ์">
+    <span class="hierarchy-legend">ลำดับชั้น:</span>
+    <span><i class="swatch zone-main"></i> สีฟ้า — โซนหลัก A–D</span>
+    <span><i class="swatch subzone"></i> สีเขียว — โซนย่อย / อาคาร–บริเวณ</span>
+    <span><i class="swatch work"></i> สีเทา — งาน / หมวดงาน</span>
+    <i class="legend-separator" aria-hidden="true"></i>
+    <span><i class="swatch normal"></i> กิจกรรม</span>
+    <span><i class="swatch critical"></i> กิจกรรมวิกฤต Float = 0</span>
+    <span><i class="swatch disconnected"></i> Network ไม่ครบถึง D1200</span>
+    <span><i class="link-sample normal"></i> ความสัมพันธ์</span>
+    <span><i class="link-sample driving"></i> ความสัมพันธ์ขับเคลื่อน</span>
+    <span><i class="diamond"></i> จุดควบคุม</span>
+    <span><b class="basis source">SOURCE</b> จากเอกสารต้นทาง</span>
+    <span><b class="basis derived">DERIVED</b> แตกจากกระบวนการต้นทาง</span>
+    <span><b class="basis assumption">ASSUMPTION</b> รายละเอียดระดับข้อเสนอ</span>
+  </section>
+
+  <main class="gantt-shell" id="ganttShell">
+    <div class="gantt-head left-head">
+      <div class="col wbs">WBS / รหัสกลุ่ม</div>
+      <div class="col activity">โซน / งาน / กิจกรรม</div>
+      <div class="col dur">จำนวน / ระยะเวลา</div>
+      <div class="col days">วันเริ่ม–สิ้นสุด</div>
+    </div>
+    <div class="gantt-head timeline-head" id="timelineHead"></div>
+    <div class="left-grid" id="leftGrid"></div>
+    <div class="timeline-grid" id="timelineGrid"></div>
+  </main>
+
+  <aside class="drawer" id="drawer" aria-hidden="true">
+    <button class="drawer-close" id="drawerClose" aria-label="ปิด">×</button>
+    <div id="drawerContent"></div>
+  </aside>
+
+  <footer>
+    หน้านี้เก็บ Integrated Master Schedule รายละเอียดเดิมสำหรับตรวจสอบย้อนกลับ การเปลี่ยนหน้าหลักเป็น Gantt ตาม Excel ไม่ได้ลบหรือเปลี่ยน Activity ID, Duration, Start–Finish, Dependency หรือ CPM ของข้อมูลรายละเอียด
+  </footer>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
