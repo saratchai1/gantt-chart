@@ -1,0 +1,64 @@
+{
+  "status": "PASS",
+  "version": "0.9.1",
+  "revision": {
+    "version": "0.9.1",
+    "issue_status": "FOR_TEAM_APPROVAL",
+    "source_file": "ส่งให้ดร.ก้อง 220869.xlsx",
+    "source_sheet": "Sheet1",
+    "source_rows": "1–154",
+    "source_file_id": "file_00000000f65c81faae3adc35640d6567",
+    "source_register_commit_sha": "1405af254e0ffb590455de45170cbcf25d38790c",
+    "baseline_version": "v0.8.2",
+    "baseline_commit_sha": "fef660d14ae8ddecda66af3980cee939ac72c84d",
+    "baseline_scope": "Integrated detailed master schedule, 1,066 activities",
+    "timing_definition": "Elapsed span between earliest mapped start and latest mapped finish; not work effort",
+    "network_definition": "Summary scope Gantt only; no independent predecessor network or CPM calculation",
+    "special_cost_definition": "Control/allowance window only; not cost loading, cash flow or payment timing"
+  },
+  "source_activity_count": 107,
+  "built_activity_count": 107,
+  "physical_activity_count": 96,
+  "special_cost_activity_count": 11,
+  "confirmed_timing_rows": 101,
+  "tbc_timing_rows": 6,
+  "tbc_source_rows": [
+    22,
+    33,
+    64,
+    74,
+    83,
+    108
+  ],
+  "control_window_rows": 11,
+  "weak_mapping_rows": 0,
+  "resolved_source_issues": 1,
+  "unresolved_source_issues": 0,
+  "critical_exposure_rows": 10,
+  "project_confirmed_span": "D1–D1200",
+  "work_counts": {
+    "งานโครงสร้าง": 14,
+    "งานสถาปัตย์": 9,
+    "งานระบบไฟฟ้าสื่อสาร": 9,
+    "งานระบบสุขาภิบาลและป้องกันอัคคีภัย": 9,
+    "งานระบบปรับอากาศและระบายอากาศ": 7,
+    "งานตกแต่งภายใน": 7,
+    "งานครุภัณฑ์จัดจ้างหรือสั่งทำ": 9,
+    "งานภูมิทัศน์": 21,
+    "งานระบบพิเศษ": 11,
+    "ค่าใช้จ่ายพิเศษตามข้อกำหนดทุกรายการ": 11
+  },
+  "timing_status_counts": {
+    "MAPPED_ELAPSED_SPAN": 90,
+    "TBC_TEAM_CONFIRMATION": 6,
+    "CONTROL_ALLOWANCE_WINDOW": 11
+  },
+  "match_level_counts": {
+    "AREA_AND_WORK_EXACT": 86,
+    "ZONE_EQUIPMENT_SCOPE_MATCH": 4,
+    "TIMING_TBC": 6,
+    "CONTROL_STREAM_MATCH": 11
+  },
+  "errors": [],
+  "advisories": []
+}
