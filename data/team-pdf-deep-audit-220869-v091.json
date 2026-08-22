@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "summary": {
+    "pdf_pages": 8,
+    "version": "0.9.1",
+    "source_file": "ส่งให้ดร.ก้อง 220869.xlsx",
+    "source_register_commit_sha": "1405af254e0ffb590455de45170cbcf25d38790c",
+    "baseline_commit_sha": "fef660d14ae8ddecda66af3980cee939ac72c84d",
+    "activities": 107,
+    "observed_activity_ids": 107,
+    "confirmed_timing_rows": 101,
+    "tbc_timing_rows": 6,
+    "tbc_source_rows": [
+      22,
+      33,
+      64,
+      74,
+      83,
+      108
+    ],
+    "control_window_rows": 11,
+    "critical_exposure_rows": 10,
+    "resolved_source_issues": 1,
+    "unresolved_source_issues": 0,
+    "visible_truncations": 0,
+    "thai_characters": 16693,
+    "extracted_nonspace_characters": 25673,
+    "mapping_counts": {
+      "AREA_AND_WORK_EXACT": 86,
+      "ZONE_EQUIPMENT_SCOPE_MATCH": 4,
+      "TIMING_TBC": 6,
+      "CONTROL_STREAM_MATCH": 11
+    }
+  },
+  "errors": [],
+  "advisories": []
+}
