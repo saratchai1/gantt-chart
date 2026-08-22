@@ -1,0 +1,149 @@
+name: Build Team Gantt 220869 v0.9.1
+
+on:
+  pull_request:
+    paths:
+      - 'src/build-team-gantt-220869-v091.js'
+      - 'src/team-activity-source-220869.js'
+      - 'team-app.js'
+      - 'team-style.css'
+      - 'team-v091.css'
+      - 'index.html'
+      - 'package.json'
+      - 'scripts/*220869-v091*'
+      - '.github/workflows/team-v091.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-team-v091:
+    if: ${{ github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'team/v091') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Validate source code and corrected schedule model
+        shell: bash
+        run: |
+          node --check team-app.js
+          node --check src/build-team-gantt-220869-v091.js
+          node --check scripts/validate-team-gantt-220869-v091.mjs
+          node --check scripts/export-team-gantt-220869-v091.mjs
+          node --check scripts/generate-team-pdf-220869-v091.mjs
+          node --check scripts/generate-team-pdf-220869-v091-final.mjs
+          node --check scripts/audit-team-pdf-220869-v091.mjs
+          python3 -m py_compile scripts/audit-team-pdf-render-220869-v091.py
+          npm run validate
+          npm run team:validate
+          npm run team:export
+
+      - name: Install PDF, Thai font and raster-audit dependencies
+        shell: bash
+        run: |
+          npm install --no-audit --no-fund
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-thai-tlwg fonts-noto-core poppler-utils python3-pil
+          fc-match 'Garuda'
+          fc-match 'Garuda:style=Bold'
+
+      - name: Generate corrected Excel 220869 Team Gantt PDF v0.9.1
+        run: npm run team:pdf
+
+      - name: Extract and render PDF for deterministic QA
+        shell: bash
+        run: |
+          set -euo pipefail
+          PDF='data/huai-kha-khaeng-team-gantt-220869-v0.9.1-thai.pdf'
+          TEXT='data/team-pdf-text-220869-v091.txt'
+          NORMALIZED='data/team-pdf-text-220869-v091-normalized.txt'
+          TSV='data/team-pdf-tsv-220869-v091.tsv'
+
+          pdfinfo "$PDF" | tee data/team-pdf-info-220869-v091.txt
+          pdffonts "$PDF" | tee data/team-pdf-fonts-220869-v091.txt
+          pdftotext "$PDF" "$TEXT"
+          pdftotext -tsv "$PDF" "$TSV"
+          tr '\n\r\f\t' '    ' < "$TEXT" | tr -s ' ' > "$NORMALIZED"
+
+          grep -q '(A3)' data/team-pdf-info-220869-v091.txt
+          grep -Eiq 'Garuda.*yes.*yes.*yes' data/team-pdf-fonts-220869-v091.txt
+          pages=$(pdfinfo "$PDF" | awk '/^Pages:/ {print $2}')
+          test -n "$pages"
+          test "$pages" -gt 1
+          text_chars=$(tr -d '[:space:]' < "$TEXT" | wc -m)
+          test "$text_chars" -gt 18000
+
+          bad=0
+          for page in $(seq 1 "$pages"); do
+            chars=$(pdftotext -f "$page" -l "$page" "$PDF" - | tr -d '[:space:]' | wc -m)
+            printf 'Team PDF v0.9.1 page %s text characters: %s\n' "$page" "$chars"
+            if [ "$chars" -lt 40 ]; then
+              echo "ERROR: blank or effectively blank Team PDF page $page ($chars chars)"
+              bad=1
+            fi
+          done
+          test "$bad" -eq 0
+
+          rm -rf data/team-pdf-pages-220869-v091
+          mkdir -p data/team-pdf-pages-220869-v091
+          pdftoppm -png -r 72 "$PDF" data/team-pdf-pages-220869-v091/page >/dev/null 2>&1
+          pdftoppm -png -f 1 -singlefile -r 120 "$PDF" data/team-pdf-preview-page-01-v091 >/dev/null 2>&1
+          pdftoppm -png -f 2 -singlefile -r 120 "$PDF" data/team-pdf-preview-page-02-v091 >/dev/null 2>&1
+          sample_page=$(( pages > 4 ? 4 : pages ))
+          pdftoppm -png -f "$sample_page" -singlefile -r 120 "$PDF" data/team-pdf-preview-page-sample-v091 >/dev/null 2>&1
+          pdftoppm -png -f "$pages" -singlefile -r 120 "$PDF" data/team-pdf-preview-page-final-v091 >/dev/null 2>&1
+
+      - name: Deep-audit source coverage, TBC semantics and revision control
+        run: npm run team:pdf:audit
+
+      - name: Raster-audit pages, margins and semantic colors
+        run: python3 scripts/audit-team-pdf-render-220869-v091.py
+
+      - name: Upload v0.9.1 PDF, registers and QA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: team-gantt-220869-pdf-v091-thai
+          path: |
+            data/huai-kha-khaeng-team-gantt-220869-v0.9.1-thai.pdf
+            data/team-gantt-220869-v091.csv
+            data/team-gantt-220869-v091.json
+            data/team-gantt-validation-220869-v091.json
+            data/team-gantt-mapping-register-220869-v091.csv
+            data/team-gantt-timing-confirmation-register-220869-v091.csv
+            data/team-source-register-220869.json
+            data/team-pdf-info-220869-v091.txt
+            data/team-pdf-fonts-220869-v091.txt
+            data/team-pdf-text-220869-v091.txt
+            data/team-pdf-text-220869-v091-normalized.txt
+            data/team-pdf-tsv-220869-v091.tsv
+            data/team-pdf-generation-report-220869-v091.json
+            data/team-pdf-deep-audit-220869-v091.json
+            data/team-pdf-deep-audit-220869-v091.md
+            data/team-pdf-render-audit-220869-v091.json
+            data/team-pdf-render-audit-220869-v091.md
+            data/team-pdf-preview-page-*-v091.png
+            data/team-pdf-contact-sheet-220869-v091-*.png
+
+      - name: Publish reviewed v0.9.1 PDF snapshot branch
+        if: ${{ github.event_name == 'pull_request' }}
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git checkout -B pdf-export-team-220869-v091
+          git add -f \
+            data/huai-kha-khaeng-team-gantt-220869-v0.9.1-thai.pdf \
+            data/team-gantt-validation-220869-v091.json \
+            data/team-gantt-mapping-register-220869-v091.csv \
+            data/team-gantt-timing-confirmation-register-220869-v091.csv \
+            data/team-pdf-generation-report-220869-v091.json \
+            data/team-pdf-deep-audit-220869-v091.json \
+            data/team-pdf-render-audit-220869-v091.json \
+            data/team-pdf-preview-page-*-v091.png \
+            data/team-pdf-contact-sheet-220869-v091-*.png
+          git commit -m 'Publish reviewed Excel 220869 Team Gantt v0.9.1 PDF [skip ci]'
+          git push origin HEAD:pdf-export-team-220869-v091 --force
