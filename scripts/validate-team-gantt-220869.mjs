@@ -13,8 +13,8 @@ const addError = (message, detail = null) => errors.push({ message, detail });
 const addAdvisory = (message, detail = null) => advisories.push({ message, detail });
 const sourceRows = flattenTeamSourceActivities();
 
-if (TEAM_SOURCE_ACTIVITY_COUNT !== 106) addError('Excel source activity count must be 106', TEAM_SOURCE_ACTIVITY_COUNT);
-if (sourceRows.filter(row => row.source_kind === 'PHYSICAL_SCOPE').length !== 95) addError('Physical Excel activity count must be 95');
+if (TEAM_SOURCE_ACTIVITY_COUNT !== 107) addError('Excel source activity count must be 107', TEAM_SOURCE_ACTIVITY_COUNT);
+if (sourceRows.filter(row => row.source_kind === 'PHYSICAL_SCOPE').length !== 96) addError('Physical Excel activity count must be 96');
 if (TEAM_SPECIAL_COSTS.length !== 11) addError('Special-cost activity count must be 11', TEAM_SPECIAL_COSTS.length);
 if (TEAM_WORK_SECTIONS.length !== 9) addError('Physical work-section count must be 9', TEAM_WORK_SECTIONS.length);
 if (teamGanttRows.length !== sourceRows.length) addError('Built team Gantt row count does not match Excel source', {
