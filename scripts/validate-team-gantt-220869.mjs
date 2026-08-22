@@ -109,6 +109,12 @@ console.log(`Team Excel Gantt validation: ${report.status}`);
 console.log(`Source/Built activities: ${sourceRows.length}/${teamGanttRows.length}`);
 console.log(`Physical=${teamGanttStats.physical_activities}; Special costs=${teamGanttStats.special_cost_activities}; Works=${report.work_section_count}`);
 console.log(`Exact mappings=${teamGanttStats.exact_area_work_matches}; Fallback mappings=${teamGanttStats.fallback_matches}`);
+if (fallbackRows.length) {
+  console.log('Fallback mapping register:');
+  for (const row of fallbackRows) {
+    console.log(`  Excel row ${row.source_row} | ${row.work_name} | Zone ${row.zone_code} | ${row.activity_name} | ${row.match_level} | D${row.start_day}–D${row.finish_day} | matched=${row.matched_activity_count}`);
+  }
+}
 console.log(`Source issues retained=${teamGanttStats.source_issues}`);
 console.log(`Errors=${errors.length}; Advisories=${advisories.length}`);
 if (errors.length) {
