@@ -12,6 +12,7 @@ const advisories = [];
 const addError = (message, detail = null) => errors.push({ message, detail });
 const addAdvisory = (message, detail = null) => advisories.push({ message, detail });
 const sourceRows = flattenTeamSourceActivities();
+const strongPhysicalMatchLevels = new Set(['AREA_AND_WORK_EXACT','ZONE_EQUIPMENT_SCOPE_MATCH']);
 
 if (TEAM_SOURCE_ACTIVITY_COUNT !== 107) addError('Excel source activity count must be 107', TEAM_SOURCE_ACTIVITY_COUNT);
 if (sourceRows.filter(row => row.source_kind === 'PHYSICAL_SCOPE').length !== 96) addError('Physical Excel activity count must be 96');
@@ -57,7 +58,9 @@ if (!sourceIssues[0]?.source_label.includes('(zone D)rop-off') || sourceIssues[0
   addError('Row 127 must preserve the source label and expose the normalized display label separately');
 }
 
-const fallbackRows = teamGanttRows.filter(row => row.source_kind === 'PHYSICAL_SCOPE' && row.match_level !== 'AREA_AND_WORK_EXACT');
+const fallbackRows = teamGanttRows.filter(row =>
+  row.source_kind === 'PHYSICAL_SCOPE' && !strongPhysicalMatchLevels.has(row.match_level)
+);
 if (fallbackRows.length) addAdvisory('Some Excel rows require area- or zone-level timing fallback because the existing detailed baseline does not use the same package name or work split', {
   count: fallbackRows.length,
   by_level: fallbackRows.reduce((acc, row) => {
@@ -82,6 +85,10 @@ const zoneCounts = teamGanttRows.reduce((acc, row) => {
   acc[row.zone_code] = (acc[row.zone_code] || 0) + 1;
   return acc;
 }, {});
+const matchLevelCounts = teamGanttRows.reduce((acc, row) => {
+  acc[row.match_level] = (acc[row.match_level] || 0) + 1;
+  return acc;
+}, {});
 
 const report = {
   status: errors.length ? 'FAIL' : advisories.length ? 'PASS_WITH_ADVISORIES' : 'PASS',
@@ -93,11 +100,13 @@ const report = {
   work_section_count: TEAM_WORK_SECTIONS.length + 1,
   zone_count: teamGanttStats.zones,
   exact_area_work_matches: teamGanttStats.exact_area_work_matches,
+  explicit_scope_matches: teamGanttStats.explicit_scope_matches,
   fallback_matches: teamGanttStats.fallback_matches,
   source_issue_count: teamGanttStats.source_issues,
   project_span: `D${teamGanttStats.start_day}–D${teamGanttStats.finish_day}`,
   work_counts: workCounts,
   zone_counts: zoneCounts,
+  match_level_counts: matchLevelCounts,
   errors,
   advisories
 };
@@ -108,7 +117,8 @@ fs.writeFileSync('data/team-gantt-validation-220869.json', JSON.stringify(report
 console.log(`Team Excel Gantt validation: ${report.status}`);
 console.log(`Source/Built activities: ${sourceRows.length}/${teamGanttRows.length}`);
 console.log(`Physical=${teamGanttStats.physical_activities}; Special costs=${teamGanttStats.special_cost_activities}; Works=${report.work_section_count}`);
-console.log(`Exact mappings=${teamGanttStats.exact_area_work_matches}; Fallback mappings=${teamGanttStats.fallback_matches}`);
+console.log(`Exact area/work=${teamGanttStats.exact_area_work_matches}; Strong physical matches=${teamGanttStats.explicit_scope_matches}; Fallback mappings=${teamGanttStats.fallback_matches}`);
+console.log(`Match levels=${JSON.stringify(matchLevelCounts)}`);
 if (fallbackRows.length) {
   console.log('Fallback mapping register:');
   for (const row of fallbackRows) {
