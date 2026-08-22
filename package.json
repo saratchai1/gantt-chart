@@ -11,7 +11,9 @@
     "export": "node scripts/export.mjs",
     "thai-review": "node scripts/export-thai-review.mjs",
     "pdf": "node scripts/generate-pdf-thai-v082.mjs",
-    "pdf:audit": "node scripts/audit-pdf-v082.mjs"
+    "pdf:audit": "node scripts/audit-pdf-v082.mjs",
+    "team:pdf": "node scripts/generate-team-pdf-220869.mjs",
+    "team:pdf:audit": "node scripts/audit-team-pdf-220869.mjs"
   },
   "dependencies": {
     "pdfkit": "latest"

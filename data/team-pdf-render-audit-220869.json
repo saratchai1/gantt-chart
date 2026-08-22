@@ -1,0 +1,215 @@
+{
+  "status": "PASS",
+  "pages": 8,
+  "page_size_pixels": [
+    1191,
+    842
+  ],
+  "ink_ratio_min": 0.323851,
+  "ink_ratio_max": 0.579892,
+  "ink_ratio_mean": 0.509778375,
+  "hierarchy_color_pixels": {
+    "work_gray": 499525,
+    "zone_blue": 800759,
+    "activity_green": 1556265,
+    "critical_red": 23300,
+    "source_issue_yellow": 90747
+  },
+  "errors": [],
+  "advisories": [],
+  "contact_sheets": [
+    "data/team-pdf-contact-sheet-220869-01.png"
+  ],
+  "page_metrics": [
+    {
+      "page": 1,
+      "file": "data/team-pdf-pages-220869/page-1.png",
+      "width": 1191,
+      "height": 842,
+      "ink_ratio": 0.434777,
+      "nonwhite_bbox": [
+        0,
+        0,
+        1191,
+        814
+      ],
+      "right_edge_ink_ratio": 0.083135,
+      "bottom_edge_ink_ratio": 0.0,
+      "hierarchy_color_pixels": {
+        "work_gray": 205015,
+        "zone_blue": 102,
+        "activity_green": 709,
+        "critical_red": 102,
+        "source_issue_yellow": 50658
+      }
+    },
+    {
+      "page": 2,
+      "file": "data/team-pdf-pages-220869/page-2.png",
+      "width": 1191,
+      "height": 842,
+      "ink_ratio": 0.544069,
+      "nonwhite_bbox": [
+        24,
+        20,
+        1167,
+        814
+      ],
+      "right_edge_ink_ratio": 0.0,
+      "bottom_edge_ink_ratio": 0.0,
+      "hierarchy_color_pixels": {
+        "work_gray": 49257,
+        "zone_blue": 107853,
+        "activity_green": 249581,
+        "critical_red": 1275,
+        "source_issue_yellow": 102
+      },
+      "left_table_ink_ratio": 0.615567,
+      "timeline_ink_ratio": 0.637461
+    },
+    {
+      "page": 3,
+      "file": "data/team-pdf-pages-220869/page-3.png",
+      "width": 1191,
+      "height": 842,
+      "ink_ratio": 0.579892,
+      "nonwhite_bbox": [
+        24,
+        20,
+        1167,
+        814
+      ],
+      "right_edge_ink_ratio": 0.0,
+      "bottom_edge_ink_ratio": 0.0,
+      "hierarchy_color_pixels": {
+        "work_gray": 48891,
+        "zone_blue": 173818,
+        "activity_green": 218750,
+        "critical_red": 2200,
+        "source_issue_yellow": 102
+      },
+      "left_table_ink_ratio": 0.657193,
+      "timeline_ink_ratio": 0.676324
+    },
+    {
+      "page": 4,
+      "file": "data/team-pdf-pages-220869/page-4.png",
+      "width": 1191,
+      "height": 842,
+      "ink_ratio": 0.565028,
+      "nonwhite_bbox": [
+        24,
+        20,
+        1167,
+        814
+      ],
+      "right_edge_ink_ratio": 0.0,
+      "bottom_edge_ink_ratio": 0.0,
+      "hierarchy_color_pixels": {
+        "work_gray": 48726,
+        "zone_blue": 130448,
+        "activity_green": 250095,
+        "critical_red": 2016,
+        "source_issue_yellow": 102
+      },
+      "left_table_ink_ratio": 0.641434,
+      "timeline_ink_ratio": 0.657029
+    },
+    {
+      "page": 5,
+      "file": "data/team-pdf-pages-220869/page-5.png",
+      "width": 1191,
+      "height": 842,
+      "ink_ratio": 0.554099,
+      "nonwhite_bbox": [
+        24,
+        20,
+        1167,
+        814
+      ],
+      "right_edge_ink_ratio": 0.0,
+      "bottom_edge_ink_ratio": 0.0,
+      "hierarchy_color_pixels": {
+        "work_gray": 48999,
+        "zone_blue": 153043,
+        "activity_green": 221085,
+        "critical_red": 1227,
+        "source_issue_yellow": 102
+      },
+      "left_table_ink_ratio": 0.628931,
+      "timeline_ink_ratio": 0.644233
+    },
+    {
+      "page": 6,
+      "file": "data/team-pdf-pages-220869/page-6.png",
+      "width": 1191,
+      "height": 842,
+      "ink_ratio": 0.531335,
+      "nonwhite_bbox": [
+        24,
+        20,
+        1167,
+        814
+      ],
+      "right_edge_ink_ratio": 0.0,
+      "bottom_edge_ink_ratio": 0.0,
+      "hierarchy_color_pixels": {
+        "work_gray": 25806,
+        "zone_blue": 86284,
+        "activity_green": 278559,
+        "critical_red": 1971,
+        "source_issue_yellow": 102
+      },
+      "left_table_ink_ratio": 0.59671,
+      "timeline_ink_ratio": 0.627882
+    },
+    {
+      "page": 7,
+      "file": "data/team-pdf-pages-220869/page-7.png",
+      "width": 1191,
+      "height": 842,
+      "ink_ratio": 0.545176,
+      "nonwhite_bbox": [
+        24,
+        20,
+        1167,
+        814
+      ],
+      "right_edge_ink_ratio": 0.0,
+      "bottom_edge_ink_ratio": 0.0,
+      "hierarchy_color_pixels": {
+        "work_gray": 48702,
+        "zone_blue": 128935,
+        "activity_green": 186556,
+        "critical_red": 1107,
+        "source_issue_yellow": 39477
+      },
+      "left_table_ink_ratio": 0.61675,
+      "timeline_ink_ratio": 0.637694
+    },
+    {
+      "page": 8,
+      "file": "data/team-pdf-pages-220869/page-8.png",
+      "width": 1191,
+      "height": 842,
+      "ink_ratio": 0.323851,
+      "nonwhite_bbox": [
+        24,
+        20,
+        1167,
+        814
+      ],
+      "right_edge_ink_ratio": 0.0,
+      "bottom_edge_ink_ratio": 0.0,
+      "hierarchy_color_pixels": {
+        "work_gray": 24129,
+        "zone_blue": 20276,
+        "activity_green": 150930,
+        "critical_red": 13402,
+        "source_issue_yellow": 102
+      },
+      "left_table_ink_ratio": 0.345204,
+      "timeline_ink_ratio": 0.409442
+    }
+  ]
+}
