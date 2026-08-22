@@ -1,11 +1,13 @@
 {
   "name": "huai-kha-khaeng-integrated-gantt",
-  "version": "0.8.2",
+  "version": "0.9.0",
   "private": true,
   "type": "module",
   "scripts": {
     "validate": "node scripts/validate.mjs",
     "web:validate": "node scripts/validate-web-hierarchy.mjs",
+    "team:validate": "node scripts/validate-team-gantt-220869.mjs",
+    "team:export": "node scripts/export-team-gantt-220869.mjs",
     "export": "node scripts/export.mjs",
     "thai-review": "node scripts/export-thai-review.mjs",
     "pdf": "node scripts/generate-pdf-thai-v082.mjs",
