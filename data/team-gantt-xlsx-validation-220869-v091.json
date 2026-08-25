@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "workbook": "data/huai-kha-khaeng-team-gantt-220869-v0.9.1-thai.xlsx",
+  "size_bytes": 65578,
+  "sheets": [
+    "Gantt Chart",
+    "Activity Data",
+    "TBC Register",
+    "Revision & Notes"
+  ],
+  "activity_rows": 107,
+  "gantt_activity_rows": 107,
+  "tbc_rows": 6,
+  "control_window_rows": 11,
+  "critical_exposure_rows": 10,
+  "elapsed_span_formula_rows": 107,
+  "timeline_months": 40,
+  "errors": [],
+  "advisories": []
+}
