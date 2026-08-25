@@ -1,0 +1,26 @@
+{
+  "status": "GENERATED",
+  "version": "0.9.1",
+  "issue_status": "FOR TEAM APPROVAL",
+  "output": "data/huai-kha-khaeng-team-gantt-220869-v0.9.1-thai.xlsx",
+  "activities": 107,
+  "work_groups": 10,
+  "zone_groups": 35,
+  "tbc_rows": 6,
+  "control_window_rows": 11,
+  "critical_exposure_rows": 10,
+  "source_file": "ส่งให้ดร.ก้อง 220869.xlsx",
+  "source_register_commit": "1405af254e0ffb590455de45170cbcf25d38790c",
+  "baseline_version": "v0.8.2",
+  "baseline_commit": "fef660d14ae8ddecda66af3980cee939ac72c84d",
+  "latest_reviewed_gantt_commit": "1e77c949d3ecdd334606190409d82f506703f071",
+  "sheets": [
+    "Gantt Chart",
+    "Activity Data",
+    "TBC Register",
+    "Revision & Notes"
+  ],
+  "timeline_months": 40,
+  "timeline_days": 1200,
+  "size_bytes": 65578
+}

@@ -1,0 +1,58 @@
+name: Build Team Gantt Excel v0.9.1
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/export-team-gantt-220869-v091-xlsx.py'
+      - 'scripts/validate-team-gantt-220869-v091-xlsx.py'
+      - 'data/team-gantt-mapping-register-220869-v091.csv'
+      - 'data/team-gantt-timing-confirmation-register-220869-v091.csv'
+      - '.github/workflows/team-v091-excel.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  build-excel:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install spreadsheet dependency
+        run: python -m pip install --disable-pip-version-check openpyxl==3.1.5
+
+      - name: Generate latest Team Gantt Excel workbook
+        run: python scripts/export-team-gantt-220869-v091-xlsx.py
+
+      - name: Validate workbook structure and data
+        run: python scripts/validate-team-gantt-220869-v091-xlsx.py
+
+      - name: Upload Excel workbook and QA report
+        uses: actions/upload-artifact@v4
+        with:
+          name: huai-kha-khaeng-team-gantt-v091-excel
+          path: |
+            data/huai-kha-khaeng-team-gantt-220869-v0.9.1-thai.xlsx
+            data/team-gantt-xlsx-generation-report-220869-v091.json
+            data/team-gantt-xlsx-validation-220869-v091.json
+
+      - name: Publish workbook to pull-request branch
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -f \
+            data/huai-kha-khaeng-team-gantt-220869-v0.9.1-thai.xlsx \
+            data/team-gantt-xlsx-generation-report-220869-v091.json \
+            data/team-gantt-xlsx-validation-220869-v091.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish latest Team Gantt v0.9.1 Excel workbook [skip ci]'
+            git push origin HEAD:${{ github.event.pull_request.head.ref }}
+          fi
